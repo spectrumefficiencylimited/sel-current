@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spectrum Efficiency Limited - NZ RSM Data</title>
-    <!-- Your existing styles are great, no changes needed here -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); min-height: 100vh; padding: 20px; }
@@ -24,16 +24,16 @@
         .download-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
         .download-card h3 { color: #2c3e50; margin-bottom: 15px; font-size: 1.4em; }
         .download-card p { margin-bottom: 20px; color: #666; }
-        .button-group { display: flex; flex-wrap: wrap; gap: 10px; }
-        .download-btn { display: inline-flex; align-items: center; gap: 8px; color: white; padding: 12px 24px; border: none; border-radius: 8px; cursor: pointer; font-size: 1em; transition: all 0.3s ease; text-decoration: none; }
-        .download-btn:hover { transform: translateY(-2px); }
-        .btn-csv { background: linear-gradient(135deg, #27ae60, #229954); }
-        .btn-json { background: linear-gradient(135deg, #e67e22, #d35400); }
-        .btn-duckdb { background: linear-gradient(135deg, #8e44ad, #9b59b6); }
+        .button-group { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; }
+        .download-btn { display: inline-flex; align-items: center; gap: 10px; color: white; padding: 12px 24px; border: none; border-radius: 8px; cursor: pointer; font-size: 1em; font-weight: 500; transition: all 0.3s ease; text-decoration: none; }
+        .download-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        .btn-csv { background: #1D6F42; }
+        .btn-json { background: #000000; }
+        .btn-duckdb { background: #B55B02; }
         .content { padding: 40px; }
-        .data-previews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 40px; } /* NEW */
+        .data-previews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 40px; }
         .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-bottom: 40px; }
-        .stat-card { background: linear-gradient(135deg, #ffffff, #f8f9fa); border-radius: 10px; padding: 25px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease; }
+        .stat-card { background: linear-gradient(135deg, #ffffff, #f8f9fa); border-radius: 10px; padding: 25px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.07); transition: transform 0.3s ease; }
         .stat-card:hover { transform: translateY(-5px); }
         .stat-number { font-size: 2.5em; font-weight: bold; color: #3498db; margin-bottom: 10px; }
         .stat-label { color: #666; font-size: 1.1em; }
@@ -50,7 +50,7 @@
         .footer p { margin-bottom: 10px; opacity: 0.9; }
         .footer a { color: #3498db; text-decoration: none; }
         .footer a:hover { text-decoration: underline; }
-        @media (max-width: 768px) { .header h1 { font-size: 2em; } .update-status { grid-template-columns: 1fr; text-align: center; } }
+        @media (max-width: 768px) { .header h1 { font-size: 2em; } .update-status { grid-template-columns: 1fr; text-align: center; } .data-previews-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -76,11 +76,22 @@
             <div class="download-section">
                 <div class="download-card">
                     <h3>📋 Current Assignments Data</h3>
-                    <p>Download the latest spectrum assignments and license data in your preferred format.</p>
+                    <p>
+                        Download the latest spectrum assignments, automatically updated hourly. This service modernizes and replaces the decommissioned Spectrum Search Lite, providing fresh, machine-readable data.
+                    </p>
                     <div class="button-group">
-                        <a href="silver/combined_licences.csv" class="download-btn btn-csv"><span>CSV</span></a>
-                        <a href="silver/combined_licences.json" class="download-btn btn-json"><span>JSON</span></a>
-                        <a href="silver/combined_licences.duckdb" class="download-btn btn-duckdb"><span>DUCKDB</span></a>
+                        <a href="silver/combined_licences.csv" class="download-btn btn-csv" title="Download as CSV">
+                            <i class="fa-solid fa-file-csv fa-lg"></i>
+                            <span>CSV</span>
+                        </a>
+                        <a href="silver/combined_licences.json" class="download-btn btn-json" title="Download as JSON">
+                            <i class="fa-solid fa-file-code fa-lg"></i>
+                            <span>JSON</span>
+                        </a>
+                        <a href="silver/combined_licences.duckdb" class="download-btn btn-duckdb" title="Download as DuckDB">
+                            <i class="fa-solid fa-database fa-lg"></i>
+                            <span>DuckDB</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -90,11 +101,11 @@
             <div class="stats-grid">
                 <div class="stat-card">
                     <div class="stat-number" id="totalLicenses">-</div>
-                    <div class="stat-label">Total Licenses</div>
+                    <div class="stat-label">Total Assignments</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-number" id="activeAssignments">-</div>
-                    <div class="stat-label">Active Assignments</div>
+                    <div class="stat-label">Current Assignments</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-number" id="uniqueHolders">-</div>
@@ -106,9 +117,7 @@
                 </div>
             </div>
 
-            <!-- NEW: Wrapper for data previews -->
             <div class="data-previews-grid">
-
                 <div class="data-preview">
                     <h3>🏆 Top License Holders <small>(by non-mobile assignments)</small></h3>
                     <div id="analyticsPreviewContainer" class="loading">
@@ -116,7 +125,6 @@
                         <p>Loading analytics...</p>
                     </div>
                 </div>
-
                 <div class="data-preview">
                     <h3>📈 Recent Spectrum Assignments (Sample)</h3>
                     <div id="dataPreviewContainer" class="loading">
@@ -124,15 +132,14 @@
                         <p>Loading data sample...</p>
                     </div>
                 </div>
-
             </div>
 
         </div>
 
         <footer class="footer">
             <p>Data sourced from <a href="https://www.rsm.govt.nz/" target="_blank">Radio Spectrum Management New Zealand</a></p>
-            <p>Automated updates every 30 minutes • Last build: <span id="buildTime">2025-07-18 01:42:03 UTC</span></p>
-            <p>GitHub Repository: <a href="https://github.com/spectrumefficiencylimited/rsm-current" target="_blank">rsm-current</a></p>
+            <p>Automated updates every hour • Last build: <span id="buildTime">2025-07-18 03:26:17 UTC</span></p>
+            <p>GitHub Repository: <a href="https://github.com/spectrumefficiencylimited/sel-current" target="_blank">sel-current</a></p>
         </footer>
     </div>
 
@@ -141,7 +148,7 @@
             const cacheBuster = `?v=${new Date().getTime()}`;
             const STATS_URL = `silver/stats.json${cacheBuster}`;
             const CSV_URL = `silver/combined_licences.csv${cacheBuster}`;
-            const ANALYTICS_URL = `silver/licensee_analytics.csv${cacheBuster}`; // NEW
+            const ANALYTICS_URL = `silver/licensee_analytics.csv${cacheBuster}`;
 
             let nextUpdateInterval;
             let lastUpdateTimestamp;
@@ -172,91 +179,50 @@
                 }
             }
 
-            async function fetchCsvPreview() {
+            async function fetchCsvPreview(url, containerId, columns) {
                 try {
-                    const response = await fetch(CSV_URL);
+                    const response = await fetch(url);
                     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                     const csvText = await response.text();
                     
-                    const rows = csvText.split('\n');
+                    const rows = csvText.trim().split('\n');
                     const headers = rows[0].split(',');
-                    const data = rows.slice(1, 11); // Get first 10 data rows
+                    const data = rows.slice(1, 11);
 
-                    const licenseeIndex = headers.indexOf('licensee');
-                    const frequencyIndex = headers.indexOf('frequency');
-                    const locationIndex = headers.indexOf('location');
-                    const statusIndex = headers.indexOf('status');
-
-                    let tableHTML = `
-                        <table class="data-table">
-                            <thead><tr><th>Licensee</th><th>Frequency (MHz)</th><th>Location</th><th>Status</th></tr></thead>
-                            <tbody>`;
+                    let tableHTML = `<table class="data-table"><thead><tr>`;
+                    columns.forEach(col => { tableHTML += `<th>${col.title}</th>`; });
+                    tableHTML += `</tr></thead><tbody>`;
                     
                     data.forEach(rowStr => {
                         if (!rowStr) return;
                         const row = rowStr.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/); // CSV split that handles quoted commas
-                        tableHTML += `
-                            <tr>
-                                <td>${(row[licenseeIndex] || 'N/A').replace(/"/g, '')}</td>
-                                <td>${(row[frequencyIndex] || 'N/A').replace(/"/g, '')}</td>
-                                <td>${(row[locationIndex] || 'N/A').replace(/"/g, '')}</td>
-                                <td><span style="color: ${row[statusIndex].includes('CURRENT') ? '#27ae60' : '#f39c12'}">${(row[statusIndex] || 'N/A').replace(/"/g, '')}</span></td>
-                            </tr>`;
+                        tableHTML += `<tr>`;
+                        columns.forEach(col => {
+                            const index = headers.indexOf(col.key);
+                            let cellData = (row[index] || 'N/A').replace(/"/g, '');
+                            if (col.key === 'status') {
+                                cellData = `<span style="color: ${cellData.includes('CURRENT') ? '#27ae60' : '#f39c12'}">${cellData}</span>`;
+                            }
+                            tableHTML += `<td>${cellData}</td>`;
+                        });
+                        tableHTML += `</tr>`;
                     });
 
                     tableHTML += `</tbody></table>`;
-                    document.getElementById('dataPreviewContainer').innerHTML = tableHTML;
+                    document.getElementById(containerId).innerHTML = tableHTML;
 
                 } catch (error) {
-                    console.error("Failed to load CSV preview:", error);
-                    document.getElementById('dataPreviewContainer').innerHTML = `<p>Error loading data preview.</p>`;
-                }
-            }
-            
-            // NEW: Function to fetch and display analytics
-            async function fetchAnalyticsPreview() {
-                try {
-                    const response = await fetch(ANALYTICS_URL);
-                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                    const csvText = await response.text();
-                    
-                    const rows = csvText.split('\n');
-                    const headers = rows[0].split(',');
-                    const data = rows.slice(1);
-
-                    const licenseeIndex = headers.indexOf('licensee');
-                    const countIndex = headers.indexOf('assignment_count');
-
-                    let tableHTML = `
-                        <table class="data-table">
-                            <thead><tr><th>Licensee</th><th>Assignments</th></tr></thead>
-                            <tbody>`;
-                    
-                    data.forEach(rowStr => {
-                        if (!rowStr) return;
-                        const row = rowStr.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/); // CSV split
-                        tableHTML += `
-                            <tr>
-                                <td>${(row[licenseeIndex] || 'N/A').replace(/"/g, '')}</td>
-                                <td>${(row[countIndex] || 'N/A').replace(/"/g, '')}</td>
-                            </tr>`;
-                    });
-
-                    tableHTML += `</tbody></table>`;
-                    document.getElementById('analyticsPreviewContainer').innerHTML = tableHTML;
-
-                } catch (error) {
-                    console.error("Failed to load analytics preview:", error);
-                    document.getElementById('analyticsPreviewContainer').innerHTML = `<p>Error loading analytics data.</p>`;
+                    console.error(`Failed to load preview for ${url}:`, error);
+                    document.getElementById(containerId).innerHTML = `<p>Error loading data preview.</p>`;
                 }
             }
 
             function startCountdown() {
                 if (nextUpdateInterval) clearInterval(nextUpdateInterval);
 
-                const nextUpdateTime = new Date(lastUpdateTimestamp.getTime() + 30 * 60 * 1000);
+                const nextUpdateTime = new Date(lastUpdateTimestamp.getTime() + 60 * 60 * 1000); // Hourly
 
-                nextUpdateInterval = setInterval(() => {
+                const updateTimer = () => {
                     const now = new Date();
                     const timeLeft = nextUpdateTime - now;
 
@@ -266,18 +232,29 @@
                         return;
                     }
 
-                    const minutes = Math.floor(timeLeft / 60000);
-                    const seconds = Math.floor((timeLeft % 60000) / 1000);
+                    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
                     
                     document.getElementById('countdownTimer').textContent = 
                         `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-                }, 1000);
+                };
+
+                updateTimer();
+                nextUpdateInterval = setInterval(updateTimer, 1000);
             }
             
             // Fetch all data on load
             fetchStats();
-            fetchCsvPreview();
-            fetchAnalyticsPreview(); // NEW
+            fetchCsvPreview(ANALYTICS_URL, 'analyticsPreviewContainer', [
+                { key: 'licensee', title: 'Licensee' },
+                { key: 'assignment_count', title: 'Assignments' }
+            ]);
+            fetchCsvPreview(CSV_URL, 'dataPreviewContainer', [
+                { key: 'licensee', title: 'Licensee' },
+                { key: 'frequency', title: 'Frequency (MHz)' },
+                { key: 'location', title: 'Location' },
+                { key: 'status', title: 'Status' }
+            ]);
         });
     </script>
 </body>
