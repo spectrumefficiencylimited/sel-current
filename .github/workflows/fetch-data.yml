@@ -3,7 +3,7 @@ name: Fetch and Process RSM Spectrum Data
 on:
   schedule:
     # Run every 30 minutes
-    - cron: '*/30 * * * *'
+    - cron: '0 * * * *'
   workflow_dispatch: # Allows manual triggering from the Actions tab for testing
 
 jobs:
