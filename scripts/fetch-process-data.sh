@@ -55,7 +55,7 @@ fi
 log_orchestrator "Starting data fetch and process..."
 rm -rf "$PAGES_DIR"/*.json
 
-# 1. FETCHING DATA (No changes here)
+# 1. FETCHING DATA
 log_orchestrator "Fetching initial page to determine total pages..."
 if ! curl --location -s -H "Ocp-Apim-Subscription-Key: $RSM_API_KEY" \
     "https://api.business.govt.nz/gateway/radio-spectrum-management/v1/licences?page=1&page-size=1000&sort-by=Licence%20ID&sort-order=desc&txRx=TRN&licenceStatus=CURRENT&gridRefDefault=LAT_LONG_NZGD2000_D2000" \
@@ -71,11 +71,11 @@ if [ "$TOTAL_PAGES" -gt 1 ]; then
     log_orchestrator "Spawning parallel workers for pages 2 to $TOTAL_PAGES..."; seq 2 "$TOTAL_PAGES" | xargs -P 8 -I{} bash "$0" {};
 fi
 
-# 2. COMBINING DATA (BRONZE LAYER)
+# 2. COMBINING DATA
 log_orchestrator "Combining all page JSONs into a single file..."
 jq -s '[.[].items] | add' "$PAGES_DIR"/page_*.json > "$BRONZE_DIR/combined_licences.json"
 
-# 3. PROCESSING DATA (SILVER LAYER)
+# 3. PROCESSING DATA
 log_orchestrator "Processing data into Silver layer assets..."
 cp "$BRONZE_DIR/combined_licences.json" "$SILVER_DIR/combined_licences.json"
 echo "licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppressed" > "$SILVER_DIR/combined_licences.csv"
@@ -111,7 +111,7 @@ SELECT
     (SELECT COUNT(*) FROM single_license_holders) AS individualLicensees,
     (SELECT COUNT(*) FROM licences WHERE suppressed = 'true') AS suppressedCount;
 "
-# ** THE FIX IS HERE: Added -noheader flag **
+# ** THE DEFINITIVE FIX IS HERE: Added -noheader flag **
 STATS_RESULT=$(duckdb -noheader "$SILVER_DIR/combined_licences.duckdb" "$STATS_QUERY")
 
 # Parse the pipe-separated result
@@ -121,7 +121,7 @@ TOTAL_LICENSEES=$(echo "$STATS_RESULT" | cut -d'|' -f3)
 INDIVIDUAL_LICENSEES=$(echo "$STATS_RESULT" | cut -d'|' -f4)
 SUPPRESSED_COUNT=$(echo "$STATS_RESULT" | cut -d'|' -f5)
 
-# Write to stats.json
+# Write to stats.json, with default values to prevent errors
 cat > "$SILVER_DIR/stats.json" << EOF
 {
   "totalAssignments": ${TOTAL_ASSIGNMENTS:-0},
