@@ -56,7 +56,6 @@ log_orchestrator "Starting data fetch and process..."
 rm -rf "$PAGES_DIR"/*.json
 
 # 1. FETCHING DATA (No changes here)
-# ... (This part remains unchanged)
 log_orchestrator "Fetching initial page to determine total pages..."
 if ! curl --location -s -H "Ocp-Apim-Subscription-Key: $RSM_API_KEY" \
     "https://api.business.govt.nz/gateway/radio-spectrum-management/v1/licences?page=1&page-size=1000&sort-by=Licence%20ID&sort-order=desc&txRx=TRN&licenceStatus=CURRENT&gridRefDefault=LAT_LONG_NZGD2000_D2000" \
@@ -86,48 +85,25 @@ duckdb "$SILVER_DIR/combined_licences.duckdb" "CREATE OR REPLACE TABLE licences 
 
 # 4. PERFORM AND EXPORT ANALYTICS
 log_orchestrator "Generating licensee and location analytics..."
-
-# Analytics 1: Top Licensees (by non-mobile assignments)
 duckdb "$SILVER_DIR/combined_licences.duckdb" <<EOF
 COPY (
-    SELECT
-        licensee,
-        COUNT(*) AS assignment_count
-    FROM licences
-    WHERE location != 'MOBILE'
-    GROUP BY licensee
-    ORDER BY assignment_count DESC
-    LIMIT 25
+    SELECT licensee, COUNT(*) AS assignment_count
+    FROM licences WHERE location != 'MOBILE'
+    GROUP BY licensee ORDER BY assignment_count DESC LIMIT 25
 ) TO '$SILVER_DIR/licensee_analytics.csv' (HEADER, DELIMITER ',');
 EOF
-
-# Analytics 2: Top Locations (by assignment count, excluding 'MOBILE')
 duckdb "$SILVER_DIR/combined_licences.duckdb" <<EOF
 COPY (
-    SELECT
-        location,
-        COUNT(*) AS assignment_count
-    FROM licences
-    WHERE location != 'MOBILE' AND location IS NOT NULL
-    GROUP BY location
-    ORDER BY assignment_count DESC
-    LIMIT 25
+    SELECT location, COUNT(*) AS assignment_count
+    FROM licences WHERE location != 'MOBILE' AND location IS NOT NULL
+    GROUP BY location ORDER BY assignment_count DESC LIMIT 25
 ) TO '$SILVER_DIR/location_analytics.csv' (HEADER, DELIMITER ',');
 EOF
 
 # 5. GENERATE FINAL STATISTICS
 log_orchestrator "Generating final statistics file..."
-
-# Use DuckDB for all stats to ensure consistency
 STATS_QUERY="
--- Create a temporary table of licensees with only one assignment
-CREATE TEMP TABLE single_license_holders AS
-SELECT licensee
-FROM licences
-GROUP BY licensee
-HAVING COUNT(*) = 1;
-
--- Final SELECT to get all stats in one go
+CREATE TEMP TABLE single_license_holders AS SELECT licensee FROM licences GROUP BY licensee HAVING COUNT(*) = 1;
 SELECT
     (SELECT COUNT(*) FROM licences) AS totalAssignments,
     (SELECT COUNT(DISTINCT location) FROM licences WHERE location != 'MOBILE') AS totalLocations,
@@ -135,8 +111,8 @@ SELECT
     (SELECT COUNT(*) FROM single_license_holders) AS individualLicensees,
     (SELECT COUNT(*) FROM licences WHERE suppressed = 'true') AS suppressedCount;
 "
-# Execute the query and capture the output (it will be pipe-separated)
-STATS_RESULT=$(duckdb "$SILVER_DIR/combined_licences.duckdb" "$STATS_QUERY")
+# ** THE FIX IS HERE: Added -noheader flag **
+STATS_RESULT=$(duckdb -noheader "$SILVER_DIR/combined_licences.duckdb" "$STATS_QUERY")
 
 # Parse the pipe-separated result
 TOTAL_ASSIGNMENTS=$(echo "$STATS_RESULT" | cut -d'|' -f1)
@@ -148,11 +124,11 @@ SUPPRESSED_COUNT=$(echo "$STATS_RESULT" | cut -d'|' -f5)
 # Write to stats.json
 cat > "$SILVER_DIR/stats.json" << EOF
 {
-  "totalAssignments": ${TOTAL_ASSIGNMENTS},
-  "totalLocations": ${TOTAL_LOCATIONS},
-  "totalLicensees": ${TOTAL_LICENSEES},
-  "individualLicensees": ${INDIVIDUAL_LICENSEES},
-  "suppressedCount": ${SUPPRESSED_COUNT},
+  "totalAssignments": ${TOTAL_ASSIGNMENTS:-0},
+  "totalLocations": ${TOTAL_LOCATIONS:-0},
+  "totalLicensees": ${TOTAL_LICENSEES:-0},
+  "individualLicensees": ${INDIVIDUAL_LICENSEES:-0},
+  "suppressedCount": ${SUPPRESSED_COUNT:-0},
   "lastUpdateUTC": "$(date -u --iso-8601=seconds)"
 }
 EOF
