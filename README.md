@@ -1,6 +1,6 @@
 # Real-time New Zealand Radio Spectrum Management (RSM) Data
 
-![RSM Data Portal](https://user-images.githubusercontent.com/your-github-id/your-image-id.png) <!-- Optional: Add a screenshot of your live page here -->
+![RSM Data Portal](https://github.com/spectrumefficiencylimited/sel-current/blob/main/SpectrumEfficiencyLimited.png) <!-- Optional: Add a screenshot of your live page here -->
 
 **Live Data Portal:** [**https://spectrumefficiencylimited.github.io/sel-current/**](https://spectrumefficiencylimited.github.io/sel-current/)
 
