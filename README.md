@@ -1,10 +1,3 @@
-Of course. A good `README.md` is essential for any public project. It serves as the front door, explaining the "what," "why," and "how" to visitors.
-
-Here is a comprehensive `README.md` tailored for your project. It's written in Markdown format. You can simply create a new file named `README.md` in the root of your `sel-current` repository and paste this content into it.
-
----
-
-```markdown
 # Real-time New Zealand Radio Spectrum Management (RSM) Data
 
 ![RSM Data Portal](https://user-images.githubusercontent.com/your-github-id/your-image-id.png) <!-- Optional: Add a screenshot of your live page here -->
@@ -100,15 +93,3 @@ While the core process is fully automated, contributions are welcome! If you hav
 ## License
 
 This project is open-source and available under the [MIT License](LICENSE). The data itself is sourced from the NZ Government and is subject to its own terms of use.
-```
-
-### How to Add this to Your Repository
-
-1.  Go to your repository on GitHub: `https://github.com/spectrumefficiencylimited/sel-current`
-2.  Click the "Add file" button and select "Create new file".
-3.  Name the file `README.md`.
-4.  Copy the text from the block above and paste it into the editor.
-5.  **(Optional but Recommended)**: Take a screenshot of your live website, upload it to the new `README.md` file (you can just drag-and-drop the image into the text editor on GitHub), and replace the placeholder `![RSM Data Portal](...)` line with the link GitHub generates for you.
-6.  Scroll down and click "Commit new file".
-
-Your repository will now have a professional and informative landing page
