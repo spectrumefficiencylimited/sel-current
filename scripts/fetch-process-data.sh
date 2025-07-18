@@ -16,85 +16,60 @@ SILVER_DIR="./silver"
 
 mkdir -p "$PAGES_DIR" "$SILVER_DIR"
 
-# --- LOGGING FUNCTIONS ---
+# --- LOGGING & SCRIPT ENTRY (No changes here) ---
 log_orchestrator() {
     echo "$(date '+%Y-%m-%d %H:%M:%S') - ORCHESTRATOR: $1"
 }
-
 log_worker() {
     echo "$(date '+%Y-%m-%d %H:%M:%S') - WORKER[$$]: $1"
 }
-
-# --- API FETCH FUNCTION (WORKER) ---
 fetch_api_page() {
     local page_num=$1
     local output_path="$PAGES_DIR/page_${page_num}.json"
     local url="https://api.business.govt.nz/gateway/radio-spectrum-management/v1/licences?page=${page_num}&page-size=1000&sort-by=Licence%20ID&sort-order=desc&txRx=TRN&licenceStatus=CURRENT&gridRefDefault=LAT_LONG_NZGD2000_D2000"
-
     log_worker "Fetching page $page_num..."
-    
     local attempt=0
     local max_retries=3
-    
     while [ $attempt -lt $max_retries ]; do
-        local tmp_file
-        tmp_file=$(mktemp "$PAGES_DIR/page_${page_num}.tmp.XXXXXX")
-
+        local tmp_file; tmp_file=$(mktemp "$PAGES_DIR/page_${page_num}.tmp.XXXXXX")
         if http_code=$(curl --location -s -w "%{http_code}" -H "Ocp-Apim-Subscription-Key: $RSM_API_KEY" "$url" -o "$tmp_file"); then
             if [ "$http_code" -eq 200 ] && jq -e . "$tmp_file" >/dev/null 2>&1; then
-                mv "$tmp_file" "$output_path"
-                log_worker "SUCCESS: Page $page_num saved."
-                return 0
+                mv "$tmp_file" "$output_path"; log_worker "SUCCESS: Page $page_num saved."; return 0
             elif [ "$http_code" -eq 429 ]; then
-                log_worker "RATE LIMITED: Sleeping 4s..."
-                sleep 4
+                log_worker "RATE LIMITED: Sleeping 4s..."; sleep 4
             else
-                log_worker "WARN (Attempt $((attempt+1))/$max_retries): HTTP $http_code"
-                sleep 5
-                attempt=$((attempt + 1))
+                log_worker "WARN (Attempt $((attempt+1))/$max_retries): HTTP $http_code"; sleep 5; attempt=$((attempt + 1))
             fi
         else
-            log_worker "CURL ERROR: Retrying in 5s..."
-            sleep 5
-            attempt=$((attempt + 1))
+            log_worker "CURL ERROR: Retrying in 5s..."; sleep 5; attempt=$((attempt + 1))
         fi
         rm -f "$tmp_file"
     done
-    
-    log_worker "FATAL: Failed to fetch page $page_num after $max_retries attempts."
-    return 1
+    log_worker "FATAL: Failed to fetch page $page_num after $max_retries attempts."; return 1
 }
-
-# --- SCRIPT ENTRY POINT ---
 if [ "$#" -eq 1 ] && [ "$1" != "orchestrator" ]; then
-    page_to_fetch=$1
-    fetch_api_page "$page_to_fetch"
-    exit $?
+    page_to_fetch=$1; fetch_api_page "$page_to_fetch"; exit $?
 fi
 
 # --- ORCHESTRATOR MODE ---
 log_orchestrator "Starting data fetch and process..."
 rm -rf "$PAGES_DIR"/*.json
 
-# 1. FETCHING DATA
+# 1. FETCHING DATA (No changes here)
+# ... (This part remains unchanged)
 log_orchestrator "Fetching initial page to determine total pages..."
 if ! curl --location -s -H "Ocp-Apim-Subscription-Key: $RSM_API_KEY" \
     "https://api.business.govt.nz/gateway/radio-spectrum-management/v1/licences?page=1&page-size=1000&sort-by=Licence%20ID&sort-order=desc&txRx=TRN&licenceStatus=CURRENT&gridRefDefault=LAT_LONG_NZGD2000_D2000" \
     > "$PAGES_DIR/page_1.json"; then
-    log_orchestrator "FATAL: Could not fetch initial page. Exiting."
-    exit 1
+    log_orchestrator "FATAL: Could not fetch initial page. Exiting."; exit 1
 fi
-
 TOTAL_PAGES=$(jq -r '.totalPages // 1' "$PAGES_DIR/page_1.json")
 if ! [[ "$TOTAL_PAGES" =~ ^[0-9]+$ ]] || [ "$TOTAL_PAGES" -eq 0 ]; then
-    log_orchestrator "FATAL: Invalid total pages found: '$TOTAL_PAGES'. Exiting."
-    exit 1
+    log_orchestrator "FATAL: Invalid total pages found: '$TOTAL_PAGES'. Exiting."; exit 1
 fi
 log_orchestrator "Total pages to fetch: $TOTAL_PAGES"
-
 if [ "$TOTAL_PAGES" -gt 1 ]; then
-    log_orchestrator "Spawning parallel workers for pages 2 to $TOTAL_PAGES..."
-    seq 2 "$TOTAL_PAGES" | xargs -P 8 -I{} bash "$0" {}
+    log_orchestrator "Spawning parallel workers for pages 2 to $TOTAL_PAGES..."; seq 2 "$TOTAL_PAGES" | xargs -P 8 -I{} bash "$0" {};
 fi
 
 # 2. COMBINING DATA (BRONZE LAYER)
@@ -103,35 +78,16 @@ jq -s '[.[].items] | add' "$PAGES_DIR"/page_*.json > "$BRONZE_DIR/combined_licen
 
 # 3. PROCESSING DATA (SILVER LAYER)
 log_orchestrator "Processing data into Silver layer assets..."
-
 cp "$BRONZE_DIR/combined_licences.json" "$SILVER_DIR/combined_licences.json"
-
-# Create final CSV
-log_orchestrator "Generating CSV file..."
 echo "licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppressed" > "$SILVER_DIR/combined_licences.csv"
 jq -r '.[] | [.licenceID, .licenceNumber, .licensee, .channel, .frequency, .location, .status, .txrx, .suppressed] | @csv' \
   "$BRONZE_DIR/combined_licences.json" >> "$SILVER_DIR/combined_licences.csv"
-
-# Create DuckDB file
-log_orchestrator "Generating DuckDB file..."
 duckdb "$SILVER_DIR/combined_licences.duckdb" "CREATE OR REPLACE TABLE licences AS SELECT * FROM read_csv_auto('$SILVER_DIR/combined_licences.csv', ALL_VARCHAR=TRUE);"
 
-# Create statistics file for the website
-log_orchestrator "Generating statistics file..."
-TOTAL_LICENSES=$(jq 'length' "$BRONZE_DIR/combined_licences.json")
-UNIQUE_HOLDERS=$(jq '[.[] | .licensee] | unique | length' "$BRONZE_DIR/combined_licences.json")
+# 4. PERFORM AND EXPORT ANALYTICS
+log_orchestrator "Generating licensee and location analytics..."
 
-cat > "$SILVER_DIR/stats.json" << EOF
-{
-  "totalLicenses": ${TOTAL_LICENSES},
-  "activeAssignments": ${TOTAL_LICENSES},
-  "uniqueHolders": ${UNIQUE_HOLDERS},
-  "lastUpdateUTC": "$(date -u --iso-8601=seconds)"
-}
-EOF
-
-# 4. PERFORM AND EXPORT ANALYTICS (NEW SECTION)
-log_orchestrator "Generating licensee analytics..."
+# Analytics 1: Top Licensees (by non-mobile assignments)
 duckdb "$SILVER_DIR/combined_licences.duckdb" <<EOF
 COPY (
     SELECT
@@ -143,6 +99,62 @@ COPY (
     ORDER BY assignment_count DESC
     LIMIT 25
 ) TO '$SILVER_DIR/licensee_analytics.csv' (HEADER, DELIMITER ',');
+EOF
+
+# Analytics 2: Top Locations (by assignment count, excluding 'MOBILE')
+duckdb "$SILVER_DIR/combined_licences.duckdb" <<EOF
+COPY (
+    SELECT
+        location,
+        COUNT(*) AS assignment_count
+    FROM licences
+    WHERE location != 'MOBILE' AND location IS NOT NULL
+    GROUP BY location
+    ORDER BY assignment_count DESC
+    LIMIT 25
+) TO '$SILVER_DIR/location_analytics.csv' (HEADER, DELIMITER ',');
+EOF
+
+# 5. GENERATE FINAL STATISTICS
+log_orchestrator "Generating final statistics file..."
+
+# Use DuckDB for all stats to ensure consistency
+STATS_QUERY="
+-- Create a temporary table of licensees with only one assignment
+CREATE TEMP TABLE single_license_holders AS
+SELECT licensee
+FROM licences
+GROUP BY licensee
+HAVING COUNT(*) = 1;
+
+-- Final SELECT to get all stats in one go
+SELECT
+    (SELECT COUNT(*) FROM licences) AS totalAssignments,
+    (SELECT COUNT(DISTINCT location) FROM licences WHERE location != 'MOBILE') AS totalLocations,
+    (SELECT COUNT(DISTINCT licensee) FROM licences) AS totalLicensees,
+    (SELECT COUNT(*) FROM single_license_holders) AS individualLicensees,
+    (SELECT COUNT(*) FROM licences WHERE suppressed = 'true') AS suppressedCount;
+"
+# Execute the query and capture the output (it will be pipe-separated)
+STATS_RESULT=$(duckdb "$SILVER_DIR/combined_licences.duckdb" "$STATS_QUERY")
+
+# Parse the pipe-separated result
+TOTAL_ASSIGNMENTS=$(echo "$STATS_RESULT" | cut -d'|' -f1)
+TOTAL_LOCATIONS=$(echo "$STATS_RESULT" | cut -d'|' -f2)
+TOTAL_LICENSEES=$(echo "$STATS_RESULT" | cut -d'|' -f3)
+INDIVIDUAL_LICENSEES=$(echo "$STATS_RESULT" | cut -d'|' -f4)
+SUPPRESSED_COUNT=$(echo "$STATS_RESULT" | cut -d'|' -f5)
+
+# Write to stats.json
+cat > "$SILVER_DIR/stats.json" << EOF
+{
+  "totalAssignments": ${TOTAL_ASSIGNMENTS},
+  "totalLocations": ${TOTAL_LOCATIONS},
+  "totalLicensees": ${TOTAL_LICENSEES},
+  "individualLicensees": ${INDIVIDUAL_LICENSEES},
+  "suppressedCount": ${SUPPRESSED_COUNT},
+  "lastUpdateUTC": "$(date -u --iso-8601=seconds)"
+}
 EOF
 
 log_orchestrator "Data processing and analytics complete!"
