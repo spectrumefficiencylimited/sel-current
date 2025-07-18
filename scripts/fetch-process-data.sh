@@ -77,6 +77,7 @@ log_orchestrator "Starting data fetch and process..."
 rm -rf "$PAGES_DIR"/*.json
 
 # 1. FETCHING DATA
+# ... (This part remains unchanged)
 log_orchestrator "Fetching initial page to determine total pages..."
 if ! curl --location -s -H "Ocp-Apim-Subscription-Key: $RSM_API_KEY" \
     "https://api.business.govt.nz/gateway/radio-spectrum-management/v1/licences?page=1&page-size=1000&sort-by=Licence%20ID&sort-order=desc&txRx=TRN&licenceStatus=CURRENT&gridRefDefault=LAT_LONG_NZGD2000_D2000" \
