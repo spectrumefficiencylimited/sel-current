@@ -31,8 +31,8 @@
         .btn-json { background: #000000; }
         .btn-duckdb { background: #B55B02; }
         .content { padding: 40px; }
-        .data-previews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 40px; }
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; margin-bottom: 40px; }
+        .data-previews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 40px; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-bottom: 40px; }
         .stat-card { background: linear-gradient(135deg, #ffffff, #f8f9fa); border-radius: 10px; padding: 25px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.07); transition: transform 0.3s ease; }
         .stat-card:hover { transform: translateY(-5px); }
         .stat-number { font-size: 2.5em; font-weight: bold; color: #3498db; margin-bottom: 10px; }
@@ -80,9 +80,18 @@
                         Download the latest spectrum assignments, automatically updated hourly. This service modernizes and replaces the decommissioned Spectrum Search Lite, providing fresh, machine-readable data.
                     </p>
                     <div class="button-group">
-                        <a href="silver/combined_licences.csv" class="download-btn btn-csv" title="Download as CSV"><i class="fa-solid fa-file-csv fa-lg"></i><span>CSV</span></a>
-                        <a href="silver/combined_licences.json" class="download-btn btn-json" title="Download as JSON"><i class="fa-solid fa-file-code fa-lg"></i><span>JSON</span></a>
-                        <a href="silver/combined_licences.duckdb" class="download-btn btn-duckdb" title="Download as DuckDB"><i class="fa-solid fa-database fa-lg"></i><span>DuckDB</span></a>
+                        <a href="silver/combined_licences.csv" class="download-btn btn-csv" title="Download as CSV">
+                            <i class="fa-solid fa-file-csv fa-lg"></i>
+                            <span>CSV</span>
+                        </a>
+                        <a href="silver/combined_licences.json" class="download-btn btn-json" title="Download as JSON">
+                            <i class="fa-solid fa-file-code fa-lg"></i>
+                            <span>JSON</span>
+                        </a>
+                        <a href="silver/combined_licences.duckdb" class="download-btn btn-duckdb" title="Download as DuckDB">
+                            <i class="fa-solid fa-database fa-lg"></i>
+                            <span>DuckDB</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -91,47 +100,40 @@
         <div class="content">
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-number" id="totalAssignments">-</div>
+                    <div class="stat-number" id="totalLicenses">-</div>
                     <div class="stat-label">Total Assignments</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number" id="totalLocations">-</div>
-                    <div class="stat-label">Total Locations</div>
+                    <div class="stat-number" id="activeAssignments">-</div>
+                    <div class="stat-label">Current Assignments</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number" id="totalLicensees">-</div>
-                    <div class="stat-label">Total Licensees</div>
+                    <div class="stat-number" id="uniqueHolders">-</div>
+                    <div class="stat-label">Unique License Holders</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number" id="individualLicensees">-</div>
-                    <div class="stat-label">Individual Licensees</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="suppressedCount">-</div>
-                    <div class="stat-label">Suppressed Records</div>
+                    <div class="stat-number" id="hoursSinceUpdate">-</div>
+                    <div class="stat-label">Hours Since Update</div>
                 </div>
             </div>
 
             <div class="data-previews-grid">
                 <div class="data-preview">
-                    <h3>🏆 Top License Holders <small>(non-mobile)</small></h3>
-                    <div id="licenseeAnalyticsContainer" class="loading">
-                        <div class="spinner"></div><p>Loading analytics...</p>
+                    <h3>🏆 Top License Holders <small>(by non-mobile assignments)</small></h3>
+                    <div id="analyticsPreviewContainer" class="loading">
+                        <div class="spinner"></div>
+                        <p>Loading analytics...</p>
                     </div>
                 </div>
                 <div class="data-preview">
-                    <h3>📍 Top Locations <small>(non-mobile)</small></h3>
-                    <div id="locationAnalyticsContainer" class="loading">
-                        <div class="spinner"></div><p>Loading analytics...</p>
-                    </div>
-                </div>
-                <div class="data-preview">
-                    <h3>📈 Recent Assignments (Sample)</h3>
+                    <h3>📈 Recent Spectrum Assignments (Sample)</h3>
                     <div id="dataPreviewContainer" class="loading">
-                        <div class="spinner"></div><p>Loading data sample...</p>
+                        <div class="spinner"></div>
+                        <p>Loading data sample...</p>
                     </div>
                 </div>
             </div>
+
         </div>
 
         <footer class="footer">
@@ -146,8 +148,7 @@
             const cacheBuster = `?v=${new Date().getTime()}`;
             const STATS_URL = `silver/stats.json${cacheBuster}`;
             const CSV_URL = `silver/combined_licences.csv${cacheBuster}`;
-            const LICENSEE_ANALYTICS_URL = `silver/licensee_analytics.csv${cacheBuster}`;
-            const LOCATION_ANALYTICS_URL = `silver/location_analytics.csv${cacheBuster}`;
+            const ANALYTICS_URL = `silver/licensee_analytics.csv${cacheBuster}`;
 
             let nextUpdateInterval;
             let lastUpdateTimestamp;
@@ -160,11 +161,13 @@
 
                     lastUpdateTimestamp = new Date(stats.lastUpdateUTC);
 
-                    document.getElementById('totalAssignments').textContent = (stats.totalAssignments || 0).toLocaleString();
-                    document.getElementById('totalLocations').textContent = (stats.totalLocations || 0).toLocaleString();
-                    document.getElementById('totalLicensees').textContent = (stats.totalLicensees || 0).toLocaleString();
-                    document.getElementById('individualLicensees').textContent = (stats.individualLicensees || 0).toLocaleString();
-                    document.getElementById('suppressedCount').textContent = (stats.suppressedCount || 0).toLocaleString();
+                    document.getElementById('totalLicenses').textContent = stats.totalLicenses.toLocaleString();
+                    document.getElementById('activeAssignments').textContent = stats.activeAssignments.toLocaleString();
+                    document.getElementById('uniqueHolders').textContent = stats.uniqueHolders.toLocaleString();
+                    
+                    const now = new Date();
+                    const hoursSince = ((now - lastUpdateTimestamp) / (1000 * 60 * 60)).toFixed(1);
+                    document.getElementById('hoursSinceUpdate').textContent = hoursSince;
 
                     const localTimeOptions = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
                     document.getElementById('lastUpdateTime').textContent = lastUpdateTimestamp.toLocaleString(undefined, localTimeOptions);
@@ -172,6 +175,7 @@
                     startCountdown();
                 } catch (error) {
                     console.error("Failed to load statistics:", error);
+                    document.getElementById('totalLicenses').textContent = 'Error';
                 }
             }
 
@@ -191,7 +195,7 @@
                     
                     data.forEach(rowStr => {
                         if (!rowStr) return;
-                        const row = rowStr.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                        const row = rowStr.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/); // CSV split that handles quoted commas
                         tableHTML += `<tr>`;
                         columns.forEach(col => {
                             const index = headers.indexOf(col.key);
@@ -215,32 +219,41 @@
 
             function startCountdown() {
                 if (nextUpdateInterval) clearInterval(nextUpdateInterval);
-                const nextUpdateTime = new Date(lastUpdateTimestamp.getTime() + 60 * 60 * 1000);
+
+                const nextUpdateTime = new Date(lastUpdateTimestamp.getTime() + 60 * 60 * 1000); // Hourly
+
                 const updateTimer = () => {
                     const now = new Date();
                     const timeLeft = nextUpdateTime - now;
+
                     if (timeLeft <= 0) {
                         document.getElementById('countdownTimer').textContent = 'Updating...';
                         clearInterval(nextUpdateInterval);
                         return;
                     }
+
                     const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
                     const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-                    document.getElementById('countdownTimer').textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                    
+                    document.getElementById('countdownTimer').textContent = 
+                        `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
                 };
+
                 updateTimer();
                 nextUpdateInterval = setInterval(updateTimer, 1000);
             }
             
+            // Fetch all data on load
             fetchStats();
-            fetchCsvPreview(LICENSEE_ANALYTICS_URL, 'licenseeAnalyticsContainer', [
-                { key: 'licensee', title: 'Licensee' }, { key: 'assignment_count', title: 'Assignments' }
-            ]);
-            fetchCsvPreview(LOCATION_ANALYTICS_URL, 'locationAnalyticsContainer', [
-                { key: 'location', title: 'Location' }, { key: 'assignment_count', title: 'Assignments' }
+            fetchCsvPreview(ANALYTICS_URL, 'analyticsPreviewContainer', [
+                { key: 'licensee', title: 'Licensee' },
+                { key: 'assignment_count', title: 'Assignments' }
             ]);
             fetchCsvPreview(CSV_URL, 'dataPreviewContainer', [
-                { key: 'licensee', title: 'Licensee' }, { key: 'frequency', title: 'Freq (MHz)' }, { key: 'location', title: 'Location' }, { key: 'status', title: 'Status' }
+                { key: 'licensee', title: 'Licensee' },
+                { key: 'frequency', title: 'Frequency (MHz)' },
+                { key: 'location', title: 'Location' },
+                { key: 'status', title: 'Status' }
             ]);
         });
     </script>
