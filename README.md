@@ -1,6 +1,6 @@
 # Real-time New Zealand Radio Spectrum Data Portal
 
-![Live Data Portal](https://raw.githubusercontent.com/spectrumefficiencylimited/sel-current/main/docs/portal-screenshot.png)
+![Live Data Portal](https://github.com/spectrumefficiencylimited/sel-current/blob/main/SpectrumEfficiencyLimited.png)
 
 **Live Data Portal:** [**https://spectrumefficiencylimited.github.io/sel-current/**](https://spectrumefficiencylimited.github.io/sel-current/)
 
