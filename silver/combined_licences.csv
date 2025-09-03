@@ -3223,7 +3223,7 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 416540,412088,"Unifone New Zealand Limited",,2590.0,"Raggedy Range 258 Northwest","Current","TX",false
 416539,412096,"Unifone New Zealand Limited",,2590.0,"RAGGEDY RANGE","Current","TX",false
 416538,412092,"Unifone New Zealand Limited",,2590.0,"TAIERI NW (UNIFONE)","Current","TX",false
-416537,412097,"Unifone New Zealand Limited",,2590.0,"MAUNGATUA WORKS","Current","TX",false
+416537,412097,"Unifone New Zealand Limited",,2590.0,"Maungatua (Downer)","Current","TX",false
 416496,412709,"CONNECTIVITY INFRASTRUCTURE SERVICES LIMITED","13G2W#",13101.0,"Taiko (CIS)","Current","TX",false
 416495,412708,"CONNECTIVITY INFRASTRUCTURE SERVICES LIMITED","13G2W",12835.0,"CAVE HILL JDA","Current","TX",false
 416492,412546,"TWO DEGREES NETWORKS LIMITED","80G11A#",84750.0,"(GSB-028-003-A)[AWPN]_AWAPUNI","Current","TX",false
@@ -19903,7 +19903,7 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 238456,296389,"EONFIBRE LIMITED","18G8A",18580.0,"69 MARSDEN BAY DRIVE RUAKAKA (VF N1OTP ONE TREE POINT)","Current","TX",false
 238451,,"ASHLEY COMMUNICATIONS LIMITED","EE247#",169.8875,"MOBILE","Current","TX",false
 238449,296414,"NZART SOUTHLAND BRANCH INC","70AR8700",438.7,"101 ESK STREET INVERCARGILL (CIVIC ADMINISTRATION BUILDING)","Current","TX",false
-238447,296376,"ASHLEY COMMUNICATIONS LIMITED","EE247",165.2875,"MAUNGATUA WORKS","Current","TX",false
+238447,296376,"ASHLEY COMMUNICATIONS LIMITED","EE247",165.2875,"Maungatua (Downer)","Current","TX",false
 238446,,"SKYLINE ENTERPRISES","EE35#",167.2375,"MOBILE","Current","TX",false
 238444,296256,"SKYLINE ENTERPRISES","EE35",162.6375,"BLUE PEAKS MOTEL","Current","TX",false
 238443,,"SKYLINE ENTERPRISES","EE89#",167.9125,"MOBILE","Current","TX",false
@@ -19955,7 +19955,7 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 238356,296418,"ASHLEY COMMUNICATIONS LIMITED","EE36",162.65,"BLUE MOUNTAINS (ASHCOMS)","Current","TX",false
 238353,296462,"ASHLEY COMMUNICATIONS LIMITED","EE133",163.8625,"MT STUART ASHCOMMS","Current","TX",false
 238352,296461,"ASHLEY COMMUNICATIONS LIMITED","EE118",163.675,"MT STUART ASHCOMMS","Current","TX",false
-238350,296254,"ASHLEY COMMUNICATIONS LIMITED","EE211",164.8375,"MAUNGATUA WORKS","Current","TX",false
+238350,296254,"ASHLEY COMMUNICATIONS LIMITED","EE211",164.8375,"Maungatua (Downer)","Current","TX",false
 238348,296396,"PORT OTAGO LIMITED","DNX93",466.91875,"DUNEDIN CITY TLA","Current","TX",false
 238348,296396,"PORT OTAGO LIMITED","DNX63",465.00625,"DUNEDIN CITY TLA","Current","TX",false
 238348,296396,"PORT OTAGO LIMITED","DNX45",461.78125,"DUNEDIN CITY TLA","Current","TX",false
@@ -23705,7 +23705,7 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 234633,293093,"GULFBAY ENTERPRISE LIMITED","ENX3",150.0875,"ALL NORTH ISLAND","Current","TX",false
 234632,293934,"LIGHTWIRE LIMITED","11G1#",11245.0,"FRENCH PASS (FRP) (LIGHTWIRE)","Current","TX",false
 234631,293090,"VIP ENGINEERING LIMITED","FNX626",483.55625,"ALL SOUTH ISLAND","Current","TX",false
-234626,293816,"SURF LIFE SAVING NEW ZEALAND INCORPORATED","EN89",151.85,"MAUNGATUA WORKS","Current","TX",false
+234626,293816,"SURF LIFE SAVING NEW ZEALAND INCORPORATED","EN89",151.85,"Maungatua (Downer)","Current","TX",false
 234625,293815,"SURF LIFE SAVING NEW ZEALAND INCORPORATED","EN99",151.975,"SWAMPY SUMMIT CRS","Current","TX",false
 234624,293817,"SURF LIFE SAVING NEW ZEALAND INCORPORATED","EN92",151.8875,"CAPE WANBROW DOWNERS","Current","TX",false
 234623,293082,"NIGEL BRYANT LTD","EEX132",170.8625,"NELSON REGION","Current","TX",false
@@ -57219,8 +57219,8 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 178587,248911,"Downer New Zealand Limited","EN63",151.525,"MID DOME","Current","TX",false
 178582,,"Downer New Zealand Limited","EN65#",155.73125,"MOBILE","Current","TX",false
 178582,,"Downer New Zealand Limited","EN65#",155.73125,"HOMER TUNNEL LEAKY COAX COVERAGE AREA","Current","TX",false
+178581,249470,"Downer New Zealand Limited","EN65",151.55,"Maungatua (Downer)","Current","TX",false
 178581,249470,"Downer New Zealand Limited","EN65",151.55,"MT YORK","Current","TX",false
-178581,249470,"Downer New Zealand Limited","EN65",151.55,"MAUNGATUA WORKS","Current","TX",false
 178581,249470,"Downer New Zealand Limited","EN65",151.55,"HOMER TUNNEL EAST PORTAL","Current","TX",false
 178577,248869,"SPHC EQUITIES LIMITED","DNX59",464.95625,"PARK ROYAL HOTEL","Current","TX",false
 178577,248869,"SPHC EQUITIES LIMITED","DNX45",461.78125,"PARK ROYAL HOTEL","Current","TX",false
@@ -63009,7 +63009,7 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 157971,235608,"HEALTHALLIANCE N.Z. LIMITED","FN190",480.35625,"MIDDLEMORE HOSPITAL","Current","TX",false
 157939,235606,"CHORUS NEW ZEALAND LIMITED","L6#",1501.0,"ROCKLANDS","Current","TX",false
 157936,235605,"CHORUS NEW ZEALAND LIMITED","L6",1440.5,"MT GOWRIE ROAD","Current","TX",false
-157934,235656,"Downer New Zealand Limited","MS23",158.625,"MAUNGATUA WORKS","Current","TX",false
+157934,235656,"Downer New Zealand Limited","MS23",158.625,"Maungatua (Downer)","Current","TX",false
 157934,235656,"Downer New Zealand Limited","MS23",158.625,"54A KENMURE ROAD DUNEDIN","Current","TX",false
 157934,235656,"Downer New Zealand Limited","MS23",158.625,"133 MAIN SOUTH ROAD GREEN ISLAND DUNEDIN (DOWNER)","Current","TX",false
 157927,236198,"TAURANGA RADIO CLUB INCORPORATED","70AR8025#",433.025,"PAPAMOA (AMATEUR)","Current","TX",false
@@ -63212,7 +63212,7 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 156606,235101,"CHORUS NEW ZEALAND LIMITED","L12",1452.5,"BLACK ROCK","Current","TX",false
 156605,235103,"CHORUS NEW ZEALAND LIMITED","L12",1452.5,"CLARKS JUNCTION HOTEL","Current","TX",false
 156604,235102,"CHORUS NEW ZEALAND LIMITED","L12",1452.5,"THORNICROFT","Current","TX",false
-156603,234879,"Downer New Zealand Limited","EN101",152.0,"MAUNGATUA WORKS","Current","TX",false
+156603,234879,"Downer New Zealand Limited","EN101",152.0,"Maungatua (Downer)","Current","TX",false
 156602,235100,"CHORUS NEW ZEALAND LIMITED","L12#",1513.0,"MAUNGATUA TELECOM","Current","TX",false
 156601,234871,"Tokoroa Taxicabs Ltd","EEX6",165.775,"TOKOROA AREA","Current","TX",false
 156600,,"Tokoroa Taxicabs Ltd","EE166#",168.875,"MOBILE","Current","TX",false
@@ -68556,7 +68556,7 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 121505,213369,"WESTERN BAY OF PLENTY DISTRICT COUNCIL","JNB17",453.83125,"OMOKOROA RESERVOIR","Current","TX",false
 121504,213366,"WESTERN BAY OF PLENTY DISTRICT COUNCIL","JNB68",454.46875,"WRIGHT ROAD TANKS","Current","TX",false
 121496,213303,"Downer New Zealand Limited","J35B",454.5,"MT STUART (DOWNER)","Current","TX",false
-121495,213302,"Downer New Zealand Limited","J35B",454.5,"MAUNGATUA WORKS","Current","TX",false
+121495,213302,"Downer New Zealand Limited","J35B",454.5,"Maungatua (Downer)","Current","TX",false
 121493,213301,"Downer New Zealand Limited","J35B",454.5,"CAPE WANBROW (WORKS)","Current","TX",false
 121457,213268,"VITAL LIMITED","8GL4",7836.65,"KRAACKS HILL","Current","TX",false
 121456,213267,"VITAL LIMITED","8GL4#",8147.97,"BRYNDERWYN","Current","TX",false
