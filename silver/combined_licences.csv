@@ -79465,10 +79465,6 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 22103,151574,"T CROFT LTD","AX244",84.05,"STILLWATER","Current","TX",false
 22086,148148,"J SWAP CONTRACTORS LIMITED","EE186",164.525,"SWAP FARM","Current","TX",false
 22079,125863,"Pamela Greer","FX47",471.65,"ALL NEW ZEALAND","Current","TX",false
-22056,58201,"CHORUS NEW ZEALAND LIMITED",,164.2125,"FREYBERG","Current","TX",false
-22055,58200,"CHORUS NEW ZEALAND LIMITED",,173.65,"M O DEFENCE","Current","TX",false
-22052,58197,"CHORUS NEW ZEALAND LIMITED",,165.075,"FREYBERG","Current","TX",false
-22051,58196,"CHORUS NEW ZEALAND LIMITED",,172.825,"BEEHIVE","Current","TX",false
 22050,58193,"CHORUS NEW ZEALAND LIMITED",,163.625,"WRIGHT HILL(TX)","Current","TX",false
 22047,58192,"CHORUS NEW ZEALAND LIMITED",,172.5,"TERAWHITI STATION","Current","TX",false
 22046,58191,"CHORUS NEW ZEALAND LIMITED",,165.6375,"WRIGHT HILL(M/W)","Current","TX",false
@@ -82585,7 +82581,7 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 419010,413823,"INSPIRE NET LIMITED","11G5W",11075.0,"NGAPAERURU","Current","TX",false
 419009,413824,"INSPIRE NET LIMITED","18G6A#",19370.0,"Pukenikau (Inspire Tuiwood)","Current","TX",false
 419008,413822,"INSPIRE NET LIMITED","18G6A",18360.0,"136 Main Street, Pahiatua","Current","TX",false
-419007,414744,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM137",90.8,"KAIKOHE","Current","TX",false
+419007,414744,"MEDIAWORKS RADIO LIMITED","FM137",90.8,"KAIKOHE","Current","TX",false
 419006,,"COMMUNICATE LIMITED","EE223#",169.5875,"MOBILE","Current","TX",false
 419005,415114,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(WLG-048-009-A)[SOLY]_SOLWAY","Current","TX",false
 419004,415102,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(WLG-044-007-B)[ASTP]_ASCOT PARK","Current","TX",false
