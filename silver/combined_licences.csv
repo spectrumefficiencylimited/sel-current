@@ -11230,7 +11230,7 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 426683,155132,"MAINPOWER NEW ZEALAND LTD","J11B",453.9,"BELTANA","Current","TX",false
 426682,258939,"MAINPOWER NEW ZEALAND LTD","J10B#",458.9125,"MT GREY (MAINPOWER)","Current","TX",false
 426681,258938,"MAINPOWER NEW ZEALAND LTD","J10B",453.875,"WALLACE PEAK (MAIN POWER)","Current","TX",false
-426680,420506,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"Ohakea Air Base W3AOB","Current","TX",false
+426680,420506,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"Ohakea Air Base W3OAB","Current","TX",false
 426679,420512,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"Waiouru Military Base W2WMB","Current","TX",false
 426678,420513,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"Invercargill Downtown S6IND","Current","TX",false
 426677,420509,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"Christchurch Te Kaha Stadium S3CTK","Current","TX",false
@@ -11248,7 +11248,7 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 426655,420790,"VITAL LIMITED","11G10A#",11585.0,"NORMANDALE","Current","TX",false
 426654,420788,"VITAL LIMITED","13G4W",12947.0,"MT CLIMIE(TELECOM)","Current","TX",false
 426653,420792,"VITAL LIMITED","13G2W",12835.0,"MT CLIMIE(TELECOM)","Current","TX",false
-426652,420505,"ONE NEW ZEALAND GROUP LIMITED",,2682.5,"Ohakea Air Base W3AOB","Current","TX",false
+426652,420505,"ONE NEW ZEALAND GROUP LIMITED",,2682.5,"Ohakea Air Base W3OAB","Current","TX",false
 426651,420496,"ONE NEW ZEALAND GROUP LIMITED",,2682.5,"Greytown South ONZ W3GTS","Current","TX",false
 426650,420504,"ONE NEW ZEALAND GROUP LIMITED",,2682.5,"Waiouru Military Base W2WMB","Current","TX",false
 426649,420500,"ONE NEW ZEALAND GROUP LIMITED",,2682.5,"Mangapapa North W1MPN","Current","TX",false
@@ -11275,7 +11275,7 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 426627,420470,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"KARAPIRO (VFNZ)","Current","TX",false
 426626,420489,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"TAMIHANA 2 (VFNZ)","Current","TX",false
 426625,420471,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"DRURY OFF-RAMP","Current","TX",false
-426620,420476,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"Ohakea Air Base W3AOB","Current","TX",false
+426620,420476,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"Ohakea Air Base W3OAB","Current","TX",false
 426619,420481,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"Waiouru Military Base W2WMB","Current","TX",false
 426618,420479,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"Mangapapa North W1MPN","Current","TX",false
 426617,420475,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"Haumoana W1HMN","Current","TX",false
@@ -11290,7 +11290,7 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 426608,162798,"ATHLETICS CANTERBURY INC","FNX857",489.94375,"ALL SOUTH ISLAND","Current","TX",false
 426608,162798,"ATHLETICS CANTERBURY INC","FNX551",482.61875,"ALL SOUTH ISLAND","Current","TX",false
 426607,420524,"HAWKINS LIMITED","FNX117",470.70625,"AIAL Hawkins Site","Current","TX",false
-426606,420472,"ONE NEW ZEALAND GROUP LIMITED",,1867.5,"Ohakea Air Base W3AOB","Current","TX",false
+426606,420472,"ONE NEW ZEALAND GROUP LIMITED",,1867.5,"Ohakea Air Base W3OAB","Current","TX",false
 426605,420474,"ONE NEW ZEALAND GROUP LIMITED",,1867.5,"Waiouru Military Base W2WMB","Current","TX",false
 426604,420456,"ONE NEW ZEALAND GROUP LIMITED",,1867.5,"Mangapapa North W1MPN","Current","TX",false
 426603,420459,"ONE NEW ZEALAND GROUP LIMITED",,1867.5,"Haumoana W1HMN","Current","TX",false
@@ -11320,7 +11320,7 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 426586,420446,"Blake Paterson-Reardon","EEX187",171.55,"HOROWHENUA DISTRICT TLA","Current","TX",false
 426586,420446,"Blake Paterson-Reardon","EEX160",171.2125,"HOROWHENUA DISTRICT TLA","Current","TX",false
 426586,420446,"Blake Paterson-Reardon","EEX123",170.75,"HOROWHENUA DISTRICT TLA","Current","TX",false
-426584,420426,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"Ohakea Air Base W3AOB","Current","TX",false
+426584,420426,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"Ohakea Air Base W3OAB","Current","TX",false
 426583,420420,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"Waiouru Military Base W2WMB","Current","TX",false
 426582,420421,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"Mangapapa North W1MPN","Current","TX",false
 426581,420416,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"Haumoana W1HMN","Current","TX",false
