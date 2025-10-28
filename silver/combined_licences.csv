@@ -49105,7 +49105,7 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 197911,262834,"HELISIKA AGRICULTURAL LTD","ENX25",150.3625,"ALL NORTH ISLAND","Current","TX",false
 197908,,"Downer New Zealand Limited","EE137#",168.5125,"MOBILE","Current","TX",false
 197904,263421,"Downer New Zealand Limited","CN65",456.11875,"HIGHCLIFF (DOWNER NZ LTD)","Current","TX",false
-197903,263422,"Downer New Zealand Limited","EE137",163.9125,"MT EGLINTON SPUR 1471 (DOWNER)","Current","TX",false
+197903,263422,"Downer New Zealand Limited","EE137",163.9125,"MT EGLINTON SPUR","Current","TX",false
 197895,,"POWERCO LIMITED","EN52#",155.56875,"MOBILE","Current","TX",false
 197894,262477,"POWERCO LIMITED","EN52",151.3875,"AUROA RD (POWERCO)","Current","TX",false
 197893,262243,"SPARK NEW ZEALAND TRADING LIMITED","13G4W",12947.0,"MT BURNETT","Current","TX",false
