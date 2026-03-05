@@ -1,4 +1,249 @@
 licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppressed
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"Waio Station  FENZ Remote","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WYNDHAM FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WOODHILL LOOKOUT","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WHATATUTU FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WHATAROA FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WHANGAREI HEADS REMOTE","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WHANGAREI HEADS FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WHANGAREI FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WHANGAPOUA FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WHANANAKI FENZ REMOTE PAGING SITE 2","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WHANANAKI FENZ REMOTE PAGING SITE 1","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WHANANAKI (RABBIT FARM) FENZ REMOTE","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WHANANAKI (BEACON HILL) FENZ REMOTE","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WHAKATANE FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WHAKAPAPA FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WESTON FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WELLINGTON CENTRAL FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WEBER FENZ REMOTE PAGING","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WARKWORTH","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WARD FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WANAKA NZFS REMOTE PAGING TX","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WANAKA FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WAITAHUNA FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WAITAHUNA FENZ REMOTE","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WAIRAU VALLEY FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WAIPUKURAU NZFS REMOTE","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WAIPAWA FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WAINUI BAY FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WAIMATE FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WAIMARAMA VRFF FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WAIKOUAITI FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WAIKAIA FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WAIHOLA FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WAIHAU BAY FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WAIHAORUNGA VRFF","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WAIAU FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WAIATARUA FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"UPPER MOUTERE FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"Tora FENZ Remote","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"Tinui FENZ Remote","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TUAI VRFF FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TOLAGA BAY FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TOKOROA","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TOKOMARU BAY FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TOKANUI FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TINIROTO FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TINIROTO FENZ REMOTE","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TIKITIKI FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TE PUKE","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TE PUKE","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TE PUIA SPRINGS FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TE OKA NZ FIRE SERVICE","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TE KOPURU","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TE KAHA FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TE ATATU","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TE ARAROA FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TE ANAU FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TAWA","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TAURANGA","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TAUPO FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TAUPIRI","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TAUMARUNUI FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TARRAS FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TARRAS FENZ REMOTE","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TAPAWERA FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"STOKE FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"ST ARNAUD FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"SPRINGS JUNCTION FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"SPRINGFIELD REMOTE FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"SPRINGFIELD FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"SILVERDALE FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"SILVERDALE","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"SHELLEY BEACH FIRE STN","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"SEDDON FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"Rewa FENZ Remote","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"RUSSELL FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"RUATORIA FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"RUAKAKA FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"ROXBURGH FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"ROTORUA FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"ROLLESBY RANGE","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"RIVER ROAD","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"REMUERA FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"REEFTON FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"RAURIMU NZFS REMOTE","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"RANGITATA GORGE FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"RANGIORA FIRE STATION REMOTE","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"RANFURLY FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"RAI VALLEY FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"RAI VALLEY FENZ REMOTE","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"QUEENSTOWN FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"PUKERAU FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"PUKEKOHE FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"PUKEKIO HILL CHATHAM ISLAND","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"PORT CHARLES FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"PORT CHARLES FENZ REMOTE","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"PORT CHALMERS FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"PORANGAHAU REMOTE","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"PORANGAHAU FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"PONGAROA REMOTE","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"PONGAROA FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"PIHA REMOTE","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"PIHA FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"PAUANUI FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"PATUMAHOE FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"PAPAAROHA FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"PALMERSTON NORTH FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"PALMERSTON FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"PAHIATUA FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"OWAKA FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"OUTRAM FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"OTEMATATA FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"OTARA FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"ORERE POINT FIRE PARTY","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"OMORI (SOUTHERN LAKES) FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"OMARAMA FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"OMAPERE FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"OMAPERE FENZ REMOTE 2","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"OMAPERE FENZ REMOTE 1","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"OMAKAU FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"OKIWI BAY FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"OKAIHAU","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"OHOPE TV","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"OHAI FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"OBAN","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"OAMARU FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"NUHAKA FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"NORSEWOOD FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"NGONGOTAHA FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"NEW PLYMOUTH FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"NELSON","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"NATIONAL PARK FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"NASEBY FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"NAPIER FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MURUPARA TOWN CENTRE","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MURRAYS BAY","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MURCHISON FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MT MAUNGANUI FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MT LYFORD FENZ REMOTE","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MT ERIN","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MT COOK INDUSTRIAL FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MOSSBURN FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MILTON FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MILLERS FLAT FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MILLERS FLAT FENZ REMOTE","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MILFORD SOUND HOTEL","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MIDDLEMARCH FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MERCER","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MATAWAI FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MATARANGI FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MASSEY","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MARAMARUA FIRE PARTY","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MANUREWA FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MANLY","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MANGONUI","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MANGERE FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MANGAWHAI NZFS REMOTE","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MANGATANGI","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MANAPOURI FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MAMAKU FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MAKARORA FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MAKARORA FENZ REMOTE SITE","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"LUMSDEN FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"LUGGATE FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"LITTLE WANGANUI FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"LITTLE RIVER FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"LICHFIELD DAIRY FACTORY","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"LAWRENCE REMOTE","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"LAWRENCE FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"LAKE TARAWERA FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"LAKE ROAD DEVONPORT","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"LAKE HAWEA FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"KUMEU","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"KUAOTUNU FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"KOHUKOHU FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"KIRKCALDIE & STAINS BLDG","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"KINLOCH","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"KINGSTON FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"KERIKERI FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"KENNEDY BAY FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"KAREKARE FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"KARAMEA FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"KAMO","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"KAINGAROA FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"KAIKOHE FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"KAEO FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"INGLEWOOD FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"Herbertville FENZ Remote","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"HUTT CITY FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"HIKURANGI","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"HERIOT FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"HENDERSON FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"HEDGEHOPE FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"HECTOR REMOTE","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"HAVELOCK FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"HAUMOANA FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"HARIHARAI FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"HAMILTON FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"HAAST FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"GREYMOUTH FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"GRANITY FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"GORE FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"GLENORCHY FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"GLENAVY FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"GARSTON FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"FRANZ JOSEF FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"FRANKTON FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"FOX GLACIER FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"FAIRLIE FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"ETTRICK REMOTE","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"EKETAHUNA FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"EDENDALE FIRE SERVICE","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"DIPTON REMOTE","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"DIPTON FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"DEER PARK HEIGHTS","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"DARGAVILLE","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"DANNEVIRKE FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"CROMWELL FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"COROMANDEL FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"COLONIAL KNOB","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"COLAC BAY FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"CNR CASHEL & HIGH STREETS","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"CLYDE FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"CLEVEDON","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"CHEVIOT FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"CHARLESTON FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"CHARLES HEAPHY BUILDING HAMILTON","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"Bethels Valley FENZ Remote","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"BROTHERS","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"BROADWOOD FENZ REMOTE","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"BRIGHTON FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"BOP POLYTECH","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"BLUFF FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"BLACKMOUNT FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"BIRKENHEAD FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"BENNYDALE FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"BASTIA HILL","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"BALCLUTHA FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"AWHITU CENTRAL","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"ATHOL FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"ASHLEY CLINTON FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"ARTHURS PASS FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"ALEXANDRA FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"AHIPARA FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"411 PAKURANGA ROAD","Current","TX",false
 433030,425253,"ONEFORTYONE NEW ZEALAND LIMITED","EEX287",172.8,"NELSON/MARLBOROUGH/WEST COAST AREA","Current","TX",false
 433030,425253,"ONEFORTYONE NEW ZEALAND LIMITED","EEX281",172.725,"NELSON/MARLBOROUGH/WEST COAST AREA","Current","TX",false
 433030,425253,"ONEFORTYONE NEW ZEALAND LIMITED","EEX257",172.425,"NELSON/MARLBOROUGH/WEST COAST AREA","Current","TX",false
@@ -754,251 +999,21 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 432780,294198,"KIWIRAIL","EN104",152.0375,"WAIOURU","Current","TX",false
 432780,294198,"KIWIRAIL","EN104",152.0375,"WAIKIEKIE NAL TUNNEL 13","Current","TX",false
 432780,294198,"KIWIRAIL","EN104",152.0375,"VERNON","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"UTIKU (KIWIRAIL)","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"Te Puna Kiwirail","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"Taumarunui Railyard","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"TURAKINA TUNNEL","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"TOPUNI NAL TUNNEL 6","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"TOKOMARU EAST","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"TE ROTI KIWIRAIL","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"TE KUITI(NZR)","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"TE KAWA","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"TAR BARREL TUNNEL 21 MNL","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"TAHEKEROA NAL TUNNEL 3","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"SKYTOWER","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"SHERRYBROOK","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"SH1 PUTARURU","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"SAWYERS BAY TUNNEL 8","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"Rolleston Rail","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"Raurimi Kiwirail","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"RURU","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"RUATANGATA KIWIRAIL","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"RUAPEKAPEKA","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"ROSS HILL NAL TUNNEL 7","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"ROSEBANK","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"RIMUTAKA TUNNEL W","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"RIMUTAKA TUNNEL E","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"REEFTON TUNNEL 1","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"REEFTON","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"RAZORBACK","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"RAURIMU TUNNEL 17 NIMT","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"RANGITOTO","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"RANGITAWA","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"RANGANUI NAL TUNNEL 8","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"RAETIHI","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"PUREWA TUNNEL","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"PUKERUA BAY TUNNEL 3 - 6","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"PUKERUA BAY (KIWIRAIL)","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"PUKEPOTO","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"POROOTARAO TUNNEL","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"POROOTARAO","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"POPO TRIG","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"PARAKIORE","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"PAPAROA(TRANZ RAIL)","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"PAPAROA NAL TUNNEL 10","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"PALMERSTON NORTH RAILYARD","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"Owhango Kiwirail","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"Otira Fibre Hut","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"Ohaupo Kiwirail","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"OTIRA TUNNEL 17","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"OTEPOPO TUNNEL 2 MSL","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"NORWOOD KIWIRAIL","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"NORTH RANGE ROAD WEST","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"NORTH RANGE ROAD EAST","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"NGAURUKEHU NIMT TUNNEL 14","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"NGAURANGA NIMT TUNNEL 1","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"NGARANUI","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"NEWMARKET TUNNEL","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"NEW LYNN RAIL REPEATER","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"Masterton Rail Station","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"MT STUDHOLME","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"MT ROCHFORT","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"MT MAUNGANUI WHARF","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"MT HYDE","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"MT HIKURANGI (KING COUNTRY)","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"MT FREETH","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"MT ERIN","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"MT EDEN CRL STATION VENTILATION","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"MT EDEN CRL STATION PLATFORM ANT 3","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"MT EDEN CRL STATION PLATFORM ANT 2","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"MT EDEN CRL STATION PLATFORM ANT 1","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"MT CASS","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"MOUTERE HILL","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"MORVEN","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"MOHAKA RAIL SITE","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"MILTON","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"MIHIWAKA TUNNEL 5","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"MIDLAND TUNNEL 9/10","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"MIDLAND TUNNEL 7 & 8","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"MIDLAND TUNNEL 5&6","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"MIDLAND TUNNEL 2 - 4","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"MIDLAND TUNNEL 11 - 16","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"MIDAS PLACE RAIL OFFICE","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"MAUNGATUROTO KIWIRAIL","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"MATATA RAILWAY","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"MATAROA NIMT TUNNEL 13","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"MATAROA","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"MARERETU NAL TUNNEL 12","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"MAORIBANK TUNNEL W","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"MAORIBANK TUNNEL HUT","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"MANUKAU RAIL REPEATER","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"MANSFORD TUNNEL 7","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"MANGAWEKA TUNNEL","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"MANAWATU GORGE TUNNEL 1&2","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"MANAWATU GORGE","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"MAKETU RESERVOIR","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"MAKARAU NAL TUNNEL 2","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"LYTTELTON TUNNEL","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"LEPPERTON","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"Kopaki Kiwirail","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"Kinleith Kiwirail","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"Khandallah Kiwirail","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"KURIWAO","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"KAIPARA HILLS ROAD","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"KAIKOURA TUNNEL 9 & 10","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"KAIKOURA TUNNEL 6 - 8","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"KAIKOURA TUNNEL 5","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"KAIKOURA TUNNEL 3","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"KAIKOURA TUNNEL 20","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"KAIKOURA TUNNEL 19","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"KAIKOURA TUNNEL 18","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"KAIKOURA TUNNEL 15 - 17","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"KAIKOURA TUNNEL 13 & 14","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"KAIKOURA TUNNEL 11 & 12","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"KAIKOURA RESERVOIR","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"K-ROAD CRL STATION MERCURY LANE","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"K-ROAD CRL STATION BERESFORD SQUARE","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"INVERCARGILL","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"INCHBONNIE","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"HURLEYVILLE","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"HUNTERVILLE","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"HOTEO NAL TUNNEL 5","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"HOTEO","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"HOROKAKA","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"HIGH PEAK","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"HEYWARD POINT","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"HEMOPO TUNNEL 1","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"HELENSVILLE","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"HEDGEHOPE","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"GREYMOUTH DEPOT","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"GOLDEN STAIRS NAL TUNNEL 11","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"GLENSIDE NIMT TUNNEL 2","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"GLEN INNES TUNNEL","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"GAWLER DOWNS","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"GALATEA","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"FRANKTON (HAMILTON)","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"FORDELL TUNNEL","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"FERNIHURST","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"ETHELTON","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"Cronadun Kiwirail","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"CRL Waitemata Stn-Te Waihorotiu Stn Leaky Feeder","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"CRL Te Waihorotiu Stn - Waitemata Stn Leaky Feeder","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"CRL Te Waihorotiu Stn - Karang-a-hape Stn Leaky Feeder","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"CRL Maungawhau Stn - Karang-a-hape Stn Leaky Feeder","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"CRL Karang-a-hape Stn - Te Waihorotiu Stn leaky Feeder","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"CRL Karang-a-hape Stn - Maungawhau Stn leaky Feeder","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"CRL Karang-a-hape Stn - Grafton Leaky Feeder","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"CRL Grafton - Karang-a-hape Stn Leaky Feeder","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"CRL East Link Tunnel Portal","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"CRAIGIEBURN","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"CLIFFS TUNNEL 4","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"CLARENCE KIWIRAIL","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"CAVERSHAM TUNNEL 9","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"CASHMERE","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"CAPE WANBROW","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"CANNON POINT","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"Berlins Kiwirail","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"BULLER TUNNEL 4 & 5","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"BULLER TUNNEL 2&3","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"BRITOMART","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"BOMBAY(NZR)","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"BICKERSTAFFE NAL TUNNEL 9","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"BELTANA-PARNASSUS KIWIRAIL","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"BEALEY SPUR","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"AVONDALE KIWIRAIL","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"ARAMOHO TRIANGLE","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"APATA HILL","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"AOTEA CRL STATION WELLESLEY ST","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"AOTEA CRL STATION VICTORIA ST","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"AICKENS","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"AHUROA NAL TUNNEL 4","Current","TX",false
-432780,294198,"KIWIRAIL","EN104",152.0375,"86 LATTER HILL","Current","TX",false
-432779,,"KIWIRAIL","EN97#",153.73125,"MOBILE","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"WINGATUI TUNNEL 10 MSL","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"WHARERATA RAIL SITE","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"WESTFIELD RAIL REPEATER","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"WELLINGTON STATION","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"WELD CONE","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"WAITOTARA","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"WAITAKERE TUNNEL","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"WAIOURU RAIL STATION","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"WAIOURU","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"WAIKIEKIE NAL TUNNEL 13","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"VERNON","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"UTIKU (KIWIRAIL)","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"TURAKINA TUNNEL","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"TUAMARINA (OBSOLETE LOCATION)","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"TOPUNI NAL TUNNEL 6","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"TOKOMARU EAST","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"TE ROTI KIWIRAIL","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"TE KUITI(NZR)","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"TE KAWA","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"TAR BARREL TUNNEL 21 MNL","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"TAHEKEROA NAL TUNNEL 3","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"SKYTOWER","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"SHERRYBROOK","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"SHAG POINT","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"SH1 PUTARURU","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"SAWYERS BAY TUNNEL 8","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"RURU","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"RUATANGATA KIWIRAIL","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"RUAPEKAPEKA","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"ROSS HILL NAL TUNNEL 7","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"ROSEBANK","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"RIMUTAKA TUNNEL W","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"RIMUTAKA TUNNEL E","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"REEFTON TUNNEL 1","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"REEFTON","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"RAZORBACK","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"RAURIMU TUNNEL 17 NIMT","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"RANGITOTO","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"RANGITAWA","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"RANGANUI NAL TUNNEL 8","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"RAETIHI","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"PUREWA TUNNEL","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"PUKERUA BAY TUNNEL 3 - 6","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"PUKERUA BAY (KIWIRAIL)","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"PUKEPOTO","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"PUKENIKAU","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"POROOTARAO TUNNEL","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"POROOTARAO","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"POPO TRIG","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"POHOKURA (POWERCO)","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"PARAKIORE","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"PAPAROA(TRANZ RAIL)","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"PAPAROA NAL TUNNEL 10","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"PAPARATA","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"PALMERSTON NORTH RAILYARD","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"PAHIATUA TRACK","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"OTIRA TUNNEL 17","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"OTEPOPO TUNNEL 2 MSL","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"ORINGI","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"NORWOOD KIWIRAIL","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"NORTH RANGE ROAD WEST","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"NORTH RANGE ROAD EAST","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"NGAURUKEHU NIMT TUNNEL 14","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"NGAURANGA NIMT TUNNEL 1","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"NGARANUI","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"NEWMARKET TUNNEL","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"NEW LYNN RAIL REPEATER","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"MT STUDHOLME","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"MT ROCHFORT","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"MT MAUNGANUI WHARF","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"MT HYDE","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"MT HIKURANGI (KING COUNTRY)","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"MT FREETH","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"MT ERIN","Current","TX",false
-432778,294192,"KIWIRAIL","EN97",151.95,"MT EDEN CRL STATION VENTILATION","Current","TX",false
+423998,418494,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"Greytown ONZ W3GYT","Current","TX",false
+423997,418488,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"Otatara Central ONZ S6ORC","Current","TX",false
+423996,418492,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"QUEENSTOWN GORGE INDUSTRIAL (VFNZ)","Current","TX",false
+423995,418493,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"CARISBROOK (VODAFONE)","Current","TX",false
+423994,418489,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"ALBERT TOWN NORTH (VFNZ)","Current","TX",false
+423993,418487,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"PATUMAHOE (VF A8PTM)","Current","TX",false
+423992,418088,"SMITH CRANE & CONSTRUCTION LTD","EEX211",171.85,"Ivan Cres Ch Ch","Current","TX",false
+423991,418087,"SMITH CRANE & CONSTRUCTION LTD","ENX37",150.5125,"107 Cambridge Tce","Current","TX",false
+423990,418486,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"WEST MELTON CENTRAL","Current","TX",false
+423989,418481,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"RANGIORA SOUTH 2 (VFNZ)","Current","TX",false
+423988,418484,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"PIONEER STADIUM (VF S3PST)","Current","TX",false
+423987,418475,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"Beckenham ONZ S3BKM","Current","TX",false
+423986,418476,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"PICTON (VF S2PCT)","Current","TX",false
+423985,418479,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"DASHWOOD","Current","TX",false
+423984,418483,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"Matakana North ONZ N2MKB","Current","TX",false
 423983,418482,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"Wattle Farm ONZ A8WTF","Current","TX",false
 423980,418478,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"MEADOWBANK RETIREMENT VILLAGE (VFNZ)","Current","TX",false
 423978,418480,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"WAIMA (VFNZ)","Current","TX",false
@@ -10984,21 +10999,251 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 411257,157148,"KORDIA LIMITED","5G4#",4850.0,"KURIWAO KORDIA","Current","TX",false
 411256,408114,"ONE NEW ZEALAND GROUP LIMITED","VF900",952.0,"Williamson Avenue 2 ONZ A3WLR","Current","TX",false
 411255,408129,"ONE NEW ZEALAND GROUP LIMITED","VF900",952.0,"International Convention Centre ONZ A3ICC","Current","TX",false
-411254,408132,"ONE NEW ZEALAND GROUP LIMITED","VF900",952.0,"Core test lab ONZ A1CTL","Current","TX",false
-411253,157147,"KORDIA LIMITED","5G4",4550.0,"HEDGEHOPE KORDIA","Current","TX",false
-411252,408274,"METEOROLOGICAL SERVICE OF NEW ZEALAND LIMITED","JL8C#",448.38125,"Taupo Airport AWS","Current","TX",false
-411251,408273,"METEOROLOGICAL SERVICE OF NEW ZEALAND LIMITED","JL8C",443.375,"Taupo Airport Terminal","Current","TX",false
-411250,157146,"KORDIA LIMITED","5G2#",4770.0,"KURIWAO KORDIA","Current","TX",false
-411249,157145,"KORDIA LIMITED","5G2",4470.0,"HEDGEHOPE KORDIA","Current","TX",false
-411248,158593,"KORDIA LIMITED","5G5#",4890.0,"KURIWAO KORDIA","Current","TX",false
-411247,408141,"TWO DEGREES NETWORKS LIMITED",,3580.0,"(NTH-002-056-A)[BUSH]_BUSH HAVEN DRIVE","Current","TX",false
-411246,408075,"TWO DEGREES NETWORKS LIMITED",,2152.5,"(NTH-002-056-A)[BUSH]_BUSH HAVEN DRIVE","Current","TX",false
-411245,408074,"TWO DEGREES NETWORKS LIMITED",,1815.0,"(NTH-002-056-A)[BUSH]_BUSH HAVEN DRIVE","Current","TX",false
-411244,408070,"TWO DEGREES NETWORKS LIMITED",,939.9,"(NTH-002-056-A)[BUSH]_BUSH HAVEN DRIVE","Current","TX",false
-411243,408072,"TWO DEGREES NETWORKS LIMITED",,798.0,"(NTH-002-056-A)[BUSH]_BUSH HAVEN DRIVE","Current","TX",false
-411242,158592,"KORDIA LIMITED","5G5",4590.0,"HEDGEHOPE KORDIA","Current","TX",false
-411238,407940,"RYMAN HEALTHCARE LIMITED","FNX579",482.96875,"3 SCOTT ROAD HOBSONVILLE","Current","TX",false
-411238,407940,"RYMAN HEALTHCARE LIMITED","FNX567",482.81875,"3 SCOTT ROAD HOBSONVILLE","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"UTIKU (KIWIRAIL)","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"Te Puna Kiwirail","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"Taumarunui Railyard","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"TURAKINA TUNNEL","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"TOPUNI NAL TUNNEL 6","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"TOKOMARU EAST","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"TE ROTI KIWIRAIL","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"TE KUITI(NZR)","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"TE KAWA","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"TAR BARREL TUNNEL 21 MNL","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"TAHEKEROA NAL TUNNEL 3","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"SKYTOWER","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"SHERRYBROOK","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"SH1 PUTARURU","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"SAWYERS BAY TUNNEL 8","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"Rolleston Rail","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"Raurimi Kiwirail","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"RURU","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"RUATANGATA KIWIRAIL","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"RUAPEKAPEKA","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"ROSS HILL NAL TUNNEL 7","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"ROSEBANK","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"RIMUTAKA TUNNEL W","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"RIMUTAKA TUNNEL E","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"REEFTON TUNNEL 1","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"REEFTON","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"RAZORBACK","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"RAURIMU TUNNEL 17 NIMT","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"RANGITOTO","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"RANGITAWA","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"RANGANUI NAL TUNNEL 8","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"RAETIHI","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"PUREWA TUNNEL","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"PUKERUA BAY TUNNEL 3 - 6","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"PUKERUA BAY (KIWIRAIL)","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"PUKEPOTO","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"POROOTARAO TUNNEL","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"POROOTARAO","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"POPO TRIG","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"PARAKIORE","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"PAPAROA(TRANZ RAIL)","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"PAPAROA NAL TUNNEL 10","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"PALMERSTON NORTH RAILYARD","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"Owhango Kiwirail","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"Otira Fibre Hut","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"Ohaupo Kiwirail","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"OTIRA TUNNEL 17","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"OTEPOPO TUNNEL 2 MSL","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"NORWOOD KIWIRAIL","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"NORTH RANGE ROAD WEST","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"NORTH RANGE ROAD EAST","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"NGAURUKEHU NIMT TUNNEL 14","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"NGAURANGA NIMT TUNNEL 1","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"NGARANUI","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"NEWMARKET TUNNEL","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"NEW LYNN RAIL REPEATER","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"Masterton Rail Station","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"MT STUDHOLME","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"MT ROCHFORT","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"MT MAUNGANUI WHARF","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"MT HYDE","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"MT HIKURANGI (KING COUNTRY)","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"MT FREETH","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"MT ERIN","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"MT EDEN CRL STATION VENTILATION","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"MT EDEN CRL STATION PLATFORM ANT 3","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"MT EDEN CRL STATION PLATFORM ANT 2","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"MT EDEN CRL STATION PLATFORM ANT 1","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"MT CASS","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"MOUTERE HILL","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"MORVEN","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"MOHAKA RAIL SITE","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"MILTON","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"MIHIWAKA TUNNEL 5","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"MIDLAND TUNNEL 9/10","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"MIDLAND TUNNEL 7 & 8","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"MIDLAND TUNNEL 5&6","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"MIDLAND TUNNEL 2 - 4","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"MIDLAND TUNNEL 11 - 16","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"MIDAS PLACE RAIL OFFICE","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"MAUNGATUROTO KIWIRAIL","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"MATATA RAILWAY","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"MATAROA NIMT TUNNEL 13","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"MATAROA","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"MARERETU NAL TUNNEL 12","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"MAORIBANK TUNNEL W","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"MAORIBANK TUNNEL HUT","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"MANUKAU RAIL REPEATER","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"MANSFORD TUNNEL 7","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"MANGAWEKA TUNNEL","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"MANAWATU GORGE TUNNEL 1&2","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"MANAWATU GORGE","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"MAKETU RESERVOIR","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"MAKARAU NAL TUNNEL 2","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"LYTTELTON TUNNEL","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"LEPPERTON","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"Kopaki Kiwirail","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"Kinleith Kiwirail","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"Khandallah Kiwirail","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"KURIWAO","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"KAIPARA HILLS ROAD","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"KAIKOURA TUNNEL 9 & 10","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"KAIKOURA TUNNEL 6 - 8","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"KAIKOURA TUNNEL 5","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"KAIKOURA TUNNEL 3","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"KAIKOURA TUNNEL 20","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"KAIKOURA TUNNEL 19","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"KAIKOURA TUNNEL 18","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"KAIKOURA TUNNEL 15 - 17","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"KAIKOURA TUNNEL 13 & 14","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"KAIKOURA TUNNEL 11 & 12","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"KAIKOURA RESERVOIR","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"K-ROAD CRL STATION MERCURY LANE","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"K-ROAD CRL STATION BERESFORD SQUARE","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"INVERCARGILL","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"INCHBONNIE","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"HURLEYVILLE","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"HUNTERVILLE","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"HOTEO NAL TUNNEL 5","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"HOTEO","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"HOROKAKA","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"HIGH PEAK","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"HEYWARD POINT","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"HEMOPO TUNNEL 1","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"HELENSVILLE","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"HEDGEHOPE","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"GREYMOUTH DEPOT","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"GOLDEN STAIRS NAL TUNNEL 11","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"GLENSIDE NIMT TUNNEL 2","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"GLEN INNES TUNNEL","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"GAWLER DOWNS","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"GALATEA","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"FRANKTON (HAMILTON)","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"FORDELL TUNNEL","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"FERNIHURST","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"ETHELTON","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"Cronadun Kiwirail","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"CRL Waitemata Stn-Te Waihorotiu Stn Leaky Feeder","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"CRL Te Waihorotiu Stn - Waitemata Stn Leaky Feeder","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"CRL Te Waihorotiu Stn - Karang-a-hape Stn Leaky Feeder","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"CRL Maungawhau Stn - Karang-a-hape Stn Leaky Feeder","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"CRL Karang-a-hape Stn - Te Waihorotiu Stn leaky Feeder","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"CRL Karang-a-hape Stn - Maungawhau Stn leaky Feeder","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"CRL Karang-a-hape Stn - Grafton Leaky Feeder","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"CRL Grafton - Karang-a-hape Stn Leaky Feeder","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"CRL East Link Tunnel Portal","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"CRAIGIEBURN","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"CLIFFS TUNNEL 4","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"CLARENCE KIWIRAIL","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"CAVERSHAM TUNNEL 9","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"CASHMERE","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"CAPE WANBROW","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"CANNON POINT","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"Berlins Kiwirail","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"BULLER TUNNEL 4 & 5","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"BULLER TUNNEL 2&3","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"BRITOMART","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"BOMBAY(NZR)","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"BICKERSTAFFE NAL TUNNEL 9","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"BELTANA-PARNASSUS KIWIRAIL","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"BEALEY SPUR","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"AVONDALE KIWIRAIL","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"ARAMOHO TRIANGLE","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"APATA HILL","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"AOTEA CRL STATION WELLESLEY ST","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"AOTEA CRL STATION VICTORIA ST","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"AICKENS","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"AHUROA NAL TUNNEL 4","Current","TX",false
+432780,294198,"KIWIRAIL","EN104",152.0375,"86 LATTER HILL","Current","TX",false
+432779,,"KIWIRAIL","EN97#",153.73125,"MOBILE","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"WINGATUI TUNNEL 10 MSL","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"WHARERATA RAIL SITE","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"WESTFIELD RAIL REPEATER","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"WELLINGTON STATION","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"WELD CONE","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"WAITOTARA","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"WAITAKERE TUNNEL","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"WAIOURU RAIL STATION","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"WAIOURU","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"WAIKIEKIE NAL TUNNEL 13","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"VERNON","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"UTIKU (KIWIRAIL)","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"TURAKINA TUNNEL","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"TUAMARINA (OBSOLETE LOCATION)","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"TOPUNI NAL TUNNEL 6","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"TOKOMARU EAST","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"TE ROTI KIWIRAIL","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"TE KUITI(NZR)","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"TE KAWA","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"TAR BARREL TUNNEL 21 MNL","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"TAHEKEROA NAL TUNNEL 3","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"SKYTOWER","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"SHERRYBROOK","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"SHAG POINT","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"SH1 PUTARURU","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"SAWYERS BAY TUNNEL 8","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"RURU","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"RUATANGATA KIWIRAIL","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"RUAPEKAPEKA","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"ROSS HILL NAL TUNNEL 7","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"ROSEBANK","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"RIMUTAKA TUNNEL W","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"RIMUTAKA TUNNEL E","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"REEFTON TUNNEL 1","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"REEFTON","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"RAZORBACK","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"RAURIMU TUNNEL 17 NIMT","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"RANGITOTO","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"RANGITAWA","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"RANGANUI NAL TUNNEL 8","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"RAETIHI","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"PUREWA TUNNEL","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"PUKERUA BAY TUNNEL 3 - 6","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"PUKERUA BAY (KIWIRAIL)","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"PUKEPOTO","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"PUKENIKAU","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"POROOTARAO TUNNEL","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"POROOTARAO","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"POPO TRIG","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"POHOKURA (POWERCO)","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"PARAKIORE","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"PAPAROA(TRANZ RAIL)","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"PAPAROA NAL TUNNEL 10","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"PAPARATA","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"PALMERSTON NORTH RAILYARD","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"PAHIATUA TRACK","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"OTIRA TUNNEL 17","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"OTEPOPO TUNNEL 2 MSL","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"ORINGI","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"NORWOOD KIWIRAIL","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"NORTH RANGE ROAD WEST","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"NORTH RANGE ROAD EAST","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"NGAURUKEHU NIMT TUNNEL 14","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"NGAURANGA NIMT TUNNEL 1","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"NGARANUI","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"NEWMARKET TUNNEL","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"NEW LYNN RAIL REPEATER","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"MT STUDHOLME","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"MT ROCHFORT","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"MT MAUNGANUI WHARF","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"MT HYDE","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"MT HIKURANGI (KING COUNTRY)","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"MT FREETH","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"MT ERIN","Current","TX",false
+432778,294192,"KIWIRAIL","EN97",151.95,"MT EDEN CRL STATION VENTILATION","Current","TX",false
 432778,294192,"KIWIRAIL","EN97",151.95,"MT EDEN CRL STATION PLATFORM ANT 3","Current","TX",false
 432778,294192,"KIWIRAIL","EN97",151.95,"MT EDEN CRL STATION PLATFORM ANT 2","Current","TX",false
 432778,294192,"KIWIRAIL","EN97",151.95,"MT EDEN CRL STATION PLATFORM ANT 1","Current","TX",false
@@ -11351,238 +11596,6 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 432200,418906,"AIRWAYS CORPORATION OF NEW ZEALAND LIMITED",,113.2,"TAURANGA AIRPORT DVOR","Current","TX",false
 432199,418904,"AIRWAYS CORPORATION OF NEW ZEALAND LIMITED",,117.1,"ALEXANDRA AIRPORT DVOR","Current","TX",false
 432198,418905,"AIRWAYS CORPORATION OF NEW ZEALAND LIMITED",,115.9,"LEVELS AIRPORT DVOR","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"Waio Station  FENZ Remote","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WOODHILL LOOKOUT","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WHATATUTU FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WHATAROA FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WHANGAREI HEADS REMOTE","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WHANGAREI HEADS FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WHANGAREI FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WHANGAPOUA FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WHANANAKI FENZ REMOTE PAGING SITE 2","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WHANANAKI FENZ REMOTE PAGING SITE 1","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WHANANAKI (RABBIT FARM) FENZ REMOTE","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WHANANAKI (BEACON HILL) FENZ REMOTE","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WHAKATANE FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WHAKAPAPA FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WELLINGTON CENTRAL FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WEBER FENZ REMOTE PAGING","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WARKWORTH","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WARD FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WANAKA NZFS REMOTE PAGING TX","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WANAKA FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WAITAHUNA FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WAITAHUNA FENZ REMOTE","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WAIRAU VALLEY FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WAIPUKURAU NZFS REMOTE","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WAIPAWA FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WAINUI BAY FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WAIMATE FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WAIMARAMA VRFF FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WAIKOUAITI FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WAIKAIA FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WAIHOLA FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WAIHAU BAY FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WAIHAORUNGA VRFF","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WAIAU FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WAIATARUA FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"UPPER MOUTERE FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"Tora FENZ Remote","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"Tinui FENZ Remote","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TUAI VRFF FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TOLAGA BAY FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TOKOROA","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TOKOMARU BAY FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TOKANUI FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TINIROTO FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TINIROTO FENZ REMOTE","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TIKITIKI FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TE PUKE","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TE PUKE","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TE PUIA SPRINGS FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TE OKA NZ FIRE SERVICE","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TE KOPURU","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TE KAHA FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TE ATATU","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TE ARAROA FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TE ANAU FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TAWA","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TAURANGA","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TAUPO FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TAUPIRI","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TAUMARUNUI FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TARRAS FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TARRAS FENZ REMOTE","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"TAPAWERA FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"STOKE FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"ST ARNAUD FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"SPRINGS JUNCTION FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"SPRINGFIELD REMOTE FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"SPRINGFIELD FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"SILVERDALE FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"SILVERDALE","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"SHELLEY BEACH FIRE STN","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"SEDDON FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"Rewa FENZ Remote","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"RUSSELL FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"RUATORIA FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"RUAKAKA FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"ROXBURGH FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"ROTORUA FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"ROLLESBY RANGE","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"RIVER ROAD","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"REMUERA FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"REEFTON FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"RAURIMU NZFS REMOTE","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"RANGITATA GORGE FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"RANGIORA FIRE STATION REMOTE","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"RANFURLY FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"RAI VALLEY FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"RAI VALLEY FENZ REMOTE","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"QUEENSTOWN FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"PUKEKOHE FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"PUKEKIO HILL CHATHAM ISLAND","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"PORT CHARLES FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"PORT CHARLES FENZ REMOTE","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"PORT CHALMERS FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"PORANGAHAU REMOTE","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"PORANGAHAU FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"PONGAROA REMOTE","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"PONGAROA FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"PIHA REMOTE","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"PIHA FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"PAUANUI FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"PATUMAHOE FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"PAPAAROHA FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"PALMERSTON NORTH FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"PALMERSTON FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"PAHIATUA FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"OWAKA FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"OTEMATATA FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"OTARA FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"ORERE POINT FIRE PARTY","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"OMORI (SOUTHERN LAKES) FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"OMARAMA FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"OMAPERE FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"OMAPERE FENZ REMOTE 2","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"OMAPERE FENZ REMOTE 1","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"OMAKAU FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"OKIWI BAY FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"OKAIHAU","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"OHOPE TV","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"OHAI FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"OBAN","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"NUHAKA FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"NORSEWOOD FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"NGONGOTAHA FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"NEW PLYMOUTH FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"NELSON","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"NATIONAL PARK FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"NASEBY FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"NAPIER FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MURUPARA TOWN CENTRE","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MURRAYS BAY","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MURCHISON FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MT MAUNGANUI FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MT LYFORD FENZ REMOTE","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MT ERIN","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MT COOK INDUSTRIAL FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MILLERS FLAT FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MILLERS FLAT FENZ REMOTE","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MILFORD SOUND HOTEL","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MIDDLEMARCH FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MERCER","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MATAWAI FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MATARANGI FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MASSEY","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MARAMARUA FIRE PARTY","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MANUREWA FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MANLY","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MANGONUI","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MANGERE FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MANGAWHAI NZFS REMOTE","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MANGATANGI","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MANAPOURI FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MAMAKU FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MAKARORA FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"MAKARORA FENZ REMOTE SITE","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"LUGGATE FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"LITTLE WANGANUI FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"LITTLE RIVER FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"LICHFIELD DAIRY FACTORY","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"LAWRENCE REMOTE","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"LAWRENCE FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"LAKE TARAWERA FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"LAKE ROAD DEVONPORT","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"KUMEU","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"KUAOTUNU FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"KOHUKOHU FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"KIRKCALDIE & STAINS BLDG","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"KINLOCH","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"KINGSTON FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"KERIKERI FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"KENNEDY BAY FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"KAREKARE FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"KARAMEA FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"KAMO","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"KAINGAROA FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"KAIKOHE FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"KAEO FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"INGLEWOOD FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"Herbertville FENZ Remote","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"HUTT CITY FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"HIKURANGI","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"HENDERSON FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"HEDGEHOPE FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"HECTOR REMOTE","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"HAVELOCK FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"HAUMOANA FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"HARIHARAI FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"HAMILTON FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"HAAST FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"GREYMOUTH FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"GRANITY FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"GLENORCHY FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"GLENAVY FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"GARSTON FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"FRANZ JOSEF FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"FRANKTON FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"FOX GLACIER FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"FAIRLIE FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"ETTRICK REMOTE","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"EKETAHUNA FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"EDENDALE FIRE SERVICE","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"DIPTON REMOTE","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"DIPTON FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"DEER PARK HEIGHTS","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"DARGAVILLE","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"DANNEVIRKE FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"CROMWELL FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"COROMANDEL FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"COLONIAL KNOB","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"COLAC BAY FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"CNR CASHEL & HIGH STREETS","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"CLYDE FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"CLEVEDON","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"CHEVIOT FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"CHARLESTON FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"CHARLES HEAPHY BUILDING HAMILTON","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"Bethels Valley FENZ Remote","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"BROTHERS","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"BROADWOOD FENZ REMOTE","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"BRIGHTON FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"BOP POLYTECH","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"BLACKMOUNT FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"BIRKENHEAD FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"BENNYDALE FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"BASTIA HILL","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"AWHITU CENTRAL","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"ATHOL FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"ASHLEY CLINTON FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"ARTHURS PASS FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"ALEXANDRA FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"AHIPARA FIRE STATION","Current","TX",false
-432196,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"411 PAKURANGA ROAD","Current","TX",false
 432195,227264,"UNISON NETWORKS LIMITED","ENX88",153.58125,"TAUPO AREA","Current","TX",false
 432195,227264,"UNISON NETWORKS LIMITED","ENX88",153.58125,"ROTORUA AREA","Current","TX",false
 432195,227264,"UNISON NETWORKS LIMITED","ENX88",153.58125,"HAWKES BAY AREA","Current","TX",false
@@ -11636,6 +11649,8 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 432158,424875,"ONE NEW ZEALAND GROUP LIMITED",,2682.5,"Paerata A8PEA","Current","TX",false
 432157,424888,"ONE NEW ZEALAND GROUP LIMITED",,2682.5,"Ellerslie West A6ELW","Current","TX",false
 432156,424903,"TWO DEGREES NETWORKS LIMITED","13G2W",12835.0,"BIG HILL","Current","TX",false
+432154,425260,"MEDICS ON SCENE LIMITED","DNX37",461.68125,"ALL NORTH ISLAND","Current","TX",false
+432154,425260,"MEDICS ON SCENE LIMITED","DNX24",461.51875,"ALL NORTH ISLAND","Current","TX",false
 432152,424874,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"THE TERRACE (VFNZ)","Current","TX",false
 432151,424879,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"Eastern Hutt Road West W5ERW","Current","TX",false
 432150,424882,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"QUEENSTOWN","Current","TX",false
@@ -11984,21 +11999,21 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 431542,294199,"KIWIRAIL","MSN7",161.04375,"ROSEBANK","Current","TX",false
 431542,294199,"KIWIRAIL","MSN7",161.04375,"REEFTON","Current","TX",false
 431542,294199,"KIWIRAIL","MSN7",161.04375,"RAZORBACK","Current","TX",false
-431542,294199,"KIWIRAIL","MSN7",161.04375,"RANGITOTO","Current","TX",false
-431542,294199,"KIWIRAIL","MSN7",161.04375,"RAETIHI","Current","TX",false
-431542,294199,"KIWIRAIL","MSN7",161.04375,"PUKERUA BAY (KIWIRAIL)","Current","TX",false
-431542,294199,"KIWIRAIL","MSN7",161.04375,"PUKEPOTO","Current","TX",false
-431542,294199,"KIWIRAIL","MSN7",161.04375,"POROOTARAO TUNNEL","Current","TX",false
-431542,294199,"KIWIRAIL","MSN7",161.04375,"POROOTARAO","Current","TX",false
-431542,294199,"KIWIRAIL","MSN7",161.04375,"POPO TRIG","Current","TX",false
-431542,294199,"KIWIRAIL","MSN7",161.04375,"POHOKURA (POWERCO)","Current","TX",false
-431542,294199,"KIWIRAIL","MSN7",161.04375,"PARAKIORE","Current","TX",false
-431542,294199,"KIWIRAIL","MSN7",161.04375,"PAPAROA(TRANZ RAIL)","Current","TX",false
-431542,294199,"KIWIRAIL","MSN7",161.04375,"PAPARATA","Current","TX",false
-431542,294199,"KIWIRAIL","MSN7",161.04375,"PAHIATUA TRACK","Current","TX",false
-431542,294199,"KIWIRAIL","MSN7",161.04375,"ORINGI","Current","TX",false
-431542,294199,"KIWIRAIL","MSN7",161.04375,"NORTH RANGE ROAD WEST","Current","TX",false
-431542,294199,"KIWIRAIL","MSN7",161.04375,"NORTH RANGE ROAD EAST","Current","TX",false
+411254,408132,"ONE NEW ZEALAND GROUP LIMITED","VF900",952.0,"Core test lab ONZ A1CTL","Current","TX",false
+411253,157147,"KORDIA LIMITED","5G4",4550.0,"HEDGEHOPE KORDIA","Current","TX",false
+411252,408274,"METEOROLOGICAL SERVICE OF NEW ZEALAND LIMITED","JL8C#",448.38125,"Taupo Airport AWS","Current","TX",false
+411251,408273,"METEOROLOGICAL SERVICE OF NEW ZEALAND LIMITED","JL8C",443.375,"Taupo Airport Terminal","Current","TX",false
+411250,157146,"KORDIA LIMITED","5G2#",4770.0,"KURIWAO KORDIA","Current","TX",false
+411249,157145,"KORDIA LIMITED","5G2",4470.0,"HEDGEHOPE KORDIA","Current","TX",false
+411248,158593,"KORDIA LIMITED","5G5#",4890.0,"KURIWAO KORDIA","Current","TX",false
+411247,408141,"TWO DEGREES NETWORKS LIMITED",,3580.0,"(NTH-002-056-A)[BUSH]_BUSH HAVEN DRIVE","Current","TX",false
+411246,408075,"TWO DEGREES NETWORKS LIMITED",,2152.5,"(NTH-002-056-A)[BUSH]_BUSH HAVEN DRIVE","Current","TX",false
+411245,408074,"TWO DEGREES NETWORKS LIMITED",,1815.0,"(NTH-002-056-A)[BUSH]_BUSH HAVEN DRIVE","Current","TX",false
+411244,408070,"TWO DEGREES NETWORKS LIMITED",,939.9,"(NTH-002-056-A)[BUSH]_BUSH HAVEN DRIVE","Current","TX",false
+411243,408072,"TWO DEGREES NETWORKS LIMITED",,798.0,"(NTH-002-056-A)[BUSH]_BUSH HAVEN DRIVE","Current","TX",false
+411242,158592,"KORDIA LIMITED","5G5",4590.0,"HEDGEHOPE KORDIA","Current","TX",false
+411238,407940,"RYMAN HEALTHCARE LIMITED","FNX579",482.96875,"3 SCOTT ROAD HOBSONVILLE","Current","TX",false
+411238,407940,"RYMAN HEALTHCARE LIMITED","FNX567",482.81875,"3 SCOTT ROAD HOBSONVILLE","Current","TX",false
 411238,407940,"RYMAN HEALTHCARE LIMITED","FNX558",482.70625,"3 SCOTT ROAD HOBSONVILLE","Current","TX",false
 411235,259068,"TWO DEGREES NETWORKS LIMITED","7GU2W#",7669.5,"FORESTRY ROAD, TWINLAW (STH-073-025-A)","Current","TX",false
 411234,408115,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"Taranaki Street ONZ W6TNS","Current","TX",false
@@ -21984,21 +21999,21 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 240235,298352,"TWO DEGREES NETWORKS LIMITED",,939.9,"(AKL-008-078-B)[CVPK]_MANUKAU EAST","Current","TX",false
 240234,298351,"TWO DEGREES NETWORKS LIMITED",,939.9,"(AKL-008-030-C)[PKRG]_PAKURANGA","Current","TX",false
 240233,298369,"TWO DEGREES NETWORKS LIMITED",,939.9,"(WLG-047-034-F)[PTEA]_PIPITEA","Current","TX",false
-240232,298324,"TWO DEGREES NETWORKS LIMITED",,939.9,"(AKL-008-079-A)[TKNE]_TAKANINI EAST","Current","TX",false
-240231,298323,"TWO DEGREES NETWORKS LIMITED",,939.9,"(WLG-047-004-A)[GLSD]_GLENSIDE","Current","TX",false
-240230,298399,"TWO DEGREES NETWORKS LIMITED",,939.9,"(AKL-005-059-A)[TBYH]_TORBAY HUB","Current","TX",false
-240229,298366,"TWO DEGREES NETWORKS LIMITED",,939.9,"(AKL-008-112-B)[HIBR]_HIGHBROOK","Current","TX",false
-240228,298358,"TWO DEGREES NETWORKS LIMITED",,939.9,"(AKL-007-081-B)[TMKI]_TAMAKI","Current","TX",false
-240227,298343,"TWO DEGREES NETWORKS LIMITED",,939.9,"(AKL-007-009-L)[BMRL]_BALMORAL","Current","TX",false
-240226,298357,"TWO DEGREES NETWORKS LIMITED",,939.9,"(AKL-006-029-C)[GLNW]_GLEN EDEN WEST","Current","TX",false
-240225,298416,"TWO DEGREES NETWORKS LIMITED",,939.9,"(AKL-007-140-C)[AKLU]_AUCKLAND UNIVERSITY","Current","TX",false
-240224,298334,"TWO DEGREES NETWORKS LIMITED",,939.9,"(CHC-060-051-F)[WAIM]_WAIMAIRI","Current","TX",false
-240223,298415,"TWO DEGREES NETWORKS LIMITED",,939.9,"(AKL-007-100-E)[PCHV]_PT CHEVALIER","Current","TX",false
-240222,298356,"TWO DEGREES NETWORKS LIMITED",,939.9,"(AKL-006-005-E)[LCNN]_LINCOLN NORTH","Current","TX",false
-240221,298350,"TWO DEGREES NETWORKS LIMITED",,939.9,"(AKL-006-008-C)[TEAT]_TE ATATU NORTH","Current","TX",false
-240220,298361,"TWO DEGREES NETWORKS LIMITED",,939.9,"(AKL-008-061-D)[TIRD]_TIDAL ROAD","Current","TX",false
-240219,298360,"TWO DEGREES NETWORKS LIMITED",,939.9,"(AKL-007-143-A)[RMUE]_REMUERA EAST","Current","TX",false
-240218,298322,"TWO DEGREES NETWORKS LIMITED",,939.9,"(AKL-007-051-I)[PRDL]_PATIKI ROAD","Current","TX",false
+431542,294199,"KIWIRAIL","MSN7",161.04375,"RANGITOTO","Current","TX",false
+431542,294199,"KIWIRAIL","MSN7",161.04375,"RAETIHI","Current","TX",false
+431542,294199,"KIWIRAIL","MSN7",161.04375,"PUKERUA BAY (KIWIRAIL)","Current","TX",false
+431542,294199,"KIWIRAIL","MSN7",161.04375,"PUKEPOTO","Current","TX",false
+431542,294199,"KIWIRAIL","MSN7",161.04375,"POROOTARAO TUNNEL","Current","TX",false
+431542,294199,"KIWIRAIL","MSN7",161.04375,"POROOTARAO","Current","TX",false
+431542,294199,"KIWIRAIL","MSN7",161.04375,"POPO TRIG","Current","TX",false
+431542,294199,"KIWIRAIL","MSN7",161.04375,"POHOKURA (POWERCO)","Current","TX",false
+431542,294199,"KIWIRAIL","MSN7",161.04375,"PARAKIORE","Current","TX",false
+431542,294199,"KIWIRAIL","MSN7",161.04375,"PAPAROA(TRANZ RAIL)","Current","TX",false
+431542,294199,"KIWIRAIL","MSN7",161.04375,"PAPARATA","Current","TX",false
+431542,294199,"KIWIRAIL","MSN7",161.04375,"PAHIATUA TRACK","Current","TX",false
+431542,294199,"KIWIRAIL","MSN7",161.04375,"ORINGI","Current","TX",false
+431542,294199,"KIWIRAIL","MSN7",161.04375,"NORTH RANGE ROAD WEST","Current","TX",false
+431542,294199,"KIWIRAIL","MSN7",161.04375,"NORTH RANGE ROAD EAST","Current","TX",false
 431542,294199,"KIWIRAIL","MSN7",161.04375,"NGARANUI","Current","TX",false
 431542,294199,"KIWIRAIL","MSN7",161.04375,"MT STUDHOLME","Current","TX",false
 431542,294199,"KIWIRAIL","MSN7",161.04375,"MT ROCHFORT","Current","TX",false
@@ -22984,21 +22999,21 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 430479,,"MIKE EDRIDGE CONTRACTING LTD","DN92#",468.14375,"MOBILE","Current","TX",false
 430475,424729,"MIKE EDRIDGE CONTRACTING LTD","DN92",462.95625,"WALTERS BLUFF RIDGE, NELSON","Current","TX",false
 430474,,"DOVE COMMUNICATIONS (2023) LIMITED","EE115#",168.2375,"MOBILE","Current","TX",false
-430473,417810,"DOVE COMMUNICATIONS (2023) LIMITED","EE115",163.6375,"MT PIRONGIA (DOVE COMMUNICATIONS)","Current","TX",false
-430471,,"ASALEO CARE NEW ZEALAND LIMITED","CN222#",453.04375,"MOBILE","Current","TX",false
-430470,258111,"ASALEO CARE NEW ZEALAND LIMITED","CN222",458.08125,"Essity Kawerau (Above Mill)","Current","TX",false
-430469,,"ASALEO CARE NEW ZEALAND LIMITED","CN216#",452.96875,"MOBILE","Current","TX",false
-430468,248569,"ASALEO CARE NEW ZEALAND LIMITED","CN216",458.00625,"Essity Kawerau (Above Mill)","Current","TX",false
-430454,423541,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"STRATFORD","Current","TX",false
-430453,423539,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"  CRL K- Road BTS Hotel A3KBH","Current","TX",false
-430452,423536,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"Ohakea Air Base W3OAB","Current","TX",false
-430451,423542,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"STRATFORD","Current","TX",false
-430450,423538,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"STRATFORD","Current","TX",false
-430449,423535,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"  CRL K- Road BTS Hotel A3KBH","Current","TX",false
-430448,423540,"ONE NEW ZEALAND GROUP LIMITED",,1867.5,"STRATFORD","Current","TX",false
-430447,423537,"ONE NEW ZEALAND GROUP LIMITED",,1867.5,"Auckland Airport OCC A8ZJK","Current","TX",false
-430446,423512,"SPARK NEW ZEALAND TRADING LIMITED",,2137.5,"BRYNDERWYN","Current","TX",false
-430445,423509,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"PENDARVES","Current","TX",false
+240232,298324,"TWO DEGREES NETWORKS LIMITED",,939.9,"(AKL-008-079-A)[TKNE]_TAKANINI EAST","Current","TX",false
+240231,298323,"TWO DEGREES NETWORKS LIMITED",,939.9,"(WLG-047-004-A)[GLSD]_GLENSIDE","Current","TX",false
+240230,298399,"TWO DEGREES NETWORKS LIMITED",,939.9,"(AKL-005-059-A)[TBYH]_TORBAY HUB","Current","TX",false
+240229,298366,"TWO DEGREES NETWORKS LIMITED",,939.9,"(AKL-008-112-B)[HIBR]_HIGHBROOK","Current","TX",false
+240228,298358,"TWO DEGREES NETWORKS LIMITED",,939.9,"(AKL-007-081-B)[TMKI]_TAMAKI","Current","TX",false
+240227,298343,"TWO DEGREES NETWORKS LIMITED",,939.9,"(AKL-007-009-L)[BMRL]_BALMORAL","Current","TX",false
+240226,298357,"TWO DEGREES NETWORKS LIMITED",,939.9,"(AKL-006-029-C)[GLNW]_GLEN EDEN WEST","Current","TX",false
+240225,298416,"TWO DEGREES NETWORKS LIMITED",,939.9,"(AKL-007-140-C)[AKLU]_AUCKLAND UNIVERSITY","Current","TX",false
+240224,298334,"TWO DEGREES NETWORKS LIMITED",,939.9,"(CHC-060-051-F)[WAIM]_WAIMAIRI","Current","TX",false
+240223,298415,"TWO DEGREES NETWORKS LIMITED",,939.9,"(AKL-007-100-E)[PCHV]_PT CHEVALIER","Current","TX",false
+240222,298356,"TWO DEGREES NETWORKS LIMITED",,939.9,"(AKL-006-005-E)[LCNN]_LINCOLN NORTH","Current","TX",false
+240221,298350,"TWO DEGREES NETWORKS LIMITED",,939.9,"(AKL-006-008-C)[TEAT]_TE ATATU NORTH","Current","TX",false
+240220,298361,"TWO DEGREES NETWORKS LIMITED",,939.9,"(AKL-008-061-D)[TIRD]_TIDAL ROAD","Current","TX",false
+240219,298360,"TWO DEGREES NETWORKS LIMITED",,939.9,"(AKL-007-143-A)[RMUE]_REMUERA EAST","Current","TX",false
+240218,298322,"TWO DEGREES NETWORKS LIMITED",,939.9,"(AKL-007-051-I)[PRDL]_PATIKI ROAD","Current","TX",false
 240216,298346,"TWO DEGREES NETWORKS LIMITED",,939.9,"(AKL-006-006-D)[TATJ]_TE ATATU JUNCTION","Current","TX",false
 240215,298398,"TWO DEGREES NETWORKS LIMITED",,939.9,"(AKL-007-142-A)[RMUR]_REMUERA ROAD","Current","TX",false
 240214,298359,"TWO DEGREES NETWORKS LIMITED",,939.9,"(AKL-007-011-F)[EPSM]_EPSOM","Current","TX",false
@@ -32984,21 +32999,21 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 225465,284944,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"Woodbourne Airbase ONZ S2WDA","Current","TX",false
 225464,284826,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"SHEFFIELD CRESCENT (VFNZ)","Current","TX",false
 225463,284951,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"ROYAL SUN ALLIANCE","Current","TX",false
-225462,284829,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"NORTHERN MOTORWAY EXTENSION (VFNZ)","Current","TX",false
-225461,284837,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"NEW PLYMOUTH AIRPORT (VFNZ)","Current","TX",false
-225460,284758,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"MONTREAL STREET NORTH (VFNZ)","Current","TX",false
-225459,284920,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"MATANGI (VFNZ)","Current","TX",false
-225458,284973,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"MARAETAI (VFNZ)","Current","TX",false
-225457,284813,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"Hornby South ONZ S3HSH","Current","TX",false
-225456,284791,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"HORNBY NORTH","Current","TX",false
-225455,285042,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"HEATHCOTE VALLEY RELOCATE (VFNZ)","Current","TX",false
-225454,285076,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"HARPER AVENUE EAST (VFNZ)","Current","TX",false
-225453,284991,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"HAMILTON AIRPORT (VFNZ)","Current","TX",false
-225452,285069,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"Greys Avenue ONZ A3GYA","Current","TX",false
-225451,284763,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"Coronet Peak Chalet ONZ S5CPK","Current","TX",false
-225450,284779,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"CIVIC CENTRE WELLINGTON (VFNZ)","Current","TX",false
-225449,284778,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"Brooklyn ONZ W6BKR","Current","TX",false
-225448,285032,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"BRITOMART PLAZA (VFNZ)","Current","TX",false
+430473,417810,"DOVE COMMUNICATIONS (2023) LIMITED","EE115",163.6375,"MT PIRONGIA (DOVE COMMUNICATIONS)","Current","TX",false
+430471,,"ASALEO CARE NEW ZEALAND LIMITED","CN222#",453.04375,"MOBILE","Current","TX",false
+430470,258111,"ASALEO CARE NEW ZEALAND LIMITED","CN222",458.08125,"Essity Kawerau (Above Mill)","Current","TX",false
+430469,,"ASALEO CARE NEW ZEALAND LIMITED","CN216#",452.96875,"MOBILE","Current","TX",false
+430468,248569,"ASALEO CARE NEW ZEALAND LIMITED","CN216",458.00625,"Essity Kawerau (Above Mill)","Current","TX",false
+430454,423541,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"STRATFORD","Current","TX",false
+430453,423539,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"  CRL K- Road BTS Hotel A3KBH","Current","TX",false
+430452,423536,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"Ohakea Air Base W3OAB","Current","TX",false
+430451,423542,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"STRATFORD","Current","TX",false
+430450,423538,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"STRATFORD","Current","TX",false
+430449,423535,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"  CRL K- Road BTS Hotel A3KBH","Current","TX",false
+430448,423540,"ONE NEW ZEALAND GROUP LIMITED",,1867.5,"STRATFORD","Current","TX",false
+430447,423537,"ONE NEW ZEALAND GROUP LIMITED",,1867.5,"Auckland Airport OCC A8ZJK","Current","TX",false
+430446,423512,"SPARK NEW ZEALAND TRADING LIMITED",,2137.5,"BRYNDERWYN","Current","TX",false
+430445,423509,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"PENDARVES","Current","TX",false
 430426,424056,"STARLINK NEW ZEALAND, UNLIMITED LIABILITY COMPANY",,29750.0,"HORORATA STARLINK ARRAY#2","Current","TX",false
 430425,424058,"STARLINK NEW ZEALAND, UNLIMITED LIABILITY COMPANY",,28850.0,"HORORATA STARLINK ARRAY#2","Current","TX",false
 430424,424059,"STARLINK NEW ZEALAND, UNLIMITED LIABILITY COMPANY",,28300.0,"HORORATA STARLINK ARRAY#2","Current","TX",false
@@ -33984,21 +33999,21 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 429155,422847,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"MELLING","Current","TX",false
 429154,422850,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"MID CITY","Current","TX",false
 429153,422849,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"MAZENGARB","Current","TX",false
-429152,422833,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"LAMBTON QUAY","Current","TX",false
-429151,422851,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"KAIWHARAWHARA","Current","TX",false
-429150,422832,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"WAIKANAE BEACH","Current","TX",false
-429149,422829,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"KILBIRNIE","Current","TX",false
-429148,422838,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"KENEPURU ~CHEM~","Current","TX",false
-429147,422827,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"KHANDALLAH","Current","TX",false
-429146,422834,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"ISLAND BAY NORTH","Current","TX",false
-429145,422843,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"HATAITAI","Current","TX",false
-429144,422837,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"HAYWARDS","Current","TX",false
-429143,422844,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"HAPPY VALLEY","Current","TX",false
-429142,422842,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"GRACEFIELD","Current","TX",false
-429141,422836,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"GHUZNEE STREET","Current","TX",false
-429140,422830,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"EVANS BAY","Current","TX",false
-429139,422831,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"COURTENAY PLACE","Current","TX",false
-429138,422835,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"CAMP BAY","Current","TX",false
+225462,284829,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"NORTHERN MOTORWAY EXTENSION (VFNZ)","Current","TX",false
+225461,284837,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"NEW PLYMOUTH AIRPORT (VFNZ)","Current","TX",false
+225460,284758,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"MONTREAL STREET NORTH (VFNZ)","Current","TX",false
+225459,284920,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"MATANGI (VFNZ)","Current","TX",false
+225458,284973,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"MARAETAI (VFNZ)","Current","TX",false
+225457,284813,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"Hornby South ONZ S3HSH","Current","TX",false
+225456,284791,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"HORNBY NORTH","Current","TX",false
+225455,285042,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"HEATHCOTE VALLEY RELOCATE (VFNZ)","Current","TX",false
+225454,285076,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"HARPER AVENUE EAST (VFNZ)","Current","TX",false
+225453,284991,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"HAMILTON AIRPORT (VFNZ)","Current","TX",false
+225452,285069,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"Greys Avenue ONZ A3GYA","Current","TX",false
+225451,284763,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"Coronet Peak Chalet ONZ S5CPK","Current","TX",false
+225450,284779,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"CIVIC CENTRE WELLINGTON (VFNZ)","Current","TX",false
+225449,284778,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"Brooklyn ONZ W6BKR","Current","TX",false
+225448,285032,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"BRITOMART PLAZA (VFNZ)","Current","TX",false
 225447,284960,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"BEALEY AVENUE CENTRAL (VFNZ)","Current","TX",false
 225446,284964,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"ADDINGTON WEST","Current","TX",false
 225445,284777,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"ADDINGTON EAST","Current","TX",false
@@ -43984,21 +43999,21 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 210480,272724,"NEW ZEALAND INSTITUTE FOR PUBLIC HEALTH AND FORENSIC SCIENCE LIMITED",,6378.315,"KAITAIA AIRPORT","Current","TX",false
 210480,272724,"NEW ZEALAND INSTITUTE FOR PUBLIC HEALTH AND FORENSIC SCIENCE LIMITED",,6378.315,"CHATHAM ISLAND AERODROME","Current","TX",false
 210480,272724,"NEW ZEALAND INSTITUTE FOR PUBLIC HEALTH AND FORENSIC SCIENCE LIMITED",,6377.985,"RAOUL ISLAND","Current","TX",false
-210480,272724,"NEW ZEALAND INSTITUTE FOR PUBLIC HEALTH AND FORENSIC SCIENCE LIMITED",,6377.985,"KAITAIA AIRPORT","Current","TX",false
-210480,272724,"NEW ZEALAND INSTITUTE FOR PUBLIC HEALTH AND FORENSIC SCIENCE LIMITED",,6377.985,"CHATHAM ISLAND AERODROME","Current","TX",false
-210480,272724,"NEW ZEALAND INSTITUTE FOR PUBLIC HEALTH AND FORENSIC SCIENCE LIMITED",,6377.655,"RAOUL ISLAND","Current","TX",false
-210480,272724,"NEW ZEALAND INSTITUTE FOR PUBLIC HEALTH AND FORENSIC SCIENCE LIMITED",,6377.655,"KAITAIA AIRPORT","Current","TX",false
-210480,272724,"NEW ZEALAND INSTITUTE FOR PUBLIC HEALTH AND FORENSIC SCIENCE LIMITED",,6377.655,"CHATHAM ISLAND AERODROME","Current","TX",false
-210480,272724,"NEW ZEALAND INSTITUTE FOR PUBLIC HEALTH AND FORENSIC SCIENCE LIMITED",,6377.325,"RAOUL ISLAND","Current","TX",false
-210480,272724,"NEW ZEALAND INSTITUTE FOR PUBLIC HEALTH AND FORENSIC SCIENCE LIMITED",,6377.325,"KAITAIA AIRPORT","Current","TX",false
-210480,272724,"NEW ZEALAND INSTITUTE FOR PUBLIC HEALTH AND FORENSIC SCIENCE LIMITED",,6377.325,"CHATHAM ISLAND AERODROME","Current","TX",false
-210480,272724,"NEW ZEALAND INSTITUTE FOR PUBLIC HEALTH AND FORENSIC SCIENCE LIMITED",,6376.995,"RAOUL ISLAND","Current","TX",false
-210480,272724,"NEW ZEALAND INSTITUTE FOR PUBLIC HEALTH AND FORENSIC SCIENCE LIMITED",,6376.995,"KAITAIA AIRPORT","Current","TX",false
-210480,272724,"NEW ZEALAND INSTITUTE FOR PUBLIC HEALTH AND FORENSIC SCIENCE LIMITED",,6376.995,"CHATHAM ISLAND AERODROME","Current","TX",false
-210480,272724,"NEW ZEALAND INSTITUTE FOR PUBLIC HEALTH AND FORENSIC SCIENCE LIMITED",,6376.665,"RAOUL ISLAND","Current","TX",false
-210480,272724,"NEW ZEALAND INSTITUTE FOR PUBLIC HEALTH AND FORENSIC SCIENCE LIMITED",,6376.665,"KAITAIA AIRPORT","Current","TX",false
-210480,272724,"NEW ZEALAND INSTITUTE FOR PUBLIC HEALTH AND FORENSIC SCIENCE LIMITED",,6376.665,"CHATHAM ISLAND AERODROME","Current","TX",false
-210480,272724,"NEW ZEALAND INSTITUTE FOR PUBLIC HEALTH AND FORENSIC SCIENCE LIMITED",,6376.335,"RAOUL ISLAND","Current","TX",false
+429152,422833,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"LAMBTON QUAY","Current","TX",false
+429151,422851,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"KAIWHARAWHARA","Current","TX",false
+429150,422832,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"WAIKANAE BEACH","Current","TX",false
+429149,422829,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"KILBIRNIE","Current","TX",false
+429148,422838,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"KENEPURU ~CHEM~","Current","TX",false
+429147,422827,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"KHANDALLAH","Current","TX",false
+429146,422834,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"ISLAND BAY NORTH","Current","TX",false
+429145,422843,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"HATAITAI","Current","TX",false
+429144,422837,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"HAYWARDS","Current","TX",false
+429143,422844,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"HAPPY VALLEY","Current","TX",false
+429142,422842,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"GRACEFIELD","Current","TX",false
+429141,422836,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"GHUZNEE STREET","Current","TX",false
+429140,422830,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"EVANS BAY","Current","TX",false
+429139,422831,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"COURTENAY PLACE","Current","TX",false
+429138,422835,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"CAMP BAY","Current","TX",false
 429137,422839,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"CHAFFERS STREET","Current","TX",false
 429136,422841,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"BOLTON STREET","Current","TX",false
 429135,422828,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"APPLETON PARK","Current","TX",false
@@ -44984,21 +44999,21 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 428111,421642,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"Smales Farm A1SFM","Current","TX",false
 428110,421640,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"Rosedale South A1RDS","Current","TX",false
 428106,421643,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"NORSEWOOD","Current","TX",false
-428105,421641,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"Mairehau Christchurch S3MHC","Current","TX",false
-428104,421632,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"Nelson Appleby S1NAP","Current","TX",false
-428103,421636,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"Port Whangarei N1PWG","Current","TX",false
-428102,421634,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"WHAKAREWAREWA","Current","TX",false
-428101,421635,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"Auckland Viaduct A3AVT","Current","TX",false
-428100,421629,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"Smales Farm A1SFM","Current","TX",false
-428099,421630,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"Rosedale South A1RDS","Current","TX",false
-428097,421626,"ONE NEW ZEALAND GROUP LIMITED",,1867.5,"NORSEWOOD","Current","TX",false
-428096,421628,"ONE NEW ZEALAND GROUP LIMITED",,1867.5,"Mairehau Christchurch S3MHC","Current","TX",false
-428095,421631,"ONE NEW ZEALAND GROUP LIMITED",,1867.5,"Nelson Appleby S1NAP","Current","TX",false
-428094,421633,"ONE NEW ZEALAND GROUP LIMITED",,1867.5,"Port Whangarei N1PWG","Current","TX",false
-428093,421627,"ONE NEW ZEALAND GROUP LIMITED",,1867.5,"WHAKAREWAREWA","Current","TX",false
-428092,421620,"ONE NEW ZEALAND GROUP LIMITED",,1867.5,"Auckland Viaduct A3AVT","Current","TX",false
-428091,421625,"ONE NEW ZEALAND GROUP LIMITED",,1867.5,"Smales Farm A1SFM","Current","TX",false
-428090,421619,"ONE NEW ZEALAND GROUP LIMITED",,1867.5,"Rosedale South A1RDS","Current","TX",false
+210480,272724,"NEW ZEALAND INSTITUTE FOR PUBLIC HEALTH AND FORENSIC SCIENCE LIMITED",,6377.985,"KAITAIA AIRPORT","Current","TX",false
+210480,272724,"NEW ZEALAND INSTITUTE FOR PUBLIC HEALTH AND FORENSIC SCIENCE LIMITED",,6377.985,"CHATHAM ISLAND AERODROME","Current","TX",false
+210480,272724,"NEW ZEALAND INSTITUTE FOR PUBLIC HEALTH AND FORENSIC SCIENCE LIMITED",,6377.655,"RAOUL ISLAND","Current","TX",false
+210480,272724,"NEW ZEALAND INSTITUTE FOR PUBLIC HEALTH AND FORENSIC SCIENCE LIMITED",,6377.655,"KAITAIA AIRPORT","Current","TX",false
+210480,272724,"NEW ZEALAND INSTITUTE FOR PUBLIC HEALTH AND FORENSIC SCIENCE LIMITED",,6377.655,"CHATHAM ISLAND AERODROME","Current","TX",false
+210480,272724,"NEW ZEALAND INSTITUTE FOR PUBLIC HEALTH AND FORENSIC SCIENCE LIMITED",,6377.325,"RAOUL ISLAND","Current","TX",false
+210480,272724,"NEW ZEALAND INSTITUTE FOR PUBLIC HEALTH AND FORENSIC SCIENCE LIMITED",,6377.325,"KAITAIA AIRPORT","Current","TX",false
+210480,272724,"NEW ZEALAND INSTITUTE FOR PUBLIC HEALTH AND FORENSIC SCIENCE LIMITED",,6377.325,"CHATHAM ISLAND AERODROME","Current","TX",false
+210480,272724,"NEW ZEALAND INSTITUTE FOR PUBLIC HEALTH AND FORENSIC SCIENCE LIMITED",,6376.995,"RAOUL ISLAND","Current","TX",false
+210480,272724,"NEW ZEALAND INSTITUTE FOR PUBLIC HEALTH AND FORENSIC SCIENCE LIMITED",,6376.995,"KAITAIA AIRPORT","Current","TX",false
+210480,272724,"NEW ZEALAND INSTITUTE FOR PUBLIC HEALTH AND FORENSIC SCIENCE LIMITED",,6376.995,"CHATHAM ISLAND AERODROME","Current","TX",false
+210480,272724,"NEW ZEALAND INSTITUTE FOR PUBLIC HEALTH AND FORENSIC SCIENCE LIMITED",,6376.665,"RAOUL ISLAND","Current","TX",false
+210480,272724,"NEW ZEALAND INSTITUTE FOR PUBLIC HEALTH AND FORENSIC SCIENCE LIMITED",,6376.665,"KAITAIA AIRPORT","Current","TX",false
+210480,272724,"NEW ZEALAND INSTITUTE FOR PUBLIC HEALTH AND FORENSIC SCIENCE LIMITED",,6376.665,"CHATHAM ISLAND AERODROME","Current","TX",false
+210480,272724,"NEW ZEALAND INSTITUTE FOR PUBLIC HEALTH AND FORENSIC SCIENCE LIMITED",,6376.335,"RAOUL ISLAND","Current","TX",false
 210480,272724,"NEW ZEALAND INSTITUTE FOR PUBLIC HEALTH AND FORENSIC SCIENCE LIMITED",,6376.335,"KAITAIA AIRPORT","Current","TX",false
 210480,272724,"NEW ZEALAND INSTITUTE FOR PUBLIC HEALTH AND FORENSIC SCIENCE LIMITED",,6376.335,"CHATHAM ISLAND AERODROME","Current","TX",false
 210480,272724,"NEW ZEALAND INSTITUTE FOR PUBLIC HEALTH AND FORENSIC SCIENCE LIMITED",,6376.005,"RAOUL ISLAND","Current","TX",false
@@ -54984,21 +54999,21 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 186385,254187,"Fire and Emergency New Zealand","ESCN242",501.525,"PORTABLE REPEATER ALL NEW ZEALAND","Current","TX",false
 186384,254194,"Fire and Emergency New Zealand","ESCN241",501.5125,"PORTABLE REPEATER ALL NEW ZEALAND","Current","TX",false
 186383,254191,"Fire and Emergency New Zealand","ESCN239",501.4875,"PORTABLE REPEATER ALL NEW ZEALAND","Current","TX",false
-186382,254188,"Fire and Emergency New Zealand","ESCN238",501.475,"PORTABLE REPEATER ALL NEW ZEALAND","Current","TX",false
-186381,254193,"Fire and Emergency New Zealand","ESCN227",501.3375,"PORTABLE REPEATER ALL NEW ZEALAND","Current","TX",false
-186380,254294,"Fire and Emergency New Zealand","ESCN218",501.225,"PORTABLE REPEATER ALL NEW ZEALAND","Current","TX",false
-186379,254295,"Fire and Emergency New Zealand","ESCN106",499.825,"PORTABLE REPEATER ALL NEW ZEALAND","Current","TX",false
-186378,254296,"Fire and Emergency New Zealand","ESCN102",499.775,"PORTABLE REPEATER ALL NEW ZEALAND","Current","TX",false
-186374,255415,"KING ONE LIMITED","BW1A",159.1,"WINTON FORESTRY AREA","Current","TX",false
-186360,254354,"SPARK NEW ZEALAND TRADING LIMITED","18G8B2",18580.0,"RATAPIKO (SPARK MW)","Current","TX",false
-186359,,"AUCKLAND EMERGENCY MANAGEMENT","EE231#",169.6875,"MOBILE","Current","TX",false
-186358,254353,"SPARK NEW ZEALAND TRADING LIMITED","18G8B2#",19590.0,"MIDHIRST RBI","Current","TX",false
-186357,254109,"AUCKLAND EMERGENCY MANAGEMENT","EE231",165.0875,"SCENIC DRIVE WAIATARUA AKCC","Current","TX",false
-186352,254110,"TIMARU CONTAINER TERMINAL LIMITED","CNX61",455.15625,"PORT OF TIMARU OPERATIONAL AREA","Current","TX",false
-186352,254110,"TIMARU CONTAINER TERMINAL LIMITED","CNX52",455.04375,"PORT OF TIMARU OPERATIONAL AREA","Current","TX",false
-186352,254110,"TIMARU CONTAINER TERMINAL LIMITED","CNX37",453.50625,"PORT OF TIMARU OPERATIONAL AREA","Current","TX",false
-186352,254110,"TIMARU CONTAINER TERMINAL LIMITED","CNX25",453.35625,"PORT OF TIMARU OPERATIONAL AREA","Current","TX",false
-186351,254111,"TIMARU CONTAINER TERMINAL LIMITED","CNX12",449.89375,"PORT OF TIMARU OPERATIONAL AREA","Current","TX",false
+428105,421641,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"Mairehau Christchurch S3MHC","Current","TX",false
+428104,421632,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"Nelson Appleby S1NAP","Current","TX",false
+428103,421636,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"Port Whangarei N1PWG","Current","TX",false
+428102,421634,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"WHAKAREWAREWA","Current","TX",false
+428101,421635,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"Auckland Viaduct A3AVT","Current","TX",false
+428100,421629,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"Smales Farm A1SFM","Current","TX",false
+428099,421630,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"Rosedale South A1RDS","Current","TX",false
+428097,421626,"ONE NEW ZEALAND GROUP LIMITED",,1867.5,"NORSEWOOD","Current","TX",false
+428096,421628,"ONE NEW ZEALAND GROUP LIMITED",,1867.5,"Mairehau Christchurch S3MHC","Current","TX",false
+428095,421631,"ONE NEW ZEALAND GROUP LIMITED",,1867.5,"Nelson Appleby S1NAP","Current","TX",false
+428094,421633,"ONE NEW ZEALAND GROUP LIMITED",,1867.5,"Port Whangarei N1PWG","Current","TX",false
+428093,421627,"ONE NEW ZEALAND GROUP LIMITED",,1867.5,"WHAKAREWAREWA","Current","TX",false
+428092,421620,"ONE NEW ZEALAND GROUP LIMITED",,1867.5,"Auckland Viaduct A3AVT","Current","TX",false
+428091,421625,"ONE NEW ZEALAND GROUP LIMITED",,1867.5,"Smales Farm A1SFM","Current","TX",false
+428090,421619,"ONE NEW ZEALAND GROUP LIMITED",,1867.5,"Rosedale South A1RDS","Current","TX",false
 428089,,"MOUNT CAMPBELL CONNECT LIMITED","EE244#",169.85,"MOBILE","Current","TX",false
 428087,421624,"ONE NEW ZEALAND GROUP LIMITED","VF900",952.0,"Ohakea Air Base W3OAB","Current","TX",false
 428086,421617,"ONE NEW ZEALAND GROUP LIMITED","VF900",952.0,"Nelson Appleby S1NAP","Current","TX",false
@@ -55984,21 +55999,21 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 427151,294326,"ASHLEY COMMUNICATIONS LIMITED","EN179",152.975,"GLENLAPA STATION","Current","TX",false
 427150,420947,"INMARSAT NEW ZEALAND LIMITED",,19512.5,"INMARSAT-7-142E5","Current","TX",false
 427148,420949,"INMARSAT NEW ZEALAND LIMITED",,19387.5,"INMARSAT-7-142E5","Current","TX",false
-427147,420948,"INMARSAT NEW ZEALAND LIMITED",,19262.5,"INMARSAT-7-142E5","Current","TX",false
-427146,302332,"TAIT SYSTEMS NZ LIMITED","7GM5B",7187.5,"66 FOREST HEIGHTS","Current","TX",false
-427145,420880,"EONFIBRE LIMITED","18G8A#",19590.0,"WELLSFORD SOUTH","Current","TX",false
-427144,420879,"EONFIBRE LIMITED","18G8A",18580.0,"KRAACKS HILL (VFNZ)","Current","TX",false
-427142,418911,"EONFIBRE LIMITED","11G4W",10995.0,"Mt Mary (EonFibreNZ Mt Mary S4MMH)","Current","TX",false
-427141,241775,"EONFIBRE LIMITED","13G4W#",13213.0,"MATAMATA HUB","Current","TX",false
-427140,241774,"EONFIBRE LIMITED","13G4W",12947.0,"TAKAURUNGA (VF OMAHINE C2OHN)","Current","TX",false
-427132,423076,"Philip Raymond Allan-Caulfield","AM203",1.449,"Cambridge Terrace AM site","Current","TX",false
-427130,,"CAMERON QUARRY LIMITED","EN154#",154.44375,"MOBILE","Current","TX",false
-427129,424241,"CAMERON QUARRY LIMITED","EN154",152.6625,"Cameron Quarry Site Te Puke","Current","TX",false
-427128,423333,"CAMERON QUARRY LIMITED","ENX72",150.95,"BAY OF PLENTY AREA","Current","TX",false
-427128,423333,"CAMERON QUARRY LIMITED","ENX59",150.7875,"BAY OF PLENTY AREA","Current","TX",false
-427128,423333,"CAMERON QUARRY LIMITED","ENX50",150.675,"BAY OF PLENTY AREA","Current","TX",false
-427128,423333,"CAMERON QUARRY LIMITED","ENX22",150.325,"BAY OF PLENTY AREA","Current","TX",false
-427128,423333,"CAMERON QUARRY LIMITED","ENX13",150.2125,"BAY OF PLENTY AREA","Current","TX",false
+186382,254188,"Fire and Emergency New Zealand","ESCN238",501.475,"PORTABLE REPEATER ALL NEW ZEALAND","Current","TX",false
+186381,254193,"Fire and Emergency New Zealand","ESCN227",501.3375,"PORTABLE REPEATER ALL NEW ZEALAND","Current","TX",false
+186380,254294,"Fire and Emergency New Zealand","ESCN218",501.225,"PORTABLE REPEATER ALL NEW ZEALAND","Current","TX",false
+186379,254295,"Fire and Emergency New Zealand","ESCN106",499.825,"PORTABLE REPEATER ALL NEW ZEALAND","Current","TX",false
+186378,254296,"Fire and Emergency New Zealand","ESCN102",499.775,"PORTABLE REPEATER ALL NEW ZEALAND","Current","TX",false
+186374,255415,"KING ONE LIMITED","BW1A",159.1,"WINTON FORESTRY AREA","Current","TX",false
+186360,254354,"SPARK NEW ZEALAND TRADING LIMITED","18G8B2",18580.0,"RATAPIKO (SPARK MW)","Current","TX",false
+186359,,"AUCKLAND EMERGENCY MANAGEMENT","EE231#",169.6875,"MOBILE","Current","TX",false
+186358,254353,"SPARK NEW ZEALAND TRADING LIMITED","18G8B2#",19590.0,"MIDHIRST RBI","Current","TX",false
+186357,254109,"AUCKLAND EMERGENCY MANAGEMENT","EE231",165.0875,"SCENIC DRIVE WAIATARUA AKCC","Current","TX",false
+186352,254110,"TIMARU CONTAINER TERMINAL LIMITED","CNX61",455.15625,"PORT OF TIMARU OPERATIONAL AREA","Current","TX",false
+186352,254110,"TIMARU CONTAINER TERMINAL LIMITED","CNX52",455.04375,"PORT OF TIMARU OPERATIONAL AREA","Current","TX",false
+186352,254110,"TIMARU CONTAINER TERMINAL LIMITED","CNX37",453.50625,"PORT OF TIMARU OPERATIONAL AREA","Current","TX",false
+186352,254110,"TIMARU CONTAINER TERMINAL LIMITED","CNX25",453.35625,"PORT OF TIMARU OPERATIONAL AREA","Current","TX",false
+186351,254111,"TIMARU CONTAINER TERMINAL LIMITED","CNX12",449.89375,"PORT OF TIMARU OPERATIONAL AREA","Current","TX",false
 186351,254111,"TIMARU CONTAINER TERMINAL LIMITED","CNX10",449.86875,"PORT OF TIMARU OPERATIONAL AREA","Current","TX",false
 186351,254111,"TIMARU CONTAINER TERMINAL LIMITED","CNX6",449.81875,"PORT OF TIMARU OPERATIONAL AREA","Current","TX",false
 186350,255312,"RJS LICORICE (NZ) LIMITED","FNX850",489.85625,"5 TIRO TIRO RD, LEVIN (RJ'S LICORICE (NZ) LTD PLANT)","Current","TX",false
@@ -65984,21 +65999,21 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 153024,233529,"CHORUS NEW ZEALAND LIMITED","L5#",1499.0,"MANGAMAHOE","Current","TX",false
 153023,233528,"CHORUS NEW ZEALAND LIMITED","L5#",1499.0,"PARIWHARIKI","Current","TX",false
 153022,233526,"CHORUS NEW ZEALAND LIMITED","L5#",1499.0,"DREYERS ROCK","Current","TX",false
-153020,233525,"CHORUS NEW ZEALAND LIMITED","L5",1438.5,"RANGITUMAU","Current","TX",false
-153014,,"ASHLEY COMMUNICATIONS LIMITED","DN105#",468.30625,"MOBILE","Current","TX",false
-153004,233286,"NZME RADIO LIMITED","K3B2#",931.375,"SUGARLOAF","Current","TX",false
-152990,233292,"CHORUS NEW ZEALAND LIMITED","I621#",428.025,"KAIHIKU GORGE ROAD","Current","TX",false
-152989,233291,"CHORUS NEW ZEALAND LIMITED","I621",423.0125,"STONEY CREEK","Current","TX",false
-152986,233345,"TWO DEGREES NETWORKS LIMITED","7GU3#",7655.5,"TRANSPOWER MICROWAVE TOWER ROUND TOP (CAN-062-014-A)","Current","TX",false
-152985,233344,"TWO DEGREES NETWORKS LIMITED","7GU3",7494.5,"MARVERN HILL ROAD SPRINGFIELD WEST CANTERBURY (CAN-062-002-A)","Current","TX",false
-152966,233385,"ASHLEY COMMUNICATIONS LIMITED","DN105",463.11875,"SMILLIES ROAD OAMARU","Current","TX",false
-152964,,"OMV NEW ZEALAND LIMITED","DN54#",467.66875,"MOBILE","Current","TX",false
-152961,,"OMV NEW ZEALAND LIMITED","DN32#",467.39375,"MOBILE","Current","TX",false
-152958,233280,"OMV NEW ZEALAND LIMITED","DN32",462.20625,"MT FREW","Current","TX",false
-152957,233279,"OMV NEW ZEALAND LIMITED","DN54",462.48125,"167 DEVON STREET WEST NEW PLYMOUTH","Current","TX",false
-152949,233275,"RHEMA MEDIA INCORPORATED","FM413",104.6,"KOPUKAIRUA","Current","TX",false
-152948,234332,"VITAL LIMITED","11G7A",10935.0,"COLONIAL KNOB","Current","TX",false
-152947,234331,"VITAL LIMITED","11G7A#",11465.0,"NORMANDALE","Current","TX",false
+427147,420948,"INMARSAT NEW ZEALAND LIMITED",,19262.5,"INMARSAT-7-142E5","Current","TX",false
+427146,302332,"TAIT SYSTEMS NZ LIMITED","7GM5B",7187.5,"66 FOREST HEIGHTS","Current","TX",false
+427145,420880,"EONFIBRE LIMITED","18G8A#",19590.0,"WELLSFORD SOUTH","Current","TX",false
+427144,420879,"EONFIBRE LIMITED","18G8A",18580.0,"KRAACKS HILL (VFNZ)","Current","TX",false
+427142,418911,"EONFIBRE LIMITED","11G4W",10995.0,"Mt Mary (EonFibreNZ Mt Mary S4MMH)","Current","TX",false
+427141,241775,"EONFIBRE LIMITED","13G4W#",13213.0,"MATAMATA HUB","Current","TX",false
+427140,241774,"EONFIBRE LIMITED","13G4W",12947.0,"TAKAURUNGA (VF OMAHINE C2OHN)","Current","TX",false
+427132,423076,"Philip Raymond Allan-Caulfield","AM203",1.449,"Cambridge Terrace AM site","Current","TX",false
+427130,,"CAMERON QUARRY LIMITED","EN154#",154.44375,"MOBILE","Current","TX",false
+427129,424241,"CAMERON QUARRY LIMITED","EN154",152.6625,"Cameron Quarry Site Te Puke","Current","TX",false
+427128,423333,"CAMERON QUARRY LIMITED","ENX72",150.95,"BAY OF PLENTY AREA","Current","TX",false
+427128,423333,"CAMERON QUARRY LIMITED","ENX59",150.7875,"BAY OF PLENTY AREA","Current","TX",false
+427128,423333,"CAMERON QUARRY LIMITED","ENX50",150.675,"BAY OF PLENTY AREA","Current","TX",false
+427128,423333,"CAMERON QUARRY LIMITED","ENX22",150.325,"BAY OF PLENTY AREA","Current","TX",false
+427128,423333,"CAMERON QUARRY LIMITED","ENX13",150.2125,"BAY OF PLENTY AREA","Current","TX",false
 427127,262514,"Tauranga City Council","DNX43",461.75625,"BAY OF PLENTY REGION","Current","TX",false
 427127,262514,"Tauranga City Council","DNX24",461.51875,"BAY OF PLENTY REGION","Current","TX",false
 427127,262514,"Tauranga City Council","DNX12",458.48125,"BAY OF PLENTY REGION","Current","TX",false
@@ -66984,21 +66999,21 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 426222,409326,"Fire and Emergency New Zealand","ESCN116",499.95,"CRL Karang-a-hape Stn - Maungawhau Stn leaky Feeder","Current","TX",false
 426222,409326,"Fire and Emergency New Zealand","ESCN116",499.95,"CRL Karang-a-hape Stn - Grafton Leaky Feeder","Current","TX",false
 426222,409326,"Fire and Emergency New Zealand","ESCN116",499.95,"CRL Grafton - Karang-a-hape Stn Leaky Feeder","Current","TX",false
-426222,409326,"Fire and Emergency New Zealand","ESCN116",499.95,"BRITOMART UNDERGROUND RAILWAY STATION","Current","TX",false
-426222,409326,"Fire and Emergency New Zealand","ESCN116",499.95,"AOTEA CRL STATION WELLESLEY ST","Current","TX",false
-426222,409326,"Fire and Emergency New Zealand","ESCN116",499.95,"AOTEA CRL STATION VICTORIA ST","Current","TX",false
-426221,409325,"Fire and Emergency New Zealand","ESCN125",500.0625,"MT EDEN CRL STATION VENTILATION","Current","TX",false
-426221,409325,"Fire and Emergency New Zealand","ESCN125",500.0625,"MT EDEN CRL STATION PLATFORM ANT 3","Current","TX",false
-426221,409325,"Fire and Emergency New Zealand","ESCN125",500.0625,"MT EDEN CRL STATION PLATFORM ANT 2","Current","TX",false
-426221,409325,"Fire and Emergency New Zealand","ESCN125",500.0625,"MT EDEN CRL STATION PLATFORM ANT 1","Current","TX",false
-426221,409325,"Fire and Emergency New Zealand","ESCN125",500.0625,"K-ROAD CRL STATION MERCURY LANE","Current","TX",false
-426221,409325,"Fire and Emergency New Zealand","ESCN125",500.0625,"K-ROAD CRL STATION BERESFORD SQUARE","Current","TX",false
-426221,409325,"Fire and Emergency New Zealand","ESCN125",500.0625,"CRL Waitemata Stn-Te Waihorotiu Stn Leaky Feeder","Current","TX",false
-426221,409325,"Fire and Emergency New Zealand","ESCN125",500.0625,"CRL Te Waihorotiu Stn - Waitemata Stn Leaky Feeder","Current","TX",false
-426221,409325,"Fire and Emergency New Zealand","ESCN125",500.0625,"CRL Te Waihorotiu Stn - Karang-a-hape Stn Leaky Feeder","Current","TX",false
-426221,409325,"Fire and Emergency New Zealand","ESCN125",500.0625,"CRL Maungawhau Stn - Karang-a-hape Stn Leaky Feeder","Current","TX",false
-426221,409325,"Fire and Emergency New Zealand","ESCN125",500.0625,"CRL Karang-a-hape Stn - Te Waihorotiu Stn leaky Feeder","Current","TX",false
-426221,409325,"Fire and Emergency New Zealand","ESCN125",500.0625,"CRL Karang-a-hape Stn - Maungawhau Stn leaky Feeder","Current","TX",false
+153020,233525,"CHORUS NEW ZEALAND LIMITED","L5",1438.5,"RANGITUMAU","Current","TX",false
+153014,,"ASHLEY COMMUNICATIONS LIMITED","DN105#",468.30625,"MOBILE","Current","TX",false
+153004,233286,"NZME RADIO LIMITED","K3B2#",931.375,"SUGARLOAF","Current","TX",false
+152990,233292,"CHORUS NEW ZEALAND LIMITED","I621#",428.025,"KAIHIKU GORGE ROAD","Current","TX",false
+152989,233291,"CHORUS NEW ZEALAND LIMITED","I621",423.0125,"STONEY CREEK","Current","TX",false
+152986,233345,"TWO DEGREES NETWORKS LIMITED","7GU3#",7655.5,"TRANSPOWER MICROWAVE TOWER ROUND TOP (CAN-062-014-A)","Current","TX",false
+152985,233344,"TWO DEGREES NETWORKS LIMITED","7GU3",7494.5,"MARVERN HILL ROAD SPRINGFIELD WEST CANTERBURY (CAN-062-002-A)","Current","TX",false
+152966,233385,"ASHLEY COMMUNICATIONS LIMITED","DN105",463.11875,"SMILLIES ROAD OAMARU","Current","TX",false
+152964,,"OMV NEW ZEALAND LIMITED","DN54#",467.66875,"MOBILE","Current","TX",false
+152961,,"OMV NEW ZEALAND LIMITED","DN32#",467.39375,"MOBILE","Current","TX",false
+152958,233280,"OMV NEW ZEALAND LIMITED","DN32",462.20625,"MT FREW","Current","TX",false
+152957,233279,"OMV NEW ZEALAND LIMITED","DN54",462.48125,"167 DEVON STREET WEST NEW PLYMOUTH","Current","TX",false
+152949,233275,"RHEMA MEDIA INCORPORATED","FM413",104.6,"KOPUKAIRUA","Current","TX",false
+152948,234332,"VITAL LIMITED","11G7A",10935.0,"COLONIAL KNOB","Current","TX",false
+152947,234331,"VITAL LIMITED","11G7A#",11465.0,"NORMANDALE","Current","TX",false
 152932,233294,"CHORUS NEW ZEALAND LIMITED","I517#",425.425,"MT CLYDE","Current","TX",false
 152931,233293,"CHORUS NEW ZEALAND LIMITED","I517",420.4125,"RANGITUMAU","Current","TX",false
 152930,233268,"CHORUS NEW ZEALAND LIMITED","I513#",425.325,"EARLYHURST","Current","TX",false
@@ -76984,21 +76999,21 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 63415,166015,"KORDIA LIMITED","15G4A2",14606.0,"KAUKAU","Current","TX",false
 63349,165877,"FONTERRA CO-OPERATIVE GROUP",,449.98125,"MEIHANA ST TAKAKA","Current","TX",false
 63346,165876,"FONTERRA CO-OPERATIVE GROUP","RP3C",160.3875,"BRIGHTWATER","Current","TX",false
-63320,165863,"VITAL LIMITED","TD260",417.25,"KRAACKS HILL","Current","TX",false
-63305,,"VITAL LIMITED","EN30#",155.29375,"MOBILE","Current","TX",false
-63304,165855,"VITAL LIMITED","EN30",151.1125,"TORBAY RADIO","Current","TX",false
-63271,,"VITAL LIMITED","CN59#",451.00625,"MOBILE","Current","TX",false
-63270,165838,"VITAL LIMITED","CN59",456.04375,"KOPUKAIRUA","Current","TX",false
-63056,,"VITAL LIMITED","TD132#",407.65,"MOBILE","Current","TX",false
-63055,165718,"VITAL LIMITED","TD132",415.65,"SKYTOWER AUCKLAND","Current","TX",false
-63007,165692,"VITAL LIMITED","TD320",418.0,"TORBAY RADIO","Current","TX",false
-62980,,"UNISON NETWORKS LIMITED","EN75#",155.85625,"MOBILE","Current","TX",false
-62979,165678,"UNISON NETWORKS LIMITED","EN75",151.675,"TARAPONUI","Current","TX",false
-62964,,"CHORUS NEW ZEALAND LIMITED","EN37#",155.38125,"MOBILE","Current","TX",false
-62963,165669,"CHORUS NEW ZEALAND LIMITED","EN37",151.2,"PUKEKIO HILL CHATHAM ISLAND","Current","TX",false
-62962,,"VITAL LIMITED","D70#",468.7375,"MOBILE","Current","TX",false
-62961,165668,"VITAL LIMITED","D70",463.55,"TUHINGAMATA","Current","TX",false
-62847,165939,"INDEPENDENT STEVEDORING LIMITED","FX253",488.825,"TAURANGA PORT AREA","Current","TX",false
+426222,409326,"Fire and Emergency New Zealand","ESCN116",499.95,"BRITOMART UNDERGROUND RAILWAY STATION","Current","TX",false
+426222,409326,"Fire and Emergency New Zealand","ESCN116",499.95,"AOTEA CRL STATION WELLESLEY ST","Current","TX",false
+426222,409326,"Fire and Emergency New Zealand","ESCN116",499.95,"AOTEA CRL STATION VICTORIA ST","Current","TX",false
+426221,409325,"Fire and Emergency New Zealand","ESCN125",500.0625,"MT EDEN CRL STATION VENTILATION","Current","TX",false
+426221,409325,"Fire and Emergency New Zealand","ESCN125",500.0625,"MT EDEN CRL STATION PLATFORM ANT 3","Current","TX",false
+426221,409325,"Fire and Emergency New Zealand","ESCN125",500.0625,"MT EDEN CRL STATION PLATFORM ANT 2","Current","TX",false
+426221,409325,"Fire and Emergency New Zealand","ESCN125",500.0625,"MT EDEN CRL STATION PLATFORM ANT 1","Current","TX",false
+426221,409325,"Fire and Emergency New Zealand","ESCN125",500.0625,"K-ROAD CRL STATION MERCURY LANE","Current","TX",false
+426221,409325,"Fire and Emergency New Zealand","ESCN125",500.0625,"K-ROAD CRL STATION BERESFORD SQUARE","Current","TX",false
+426221,409325,"Fire and Emergency New Zealand","ESCN125",500.0625,"CRL Waitemata Stn-Te Waihorotiu Stn Leaky Feeder","Current","TX",false
+426221,409325,"Fire and Emergency New Zealand","ESCN125",500.0625,"CRL Te Waihorotiu Stn - Waitemata Stn Leaky Feeder","Current","TX",false
+426221,409325,"Fire and Emergency New Zealand","ESCN125",500.0625,"CRL Te Waihorotiu Stn - Karang-a-hape Stn Leaky Feeder","Current","TX",false
+426221,409325,"Fire and Emergency New Zealand","ESCN125",500.0625,"CRL Maungawhau Stn - Karang-a-hape Stn Leaky Feeder","Current","TX",false
+426221,409325,"Fire and Emergency New Zealand","ESCN125",500.0625,"CRL Karang-a-hape Stn - Te Waihorotiu Stn leaky Feeder","Current","TX",false
+426221,409325,"Fire and Emergency New Zealand","ESCN125",500.0625,"CRL Karang-a-hape Stn - Maungawhau Stn leaky Feeder","Current","TX",false
 426221,409325,"Fire and Emergency New Zealand","ESCN125",500.0625,"CRL Karang-a-hape Stn - Grafton Leaky Feeder","Current","TX",false
 426221,409325,"Fire and Emergency New Zealand","ESCN125",500.0625,"CRL Grafton - Karang-a-hape Stn Leaky Feeder","Current","TX",false
 426221,409325,"Fire and Emergency New Zealand","ESCN125",500.0625,"BRITOMART UNDERGROUND RAILWAY STATION","Current","TX",false
@@ -77984,21 +77999,21 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 425293,419394,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"Rifle Range Taupo ONZ C4RFL","Current","TX",false
 425292,419391,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"Whenuapai Airforce Base ONZ A2WAF","Current","TX",false
 425291,419395,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"Henderson Shops ONZ A2HSP","Current","TX",false
-425290,,"MARLBOROUGH-NELSON MARINE RADIO ASSOCIATION INCORPORATED","MM60#",156.025,"GOLDEN BAY MM AREA","Current","TX",false
-425289,271139,"LIGHTWIRE LIMITED","11G4W#",11525.0,"PUTARURU (LIGHTWIRE)","Current","TX",false
-425288,271138,"LIGHTWIRE LIMITED","11G4W",10995.0,"LICHFIELD (LIGHTWIRE)","Current","TX",false
-425287,279510,"LIGHTWIRE LIMITED","11G3W#",11445.0,"REGENCY HOUSE","Current","TX",false
-425286,279367,"LIGHTWIRE LIMITED","11G3W",10915.0,"OHAUITI (NETSMART)","Current","TX",false
-425285,178699,"KORDIA LIMITED","5G7#",4970.0,"BELTANA","Current","TX",false
-425284,178697,"KORDIA LIMITED","5G7",4670.0,"BLUE DUCK","Current","TX",false
-425283,158696,"KORDIA LIMITED","5G5#",4890.0,"BELTANA","Current","TX",false
-425282,158695,"KORDIA LIMITED","5G5",4590.0,"BLUE DUCK","Current","TX",false
-425281,289523,"Z ENERGY LIMITED","DNX88",466.85625,"TAURANGA DISTRICT TLA","Current","TX",false
-425281,289523,"Z ENERGY LIMITED","DNX78",466.68125,"TAURANGA DISTRICT TLA","Current","TX",false
-425281,289523,"Z ENERGY LIMITED","DNX72",465.11875,"TAURANGA DISTRICT TLA","Current","TX",false
-425281,289523,"Z ENERGY LIMITED","DNX55",464.90625,"TAURANGA DISTRICT TLA","Current","TX",false
-425281,289523,"Z ENERGY LIMITED","DNX44",461.76875,"TAURANGA DISTRICT TLA","Current","TX",false
-425281,289523,"Z ENERGY LIMITED","DNX22",461.49375,"TAURANGA DISTRICT TLA","Current","TX",false
+63320,165863,"VITAL LIMITED","TD260",417.25,"KRAACKS HILL","Current","TX",false
+63305,,"VITAL LIMITED","EN30#",155.29375,"MOBILE","Current","TX",false
+63304,165855,"VITAL LIMITED","EN30",151.1125,"TORBAY RADIO","Current","TX",false
+63271,,"VITAL LIMITED","CN59#",451.00625,"MOBILE","Current","TX",false
+63270,165838,"VITAL LIMITED","CN59",456.04375,"KOPUKAIRUA","Current","TX",false
+63056,,"VITAL LIMITED","TD132#",407.65,"MOBILE","Current","TX",false
+63055,165718,"VITAL LIMITED","TD132",415.65,"SKYTOWER AUCKLAND","Current","TX",false
+63007,165692,"VITAL LIMITED","TD320",418.0,"TORBAY RADIO","Current","TX",false
+62980,,"UNISON NETWORKS LIMITED","EN75#",155.85625,"MOBILE","Current","TX",false
+62979,165678,"UNISON NETWORKS LIMITED","EN75",151.675,"TARAPONUI","Current","TX",false
+62964,,"CHORUS NEW ZEALAND LIMITED","EN37#",155.38125,"MOBILE","Current","TX",false
+62963,165669,"CHORUS NEW ZEALAND LIMITED","EN37",151.2,"PUKEKIO HILL CHATHAM ISLAND","Current","TX",false
+62962,,"VITAL LIMITED","D70#",468.7375,"MOBILE","Current","TX",false
+62961,165668,"VITAL LIMITED","D70",463.55,"TUHINGAMATA","Current","TX",false
+62847,165939,"INDEPENDENT STEVEDORING LIMITED","FX253",488.825,"TAURANGA PORT AREA","Current","TX",false
 62847,165939,"INDEPENDENT STEVEDORING LIMITED","FX252",488.8,"TAURANGA PORT AREA","Current","TX",false
 62847,165939,"INDEPENDENT STEVEDORING LIMITED","FX248",488.7,"TAURANGA PORT AREA","Current","TX",false
 62847,165939,"INDEPENDENT STEVEDORING LIMITED","FX247",488.675,"TAURANGA PORT AREA","Current","TX",false
@@ -83594,6 +83609,21 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 39,154932,"TELEVISION NEW ZEALAND LIMITED","7GM2",7152.5,"ALL NEW ZEALAND","Current","TX",false
 39,154932,"TELEVISION NEW ZEALAND LIMITED","7GM1A",7138.5,"ALL NEW ZEALAND","Current","TX",false
 39,154932,"TELEVISION NEW ZEALAND LIMITED","7GM1",7124.5,"ALL NEW ZEALAND","Current","TX",false
+425290,,"MARLBOROUGH-NELSON MARINE RADIO ASSOCIATION INCORPORATED","MM60#",156.025,"GOLDEN BAY MM AREA","Current","TX",false
+425289,271139,"LIGHTWIRE LIMITED","11G4W#",11525.0,"PUTARURU (LIGHTWIRE)","Current","TX",false
+425288,271138,"LIGHTWIRE LIMITED","11G4W",10995.0,"LICHFIELD (LIGHTWIRE)","Current","TX",false
+425287,279510,"LIGHTWIRE LIMITED","11G3W#",11445.0,"REGENCY HOUSE","Current","TX",false
+425286,279367,"LIGHTWIRE LIMITED","11G3W",10915.0,"OHAUITI (NETSMART)","Current","TX",false
+425285,178699,"KORDIA LIMITED","5G7#",4970.0,"BELTANA","Current","TX",false
+425284,178697,"KORDIA LIMITED","5G7",4670.0,"BLUE DUCK","Current","TX",false
+425283,158696,"KORDIA LIMITED","5G5#",4890.0,"BELTANA","Current","TX",false
+425282,158695,"KORDIA LIMITED","5G5",4590.0,"BLUE DUCK","Current","TX",false
+425281,289523,"Z ENERGY LIMITED","DNX88",466.85625,"TAURANGA DISTRICT TLA","Current","TX",false
+425281,289523,"Z ENERGY LIMITED","DNX78",466.68125,"TAURANGA DISTRICT TLA","Current","TX",false
+425281,289523,"Z ENERGY LIMITED","DNX72",465.11875,"TAURANGA DISTRICT TLA","Current","TX",false
+425281,289523,"Z ENERGY LIMITED","DNX55",464.90625,"TAURANGA DISTRICT TLA","Current","TX",false
+425281,289523,"Z ENERGY LIMITED","DNX44",461.76875,"TAURANGA DISTRICT TLA","Current","TX",false
+425281,289523,"Z ENERGY LIMITED","DNX22",461.49375,"TAURANGA DISTRICT TLA","Current","TX",false
 425281,289523,"Z ENERGY LIMITED","DNX15",458.51875,"TAURANGA DISTRICT TLA","Current","TX",false
 425281,289523,"Z ENERGY LIMITED","DNX1",458.34375,"TAURANGA DISTRICT TLA","Current","TX",false
 425281,289523,"Z ENERGY LIMITED","CNX70",455.26875,"TAURANGA DISTRICT TLA","Current","TX",false
@@ -84579,18 +84609,3 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 424001,418490,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"BURMA ROAD","Current","TX",false
 424000,418495,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"Seaview ONZ W5SEV","Current","TX",false
 423999,418491,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"LEVIN","Current","TX",false
-423998,418494,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"Greytown ONZ W3GYT","Current","TX",false
-423997,418488,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"Otatara Central ONZ S6ORC","Current","TX",false
-423996,418492,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"QUEENSTOWN GORGE INDUSTRIAL (VFNZ)","Current","TX",false
-423995,418493,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"CARISBROOK (VODAFONE)","Current","TX",false
-423994,418489,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"ALBERT TOWN NORTH (VFNZ)","Current","TX",false
-423993,418487,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"PATUMAHOE (VF A8PTM)","Current","TX",false
-423992,418088,"SMITH CRANE & CONSTRUCTION LTD","EEX211",171.85,"Ivan Cres Ch Ch","Current","TX",false
-423991,418087,"SMITH CRANE & CONSTRUCTION LTD","ENX37",150.5125,"107 Cambridge Tce","Current","TX",false
-423990,418486,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"WEST MELTON CENTRAL","Current","TX",false
-423989,418481,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"RANGIORA SOUTH 2 (VFNZ)","Current","TX",false
-423988,418484,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"PIONEER STADIUM (VF S3PST)","Current","TX",false
-423987,418475,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"Beckenham ONZ S3BKM","Current","TX",false
-423986,418476,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"PICTON (VF S2PCT)","Current","TX",false
-423985,418479,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"DASHWOOD","Current","TX",false
-423984,418483,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"Matakana North ONZ N2MKB","Current","TX",false
