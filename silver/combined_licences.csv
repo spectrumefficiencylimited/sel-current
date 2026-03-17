@@ -52,6 +52,8 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 433500,425879,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM151",91.5,"MT HORRIBLE","Current","TX",false
 433499,425878,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM429",105.4,"SKYTOWER","Current","TX",false
 433498,425883,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM269",97.4,"KOPUKAIRUA","Current","TX",false
+433488,,"TOP ENERGY","EN185#",154.83125,"MOBILE","Current","TX",false
+433487,425122,"TOP ENERGY","EN185",153.05,"MT HIKURANGI BCL","Current","TX",false
 433466,425772,"TWO DEGREES NETWORKS LIMITED",,1815.0,"(CHC-060-210-A)[TKHA]_TE KAHA STADIUM","Current","TX",false
 433465,425769,"TWO DEGREES NETWORKS LIMITED",,2152.5,"(CHC-060-210-A)[TKHA]_TE KAHA STADIUM","Current","TX",false
 433431,425711,"NEW ZEALAND ROCKETRY ASSOCIATION INCORPORATED","FNX419",477.65625,"ALL NEW ZEALAND","Current","TX",false
@@ -997,8 +999,6 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 432973,294120,"KIWIRAIL","EN129",152.35,"MIDLAND TUNNEL 11 - 16","Current","TX",false
 432973,294120,"KIWIRAIL","EN129",152.35,"MIDAS PLACE RAIL OFFICE","Current","TX",false
 432973,294120,"KIWIRAIL","EN129",152.35,"MAUNGATUROTO KIWIRAIL","Current","TX",false
-432973,294120,"KIWIRAIL","EN129",152.35,"MATATA RAILWAY","Current","TX",false
-432973,294120,"KIWIRAIL","EN129",152.35,"MATAROA NIMT TUNNEL 13","Current","TX",false
 424955,419088,"Mike Oldham","FNX543",482.51875,"ALL NEW ZEALAND","Current","TX",false
 424954,,"ASHLEY COMMUNICATIONS LIMITED","EE151#",168.6875,"MOBILE","Current","TX",false
 424952,419095,"ASHLEY COMMUNICATIONS LIMITED","EE151",164.0875,"MT ROLLESBY (ASHLEY NETWORKS)","Current","TX",false
@@ -10999,6 +10999,8 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 412116,409266,"ENHANCED SOLUTIONS LIMITED",,2590.0,"264 Waitangata Road, Ōhura","Current","TX",false
 412115,409260,"ENHANCED SOLUTIONS LIMITED",,2610.0,"1926 Ongarue Stream Road Waimiha 258 Omni","Current","TX",false
 412104,408230,"TWO DEGREES NETWORKS LIMITED","7GU1W#",7613.5,"FORESTRY ROAD, TWINLAW (STH-073-025-A)","Current","TX",false
+432973,294120,"KIWIRAIL","EN129",152.35,"MATATA RAILWAY","Current","TX",false
+432973,294120,"KIWIRAIL","EN129",152.35,"MATAROA NIMT TUNNEL 13","Current","TX",false
 432973,294120,"KIWIRAIL","EN129",152.35,"MATAROA","Current","TX",false
 432973,294120,"KIWIRAIL","EN129",152.35,"MARERETU NAL TUNNEL 12","Current","TX",false
 432973,294120,"KIWIRAIL","EN129",152.35,"MAORIBANK TUNNEL W","Current","TX",false
@@ -11997,8 +11999,6 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 432589,425160,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","AM161",1.071,"WINCHMORE","Current","TX",false
 432588,425170,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","AM152",0.99,"RICHMOND","Current","TX",false
 432587,425168,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","AM148",0.954,"EUREKA","Current","TX",false
-432586,425167,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","AM134",0.828,"LONGBURN","Current","TX",false
-432585,425165,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","AM101",0.531,"ALEXANDRA","Current","TX",false
 412103,408229,"TWO DEGREES NETWORKS LIMITED","7GU1W",7452.5,"OFF SINCLAIR ROAD, WINTON, SOUTHLAND [WNTN](STH-073-010-C)","Current","TX",false
 412102,409130,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"Tinakori ONZ W6TNI","Current","TX",false
 412101,409128,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"Mt Victoria East ONZ W6MVE","Current","TX",false
@@ -21999,6 +21999,8 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 240786,297647,"TWO DEGREES NETWORKS LIMITED",,939.9,"(AKL-004-015-E)[LEGH]_LEIGH","Current","TX",false
 240785,297672,"TWO DEGREES NETWORKS LIMITED",,939.9,"(BOP-025-015-A)[THOR]_THORNTON_RBI","Current","TX",false
 240784,297665,"TWO DEGREES NETWORKS LIMITED",,939.9,"(CAN-066-003-C)[WMTE]_WAIMATE","Current","TX",false
+432586,425167,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","AM134",0.828,"LONGBURN","Current","TX",false
+432585,425165,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","AM101",0.531,"ALEXANDRA","Current","TX",false
 432584,425162,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","AM180",1.242,"WHAKATANE","Current","TX",false
 432583,425161,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","AM211",1.521,"MATAPIHI","Current","TX",false
 432582,425143,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","AM103",0.549,"STOKE","Current","TX",false
@@ -22578,8 +22580,6 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 431706,425749,"SPACE OPERATIONS NEW ZEALAND LIMITED",,2245.0,"USASAT-NGSO-20","Current","TX",false
 431704,425751,"SPACE OPERATIONS NEW ZEALAND LIMITED",,2067.5,"AWARUA EARTH STATION","Current","TX",false
 431703,425047,"L T MCGUINNESS LTD","FNX117",470.70625,"300 Lyndon Road East Hastings","Current","TX",false
-431702,,"TOP ENERGY","EN167#",154.60625,"MOBILE","Current","TX",false
-431701,425122,"TOP ENERGY","EN167",152.825,"MT HIKURANGI BCL","Current","TX",false
 431685,424967,"INMARSAT NEW ZEALAND LIMITED",,27505.0,"Albany SES 1.2 m","Current","TX",false
 431684,424610,"INMARSAT NEW ZEALAND LIMITED",,29622.5,"Albany SES AKL03","Current","TX",false
 431683,425753,"SPACE OPERATIONS NEW ZEALAND LIMITED",,2105.0,"AWARUA EARTH STATION","Current","TX",false
