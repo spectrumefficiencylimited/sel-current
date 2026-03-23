@@ -1,13 +1,55 @@
 licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppressed
+434206,426538,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM365",102.2,"SKYTOWER","Current","TX",false
+434205,426524,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM431",105.5,"RMWONU - OHURA","Current","TX",false
+434204,426530,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM441",106.0,"42 PAEROA RANGE","Current","TX",false
+434203,426537,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM329",100.4,"RWKMGO - MANGAKINO","Current","TX",false
+434199,426502,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM313",99.6,"MT EGMONT","Current","TX",false
+434198,426526,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM355",101.7,"MT EDGECUMBE","Current","TX",false
+434197,426535,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM275",97.7,"FRANZ JOSEF","Current","TX",false
+434196,426510,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM137",90.8,"HIKURANGI","Current","TX",false
+434195,426522,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM425",105.2,"HEDGEHOPE","Current","TX",false
+434194,426511,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM193",93.6,"KUROW EXCHANGE","Current","TX",false
+434193,426523,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM161",92.0,"KUROW EXCHANGE","Current","TX",false
+434192,426531,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM399",103.9,"POPOITI","Current","TX",false
+434191,426506,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM249",96.4,"TWO PEAKS","Current","TX",false
+434190,426533,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM415",104.7,"POPOITI","Current","TX",false
+434189,426525,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM203",94.1,"TUAWERA TCE CHRISTCHURCH","Current","TX",false
+434188,426534,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM443",106.1,"STOCKTON MINE GPS REPEATER 1","Current","TX",false
+434187,426520,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM263",97.1,"LITTLE MT IDA","Current","TX",false
+434186,426528,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM167",92.3,"NORTH ROUGH RIDGE","Current","TX",false
+434185,426507,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM125",90.2,"MACKENZIE COLLEGE, KIRKE STREET, FAIRLIE","Current","TX",false
+434184,426527,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM093",88.6,"AORANGI CRESCENT TEKAPO","Current","TX",false
+434183,426532,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM311",99.5,"PORT LIGAR 566","Current","TX",false
+434182,426521,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM437",105.8,"SADDLE HILL (FM)","Current","TX",false
+434181,426536,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM437",105.8,"21 SEAVIEW RD PIHA","Current","TX",false
+434180,426500,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM401",104.0,"MILFORD SOUND DOWNER COMMUNICATIONS HUT","Current","TX",false
+434179,426517,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM289",98.4,"MID DOME","Current","TX",false
+434178,426508,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM425",105.2,"MT EGMONT","Current","TX",false
+434177,426514,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM449",106.4,"GRAMPIANS","Current","TX",false
+434176,426509,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM443",106.1,"OTEMATATA","Current","TX",false
+434175,426529,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM219",94.9,"230 Waitaki Drive West Otematata","Current","TX",false
 434174,426488,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM269",97.4,"317 O'Neills Road Coal Stream","Current","TX",false
+434173,426516,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM445",106.2,"83 MAIN STREET FAIRLIE","Current","TX",false
+434172,426501,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM263",97.1,"MT FREETH","Current","TX",false
+434171,426499,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM427",105.3,"11 Foster Terrace Lyttelton","Current","TX",false
+434170,426518,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM335",100.7,"HILLTOP","Current","TX",false
+434169,426513,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM401",104.0,"HIGH PEAK","Current","TX",false
+434168,426515,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM419",104.9,"MT STUART","Current","TX",false
+434167,426505,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM145",91.2,"CAPE WANBROW","Current","TX",false
 434166,426471,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM331",100.5,"MAIN ST METHVEN","Current","TX",false
 434165,426496,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM405",104.2,"HAMILTON RAIL","Current","TX",false
+434164,426519,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM411",104.5,"MAIN ST METHVEN","Current","TX",false
 434163,426487,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM111",89.5,"21 RACECOURSE ROAD OMAKAU","Current","TX",false
+434162,426498,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM187",93.3,"HICKS BAY LOOKOUT","Current","TX",false
 434161,426480,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM187",93.3,"HIKURANGI SPUR","Current","TX",false
 434160,426474,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM187",93.3,"TITIRANGI","Current","TX",false
+434159,426504,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM201",94.0,"RATAROA","Current","TX",false
 434158,426468,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM223",95.1,"COROMANDEL TOWNSHIP","Current","TX",false
+434157,426497,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM409",104.4,"LOWER RATAROA","Current","TX",false
+434156,426503,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM411",104.5,"LYTTELTON","Current","TX",false
 434155,426495,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM427",105.3,"MT HUTT","Current","TX",false
 434154,426475,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM223",95.1,"MCBETHS ROAD","Current","TX",false
+434153,426512,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM223",95.1,"PAUANUI SOUTH","Current","TX",false
 434152,426485,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM429",105.4,"MT MARY(LOW)","Current","TX",false
 434151,426472,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM149",91.4,"HILLEND","Current","TX",false
 434150,426477,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM141",91.0,"MT BURNETT","Current","TX",false
@@ -957,48 +999,48 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 433243,425604,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM101",89.0,"WAIHI BEACH","Current","TX",false
 433242,425600,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM123",90.1,"OTEMATATA","Current","TX",false
 433233,,"CITY COMMS LIMITED","EE54#",167.475,"MOBILE","Current","TX",false
-433232,425955,"CITY COMMS LIMITED","EE54",162.875,"MT VICTORIA","Current","TX",false
-433231,423031,"H. G. LEACH & COMPANY LIMITED","FNX128",470.84375,"LEACH WAIHI QUARRY, 70 MCLEAN RD, WAIHI","Current","TX",false
-433231,423031,"H. G. LEACH & COMPANY LIMITED","DNX51",464.85625,"LEACH WAIHI QUARRY, 70 MCLEAN RD, WAIHI","Current","TX",false
-433231,423031,"H. G. LEACH & COMPANY LIMITED","DNX37",461.68125,"LEACH WAIHI QUARRY, 70 MCLEAN RD, WAIHI","Current","TX",false
-433224,425770,"TWO DEGREES NETWORKS LIMITED",,3580.0,"(AKL-007-357-A)[OWKS]_OWAIRAKA SOUTH","Current","TX",false
-433223,425480,"TWO DEGREES NETWORKS LIMITED",,2152.5,"(AKL-007-357-A)[OWKS]_OWAIRAKA SOUTH","Current","TX",false
-433221,425484,"TWO DEGREES NETWORKS LIMITED",,1815.0,"(AKL-007-357-A)[OWKS]_OWAIRAKA SOUTH","Current","TX",false
-433220,425481,"TWO DEGREES NETWORKS LIMITED",,798.0,"(AKL-007-357-A)[OWKS]_OWAIRAKA SOUTH","Current","TX",false
-433219,425477,"TWO DEGREES NETWORKS LIMITED",,939.9,"(AKL-007-357-A)[OWKS]_OWAIRAKA SOUTH","Current","TX",false
-433218,425771,"TWO DEGREES NETWORKS LIMITED",,3580.0,"(NTH-002-009-A)[KENS]_KENSINGTON","Current","TX",false
-433217,425483,"TWO DEGREES NETWORKS LIMITED",,1815.0,"(STH-073-023-A)[WDLD]_WOODLANDS","Current","TX",false
-433216,425473,"TWO DEGREES NETWORKS LIMITED",,2152.5,"(STH-073-023-A)[WDLD]_WOODLANDS","Current","TX",false
-433214,425471,"TWO DEGREES NETWORKS LIMITED",,798.0,"(NTH-002-009-A)[KENS]_KENSINGTON","Current","TX",false
-433213,426162,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"PONSONBY FRANKLIN","Current","TX",false
-433212,425702,"SPARK NEW ZEALAND TRADING LIMITED",,3660.0,"PONSONBY FRANKLIN","Current","TX",false
-433211,425633,"SPARK NEW ZEALAND TRADING LIMITED",,2137.5,"PONSONBY FRANKLIN","Current","TX",false
-433210,425623,"SPARK NEW ZEALAND TRADING LIMITED",,2665.0,"PONSONBY FRANKLIN","Current","TX",false
-433209,,"COLVINS LIMITED","PRSR07#",477.25,"MOBILE","Current","TX",false
-433208,425712,"COLVINS LIMITED","PRSR07",476.5,"TE KAPUA (AMATEUR)","Current","TX",false
-433207,425561,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM147",91.3,"MITCHELL FARM","Current","TX",false
-433206,425555,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM213",94.6,"HILLEND","Current","TX",false
-433205,425533,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM247",96.3,"CAVE HILL JDA","Current","TX",false
-433204,425540,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM203",94.1,"MT HUTT","Current","TX",false
-433203,425542,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM233",95.6,"HOROKAKA","Current","TX",false
-433202,425563,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM177",92.8,"GREENGATES","Current","TX",false
-433201,425528,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM249",96.4,"TOKATEA","Current","TX",false
-433200,425525,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM249",96.4,"WAIHI","Current","TX",false
-433199,425543,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM223",95.1,"PUKEPOTO NO.3","Current","TX",false
-433198,425527,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM271",97.5,"WHITIANGA","Current","TX",false
-433197,425562,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM207",94.3,"PUKEPOTO","Current","TX",false
-433196,425536,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM245",96.2,"MT MAUDE KORDIA","Current","TX",false
-433195,425564,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM187",93.3,"KAUKAU","Current","TX",false
-433194,425532,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM159",91.9,"ALEXANDRA","Current","TX",false
-433193,425530,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM295",98.7,"MT FREETH","Current","TX",false
-433192,425529,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM185",93.2,"HOROKAKA","Current","TX",false
-433191,425557,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM177",92.8,"TUHINGAMATA","Current","TX",false
-433190,425534,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM243",96.1,"PUTAUAKI","Current","TX",false
-433189,425559,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM117",89.8,"MT MAUDE KORDIA","Current","TX",false
-433188,425537,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM145",91.2,"KAHUI TRIG","Current","TX",false
-433187,425523,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM137",90.8,"MT EGMONT","Current","TX",false
-433186,425545,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM237",95.8,"KOPUKAIRUA","Current","TX",false
-433185,425541,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM115",89.7,"WHAKATANE","Current","TX",false
+425713,291983,"ENHANCED SOLUTIONS LIMITED","13G2W",12835.0,"MT THREAVE NORTH","Current","TX",false
+425707,419784,"EONFIBRE LIMITED","18G7A#",19480.0,"BURNHAM","Current","TX",false
+425706,419551,"SPARK NEW ZEALAND TRADING LIMITED",,3660.0,"ARKLES BAY ~FAM7~","Current","TX",false
+425705,419550,"SPARK NEW ZEALAND TRADING LIMITED",,2137.5,"ARKLES BAY ~FAM7~","Current","TX",false
+425704,419549,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"ARKLES BAY ~FAM7~","Current","TX",false
+425703,419548,"SPARK NEW ZEALAND TRADING LIMITED",,2665.0,"ARKLES BAY ~FAM7~","Current","TX",false
+425702,419547,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"ARKLES BAY ~FAM7~","Current","TX",false
+425701,419783,"EONFIBRE LIMITED","18G7A",18470.0,"GOULDS ROAD FARINGDON (VF S3FDN)","Current","TX",false
+425699,419734,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"Normandale ONZ W5NDE","Current","TX",false
+425698,419739,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"Paihia Town ONZ N1PIT","Current","TX",false
+425697,419730,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"Taupiri East ONZ C1TPC","Current","TX",false
+425696,419738,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"Te Kauwhata East ONZ C1TKB","Current","TX",false
+425695,419729,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"Horsham Downs ONZ C1HSD","Current","TX",false
+425690,420703,"KING COUNTRY HARVESTING LIMITED","EEX283",172.75,"CENTRAL NORTH ISLAND","Current","TX",false
+425690,420703,"KING COUNTRY HARVESTING LIMITED","EEX251",172.35,"CENTRAL NORTH ISLAND","Current","TX",false
+425690,420703,"KING COUNTRY HARVESTING LIMITED","EEX207",171.8,"CENTRAL NORTH ISLAND","Current","TX",false
+425689,420155,"SPACE OPERATIONS NEW ZEALAND LIMITED",,2066.6,"Awarua Earth Station_Planet 4","Current","TX",false
+425688,419694,"KORDIA LIMITED","I643#",428.575,"PUKEAKURA Maritimes","Current","TX",false
+425686,419693,"KORDIA LIMITED","I643",423.5625,"WHAKAPUNAKE","Current","TX",false
+425685,419644,"KIWIRAIL","JL2C#",448.08125,"Signals 156.4km","Current","TX",false
+425684,419641,"KIWIRAIL","JL2C",443.075,"Inchbonnie Kiwi Rail Radio Site","Current","TX",false
+425682,419643,"KIWIRAIL","JL4C#",448.18125,"Signals 150.15km","Current","TX",false
+425681,419642,"KIWIRAIL","JL4C",443.175,"Inchbonnies Kiwirail Radio Site 1","Current","TX",false
+425676,420090,"TWO DEGREES NETWORKS LIMITED","11G2W#",11365.0,"(TNK-033-045-A)[RPKO]_RATAPIKO","Current","TX",false
+425675,420089,"TWO DEGREES NETWORKS LIMITED","11G2W",10835.0,"(TNK-033-025-A)[IGWD]_INGLEWOOD","Current","TX",false
+425674,420088,"TWO DEGREES NETWORKS LIMITED","11G1W#",11285.0,"(TNK-033-045-A)[RPKO]_RATAPIKO","Current","TX",false
+425673,420087,"TWO DEGREES NETWORKS LIMITED","11G1W",10755.0,"(TNK-033-025-A)[IGWD]_INGLEWOOD","Current","TX",false
+425672,419572,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(HKB-031-017-B)[NAPP]_NAPIER PORT","Current","TX",false
+425671,419577,"TWO DEGREES NETWORKS LIMITED",,798.0,"(HKB-031-017-B)[NAPP]_NAPIER PORT","Current","TX",false
+425670,419573,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(AKL-008-140-A)[BVAU]_BAVERSTOCK RD FLATBUSH","Current","TX",false
+425669,419574,"TWO DEGREES NETWORKS LIMITED",,939.9,"(AKL-008-140-A)[BVAU]_BAVERSTOCK RD FLATBUSH","Current","TX",false
+425668,419575,"TWO DEGREES NETWORKS LIMITED",,798.0,"(AKL-008-140-A)[BVAU]_BAVERSTOCK RD FLATBUSH","Current","TX",false
+425667,419576,"TWO DEGREES NETWORKS LIMITED",,3580.0,"(AKL-008-122-B)[PCAU]_PAPATOETOE ST GEORGE","Current","TX",false
+425666,419571,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(AKL-008-122-B)[PCAU]_PAPATOETOE ST GEORGE","Current","TX",false
+425665,419558,"TWO DEGREES NETWORKS LIMITED",,939.9,"(AKL-008-122-B)[PCAU]_PAPATOETOE ST GEORGE","Current","TX",false
+425664,419570,"TWO DEGREES NETWORKS LIMITED",,939.9,"(AKL-008-126-A)[WIAU]_WIRI","Current","TX",false
+425663,419564,"TWO DEGREES NETWORKS LIMITED",,798.0,"(AKL-008-122-B)[PCAU]_PAPATOETOE ST GEORGE","Current","TX",false
+425662,419569,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(CHC-060-176-A)[ARNN]_ARANUI NORTH","Current","TX",false
+425661,419567,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(AKL-008-126-A)[WIAU]_WIRI","Current","TX",false
+425660,419559,"TWO DEGREES NETWORKS LIMITED",,798.0,"(AKL-008-126-A)[WIAU]_WIRI","Current","TX",false
+425659,419562,"TWO DEGREES NETWORKS LIMITED",,939.9,"(CHC-060-176-A)[ARNN]_ARANUI NORTH","Current","TX",false
+425658,419566,"TWO DEGREES NETWORKS LIMITED",,798.0,"(CHC-060-176-A)[ARNN]_ARANUI NORTH","Current","TX",false
 425657,419560,"TWO DEGREES NETWORKS LIMITED",,798.0,"(AKL-004-010-B)[WHPR]_WHANGAPARAOA","Current","TX",false
 425656,419556,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(WLG-043-007-L)[RMTI]_RAUMATI","Current","TX",false
 425655,419552,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(AKL-004-010-B)[WHPR]_WHANGAPARAOA","Current","TX",false
@@ -10957,48 +10999,48 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 413207,411086,"TAIT SYSTEMS NZ LIMITED","7GM7B",7215.5,"Te Paki Northland PSN","Current","TX",false
 413206,411083,"TAIT SYSTEMS NZ LIMITED","7GM5B#",7348.5,"HILL SOUTH OF SIGNAL STATION ROAD OMAPERE (VF OMAPERE N1OMP)","Current","TX",false
 413204,411079,"TAIT SYSTEMS NZ LIMITED","7GM6B#",7362.5,"HILL SOUTH OF SIGNAL STATION ROAD OMAPERE (VF OMAPERE N1OMP)","Current","TX",false
-413197,411081,"TAIT SYSTEMS NZ LIMITED","7GM5B#",7348.5,"NGUNGURU","Current","TX",false
-413195,411085,"TAIT SYSTEMS NZ LIMITED","7GM8B#",7390.5,"PARAKIORE","Current","TX",false
-413193,411075,"TAIT SYSTEMS NZ LIMITED","7GM6B#",7362.5,"DARGAVILLE (VFNZ)","Current","TX",false
-413189,,"DEVON ELECTRICAL SERVICES","EN55#",155.60625,"MOBILE","Current","TX",false
-413188,411089,"TAIT SYSTEMS NZ LIMITED","7GM6B#",7362.5,"MT CAMEL","Current","TX",false
-413186,409319,"DEVON ELECTRICAL SERVICES","EN55",151.425,"Lower Ben Lomond","Current","TX",false
-413185,411088,"TAIT SYSTEMS NZ LIMITED","7GM6B",7201.5,"Maungataniwha PSN","Current","TX",false
-413183,411082,"TAIT SYSTEMS NZ LIMITED","7GM5B",7187.5,"Maungataniwha PSN","Current","TX",false
-413182,411078,"TAIT SYSTEMS NZ LIMITED","7GM6B",7201.5,"MAUNGANUI BLUFF","Current","TX",false
-413178,411080,"TAIT SYSTEMS NZ LIMITED","7GM5B",7187.5,"9 HOROKAKA","Current","TX",false
-413177,411084,"TAIT SYSTEMS NZ LIMITED","7GM8B",7229.5,"9 HOROKAKA","Current","TX",false
-413176,411074,"TAIT SYSTEMS NZ LIMITED","7GM6B",7201.5,"9 HOROKAKA","Current","TX",false
-413175,,"AIRWAYS CORPORATION OF NEW ZEALAND LIMITED","D119#",469.9625,"MOBILE","Current","TX",false
-413174,162787,"MJF LIGHTING LTD","FNX727",488.31875,"WELLINGTON CITY TLA","Current","TX",false
-413174,162787,"MJF LIGHTING LTD","FNX435",477.85625,"WELLINGTON CITY TLA","Current","TX",false
-413174,162787,"MJF LIGHTING LTD","FNX423",477.70625,"WELLINGTON CITY TLA","Current","TX",false
-413173,410284,"SPACE OPERATIONS NEW ZEALAND LIMITED",,2108.5,"AWARUA EARTH STATION","Current","TX",false
-413172,410278,"SPACE OPERATIONS NEW ZEALAND LIMITED",,2106.5,"AWARUA EARTH STATION","Current","TX",false
-413170,410283,"SPACE OPERATIONS NEW ZEALAND LIMITED",,2080.5,"AWARUA EARTH STATION","Current","TX",false
-413169,410279,"SPACE OPERATIONS NEW ZEALAND LIMITED",,2078.5,"AWARUA EARTH STATION","Current","TX",false
-413168,410290,"SPACE OPERATIONS NEW ZEALAND LIMITED",,2076.5,"AWARUA EARTH STATION","Current","TX",false
-413167,410289,"SPACE OPERATIONS NEW ZEALAND LIMITED",,2074.5,"AWARUA EARTH STATION","Current","TX",false
-413166,410288,"SPACE OPERATIONS NEW ZEALAND LIMITED",,2107.5,"AWARUA EARTH STATION","Current","TX",false
-413165,410280,"SPACE OPERATIONS NEW ZEALAND LIMITED",,2105.5,"AWARUA EARTH STATION","Current","TX",false
-413164,410282,"SPACE OPERATIONS NEW ZEALAND LIMITED",,2103.5,"AWARUA EARTH STATION","Current","TX",false
-413163,410281,"SPACE OPERATIONS NEW ZEALAND LIMITED",,2079.5,"AWARUA EARTH STATION","Current","TX",false
-413154,409250,"SPARK NEW ZEALAND TRADING LIMITED",,2665.0,"TE MATA","Current","TX",false
-413153,410504,"THE LINES CO LTD","10G1#",10602.0,"MAHOE ROAD (TLC)","Current","TX",false
-413152,410503,"THE LINES CO LTD","10G1",10511.0,"TE KUITI (TLC)","Current","TX",false
-413151,410506,"POWERNET LIMITED","13G1#",13031.0,"ORAWIA SUBSTATION","Current","TX",false
-413150,410505,"POWERNET LIMITED","13G1",12765.0,"TWINLAW POWERNET","Current","TX",false
-413144,410525,"ULTIMATE MOBILE LIMITED",,3330.0,"Gawler Downs South East (3D3 UML)","Current","TX",false
-413143,410539,"ULTIMATE MOBILE LIMITED",,3330.0,"GAWLER DOWNS (UML)","Current","TX",false
-413142,410533,"ULTIMATE MOBILE LIMITED",,3310.0,"Gawler Downs South East (3D3 UML)","Current","TX",false
-413141,410531,"ULTIMATE MOBILE LIMITED",,3310.0,"GAWLER DOWNS (UML)","Current","TX",false
-413135,295334,"EONFIBRE LIMITED","11G5W#",11605.0,"HIKURANGI","Current","TX",false
-413134,295333,"EONFIBRE LIMITED","11G5W",11075.0,"ADAMS ROAD AWARUA (RCG AWARUA ROAD RNLAWR)","Current","TX",false
-413133,409102,"REPTECH CORPORATION LIMITED","FNX654",483.90625,"ALL NEW ZEALAND","Current","TX",false
-413133,409102,"REPTECH CORPORATION LIMITED","FNX506",482.05625,"ALL NEW ZEALAND","Current","TX",false
-413132,,"VITAL LIMITED","EN23#",155.20625,"MOBILE","Current","TX",false
-413131,410811,"VITAL LIMITED","EN23",151.025,"MT OTAU","Current","TX",false
-413130,,"VITAL LIMITED","DN198#",469.46875,"MOBILE","Current","TX",false
+433232,425955,"CITY COMMS LIMITED","EE54",162.875,"MT VICTORIA","Current","TX",false
+433231,423031,"H. G. LEACH & COMPANY LIMITED","FNX128",470.84375,"LEACH WAIHI QUARRY, 70 MCLEAN RD, WAIHI","Current","TX",false
+433231,423031,"H. G. LEACH & COMPANY LIMITED","DNX51",464.85625,"LEACH WAIHI QUARRY, 70 MCLEAN RD, WAIHI","Current","TX",false
+433231,423031,"H. G. LEACH & COMPANY LIMITED","DNX37",461.68125,"LEACH WAIHI QUARRY, 70 MCLEAN RD, WAIHI","Current","TX",false
+433224,425770,"TWO DEGREES NETWORKS LIMITED",,3580.0,"(AKL-007-357-A)[OWKS]_OWAIRAKA SOUTH","Current","TX",false
+433223,425480,"TWO DEGREES NETWORKS LIMITED",,2152.5,"(AKL-007-357-A)[OWKS]_OWAIRAKA SOUTH","Current","TX",false
+433221,425484,"TWO DEGREES NETWORKS LIMITED",,1815.0,"(AKL-007-357-A)[OWKS]_OWAIRAKA SOUTH","Current","TX",false
+433220,425481,"TWO DEGREES NETWORKS LIMITED",,798.0,"(AKL-007-357-A)[OWKS]_OWAIRAKA SOUTH","Current","TX",false
+433219,425477,"TWO DEGREES NETWORKS LIMITED",,939.9,"(AKL-007-357-A)[OWKS]_OWAIRAKA SOUTH","Current","TX",false
+433218,425771,"TWO DEGREES NETWORKS LIMITED",,3580.0,"(NTH-002-009-A)[KENS]_KENSINGTON","Current","TX",false
+433217,425483,"TWO DEGREES NETWORKS LIMITED",,1815.0,"(STH-073-023-A)[WDLD]_WOODLANDS","Current","TX",false
+433216,425473,"TWO DEGREES NETWORKS LIMITED",,2152.5,"(STH-073-023-A)[WDLD]_WOODLANDS","Current","TX",false
+433214,425471,"TWO DEGREES NETWORKS LIMITED",,798.0,"(NTH-002-009-A)[KENS]_KENSINGTON","Current","TX",false
+433213,426162,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"PONSONBY FRANKLIN","Current","TX",false
+433212,425702,"SPARK NEW ZEALAND TRADING LIMITED",,3660.0,"PONSONBY FRANKLIN","Current","TX",false
+433211,425633,"SPARK NEW ZEALAND TRADING LIMITED",,2137.5,"PONSONBY FRANKLIN","Current","TX",false
+433210,425623,"SPARK NEW ZEALAND TRADING LIMITED",,2665.0,"PONSONBY FRANKLIN","Current","TX",false
+433209,,"COLVINS LIMITED","PRSR07#",477.25,"MOBILE","Current","TX",false
+433208,425712,"COLVINS LIMITED","PRSR07",476.5,"TE KAPUA (AMATEUR)","Current","TX",false
+433207,425561,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM147",91.3,"MITCHELL FARM","Current","TX",false
+433206,425555,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM213",94.6,"HILLEND","Current","TX",false
+433205,425533,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM247",96.3,"CAVE HILL JDA","Current","TX",false
+433204,425540,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM203",94.1,"MT HUTT","Current","TX",false
+433203,425542,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM233",95.6,"HOROKAKA","Current","TX",false
+433202,425563,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM177",92.8,"GREENGATES","Current","TX",false
+433201,425528,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM249",96.4,"TOKATEA","Current","TX",false
+433200,425525,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM249",96.4,"WAIHI","Current","TX",false
+433199,425543,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM223",95.1,"PUKEPOTO NO.3","Current","TX",false
+433198,425527,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM271",97.5,"WHITIANGA","Current","TX",false
+433197,425562,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM207",94.3,"PUKEPOTO","Current","TX",false
+433196,425536,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM245",96.2,"MT MAUDE KORDIA","Current","TX",false
+433195,425564,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM187",93.3,"KAUKAU","Current","TX",false
+433194,425532,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM159",91.9,"ALEXANDRA","Current","TX",false
+433193,425530,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM295",98.7,"MT FREETH","Current","TX",false
+433192,425529,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM185",93.2,"HOROKAKA","Current","TX",false
+433191,425557,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM177",92.8,"TUHINGAMATA","Current","TX",false
+433190,425534,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM243",96.1,"PUTAUAKI","Current","TX",false
+433189,425559,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM117",89.8,"MT MAUDE KORDIA","Current","TX",false
+433188,425537,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM145",91.2,"KAHUI TRIG","Current","TX",false
+433187,425523,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM137",90.8,"MT EGMONT","Current","TX",false
+433186,425545,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM237",95.8,"KOPUKAIRUA","Current","TX",false
+433185,425541,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM115",89.7,"WHAKATANE","Current","TX",false
 433184,425544,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM129",90.4,"TUHINGAMATA","Current","TX",false
 433183,425531,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM219",94.9,"WHAREKOPAE","Current","TX",false
 433182,425550,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM193",93.6,"PENINSULA HILL","Current","TX",false
@@ -11957,48 +11999,48 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 432966,294167,"KIWIRAIL","EN105",152.05,"ROSEBANK","Current","TX",false
 432966,294167,"KIWIRAIL","EN105",152.05,"RIMUTAKA TUNNEL W","Current","TX",false
 432966,294167,"KIWIRAIL","EN105",152.05,"RIMUTAKA TUNNEL E","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"REEFTON TUNNEL 1","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"REEFTON","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"RAZORBACK","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"RAURIMU TUNNEL 17 NIMT","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"RANGITOTO","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"RANGITAWA","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"RANGANUI NAL TUNNEL 8","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"RAETIHI","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"Pukekohe Kiwirail","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"PUREWA TUNNEL","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"PUKERUA BAY TUNNEL 3 - 6","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"PUKERUA BAY (KIWIRAIL)","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"PUKEPOTO","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"POROOTARAO TUNNEL","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"POROOTARAO","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"POPO TRIG","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"PARAKIORE","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"PAPAROA(TRANZ RAIL)","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"PAPAROA NAL TUNNEL 10","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"PALMERSTON NORTH RAILYARD","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"Owhango Kiwirail","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"Otira Fibre Hut","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"Ohaupo Kiwirail","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"OTIRA TUNNEL 17","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"OTEPOPO TUNNEL 2 MSL","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"NORWOOD KIWIRAIL","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"NORTH RANGE ROAD WEST","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"NORTH RANGE ROAD EAST","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"NGAURUKEHU NIMT TUNNEL 14","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"NGAURANGA NIMT TUNNEL 1","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"NGARANUI","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"NEWMARKET TUNNEL","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"NEW LYNN RAIL REPEATER","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"Masterton Rail Station","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"MT STUDHOLME","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"MT ROCHFORT","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"MT MAUNGANUI WHARF","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"MT HYDE","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"MT HIKURANGI (KING COUNTRY)","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"MT FREETH","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"MT ERIN","Current","TX",false
-432966,294167,"KIWIRAIL","EN105",152.05,"MT EDEN CRL STATION VENTILATION","Current","TX",false
+413197,411081,"TAIT SYSTEMS NZ LIMITED","7GM5B#",7348.5,"NGUNGURU","Current","TX",false
+413195,411085,"TAIT SYSTEMS NZ LIMITED","7GM8B#",7390.5,"PARAKIORE","Current","TX",false
+413193,411075,"TAIT SYSTEMS NZ LIMITED","7GM6B#",7362.5,"DARGAVILLE (VFNZ)","Current","TX",false
+413189,,"DEVON ELECTRICAL SERVICES","EN55#",155.60625,"MOBILE","Current","TX",false
+413188,411089,"TAIT SYSTEMS NZ LIMITED","7GM6B#",7362.5,"MT CAMEL","Current","TX",false
+413186,409319,"DEVON ELECTRICAL SERVICES","EN55",151.425,"Lower Ben Lomond","Current","TX",false
+413185,411088,"TAIT SYSTEMS NZ LIMITED","7GM6B",7201.5,"Maungataniwha PSN","Current","TX",false
+413183,411082,"TAIT SYSTEMS NZ LIMITED","7GM5B",7187.5,"Maungataniwha PSN","Current","TX",false
+413182,411078,"TAIT SYSTEMS NZ LIMITED","7GM6B",7201.5,"MAUNGANUI BLUFF","Current","TX",false
+413178,411080,"TAIT SYSTEMS NZ LIMITED","7GM5B",7187.5,"9 HOROKAKA","Current","TX",false
+413177,411084,"TAIT SYSTEMS NZ LIMITED","7GM8B",7229.5,"9 HOROKAKA","Current","TX",false
+413176,411074,"TAIT SYSTEMS NZ LIMITED","7GM6B",7201.5,"9 HOROKAKA","Current","TX",false
+413175,,"AIRWAYS CORPORATION OF NEW ZEALAND LIMITED","D119#",469.9625,"MOBILE","Current","TX",false
+413174,162787,"MJF LIGHTING LTD","FNX727",488.31875,"WELLINGTON CITY TLA","Current","TX",false
+413174,162787,"MJF LIGHTING LTD","FNX435",477.85625,"WELLINGTON CITY TLA","Current","TX",false
+413174,162787,"MJF LIGHTING LTD","FNX423",477.70625,"WELLINGTON CITY TLA","Current","TX",false
+413173,410284,"SPACE OPERATIONS NEW ZEALAND LIMITED",,2108.5,"AWARUA EARTH STATION","Current","TX",false
+413172,410278,"SPACE OPERATIONS NEW ZEALAND LIMITED",,2106.5,"AWARUA EARTH STATION","Current","TX",false
+413170,410283,"SPACE OPERATIONS NEW ZEALAND LIMITED",,2080.5,"AWARUA EARTH STATION","Current","TX",false
+413169,410279,"SPACE OPERATIONS NEW ZEALAND LIMITED",,2078.5,"AWARUA EARTH STATION","Current","TX",false
+413168,410290,"SPACE OPERATIONS NEW ZEALAND LIMITED",,2076.5,"AWARUA EARTH STATION","Current","TX",false
+413167,410289,"SPACE OPERATIONS NEW ZEALAND LIMITED",,2074.5,"AWARUA EARTH STATION","Current","TX",false
+413166,410288,"SPACE OPERATIONS NEW ZEALAND LIMITED",,2107.5,"AWARUA EARTH STATION","Current","TX",false
+413165,410280,"SPACE OPERATIONS NEW ZEALAND LIMITED",,2105.5,"AWARUA EARTH STATION","Current","TX",false
+413164,410282,"SPACE OPERATIONS NEW ZEALAND LIMITED",,2103.5,"AWARUA EARTH STATION","Current","TX",false
+413163,410281,"SPACE OPERATIONS NEW ZEALAND LIMITED",,2079.5,"AWARUA EARTH STATION","Current","TX",false
+413154,409250,"SPARK NEW ZEALAND TRADING LIMITED",,2665.0,"TE MATA","Current","TX",false
+413153,410504,"THE LINES CO LTD","10G1#",10602.0,"MAHOE ROAD (TLC)","Current","TX",false
+413152,410503,"THE LINES CO LTD","10G1",10511.0,"TE KUITI (TLC)","Current","TX",false
+413151,410506,"POWERNET LIMITED","13G1#",13031.0,"ORAWIA SUBSTATION","Current","TX",false
+413150,410505,"POWERNET LIMITED","13G1",12765.0,"TWINLAW POWERNET","Current","TX",false
+413144,410525,"ULTIMATE MOBILE LIMITED",,3330.0,"Gawler Downs South East (3D3 UML)","Current","TX",false
+413143,410539,"ULTIMATE MOBILE LIMITED",,3330.0,"GAWLER DOWNS (UML)","Current","TX",false
+413142,410533,"ULTIMATE MOBILE LIMITED",,3310.0,"Gawler Downs South East (3D3 UML)","Current","TX",false
+413141,410531,"ULTIMATE MOBILE LIMITED",,3310.0,"GAWLER DOWNS (UML)","Current","TX",false
+413135,295334,"EONFIBRE LIMITED","11G5W#",11605.0,"HIKURANGI","Current","TX",false
+413134,295333,"EONFIBRE LIMITED","11G5W",11075.0,"ADAMS ROAD AWARUA (RCG AWARUA ROAD RNLAWR)","Current","TX",false
+413133,409102,"REPTECH CORPORATION LIMITED","FNX654",483.90625,"ALL NEW ZEALAND","Current","TX",false
+413133,409102,"REPTECH CORPORATION LIMITED","FNX506",482.05625,"ALL NEW ZEALAND","Current","TX",false
+413132,,"VITAL LIMITED","EN23#",155.20625,"MOBILE","Current","TX",false
+413131,410811,"VITAL LIMITED","EN23",151.025,"MT OTAU","Current","TX",false
+413130,,"VITAL LIMITED","DN198#",469.46875,"MOBILE","Current","TX",false
 413129,410809,"VITAL LIMITED","DN198",464.28125,"BLACK BIRCH","Current","TX",false
 413124,409248,"SPARK NEW ZEALAND TRADING LIMITED",,3660.0,"NEW BRIGHTON LOCKSLEY","Current","TX",false
 413123,409056,"SPARK NEW ZEALAND TRADING LIMITED",,2137.5,"NEW BRIGHTON LOCKSLEY","Current","TX",false
@@ -21957,48 +21999,48 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 241568,298901,"TWO DEGREES NETWORKS LIMITED",,798.0,"(WLG-047-019-C)[KLBN]_KELBURN","Current","TX",false
 241566,298926,"TWO DEGREES NETWORKS LIMITED",,798.0,"(AKL-007-010-A)[MALE]_MT ALBERT EAST","Current","TX",false
 241565,298915,"TWO DEGREES NETWORKS LIMITED",,798.0,"(WLG-047-080-G)[VUNI]_VICTORIA UNI","Current","TX",false
-241560,298925,"TWO DEGREES NETWORKS LIMITED",,798.0,"(WLG-047-020-D)[APPP]_APPLETON PARK","Current","TX",false
-241557,298949,"TWO DEGREES NETWORKS LIMITED",,798.0,"(CHC-060-066-E)[BRYN]_BRYNDWR","Current","TX",false
-241549,298918,"TWO DEGREES NETWORKS LIMITED",,798.0,"(WLG-047-061-B)[NGAO]_NGAIO","Current","TX",false
-241548,298920,"TWO DEGREES NETWORKS LIMITED",,798.0,"(CHC-060-148-A)[RICE]_RICCARTON EAST","Current","TX",false
-241547,298959,"TWO DEGREES NETWORKS LIMITED",,798.0,"(AKL-007-122-A)[BSPT]_BASTION POINT","Current","TX",false
-241542,298904,"TWO DEGREES NETWORKS LIMITED",,798.0,"(AKL-007-009-L)[BMRL]_BALMORAL","Current","TX",false
-241538,298916,"TWO DEGREES NETWORKS LIMITED",,798.0,"(CHC-060-173-B)[SHAN]_SHANDS ROAD NORTH","Current","TX",false
-241534,298894,"TWO DEGREES NETWORKS LIMITED",,798.0,"(AKL-007-091-A)[THRL]_THREE LAMPS","Current","TX",false
-241532,298971,"TWO DEGREES NETWORKS LIMITED",,798.0,"(AKL-007-136-E)[MNGS]_MORNINGSIDE","Current","TX",false
-241531,298927,"TWO DEGREES NETWORKS LIMITED",,798.0,"(AKL-007-137-B)[ORKL]_ORAKEI","Current","TX",false
-241530,298908,"TWO DEGREES NETWORKS LIMITED",,798.0,"(WLG-047-060-A)[CTND]_CROFTON DOWNS","Current","TX",false
-241529,299161,"WIRELESS DYNAMICS LIMITED","11G1#",11245.0,"2879 HAUTURU ROAD, WAITOMO","Current","TX",false
-241528,299160,"WIRELESS DYNAMICS LIMITED","11G1",10715.0,"44 VIEW ROAD, TE KUITI","Current","TX",false
-241527,,"ASHLEY COMMUNICATIONS LIMITED","EE94#",167.975,"MOBILE","Current","TX",false
-241526,,"ASHLEY COMMUNICATIONS LIMITED","EE101#",168.0625,"MOBILE","Current","TX",false
-241521,,"WAITAPU FARMS LIMITED","EE42#",167.325,"MOBILE","Current","TX",false
-241520,298853,"WAITAPU FARMS LIMITED","EE42",162.725,"72 PILLING ROAD, TOMARTA","Current","TX",false
-241519,299285,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"KAMO SOUTH (VFNZ)","Current","TX",false
-241515,299117,"ONE NEW ZEALAND GROUP LIMITED",,2682.5,"MATAMATA EAST VF C2MME","Current","TX",false
-241514,299116,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"MATAMATA EAST VF C2MME","Current","TX",false
-241513,299130,"ONE NEW ZEALAND GROUP LIMITED",,1867.5,"MATAMATA EAST VF C2MME","Current","TX",false
-241512,299126,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"MATAMATA EAST VF C2MME","Current","TX",false
-241510,299032,"SPARK NEW ZEALAND TRADING LIMITED",,2137.5,"GORE TOWN","Current","TX",false
-241509,299033,"SPARK NEW ZEALAND TRADING LIMITED",,2335.0,"GORE TOWN","Current","TX",false
-241508,299038,"SPARK NEW ZEALAND TRADING LIMITED",,2335.0,"MARTINBOROUGH SOUTH","Current","TX",false
-241507,299011,"LIGHTWIRE LIMITED","11G6#",11445.0,"NGONGOTAHA (NGO) (LIGHTWIRE)","Current","TX",false
-241506,299010,"LIGHTWIRE LIMITED","11G6",10915.0,"HAMURANA (HAMU) (LIGHTWIRE)","Current","TX",false
-241504,299036,"SPARK NEW ZEALAND TRADING LIMITED",,2137.5,"GLENBROOK","Current","TX",false
-241502,299013,"LIGHTWIRE LIMITED","11G3#",11325.0,"NGARUAWAHIA (NGWA) (LIGHTWIRE)","Current","TX",false
-241501,299012,"LIGHTWIRE LIMITED","11G3",10795.0,"KARIKARI (KKI) (LIGHTWIRE)","Current","TX",false
-241498,298993,"ASHLEY COMMUNICATIONS LIMITED","EE94",163.375,"MT PROSPECT (ASHCOMS)","Current","TX",false
-241497,298994,"ASHLEY COMMUNICATIONS LIMITED","EE101",163.4625,"MT PROSPECT (ASHCOMS)","Current","TX",false
-241493,299056,"NETCOM SERVICES LIMITED","DNX61",464.98125,"NORTH ISLAND","Current","TX",false
-241493,299056,"NETCOM SERVICES LIMITED","EEX85",166.7625,"NORTH ISLAND","Current","TX",false
-241493,299056,"NETCOM SERVICES LIMITED","EEX66",166.525,"NORTH ISLAND","Current","TX",false
-241493,299056,"NETCOM SERVICES LIMITED","ENX16",150.25,"NORTH ISLAND","Current","TX",false
-241493,299056,"NETCOM SERVICES LIMITED","ENX15",150.2375,"NORTH ISLAND","Current","TX",false
-241492,298804,"SPARK NEW ZEALAND TRADING LIMITED",,2665.0,"ELLICE ROAD","Current","TX",false
-241491,298800,"SPARK NEW ZEALAND TRADING LIMITED",,2665.0,"BEACH HAVEN","Current","TX",false
-241490,298796,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"WAIKATO EXPRESSWAY SOUTH","Current","TX",false
-241489,298815,"SPARK NEW ZEALAND TRADING LIMITED",,877.5,"WAIKATO EXPRESSWAY SOUTH","Current","TX",false
-241488,298847,"KORDIA LIMITED","7GU5#",7711.5,"PAEROA RANGE","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"REEFTON TUNNEL 1","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"REEFTON","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"RAZORBACK","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"RAURIMU TUNNEL 17 NIMT","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"RANGITOTO","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"RANGITAWA","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"RANGANUI NAL TUNNEL 8","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"RAETIHI","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"Pukekohe Kiwirail","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"PUREWA TUNNEL","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"PUKERUA BAY TUNNEL 3 - 6","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"PUKERUA BAY (KIWIRAIL)","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"PUKEPOTO","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"POROOTARAO TUNNEL","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"POROOTARAO","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"POPO TRIG","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"PARAKIORE","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"PAPAROA(TRANZ RAIL)","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"PAPAROA NAL TUNNEL 10","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"PALMERSTON NORTH RAILYARD","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"Owhango Kiwirail","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"Otira Fibre Hut","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"Ohaupo Kiwirail","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"OTIRA TUNNEL 17","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"OTEPOPO TUNNEL 2 MSL","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"NORWOOD KIWIRAIL","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"NORTH RANGE ROAD WEST","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"NORTH RANGE ROAD EAST","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"NGAURUKEHU NIMT TUNNEL 14","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"NGAURANGA NIMT TUNNEL 1","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"NGARANUI","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"NEWMARKET TUNNEL","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"NEW LYNN RAIL REPEATER","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"Masterton Rail Station","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"MT STUDHOLME","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"MT ROCHFORT","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"MT MAUNGANUI WHARF","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"MT HYDE","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"MT HIKURANGI (KING COUNTRY)","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"MT FREETH","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"MT ERIN","Current","TX",false
+432966,294167,"KIWIRAIL","EN105",152.05,"MT EDEN CRL STATION VENTILATION","Current","TX",false
 432966,294167,"KIWIRAIL","EN105",152.05,"MT EDEN CRL STATION PLATFORM ANT 3","Current","TX",false
 432966,294167,"KIWIRAIL","EN105",152.05,"MT EDEN CRL STATION PLATFORM ANT 2","Current","TX",false
 432966,294167,"KIWIRAIL","EN105",152.05,"MT EDEN CRL STATION PLATFORM ANT 1","Current","TX",false
@@ -22957,48 +22999,48 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 432106,424848,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"Leithfield South S2LFS","Current","TX",false
 432105,424854,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"Murchison Township (Chorus) S1CBM","Current","TX",false
 432104,424861,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"Hobbiton C2HBB","Current","TX",false
-432103,424855,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"Paerata A8PEA","Current","TX",false
-432102,424847,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"Ellerslie West A6ELW","Current","TX",false
-432101,411471,"TAIT SYSTEMS NZ LIMITED","7GU4#",7683.5,"TE AHUA","Current","TX",false
-432100,425046,"THE LINES CO LTD","7GL2",6500.0,"TAUMATAMAIRE (TLC)","Current","TX",false
-432099,425045,"THE LINES CO LTD","7GL2#",6840.0,"MT TUHUA","Current","TX",false
-432098,411470,"TAIT SYSTEMS NZ LIMITED","7GU4",7522.5,"WOODHILL PSN","Current","TX",false
-432096,280160,"WALKER WIRELESS LIMITED","EEX301",172.975,"Ōtaki to North of Levin Highway Project","Current","TX",false
-432096,280160,"WALKER WIRELESS LIMITED","EEX293",172.875,"Ōtaki to North of Levin Highway Project","Current","TX",false
-432096,280160,"WALKER WIRELESS LIMITED","EEX283",172.75,"Ōtaki to North of Levin Highway Project","Current","TX",false
-432096,280160,"WALKER WIRELESS LIMITED","EEX267",172.55,"Ōtaki to North of Levin Highway Project","Current","TX",false
-432096,280160,"WALKER WIRELESS LIMITED","EEX251",172.35,"Ōtaki to North of Levin Highway Project","Current","TX",false
-432096,280160,"WALKER WIRELESS LIMITED","EEX209",171.825,"Ōtaki to North of Levin Highway Project","Current","TX",false
-432096,280160,"WALKER WIRELESS LIMITED","EEX199",171.7,"Ōtaki to North of Levin Highway Project","Current","TX",false
-432096,280160,"WALKER WIRELESS LIMITED","EEX161",171.225,"Ōtaki to North of Levin Highway Project","Current","TX",false
-432096,280160,"WALKER WIRELESS LIMITED","EEX157",171.175,"Ōtaki to North of Levin Highway Project","Current","TX",false
-432096,280160,"WALKER WIRELESS LIMITED","EEX132",170.8625,"Ōtaki to North of Levin Highway Project","Current","TX",false
-432096,280160,"WALKER WIRELESS LIMITED","EEX123",170.75,"Ōtaki to North of Levin Highway Project","Current","TX",false
-432096,280160,"WALKER WIRELESS LIMITED","EEX99",170.45,"Ōtaki to North of Levin Highway Project","Current","TX",false
-432096,280160,"WALKER WIRELESS LIMITED","EEX92",170.3625,"Ōtaki to North of Levin Highway Project","Current","TX",false
-432096,280160,"WALKER WIRELESS LIMITED","EEX84",166.75,"Ōtaki to North of Levin Highway Project","Current","TX",false
-432096,280160,"WALKER WIRELESS LIMITED","EEX81",166.7125,"Ōtaki to North of Levin Highway Project","Current","TX",false
-432096,280160,"WALKER WIRELESS LIMITED","EEX63",166.4875,"Ōtaki to North of Levin Highway Project","Current","TX",false
-432096,280160,"WALKER WIRELESS LIMITED","EEX57",166.4125,"Ōtaki to North of Levin Highway Project","Current","TX",false
-432096,280160,"WALKER WIRELESS LIMITED","EEX47",166.2875,"Ōtaki to North of Levin Highway Project","Current","TX",false
-432096,280160,"WALKER WIRELESS LIMITED","EEX30",166.075,"Ōtaki to North of Levin Highway Project","Current","TX",false
-432096,280160,"WALKER WIRELESS LIMITED","EEX14",165.875,"Ōtaki to North of Levin Highway Project","Current","TX",false
-432096,280160,"WALKER WIRELESS LIMITED","ENX75",150.9875,"Ōtaki to North of Levin Highway Project","Current","TX",false
-432096,280160,"WALKER WIRELESS LIMITED","ENX66",150.875,"Ōtaki to North of Levin Highway Project","Current","TX",false
-432096,280160,"WALKER WIRELESS LIMITED","ENX43",150.5875,"Ōtaki to North of Levin Highway Project","Current","TX",false
-432096,280160,"WALKER WIRELESS LIMITED","ENX28",150.4,"Ōtaki to North of Levin Highway Project","Current","TX",false
-432096,280160,"WALKER WIRELESS LIMITED","ENX14",150.225,"Ōtaki to North of Levin Highway Project","Current","TX",false
-432096,280160,"WALKER WIRELESS LIMITED","ENX2",150.075,"Ōtaki to North of Levin Highway Project","Current","TX",false
-432095,,"CNZ 03 LIMITED","EN162#",154.54375,"MOBILE","Current","TX",false
-432073,,"CNZ 03 LIMITED","EN153#",154.43125,"MOBILE","Current","TX",false
-432072,,"CNZ 03 LIMITED","EN181#",154.78125,"MOBILE","Current","TX",false
-432042,424837,"SPARK NEW ZEALAND TRADING LIMITED",,2137.5,"OTAIKA ~EKU6~","Current","TX",false
-432041,424836,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"OTAIKA ~EKU6~","Current","TX",false
-432040,424826,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"OTAIKA ~EKU6~","Current","TX",false
-432039,424832,"SPARK NEW ZEALAND TRADING LIMITED",,877.5,"OTAIKA ~EKU6~","Current","TX",false
-432028,425496,"RIEDEL COMMUNICATIONS AUSTRALIA PTY LTD",,465.425,"Taupo International Motorsport (Supercars)","Current","TX",false
-432009,424985,"KIWIWIFI LIMITED","11G4W#",11525.0,"8A INGLIS STREET MOTUEKA","Current","TX",false
-432008,424984,"KIWIWIFI LIMITED","11G4W",10995.0,"222B LITTLE SYDNEY ROAD, BROOKLYN","Current","TX",false
+241560,298925,"TWO DEGREES NETWORKS LIMITED",,798.0,"(WLG-047-020-D)[APPP]_APPLETON PARK","Current","TX",false
+241557,298949,"TWO DEGREES NETWORKS LIMITED",,798.0,"(CHC-060-066-E)[BRYN]_BRYNDWR","Current","TX",false
+241549,298918,"TWO DEGREES NETWORKS LIMITED",,798.0,"(WLG-047-061-B)[NGAO]_NGAIO","Current","TX",false
+241548,298920,"TWO DEGREES NETWORKS LIMITED",,798.0,"(CHC-060-148-A)[RICE]_RICCARTON EAST","Current","TX",false
+241547,298959,"TWO DEGREES NETWORKS LIMITED",,798.0,"(AKL-007-122-A)[BSPT]_BASTION POINT","Current","TX",false
+241542,298904,"TWO DEGREES NETWORKS LIMITED",,798.0,"(AKL-007-009-L)[BMRL]_BALMORAL","Current","TX",false
+241538,298916,"TWO DEGREES NETWORKS LIMITED",,798.0,"(CHC-060-173-B)[SHAN]_SHANDS ROAD NORTH","Current","TX",false
+241534,298894,"TWO DEGREES NETWORKS LIMITED",,798.0,"(AKL-007-091-A)[THRL]_THREE LAMPS","Current","TX",false
+241532,298971,"TWO DEGREES NETWORKS LIMITED",,798.0,"(AKL-007-136-E)[MNGS]_MORNINGSIDE","Current","TX",false
+241531,298927,"TWO DEGREES NETWORKS LIMITED",,798.0,"(AKL-007-137-B)[ORKL]_ORAKEI","Current","TX",false
+241530,298908,"TWO DEGREES NETWORKS LIMITED",,798.0,"(WLG-047-060-A)[CTND]_CROFTON DOWNS","Current","TX",false
+241529,299161,"WIRELESS DYNAMICS LIMITED","11G1#",11245.0,"2879 HAUTURU ROAD, WAITOMO","Current","TX",false
+241528,299160,"WIRELESS DYNAMICS LIMITED","11G1",10715.0,"44 VIEW ROAD, TE KUITI","Current","TX",false
+241527,,"ASHLEY COMMUNICATIONS LIMITED","EE94#",167.975,"MOBILE","Current","TX",false
+241526,,"ASHLEY COMMUNICATIONS LIMITED","EE101#",168.0625,"MOBILE","Current","TX",false
+241521,,"WAITAPU FARMS LIMITED","EE42#",167.325,"MOBILE","Current","TX",false
+241520,298853,"WAITAPU FARMS LIMITED","EE42",162.725,"72 PILLING ROAD, TOMARTA","Current","TX",false
+241519,299285,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"KAMO SOUTH (VFNZ)","Current","TX",false
+241515,299117,"ONE NEW ZEALAND GROUP LIMITED",,2682.5,"MATAMATA EAST VF C2MME","Current","TX",false
+241514,299116,"ONE NEW ZEALAND GROUP LIMITED",,2120.0,"MATAMATA EAST VF C2MME","Current","TX",false
+241513,299130,"ONE NEW ZEALAND GROUP LIMITED",,1867.5,"MATAMATA EAST VF C2MME","Current","TX",false
+241512,299126,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"MATAMATA EAST VF C2MME","Current","TX",false
+241510,299032,"SPARK NEW ZEALAND TRADING LIMITED",,2137.5,"GORE TOWN","Current","TX",false
+241509,299033,"SPARK NEW ZEALAND TRADING LIMITED",,2335.0,"GORE TOWN","Current","TX",false
+241508,299038,"SPARK NEW ZEALAND TRADING LIMITED",,2335.0,"MARTINBOROUGH SOUTH","Current","TX",false
+241507,299011,"LIGHTWIRE LIMITED","11G6#",11445.0,"NGONGOTAHA (NGO) (LIGHTWIRE)","Current","TX",false
+241506,299010,"LIGHTWIRE LIMITED","11G6",10915.0,"HAMURANA (HAMU) (LIGHTWIRE)","Current","TX",false
+241504,299036,"SPARK NEW ZEALAND TRADING LIMITED",,2137.5,"GLENBROOK","Current","TX",false
+241502,299013,"LIGHTWIRE LIMITED","11G3#",11325.0,"NGARUAWAHIA (NGWA) (LIGHTWIRE)","Current","TX",false
+241501,299012,"LIGHTWIRE LIMITED","11G3",10795.0,"KARIKARI (KKI) (LIGHTWIRE)","Current","TX",false
+241498,298993,"ASHLEY COMMUNICATIONS LIMITED","EE94",163.375,"MT PROSPECT (ASHCOMS)","Current","TX",false
+241497,298994,"ASHLEY COMMUNICATIONS LIMITED","EE101",163.4625,"MT PROSPECT (ASHCOMS)","Current","TX",false
+241493,299056,"NETCOM SERVICES LIMITED","DNX61",464.98125,"NORTH ISLAND","Current","TX",false
+241493,299056,"NETCOM SERVICES LIMITED","EEX85",166.7625,"NORTH ISLAND","Current","TX",false
+241493,299056,"NETCOM SERVICES LIMITED","EEX66",166.525,"NORTH ISLAND","Current","TX",false
+241493,299056,"NETCOM SERVICES LIMITED","ENX16",150.25,"NORTH ISLAND","Current","TX",false
+241493,299056,"NETCOM SERVICES LIMITED","ENX15",150.2375,"NORTH ISLAND","Current","TX",false
+241492,298804,"SPARK NEW ZEALAND TRADING LIMITED",,2665.0,"ELLICE ROAD","Current","TX",false
+241491,298800,"SPARK NEW ZEALAND TRADING LIMITED",,2665.0,"BEACH HAVEN","Current","TX",false
+241490,298796,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"WAIKATO EXPRESSWAY SOUTH","Current","TX",false
+241489,298815,"SPARK NEW ZEALAND TRADING LIMITED",,877.5,"WAIKATO EXPRESSWAY SOUTH","Current","TX",false
+241488,298847,"KORDIA LIMITED","7GU5#",7711.5,"PAEROA RANGE","Current","TX",false
 241487,298846,"KORDIA LIMITED","7GU5",7550.5,"GOUDIES STATION REPOROA","Current","TX",false
 241486,298891,"ZELAN LIMITED","11G10#",11605.0,"BOUNDARY PEAK (ZELAN)","Current","TX",false
 241485,298890,"ZELAN LIMITED","11G10",11075.0,"RWCBGS - BULLER GORGE SOUTH","Current","TX",false
@@ -32957,48 +32999,48 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 228197,288126,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WESTERN SPRINGS","Current","TX",false
 228196,288100,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WHANGAPAROA RADIO STATION","Current","TX",false
 228195,288033,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WAIRERE ROAD","Current","TX",false
-228194,288020,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WESTPARK DRIVE","Current","TX",false
-228193,288150,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WOODLANDS PARK","Current","TX",false
-228192,287974,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WAIMAUKU","Current","TX",false
-228191,288024,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WESTMERE","Current","TX",false
-228190,288145,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WAIKOWHAI","Current","TX",false
-228189,287973,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WAIAKE","Current","TX",false
-228188,288052,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WAIUKU TOWN","Current","TX",false
-228187,288105,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WILLIAMSON AVE","Current","TX",false
-228186,288032,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WHENUAPAI","Current","TX",false
-228185,288077,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WHITFORD RELOCATION","Current","TX",false
-228184,288125,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WEST HARBOUR","Current","TX",false
-228183,288035,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WESTGATE TOWN","Current","TX",false
-228182,288080,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WEYMOUTH ROAD","Current","TX",false
-228181,288000,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WOOD HILL","Current","TX",false
-228180,288007,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WOODBAY","Current","TX",false
-228179,287994,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WAIRAU ROAD","Current","TX",false
-228178,288129,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WAINONI PARK","Current","TX",false
-228177,287960,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WALTER STREVENS DRIVE","Current","TX",false
-228176,288031,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WATTLE FARM ROAD","Current","TX",false
-228175,287999,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"BROADLANDS","Current","TX",false
-228174,287955,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"VICTORIA PARK TUNNEL","Current","TX",false
-228173,288143,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"UPPER HARBOUR DRIVE","Current","TX",false
-228172,288104,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"UPPER HILLSBOROUGH","Current","TX",false
-228171,288120,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"TUSCANY HEIGHTS","Current","TX",false
-228170,288098,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"TUAKAU","Current","TX",false
-228169,288051,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"TUI BRAE","Current","TX",false
-228168,288006,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"TRIANGLE ROAD","Current","TX",false
-228167,287993,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"TITIRANGI","Current","TX",false
-228166,288087,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"THREE KINGS SHOPPING CENTRE","Current","TX",false
-228165,288139,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"TAKANINI RELOCATION","Current","TX",false
-228164,288030,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"TAUPAKI","Current","TX",false
-228163,287996,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"TE IRIRANGI DRIVE","Current","TX",false
-228162,287995,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"TOTARA HEIGHTS","Current","TX",false
-228161,287983,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"TE AHUA","Current","TX",false
-228160,288070,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"TRAFALGAR STREET","Current","TX",false
-228159,288122,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"TORBAY","Current","TX",false
-228158,287991,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"TE ATATU ROAD","Current","TX",false
-228157,288111,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"TE ATATU NORTH","Current","TX",false
-228156,288050,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"SYLVIA PARK","Current","TX",false
-228155,287952,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"SYMONDS STREET","Current","TX",false
-228154,287992,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"SUNNYBRAE RELOCATION","Current","TX",false
-228153,288059,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"SHERWOOD","Current","TX",false
+432103,424855,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"Paerata A8PEA","Current","TX",false
+432102,424847,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"Ellerslie West A6ELW","Current","TX",false
+432101,411471,"TAIT SYSTEMS NZ LIMITED","7GU4#",7683.5,"TE AHUA","Current","TX",false
+432100,425046,"THE LINES CO LTD","7GL2",6500.0,"TAUMATAMAIRE (TLC)","Current","TX",false
+432099,425045,"THE LINES CO LTD","7GL2#",6840.0,"MT TUHUA","Current","TX",false
+432098,411470,"TAIT SYSTEMS NZ LIMITED","7GU4",7522.5,"WOODHILL PSN","Current","TX",false
+432096,280160,"WALKER WIRELESS LIMITED","EEX301",172.975,"Ōtaki to North of Levin Highway Project","Current","TX",false
+432096,280160,"WALKER WIRELESS LIMITED","EEX293",172.875,"Ōtaki to North of Levin Highway Project","Current","TX",false
+432096,280160,"WALKER WIRELESS LIMITED","EEX283",172.75,"Ōtaki to North of Levin Highway Project","Current","TX",false
+432096,280160,"WALKER WIRELESS LIMITED","EEX267",172.55,"Ōtaki to North of Levin Highway Project","Current","TX",false
+432096,280160,"WALKER WIRELESS LIMITED","EEX251",172.35,"Ōtaki to North of Levin Highway Project","Current","TX",false
+432096,280160,"WALKER WIRELESS LIMITED","EEX209",171.825,"Ōtaki to North of Levin Highway Project","Current","TX",false
+432096,280160,"WALKER WIRELESS LIMITED","EEX199",171.7,"Ōtaki to North of Levin Highway Project","Current","TX",false
+432096,280160,"WALKER WIRELESS LIMITED","EEX161",171.225,"Ōtaki to North of Levin Highway Project","Current","TX",false
+432096,280160,"WALKER WIRELESS LIMITED","EEX157",171.175,"Ōtaki to North of Levin Highway Project","Current","TX",false
+432096,280160,"WALKER WIRELESS LIMITED","EEX132",170.8625,"Ōtaki to North of Levin Highway Project","Current","TX",false
+432096,280160,"WALKER WIRELESS LIMITED","EEX123",170.75,"Ōtaki to North of Levin Highway Project","Current","TX",false
+432096,280160,"WALKER WIRELESS LIMITED","EEX99",170.45,"Ōtaki to North of Levin Highway Project","Current","TX",false
+432096,280160,"WALKER WIRELESS LIMITED","EEX92",170.3625,"Ōtaki to North of Levin Highway Project","Current","TX",false
+432096,280160,"WALKER WIRELESS LIMITED","EEX84",166.75,"Ōtaki to North of Levin Highway Project","Current","TX",false
+432096,280160,"WALKER WIRELESS LIMITED","EEX81",166.7125,"Ōtaki to North of Levin Highway Project","Current","TX",false
+432096,280160,"WALKER WIRELESS LIMITED","EEX63",166.4875,"Ōtaki to North of Levin Highway Project","Current","TX",false
+432096,280160,"WALKER WIRELESS LIMITED","EEX57",166.4125,"Ōtaki to North of Levin Highway Project","Current","TX",false
+432096,280160,"WALKER WIRELESS LIMITED","EEX47",166.2875,"Ōtaki to North of Levin Highway Project","Current","TX",false
+432096,280160,"WALKER WIRELESS LIMITED","EEX30",166.075,"Ōtaki to North of Levin Highway Project","Current","TX",false
+432096,280160,"WALKER WIRELESS LIMITED","EEX14",165.875,"Ōtaki to North of Levin Highway Project","Current","TX",false
+432096,280160,"WALKER WIRELESS LIMITED","ENX75",150.9875,"Ōtaki to North of Levin Highway Project","Current","TX",false
+432096,280160,"WALKER WIRELESS LIMITED","ENX66",150.875,"Ōtaki to North of Levin Highway Project","Current","TX",false
+432096,280160,"WALKER WIRELESS LIMITED","ENX43",150.5875,"Ōtaki to North of Levin Highway Project","Current","TX",false
+432096,280160,"WALKER WIRELESS LIMITED","ENX28",150.4,"Ōtaki to North of Levin Highway Project","Current","TX",false
+432096,280160,"WALKER WIRELESS LIMITED","ENX14",150.225,"Ōtaki to North of Levin Highway Project","Current","TX",false
+432096,280160,"WALKER WIRELESS LIMITED","ENX2",150.075,"Ōtaki to North of Levin Highway Project","Current","TX",false
+432095,,"CNZ 03 LIMITED","EN162#",154.54375,"MOBILE","Current","TX",false
+432073,,"CNZ 03 LIMITED","EN153#",154.43125,"MOBILE","Current","TX",false
+432072,,"CNZ 03 LIMITED","EN181#",154.78125,"MOBILE","Current","TX",false
+432042,424837,"SPARK NEW ZEALAND TRADING LIMITED",,2137.5,"OTAIKA ~EKU6~","Current","TX",false
+432041,424836,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"OTAIKA ~EKU6~","Current","TX",false
+432040,424826,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"OTAIKA ~EKU6~","Current","TX",false
+432039,424832,"SPARK NEW ZEALAND TRADING LIMITED",,877.5,"OTAIKA ~EKU6~","Current","TX",false
+432028,425496,"RIEDEL COMMUNICATIONS AUSTRALIA PTY LTD",,465.425,"Taupo International Motorsport (Supercars)","Current","TX",false
+432009,424985,"KIWIWIFI LIMITED","11G4W#",11525.0,"8A INGLIS STREET MOTUEKA","Current","TX",false
+432008,424984,"KIWIWIFI LIMITED","11G4W",10995.0,"222B LITTLE SYDNEY ROAD, BROOKLYN","Current","TX",false
 432007,,"POWERCO LIMITED","EN38#",155.39375,"MOBILE","Current","TX",false
 432006,267857,"POWERCO LIMITED","EN38",151.2125,"Upper Pongakawa (Powerco)","Current","TX",false
 432006,267857,"POWERCO LIMITED","EN38",151.2125,"MAUNGAKAWA","Current","TX",false
@@ -33957,48 +33999,48 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 431050,402055,"VORTEX VENTURES LIMITED","DNX80",466.70625,"ALL NEW ZEALAND","Current","TX",false
 431050,402055,"VORTEX VENTURES LIMITED","DNX61",464.98125,"ALL NEW ZEALAND","Current","TX",false
 431050,402055,"VORTEX VENTURES LIMITED","DNX55",464.90625,"ALL NEW ZEALAND","Current","TX",false
-431050,402055,"VORTEX VENTURES LIMITED","DNX52",464.86875,"ALL NEW ZEALAND","Current","TX",false
-431050,402055,"VORTEX VENTURES LIMITED","DNX39",461.70625,"ALL NEW ZEALAND","Current","TX",false
-431050,402055,"VORTEX VENTURES LIMITED","DNX35",461.65625,"ALL NEW ZEALAND","Current","TX",false
-431050,402055,"VORTEX VENTURES LIMITED","DNX34",461.64375,"ALL NEW ZEALAND","Current","TX",false
-431050,402055,"VORTEX VENTURES LIMITED","DNX27",461.55625,"ALL NEW ZEALAND","Current","TX",false
-431050,402055,"VORTEX VENTURES LIMITED","DNX23",461.50625,"ALL NEW ZEALAND","Current","TX",false
-431050,402055,"VORTEX VENTURES LIMITED","DNX20",458.65625,"ALL NEW ZEALAND","Current","TX",false
-431050,402055,"VORTEX VENTURES LIMITED","DNX16",458.53125,"ALL NEW ZEALAND","Current","TX",false
-431050,402055,"VORTEX VENTURES LIMITED","DNX13",458.49375,"ALL NEW ZEALAND","Current","TX",false
-431050,402055,"VORTEX VENTURES LIMITED","DNX10",458.45625,"ALL NEW ZEALAND","Current","TX",false
-431050,402055,"VORTEX VENTURES LIMITED","DNX7",458.41875,"ALL NEW ZEALAND","Current","TX",false
-431050,402055,"VORTEX VENTURES LIMITED","DNX5",458.39375,"ALL NEW ZEALAND","Current","TX",false
-431050,402055,"VORTEX VENTURES LIMITED","DNX2",458.35625,"ALL NEW ZEALAND","Current","TX",false
-431050,402055,"VORTEX VENTURES LIMITED","CNX66",455.21875,"ALL NEW ZEALAND","Current","TX",false
-431050,402055,"VORTEX VENTURES LIMITED","CNX56",455.09375,"ALL NEW ZEALAND","Current","TX",false
-431050,402055,"VORTEX VENTURES LIMITED","CNX50",455.01875,"ALL NEW ZEALAND","Current","TX",false
-431050,402055,"VORTEX VENTURES LIMITED","CNX35",453.48125,"ALL NEW ZEALAND","Current","TX",false
-431050,402055,"VORTEX VENTURES LIMITED","CNX30",453.41875,"ALL NEW ZEALAND","Current","TX",false
-431050,402055,"VORTEX VENTURES LIMITED","CNX24",453.34375,"ALL NEW ZEALAND","Current","TX",false
-431050,402055,"VORTEX VENTURES LIMITED","ENX73",150.9625,"ALL NEW ZEALAND","Current","TX",false
-431050,402055,"VORTEX VENTURES LIMITED","ENX25",150.3625,"ALL NEW ZEALAND","Current","TX",false
-431050,402055,"VORTEX VENTURES LIMITED","ENX6",150.125,"ALL NEW ZEALAND","Current","TX",false
-431049,424606,"STRATANET LIMITED","11G4W#",11525.0,"MOIRS HILL (STRATANET)","Current","TX",false
-431048,424605,"STRATANET LIMITED","11G4W",10995.0,"TAHEKEROA","Current","TX",false
-431047,423996,"SPARK NEW ZEALAND TRADING LIMITED",,2137.5,"KINGSLAND RAIL","Current","TX",false
-431045,423995,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"KAHUI","Current","TX",false
-431041,,"VORTEX VENTURES LIMITED","DN27#",467.33125,"MOBILE","Current","TX",false
-431040,424030,"VORTEX VENTURES LIMITED","DN27",462.14375,"277 Awapuni road Gisborne 4010","Current","TX",false
-431039,423994,"SPARK NEW ZEALAND TRADING LIMITED",,2137.5,"GRE CITY","Current","TX",false
-431037,424224,"AMAZON KUIPER NEW ZEALAND LIMITED",,19950.0,"USASAT-NGSO-8B","Current","TX",false
-431036,424225,"AMAZON KUIPER NEW ZEALAND LIMITED",,19100.0,"USASAT-NGSO-8B","Current","TX",false
-431035,411091,"TAIT SYSTEMS NZ LIMITED","7GM6B#",7362.5,"ARTILLERY ROAD WAIPU (VF BRYNDERWYN N1BYN)","Current","TX",false
-431034,411090,"TAIT SYSTEMS NZ LIMITED","7GM6B",7201.5,"9 HOROKAKA","Current","TX",false
-431018,302345,"TAIT SYSTEMS NZ LIMITED","23G3B1#",22694.0,"MAUNGAKAWA","Current","TX",false
-431017,302344,"TAIT SYSTEMS NZ LIMITED","23G3B1",21462.0,"PUKEITIONGA","Current","TX",false
-431012,408011,"TAIT SYSTEMS NZ LIMITED","23G1C1#",22463.0,"52 PARKWAY DRIVE MAIRANGI BAY","Current","TX",false
-431011,408010,"TAIT SYSTEMS NZ LIMITED","23G1C1",21231.0,"PINEHILL","Current","TX",false
-431005,,"SOUTHLAND DISTRICT COUNCIL","C43#",451.3375,"MOBILE","Current","TX",false
-431004,424195,"Dennis Lovegrove","FNX327",476.33125,"ALL NEW ZEALAND","Current","TX",false
-430974,424522,"AMURI NET LIMITED","11G7#",11485.0,"BURKES (AMURI)","Current","TX",false
-430973,424521,"AMURI NET LIMITED","11G7",10955.0,"138 LINCOLN TAI TAPU RD, TAI TAPU","Current","TX",false
-430972,423991,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"FRANZ JOSEF GLACIER","Current","TX",false
+228194,288020,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WESTPARK DRIVE","Current","TX",false
+228193,288150,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WOODLANDS PARK","Current","TX",false
+228192,287974,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WAIMAUKU","Current","TX",false
+228191,288024,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WESTMERE","Current","TX",false
+228190,288145,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WAIKOWHAI","Current","TX",false
+228189,287973,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WAIAKE","Current","TX",false
+228188,288052,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WAIUKU TOWN","Current","TX",false
+228187,288105,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WILLIAMSON AVE","Current","TX",false
+228186,288032,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WHENUAPAI","Current","TX",false
+228185,288077,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WHITFORD RELOCATION","Current","TX",false
+228184,288125,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WEST HARBOUR","Current","TX",false
+228183,288035,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WESTGATE TOWN","Current","TX",false
+228182,288080,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WEYMOUTH ROAD","Current","TX",false
+228181,288000,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WOOD HILL","Current","TX",false
+228180,288007,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WOODBAY","Current","TX",false
+228179,287994,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WAIRAU ROAD","Current","TX",false
+228178,288129,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WAINONI PARK","Current","TX",false
+228177,287960,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WALTER STREVENS DRIVE","Current","TX",false
+228176,288031,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WATTLE FARM ROAD","Current","TX",false
+228175,287999,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"BROADLANDS","Current","TX",false
+228174,287955,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"VICTORIA PARK TUNNEL","Current","TX",false
+228173,288143,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"UPPER HARBOUR DRIVE","Current","TX",false
+228172,288104,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"UPPER HILLSBOROUGH","Current","TX",false
+228171,288120,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"TUSCANY HEIGHTS","Current","TX",false
+228170,288098,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"TUAKAU","Current","TX",false
+228169,288051,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"TUI BRAE","Current","TX",false
+228168,288006,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"TRIANGLE ROAD","Current","TX",false
+228167,287993,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"TITIRANGI","Current","TX",false
+228166,288087,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"THREE KINGS SHOPPING CENTRE","Current","TX",false
+228165,288139,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"TAKANINI RELOCATION","Current","TX",false
+228164,288030,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"TAUPAKI","Current","TX",false
+228163,287996,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"TE IRIRANGI DRIVE","Current","TX",false
+228162,287995,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"TOTARA HEIGHTS","Current","TX",false
+228161,287983,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"TE AHUA","Current","TX",false
+228160,288070,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"TRAFALGAR STREET","Current","TX",false
+228159,288122,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"TORBAY","Current","TX",false
+228158,287991,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"TE ATATU ROAD","Current","TX",false
+228157,288111,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"TE ATATU NORTH","Current","TX",false
+228156,288050,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"SYLVIA PARK","Current","TX",false
+228155,287952,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"SYMONDS STREET","Current","TX",false
+228154,287992,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"SUNNYBRAE RELOCATION","Current","TX",false
+228153,288059,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"SHERWOOD","Current","TX",false
 228152,288056,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"SUNSET ROAD","Current","TX",false
 228151,288119,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"SUNNYPARK AVENUE","Current","TX",false
 228150,287979,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"STANMORE BAY","Current","TX",false
@@ -43957,48 +43999,48 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 211973,274021,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"HIKUAI","Current","TX",false
 211972,274105,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"HAHEI","Current","TX",false
 211971,274171,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"HAUTAPU","Current","TX",false
-211970,274218,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"HAIRINI","Current","TX",false
-211969,274204,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"GLEN MASSEY","Current","TX",false
-211968,274125,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"GREERTON","Current","TX",false
-211967,274064,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"GORDONTON","Current","TX",false
-211966,274184,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"GLEN MURRAY","Current","TX",false
-211965,274044,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"FAIRVIEW DOWNS","Current","TX",false
-211964,274017,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"FRANKTON","Current","TX",false
-211963,274153,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"FOREST LAKE","Current","TX",false
-211962,274138,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"FLAGSTAFF","Current","TX",false
-211961,274042,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"FAIRFIELD","Current","TX",false
-211960,274102,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"EIGHT MILE JUNCTION","Current","TX",false
-211959,274188,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"EDGECUMBE","Current","TX",false
-211958,274109,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"DINSDALE","Current","TX",false
-211957,274041,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"CROWN ROAD","Current","TX",false
-211955,274076,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"CENTRAL MT MAUNGANUI","Current","TX",false
-211954,274150,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"CHARTWELL SQUARE","Current","TX",false
-211953,274056,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"COBHAM DRIVE","Current","TX",false
-211952,274121,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"BOWENTOWN","Current","TX",false
-211951,274164,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"BROADLANDS","Current","TX",false
-211950,274060,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"BOYES PARK","Current","TX",false
-211949,274435,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"BENNEYDALE","Current","TX",false
-211948,274195,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"BROOKFIELD","Current","TX",false
-211947,274211,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"BETHLEHEM","Current","TX",false
-211946,274426,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"BAY FAIR","Current","TX",false
-211945,274243,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"AWATAPU DRIVE","Current","TX",false
-211944,274355,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"MATATA","Current","TX",false
-211943,274356,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"ATIAMURI","Current","TX",false
-211942,274430,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"ATHENREE","Current","TX",false
-211940,274403,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"AONGATETE","Current","TX",false
-211939,274267,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"MAMAKU STRAIGHTS","Current","TX",false
-211938,274368,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"MAMAKU","Current","TX",false
-211937,274322,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"MAKETU","Current","TX",false
-211935,274242,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"WAIPUKURA TOWN","Current","TX",false
-211934,273859,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"WANGANUI WEST","Current","TX",false
-211933,273842,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"WAITARA TOWN","Current","TX",false
-211932,273841,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"WAITARA EAST","Current","TX",false
-211931,273862,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"WAIOURU","Current","TX",false
-211930,273823,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"WAITARERE BEACH","Current","TX",false
-211929,273950,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"WAIARUHE","Current","TX",false
-211928,273965,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"SOUTH WAIRARAPA","Current","TX",false
-211927,273920,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"WAINUI","Current","TX",false
-211926,273827,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"WHAKAPUNAKI","Current","TX",false
+431050,402055,"VORTEX VENTURES LIMITED","DNX52",464.86875,"ALL NEW ZEALAND","Current","TX",false
+431050,402055,"VORTEX VENTURES LIMITED","DNX39",461.70625,"ALL NEW ZEALAND","Current","TX",false
+431050,402055,"VORTEX VENTURES LIMITED","DNX35",461.65625,"ALL NEW ZEALAND","Current","TX",false
+431050,402055,"VORTEX VENTURES LIMITED","DNX34",461.64375,"ALL NEW ZEALAND","Current","TX",false
+431050,402055,"VORTEX VENTURES LIMITED","DNX27",461.55625,"ALL NEW ZEALAND","Current","TX",false
+431050,402055,"VORTEX VENTURES LIMITED","DNX23",461.50625,"ALL NEW ZEALAND","Current","TX",false
+431050,402055,"VORTEX VENTURES LIMITED","DNX20",458.65625,"ALL NEW ZEALAND","Current","TX",false
+431050,402055,"VORTEX VENTURES LIMITED","DNX16",458.53125,"ALL NEW ZEALAND","Current","TX",false
+431050,402055,"VORTEX VENTURES LIMITED","DNX13",458.49375,"ALL NEW ZEALAND","Current","TX",false
+431050,402055,"VORTEX VENTURES LIMITED","DNX10",458.45625,"ALL NEW ZEALAND","Current","TX",false
+431050,402055,"VORTEX VENTURES LIMITED","DNX7",458.41875,"ALL NEW ZEALAND","Current","TX",false
+431050,402055,"VORTEX VENTURES LIMITED","DNX5",458.39375,"ALL NEW ZEALAND","Current","TX",false
+431050,402055,"VORTEX VENTURES LIMITED","DNX2",458.35625,"ALL NEW ZEALAND","Current","TX",false
+431050,402055,"VORTEX VENTURES LIMITED","CNX66",455.21875,"ALL NEW ZEALAND","Current","TX",false
+431050,402055,"VORTEX VENTURES LIMITED","CNX56",455.09375,"ALL NEW ZEALAND","Current","TX",false
+431050,402055,"VORTEX VENTURES LIMITED","CNX50",455.01875,"ALL NEW ZEALAND","Current","TX",false
+431050,402055,"VORTEX VENTURES LIMITED","CNX35",453.48125,"ALL NEW ZEALAND","Current","TX",false
+431050,402055,"VORTEX VENTURES LIMITED","CNX30",453.41875,"ALL NEW ZEALAND","Current","TX",false
+431050,402055,"VORTEX VENTURES LIMITED","CNX24",453.34375,"ALL NEW ZEALAND","Current","TX",false
+431050,402055,"VORTEX VENTURES LIMITED","ENX73",150.9625,"ALL NEW ZEALAND","Current","TX",false
+431050,402055,"VORTEX VENTURES LIMITED","ENX25",150.3625,"ALL NEW ZEALAND","Current","TX",false
+431050,402055,"VORTEX VENTURES LIMITED","ENX6",150.125,"ALL NEW ZEALAND","Current","TX",false
+431049,424606,"STRATANET LIMITED","11G4W#",11525.0,"MOIRS HILL (STRATANET)","Current","TX",false
+431048,424605,"STRATANET LIMITED","11G4W",10995.0,"TAHEKEROA","Current","TX",false
+431047,423996,"SPARK NEW ZEALAND TRADING LIMITED",,2137.5,"KINGSLAND RAIL","Current","TX",false
+431045,423995,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"KAHUI","Current","TX",false
+431041,,"VORTEX VENTURES LIMITED","DN27#",467.33125,"MOBILE","Current","TX",false
+431040,424030,"VORTEX VENTURES LIMITED","DN27",462.14375,"277 Awapuni road Gisborne 4010","Current","TX",false
+431039,423994,"SPARK NEW ZEALAND TRADING LIMITED",,2137.5,"GRE CITY","Current","TX",false
+431037,424224,"AMAZON KUIPER NEW ZEALAND LIMITED",,19950.0,"USASAT-NGSO-8B","Current","TX",false
+431036,424225,"AMAZON KUIPER NEW ZEALAND LIMITED",,19100.0,"USASAT-NGSO-8B","Current","TX",false
+431035,411091,"TAIT SYSTEMS NZ LIMITED","7GM6B#",7362.5,"ARTILLERY ROAD WAIPU (VF BRYNDERWYN N1BYN)","Current","TX",false
+431034,411090,"TAIT SYSTEMS NZ LIMITED","7GM6B",7201.5,"9 HOROKAKA","Current","TX",false
+431018,302345,"TAIT SYSTEMS NZ LIMITED","23G3B1#",22694.0,"MAUNGAKAWA","Current","TX",false
+431017,302344,"TAIT SYSTEMS NZ LIMITED","23G3B1",21462.0,"PUKEITIONGA","Current","TX",false
+431012,408011,"TAIT SYSTEMS NZ LIMITED","23G1C1#",22463.0,"52 PARKWAY DRIVE MAIRANGI BAY","Current","TX",false
+431011,408010,"TAIT SYSTEMS NZ LIMITED","23G1C1",21231.0,"PINEHILL","Current","TX",false
+431005,,"SOUTHLAND DISTRICT COUNCIL","C43#",451.3375,"MOBILE","Current","TX",false
+431004,424195,"Dennis Lovegrove","FNX327",476.33125,"ALL NEW ZEALAND","Current","TX",false
+430974,424522,"AMURI NET LIMITED","11G7#",11485.0,"BURKES (AMURI)","Current","TX",false
+430973,424521,"AMURI NET LIMITED","11G7",10955.0,"138 LINCOLN TAI TAPU RD, TAI TAPU","Current","TX",false
+430972,423991,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"FRANZ JOSEF GLACIER","Current","TX",false
 430971,423977,"SPARK NEW ZEALAND TRADING LIMITED",,2665.0,"IRWELL","Current","TX",false
 430951,257726,"OCEAN VIEW LOGGING LIMITED","EEX40",166.2,"UPPER NORTH ISLAND","Current","TX",false
 430951,257726,"OCEAN VIEW LOGGING LIMITED","EEX12",165.85,"UPPER NORTH ISLAND","Current","TX",false
@@ -44957,48 +44999,48 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 429570,422248,"TWO DEGREES NETWORKS LIMITED",,798.0,"(AKL-005-061-B)[BBWT]_BROWNS BAY WEST","Current","TX",false
 429569,422243,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(AKL-005-061-B)[BBWT]_BROWNS BAY WEST","Current","TX",false
 429568,422246,"TWO DEGREES NETWORKS LIMITED",,3580.0,"(AKL-005-061-B)[BBWT]_BROWNS BAY WEST","Current","TX",false
-429567,422247,"TWO DEGREES NETWORKS LIMITED",,3580.0,"(AKL-004-053-B)[HSVL]_HELENSVILLE","Current","TX",false
-429566,422245,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(AKL-004-053-B)[HSVL]_HELENSVILLE","Current","TX",false
-429561,,"Downer New Zealand Limited","EN82#",155.94375,"MOBILE","Current","TX",false
-429560,,"Downer New Zealand Limited","EN44#",155.46875,"MOBILE","Current","TX",false
-429559,,"COMMUNICATE LIMITED","EN58#",155.64375,"MOBILE","Current","TX",false
-429558,,"Downer New Zealand Limited","EN85#",155.98125,"MOBILE","Current","TX",false
-429556,,"Downer New Zealand Limited","EN74#",155.84375,"MOBILE","Current","TX",false
-429555,,"Downer New Zealand Limited","EN42#",155.44375,"MOBILE","Current","TX",false
-429554,,"Downer New Zealand Limited","EN24#",155.21875,"HOMER TUNNEL LEAKY COAX COVERAGE AREA","Current","TX",false
-429547,422991,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"AUCKLAND INTERNATIONAL AIRPORT PIER A ~6NAG~","Current","TX",false
-429546,422354,"SPARK NEW ZEALAND TRADING LIMITED",,3660.0,"AUCKLAND INTERNATIONAL AIRPORT PIER A ~6NAG~","Current","TX",false
-429545,422225,"SPARK NEW ZEALAND TRADING LIMITED",,2137.5,"AUCKLAND INTERNATIONAL AIRPORT PIER A ~6NAG~","Current","TX",false
-429544,422224,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"AUCKLAND INTERNATIONAL AIRPORT PIER A ~6NAG~","Current","TX",false
-429543,422222,"SPARK NEW ZEALAND TRADING LIMITED",,2665.0,"AUCKLAND INTERNATIONAL AIRPORT PIER A ~6NAG~","Current","TX",false
-429542,422226,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"AUCKLAND INTERNATIONAL AIRPORT PIER A ~6NAG~","Current","TX",false
-429541,422471,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"Ngauranga West W6NGW","Current","TX",false
-429540,422472,"ONE NEW ZEALAND GROUP LIMITED",,2682.5,"Ngauranga West W6NGW","Current","TX",false
-429539,422470,"ONE NEW ZEALAND GROUP LIMITED",,2682.5,"MATANGI (VFNZ)","Current","TX",false
-429538,422322,"COMMUNICATE LIMITED","EN58",151.4625,"KAHURANAKI","Current","TX",false
-429537,424307,"Downer New Zealand Limited","EN82",151.7625,"MT EGLINTON SPUR","Current","TX",false
-429536,424303,"Downer New Zealand Limited","EN85",151.8,"29 CASWELL RD, TE ANAU (DOWNER DEPOT)","Current","TX",false
-429535,424299,"Downer New Zealand Limited","EN44",151.2875,"TE ANAU GLOW WORM CAVES JETTY","Current","TX",false
-429534,424301,"Downer New Zealand Limited","EN74",151.6625,"CRIBB WALL, HOMER EAST SH94","Current","TX",false
-429533,424297,"Downer New Zealand Limited","EN42",151.2625,"AVALANCHE CREEK, MILFORD SOUND","Current","TX",false
-429532,424305,"Downer New Zealand Limited","EN24",151.0375,"HOMER TUNNEL EAST PORTAL","Current","TX",false
-429520,422062,"SPARK NEW ZEALAND TRADING LIMITED",,2665.0,"REMUERA","Current","TX",false
-429519,422065,"SPARK NEW ZEALAND TRADING LIMITED",,2665.0,"PILKINGTON ROAD","Current","TX",false
-429515,423059,"RURAL CONNECTIVITY GROUP LIMITED",,1845.0,"RWLSWK - SUMMERSET WAIKANAE","Current","TX",false
-429514,423065,"RURAL CONNECTIVITY GROUP LIMITED",,1845.0,"RWKSCB - SUMMERSET CAMBRIDGE","Current","TX",false
-429513,423061,"RURAL CONNECTIVITY GROUP LIMITED",,1845.0,"RTAPOH - POHARA","Current","TX",false
-429512,423064,"RURAL CONNECTIVITY GROUP LIMITED",,1845.0,"RTAATN - ABEL TASMAN NATIONAL PARK","Current","TX",false
-429511,423063,"RURAL CONNECTIVITY GROUP LIMITED",,1845.0,"RSLCLB - COLAC BAY","Current","TX",false
-429510,423045,"RURAL CONNECTIVITY GROUP LIMITED",,1845.0,"ROTWQT - WEST QUEENSTOWN","Current","TX",false
-429509,423060,"RURAL CONNECTIVITY GROUP LIMITED",,1845.0,"RNLSWG - SUMMERSET WHANGAREI","Current","TX",false
-429508,423062,"RURAL CONNECTIVITY GROUP LIMITED",,1845.0,"RMLWNI - WHENUANUI","Current","TX",false
-429507,423058,"RURAL CONNECTIVITY GROUP LIMITED",,1845.0,"RMLANK - ANAKIWA","Current","TX",false
-429506,423054,"RURAL CONNECTIVITY GROUP LIMITED",,1845.0,"RCTWTW - WAITANGI WAIMATE","Current","TX",false
-429505,423055,"RURAL CONNECTIVITY GROUP LIMITED",,1845.0,"RAKTAI - TE ARAI","Current","TX",false
-429494,281796,"KIWIRAIL","FNX127",470.83125,"ALL NEW ZEALAND","Current","TX",false
-429494,281796,"KIWIRAIL","CNX66",455.21875,"ALL NEW ZEALAND","Current","TX",false
-429494,281796,"KIWIRAIL","CNX35",453.48125,"ALL NEW ZEALAND","Current","TX",false
-429494,281796,"KIWIRAIL","ENX87",153.56875,"ALL NEW ZEALAND","Current","TX",false
+211970,274218,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"HAIRINI","Current","TX",false
+211969,274204,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"GLEN MASSEY","Current","TX",false
+211968,274125,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"GREERTON","Current","TX",false
+211967,274064,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"GORDONTON","Current","TX",false
+211966,274184,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"GLEN MURRAY","Current","TX",false
+211965,274044,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"FAIRVIEW DOWNS","Current","TX",false
+211964,274017,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"FRANKTON","Current","TX",false
+211963,274153,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"FOREST LAKE","Current","TX",false
+211962,274138,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"FLAGSTAFF","Current","TX",false
+211961,274042,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"FAIRFIELD","Current","TX",false
+211960,274102,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"EIGHT MILE JUNCTION","Current","TX",false
+211959,274188,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"EDGECUMBE","Current","TX",false
+211958,274109,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"DINSDALE","Current","TX",false
+211957,274041,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"CROWN ROAD","Current","TX",false
+211955,274076,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"CENTRAL MT MAUNGANUI","Current","TX",false
+211954,274150,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"CHARTWELL SQUARE","Current","TX",false
+211953,274056,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"COBHAM DRIVE","Current","TX",false
+211952,274121,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"BOWENTOWN","Current","TX",false
+211951,274164,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"BROADLANDS","Current","TX",false
+211950,274060,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"BOYES PARK","Current","TX",false
+211949,274435,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"BENNEYDALE","Current","TX",false
+211948,274195,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"BROOKFIELD","Current","TX",false
+211947,274211,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"BETHLEHEM","Current","TX",false
+211946,274426,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"BAY FAIR","Current","TX",false
+211945,274243,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"AWATAPU DRIVE","Current","TX",false
+211944,274355,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"MATATA","Current","TX",false
+211943,274356,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"ATIAMURI","Current","TX",false
+211942,274430,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"ATHENREE","Current","TX",false
+211940,274403,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"AONGATETE","Current","TX",false
+211939,274267,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"MAMAKU STRAIGHTS","Current","TX",false
+211938,274368,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"MAMAKU","Current","TX",false
+211937,274322,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"MAKETU","Current","TX",false
+211935,274242,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"WAIPUKURA TOWN","Current","TX",false
+211934,273859,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"WANGANUI WEST","Current","TX",false
+211933,273842,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"WAITARA TOWN","Current","TX",false
+211932,273841,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"WAITARA EAST","Current","TX",false
+211931,273862,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"WAIOURU","Current","TX",false
+211930,273823,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"WAITARERE BEACH","Current","TX",false
+211929,273950,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"WAIARUHE","Current","TX",false
+211928,273965,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"SOUTH WAIRARAPA","Current","TX",false
+211927,273920,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"WAINUI","Current","TX",false
+211926,273827,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"WHAKAPUNAKI","Current","TX",false
 211925,273876,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"WEST END","Current","TX",false
 211924,273865,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"WELBOURNE","Current","TX",false
 211923,273937,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"WAVERLEY","Current","TX",false
@@ -54957,48 +54999,48 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 189088,256465,"IGNITION NETWORKS LIMITED",,5.1034,"81 ROSS LANE KUMEU","Current","TX",false
 189088,256465,"IGNITION NETWORKS LIMITED",,4.5184,"81 ROSS LANE KUMEU","Current","TX",false
 189088,256465,"IGNITION NETWORKS LIMITED",,3.1964,"81 ROSS LANE KUMEU","Current","TX",false
-189088,256465,"IGNITION NETWORKS LIMITED",,2.7034,"81 ROSS LANE KUMEU","Current","TX",false
-189087,,"CHEDWORTH PROPERTIES LIMITED","DN196#",469.44375,"CHEDWORTH PROPERTIES CARRS ROAD PROJECT","Current","TX",false
-189078,256151,"ENHANCED SOLUTIONS LIMITED","11G5#",11405.0,"MT THREAVE NORTH","Current","TX",false
-189077,256150,"ENHANCED SOLUTIONS LIMITED","11G5",10875.0,"PATOKA (AONET)","Current","TX",false
-189062,256232,"ENHANCED SOLUTIONS LIMITED","11G2#",11285.0,"MT THREAVE NORTH","Current","TX",false
-189061,256231,"ENHANCED SOLUTIONS LIMITED","11G2",10755.0,"LAWSONS ROYS HILL","Current","TX",false
-189060,256254,"ENHANCED SOLUTIONS LIMITED","11G3#",11325.0,"MATANGI ROAD (AONET)","Current","TX",false
-189059,256253,"ENHANCED SOLUTIONS LIMITED","11G3",10795.0,"LAWSONS ROYS HILL","Current","TX",false
-189058,256252,"ENHANCED SOLUTIONS LIMITED","11G1#",11245.0,"AIRNET TARADALE","Current","TX",false
-189055,256120,"MARLBOROUGH LINES LIMITED","11G10#",11605.0,"MANAROA 490","Current","TX",false
-189053,256122,"MARLBOROUGH LINES LIMITED","11G8",10995.0,"RAHOTIA (MARLBOROUGH LINES)","Current","TX",false
-189051,256124,"MARLBOROUGH LINES LIMITED","6G6#",6345.49,"HOLLOW TOP (MARL LINES)","Current","TX",false
-189049,256123,"MARLBOROUGH LINES LIMITED","6G6",6093.45,"RAHOTIA (MARLBOROUGH LINES)","Current","TX",false
-189048,256121,"MARLBOROUGH LINES LIMITED","11G8#",11525.0,"MANAROA 490","Current","TX",false
-189047,256119,"MARLBOROUGH LINES LIMITED","11G10",11075.0,"TAKORIKA","Current","TX",false
-189036,256072,"POWERCO LIMITED","KK2#",851.75,"KELVIN GROVE SUBSTATION","Current","TX",false
-189035,256071,"POWERCO LIMITED","KK2",806.75,"PASCAL STREET SUBSTATION, PALMERSTON NORTH","Current","TX",false
-189034,256086,"SPARK NEW ZEALAND TRADING LIMITED","18G8B1",18525.0,"HARURU","Current","TX",false
-189033,256085,"SPARK NEW ZEALAND TRADING LIMITED","18G8B1#",19535.0,"WAITANGI DAY COW","Current","TX",false
-189031,256094,"SPARK NEW ZEALAND TRADING LIMITED",,877.5,"WATERVIEW TUNNEL","Current","TX",false
-189029,256217,"SPARK NEW ZEALAND TRADING LIMITED",,877.5,"RIVERSDALE BEACH","Current","TX",false
-189028,256073,"HIGHLAND HELICOPTERS LIMITED","ENX52",150.7,"ALL SOUTH ISLAND","Current","TX",false
-189015,256036,"KIWIRAIL","KK8#",854.75,"TOKOMARU EAST","Current","TX",false
-189014,256035,"KIWIRAIL","KK8",809.75,"ARAMOHO TRIANGLE","Current","TX",false
-189010,256030,"Victoria University of Wellington","DNX58",464.94375,"WELLINGTON REGION","Current","TX",false
-189010,256030,"Victoria University of Wellington","DNX36",461.66875,"WELLINGTON REGION","Current","TX",false
-189010,256030,"Victoria University of Wellington","DNX21",461.48125,"WELLINGTON REGION","Current","TX",false
-189010,256030,"Victoria University of Wellington","DNX2",458.35625,"WELLINGTON REGION","Current","TX",false
-189005,256175,"ONE NEW ZEALAND GROUP LIMITED",,2682.5,"LEIGH CENTRAL (VFNZ)","Current","TX",false
-189001,256018,"VITAL LIMITED","I510",420.2375,"MAUNGAWHIORANGI","Current","TX",false
-189000,256017,"VITAL LIMITED","I510#",425.25,"PUKEHOKO","Current","TX",false
-188999,256016,"WESTERN ENERGY SERVICES LIMITED","DNX2",458.35625,"CENTRAL NORTH ISLAND","Current","TX",false
-188999,256016,"WESTERN ENERGY SERVICES LIMITED","CNX22",453.31875,"CENTRAL NORTH ISLAND","Current","TX",false
-188999,256016,"WESTERN ENERGY SERVICES LIMITED","CNX17",449.95625,"CENTRAL NORTH ISLAND","Current","TX",false
-188979,256177,"ONE NEW ZEALAND GROUP LIMITED","VF900",952.0,"BISHOPS BAY (VFNZ)","Current","TX",false
-188978,256170,"ONE NEW ZEALAND GROUP LIMITED","VF900",952.0,"Christchurch Hospital ONZ S3CHH","Current","TX",false
-188975,257033,"PR HOTELS LIMITED","DNX49",464.83125,"ALL NEW ZEALAND","Current","TX",false
-188975,257033,"PR HOTELS LIMITED","DNX21",461.48125,"ALL NEW ZEALAND","Current","TX",false
-188975,257033,"PR HOTELS LIMITED","DNX17",458.61875,"ALL NEW ZEALAND","Current","TX",false
-188969,256223,"NEW ZEALAND OIL SERVICES LIMITED","J32B#",459.4625,"OMATA TANK FARM","Current","TX",false
-188968,256222,"NEW ZEALAND OIL SERVICES LIMITED","J32B",454.425,"NEWTON KING WHARF","Current","TX",false
-188960,,"RINGS SCENIC TOURS LIMITED","FN363#",490.53125,"MOBILE","Current","TX",false
+429567,422247,"TWO DEGREES NETWORKS LIMITED",,3580.0,"(AKL-004-053-B)[HSVL]_HELENSVILLE","Current","TX",false
+429566,422245,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(AKL-004-053-B)[HSVL]_HELENSVILLE","Current","TX",false
+429561,,"Downer New Zealand Limited","EN82#",155.94375,"MOBILE","Current","TX",false
+429560,,"Downer New Zealand Limited","EN44#",155.46875,"MOBILE","Current","TX",false
+429559,,"COMMUNICATE LIMITED","EN58#",155.64375,"MOBILE","Current","TX",false
+429558,,"Downer New Zealand Limited","EN85#",155.98125,"MOBILE","Current","TX",false
+429556,,"Downer New Zealand Limited","EN74#",155.84375,"MOBILE","Current","TX",false
+429555,,"Downer New Zealand Limited","EN42#",155.44375,"MOBILE","Current","TX",false
+429554,,"Downer New Zealand Limited","EN24#",155.21875,"HOMER TUNNEL LEAKY COAX COVERAGE AREA","Current","TX",false
+429547,422991,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"AUCKLAND INTERNATIONAL AIRPORT PIER A ~6NAG~","Current","TX",false
+429546,422354,"SPARK NEW ZEALAND TRADING LIMITED",,3660.0,"AUCKLAND INTERNATIONAL AIRPORT PIER A ~6NAG~","Current","TX",false
+429545,422225,"SPARK NEW ZEALAND TRADING LIMITED",,2137.5,"AUCKLAND INTERNATIONAL AIRPORT PIER A ~6NAG~","Current","TX",false
+429544,422224,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"AUCKLAND INTERNATIONAL AIRPORT PIER A ~6NAG~","Current","TX",false
+429543,422222,"SPARK NEW ZEALAND TRADING LIMITED",,2665.0,"AUCKLAND INTERNATIONAL AIRPORT PIER A ~6NAG~","Current","TX",false
+429542,422226,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"AUCKLAND INTERNATIONAL AIRPORT PIER A ~6NAG~","Current","TX",false
+429541,422471,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"Ngauranga West W6NGW","Current","TX",false
+429540,422472,"ONE NEW ZEALAND GROUP LIMITED",,2682.5,"Ngauranga West W6NGW","Current","TX",false
+429539,422470,"ONE NEW ZEALAND GROUP LIMITED",,2682.5,"MATANGI (VFNZ)","Current","TX",false
+429538,422322,"COMMUNICATE LIMITED","EN58",151.4625,"KAHURANAKI","Current","TX",false
+429537,424307,"Downer New Zealand Limited","EN82",151.7625,"MT EGLINTON SPUR","Current","TX",false
+429536,424303,"Downer New Zealand Limited","EN85",151.8,"29 CASWELL RD, TE ANAU (DOWNER DEPOT)","Current","TX",false
+429535,424299,"Downer New Zealand Limited","EN44",151.2875,"TE ANAU GLOW WORM CAVES JETTY","Current","TX",false
+429534,424301,"Downer New Zealand Limited","EN74",151.6625,"CRIBB WALL, HOMER EAST SH94","Current","TX",false
+429533,424297,"Downer New Zealand Limited","EN42",151.2625,"AVALANCHE CREEK, MILFORD SOUND","Current","TX",false
+429532,424305,"Downer New Zealand Limited","EN24",151.0375,"HOMER TUNNEL EAST PORTAL","Current","TX",false
+429520,422062,"SPARK NEW ZEALAND TRADING LIMITED",,2665.0,"REMUERA","Current","TX",false
+429519,422065,"SPARK NEW ZEALAND TRADING LIMITED",,2665.0,"PILKINGTON ROAD","Current","TX",false
+429515,423059,"RURAL CONNECTIVITY GROUP LIMITED",,1845.0,"RWLSWK - SUMMERSET WAIKANAE","Current","TX",false
+429514,423065,"RURAL CONNECTIVITY GROUP LIMITED",,1845.0,"RWKSCB - SUMMERSET CAMBRIDGE","Current","TX",false
+429513,423061,"RURAL CONNECTIVITY GROUP LIMITED",,1845.0,"RTAPOH - POHARA","Current","TX",false
+429512,423064,"RURAL CONNECTIVITY GROUP LIMITED",,1845.0,"RTAATN - ABEL TASMAN NATIONAL PARK","Current","TX",false
+429511,423063,"RURAL CONNECTIVITY GROUP LIMITED",,1845.0,"RSLCLB - COLAC BAY","Current","TX",false
+429510,423045,"RURAL CONNECTIVITY GROUP LIMITED",,1845.0,"ROTWQT - WEST QUEENSTOWN","Current","TX",false
+429509,423060,"RURAL CONNECTIVITY GROUP LIMITED",,1845.0,"RNLSWG - SUMMERSET WHANGAREI","Current","TX",false
+429508,423062,"RURAL CONNECTIVITY GROUP LIMITED",,1845.0,"RMLWNI - WHENUANUI","Current","TX",false
+429507,423058,"RURAL CONNECTIVITY GROUP LIMITED",,1845.0,"RMLANK - ANAKIWA","Current","TX",false
+429506,423054,"RURAL CONNECTIVITY GROUP LIMITED",,1845.0,"RCTWTW - WAITANGI WAIMATE","Current","TX",false
+429505,423055,"RURAL CONNECTIVITY GROUP LIMITED",,1845.0,"RAKTAI - TE ARAI","Current","TX",false
+429494,281796,"KIWIRAIL","FNX127",470.83125,"ALL NEW ZEALAND","Current","TX",false
+429494,281796,"KIWIRAIL","CNX66",455.21875,"ALL NEW ZEALAND","Current","TX",false
+429494,281796,"KIWIRAIL","CNX35",453.48125,"ALL NEW ZEALAND","Current","TX",false
+429494,281796,"KIWIRAIL","ENX87",153.56875,"ALL NEW ZEALAND","Current","TX",false
 429494,281796,"KIWIRAIL","ENX86",153.55625,"ALL NEW ZEALAND","Current","TX",false
 429494,281796,"KIWIRAIL","ENX82",153.50625,"ALL NEW ZEALAND","Current","TX",false
 429494,281796,"KIWIRAIL","ENX54",150.725,"ALL NEW ZEALAND","Current","TX",false
@@ -55957,48 +55999,48 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 428496,422135,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"ORANGA","Current","TX",false
 428495,422132,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"ORAMS ROAD","Current","TX",false
 428494,422164,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"CASTOR BAY","Current","TX",false
-428493,422131,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"CARR ROAD","Current","TX",false
-428492,422133,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"CROWN HILL","Current","TX",false
-428491,422122,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"CONSTELLATION DRIVE","Current","TX",false
-428490,422129,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"COMINS CRESCENT","Current","TX",false
-428489,422139,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"CAMPBELLS BAY","Current","TX",false
-428488,422128,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"CLARKS BEACH","Current","TX",false
-428487,422120,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"CORK BEACH","Current","TX",false
-428486,422125,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"CHAPEL ROAD","Current","TX",false
-428485,422127,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"BROWNS BAY BOWLING CLUB #SEZ9#","Current","TX",false
-428484,422126,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"ABBOTS WAY","Current","TX",false
-428483,422124,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"BUCKLAND ROAD ~V7ET~","Current","TX",false
-428482,422130,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"ICE SKATING RINK","Current","TX",false
-428481,422123,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"BRITOMART OUTDOOR","Current","TX",false
-428480,422136,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"BOND ST BRIDGE","Current","TX",false
-428479,422121,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"BROWNS BAY","Current","TX",false
-428478,422117,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"BROWNS ROAD","Current","TX",false
-428477,422116,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"BARRYS POINT ROAD","Current","TX",false
-428476,422112,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"BOTANY ROAD","Current","TX",false
-428475,422118,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"BALMORAL","Current","TX",false
-428474,422119,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"BEN LOMOND CRES","Current","TX",false
-428473,422111,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"BIRKDALE","Current","TX",false
-428472,422114,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"BIRMINGHAM ROAD","Current","TX",false
-428471,422108,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"BRIDGE STREET","Current","TX",false
-428470,422115,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"BLOCKHOUSE BAY","Current","TX",false
-428469,422107,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"BAIRDS ROAD","Current","TX",false
-428468,422113,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"AVONDALE","Current","TX",false
-428467,422105,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"ANZAC AVE","Current","TX",false
-428466,422106,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"VECTOR ARENA","Current","TX",false
-428465,422110,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"MT ALBERT","Current","TX",false
-428464,422103,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"ALBANY STADIUM","Current","TX",false
-428463,422109,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"GLENFIELD SHOPPING MALL","Current","TX",false
-428462,422100,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"GREENWOOD CORNER","Current","TX",false
-428461,422098,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"GREVILLE ROAD INTERCHANGE","Current","TX",false
-428460,422104,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"GRAFTON","Current","TX",false
-428459,422101,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"GREENLANE WEST","Current","TX",false
-428458,422102,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"GLEN ORCHARD","Current","TX",false
-428457,422090,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"GLEN INNES","Current","TX",false
-428456,422096,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"GREENLANE","Current","TX",false
-428455,422092,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"GREVILLE RESERVE","Current","TX",false
-428454,422099,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"GLENFIELD EXCHANGE","Current","TX",false
-428453,422082,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"GREENLANE SOUTH","Current","TX",false
-428452,422077,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"GLEN EDEN","Current","TX",false
+189088,256465,"IGNITION NETWORKS LIMITED",,2.7034,"81 ROSS LANE KUMEU","Current","TX",false
+189087,,"CHEDWORTH PROPERTIES LIMITED","DN196#",469.44375,"CHEDWORTH PROPERTIES CARRS ROAD PROJECT","Current","TX",false
+189078,256151,"ENHANCED SOLUTIONS LIMITED","11G5#",11405.0,"MT THREAVE NORTH","Current","TX",false
+189077,256150,"ENHANCED SOLUTIONS LIMITED","11G5",10875.0,"PATOKA (AONET)","Current","TX",false
+189062,256232,"ENHANCED SOLUTIONS LIMITED","11G2#",11285.0,"MT THREAVE NORTH","Current","TX",false
+189061,256231,"ENHANCED SOLUTIONS LIMITED","11G2",10755.0,"LAWSONS ROYS HILL","Current","TX",false
+189060,256254,"ENHANCED SOLUTIONS LIMITED","11G3#",11325.0,"MATANGI ROAD (AONET)","Current","TX",false
+189059,256253,"ENHANCED SOLUTIONS LIMITED","11G3",10795.0,"LAWSONS ROYS HILL","Current","TX",false
+189058,256252,"ENHANCED SOLUTIONS LIMITED","11G1#",11245.0,"AIRNET TARADALE","Current","TX",false
+189055,256120,"MARLBOROUGH LINES LIMITED","11G10#",11605.0,"MANAROA 490","Current","TX",false
+189053,256122,"MARLBOROUGH LINES LIMITED","11G8",10995.0,"RAHOTIA (MARLBOROUGH LINES)","Current","TX",false
+189051,256124,"MARLBOROUGH LINES LIMITED","6G6#",6345.49,"HOLLOW TOP (MARL LINES)","Current","TX",false
+189049,256123,"MARLBOROUGH LINES LIMITED","6G6",6093.45,"RAHOTIA (MARLBOROUGH LINES)","Current","TX",false
+189048,256121,"MARLBOROUGH LINES LIMITED","11G8#",11525.0,"MANAROA 490","Current","TX",false
+189047,256119,"MARLBOROUGH LINES LIMITED","11G10",11075.0,"TAKORIKA","Current","TX",false
+189036,256072,"POWERCO LIMITED","KK2#",851.75,"KELVIN GROVE SUBSTATION","Current","TX",false
+189035,256071,"POWERCO LIMITED","KK2",806.75,"PASCAL STREET SUBSTATION, PALMERSTON NORTH","Current","TX",false
+189034,256086,"SPARK NEW ZEALAND TRADING LIMITED","18G8B1",18525.0,"HARURU","Current","TX",false
+189033,256085,"SPARK NEW ZEALAND TRADING LIMITED","18G8B1#",19535.0,"WAITANGI DAY COW","Current","TX",false
+189031,256094,"SPARK NEW ZEALAND TRADING LIMITED",,877.5,"WATERVIEW TUNNEL","Current","TX",false
+189029,256217,"SPARK NEW ZEALAND TRADING LIMITED",,877.5,"RIVERSDALE BEACH","Current","TX",false
+189028,256073,"HIGHLAND HELICOPTERS LIMITED","ENX52",150.7,"ALL SOUTH ISLAND","Current","TX",false
+189015,256036,"KIWIRAIL","KK8#",854.75,"TOKOMARU EAST","Current","TX",false
+189014,256035,"KIWIRAIL","KK8",809.75,"ARAMOHO TRIANGLE","Current","TX",false
+189010,256030,"Victoria University of Wellington","DNX58",464.94375,"WELLINGTON REGION","Current","TX",false
+189010,256030,"Victoria University of Wellington","DNX36",461.66875,"WELLINGTON REGION","Current","TX",false
+189010,256030,"Victoria University of Wellington","DNX21",461.48125,"WELLINGTON REGION","Current","TX",false
+189010,256030,"Victoria University of Wellington","DNX2",458.35625,"WELLINGTON REGION","Current","TX",false
+189005,256175,"ONE NEW ZEALAND GROUP LIMITED",,2682.5,"LEIGH CENTRAL (VFNZ)","Current","TX",false
+189001,256018,"VITAL LIMITED","I510",420.2375,"MAUNGAWHIORANGI","Current","TX",false
+189000,256017,"VITAL LIMITED","I510#",425.25,"PUKEHOKO","Current","TX",false
+188999,256016,"WESTERN ENERGY SERVICES LIMITED","DNX2",458.35625,"CENTRAL NORTH ISLAND","Current","TX",false
+188999,256016,"WESTERN ENERGY SERVICES LIMITED","CNX22",453.31875,"CENTRAL NORTH ISLAND","Current","TX",false
+188999,256016,"WESTERN ENERGY SERVICES LIMITED","CNX17",449.95625,"CENTRAL NORTH ISLAND","Current","TX",false
+188979,256177,"ONE NEW ZEALAND GROUP LIMITED","VF900",952.0,"BISHOPS BAY (VFNZ)","Current","TX",false
+188978,256170,"ONE NEW ZEALAND GROUP LIMITED","VF900",952.0,"Christchurch Hospital ONZ S3CHH","Current","TX",false
+188975,257033,"PR HOTELS LIMITED","DNX49",464.83125,"ALL NEW ZEALAND","Current","TX",false
+188975,257033,"PR HOTELS LIMITED","DNX21",461.48125,"ALL NEW ZEALAND","Current","TX",false
+188975,257033,"PR HOTELS LIMITED","DNX17",458.61875,"ALL NEW ZEALAND","Current","TX",false
+188969,256223,"NEW ZEALAND OIL SERVICES LIMITED","J32B#",459.4625,"OMATA TANK FARM","Current","TX",false
+188968,256222,"NEW ZEALAND OIL SERVICES LIMITED","J32B",454.425,"NEWTON KING WHARF","Current","TX",false
+188960,,"RINGS SCENIC TOURS LIMITED","FN363#",490.53125,"MOBILE","Current","TX",false
 188958,257032,"RINGS SCENIC TOURS LIMITED","FN363",484.51875,"HOBBITON MOVIE SET","Current","TX",false
 188953,,"WAITOMO RTUA","DN227#",469.83125,"MOBILE","Current","TX",false
 188951,,"INETWORKS LIMITED","EE178#",169.025,"MOBILE","Current","TX",false
@@ -65957,48 +65999,48 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 160222,236808,"ONE NEW ZEALAND GROUP LIMITED",,951.95,"KITCHENER STREET","Current","TX",false
 160220,236806,"ONE NEW ZEALAND GROUP LIMITED",,951.95,"FORREST HILL","Current","TX",false
 160219,236805,"ONE NEW ZEALAND GROUP LIMITED",,951.95,"AKORANGA","Current","TX",false
-160208,237386,"OCEANA GOLD (NEW ZEALAND) LIMITED","CNX39",453.53125,"MACRAES FLAT","Current","TX",false
-160208,237386,"OCEANA GOLD (NEW ZEALAND) LIMITED","CNX33",453.45625,"MACRAES FLAT","Current","TX",false
-160208,237386,"OCEANA GOLD (NEW ZEALAND) LIMITED","CNX25",453.35625,"MACRAES FLAT","Current","TX",false
-160208,237386,"OCEANA GOLD (NEW ZEALAND) LIMITED","CNX21",453.30625,"MACRAES FLAT","Current","TX",false
-160201,,"AUCKLAND VHF GROUP INC","2AR5650#",145.05,"AMATEUR MOBILE AREA","Current","TX",false
-160198,,"AUCKLAND VHF GROUP INC","70AR8175#",433.175,"AMATEUR MOBILE AREA","Current","TX",false
-160195,236728,"AUCKLAND VHF GROUP INC","2AR5650",145.65,"KLONDYKE ROAD (NZART)","Current","TX",false
-160194,236730,"AUCKLAND VHF GROUP INC","70AR8175",438.175,"KLONDYKE ROAD (NZART)","Current","TX",false
-160162,236804,"ONE NEW ZEALAND GROUP LIMITED",,951.95,"QUEEN STREET NORTHCOTE","Current","TX",false
-160121,236803,"ONE NEW ZEALAND GROUP LIMITED",,951.95,"COOPER AND LYBRAND AUCKLAND (VFNZ)","Current","TX",false
-160118,237630,"VITAL LIMITED","11G9A",11015.0,"KRAACKS HILL","Current","TX",false
-160117,237629,"VITAL LIMITED","11G9A#",11545.0,"MOIRS HILL","Current","TX",false
-160116,236739,"SPECIALISED CONTAINER SERVICES","FNX651",483.86875,"ALL NEW ZEALAND","Current","TX",false
-160116,236739,"SPECIALISED CONTAINER SERVICES","DNX92",466.90625,"ALL NEW ZEALAND","Current","TX",false
-160090,236720,"EONFIBRE LIMITED","11G1#",11245.0,"OREILLYS MINE","Current","TX",false
-160089,236719,"EONFIBRE LIMITED","11G1",10715.0,"MANGAWARA","Current","TX",false
-160088,236718,"EONFIBRE LIMITED","18G8B2#",19590.0,"ARAPAEPAE TRIG","Current","TX",false
-160087,236717,"EONFIBRE LIMITED","18G8B2",18580.0,"LEVIN CENTRAL","Current","TX",false
-160073,236967,"WATERCARE SERVICES LTD","JBX4",449.41875,"HITCHEN ROAD PUMP STATION","Current","TX",false
-160071,236969,"WATERCARE SERVICES LTD","JBX4",449.41875,"MARKET ROAD PUMP STATION","Current","TX",false
-160056,,"BAY VENUES LIMITED","DN190#",469.36875,"MOBILE","Current","TX",false
-160045,236725,"BAY VENUES LIMITED","DN190",464.18125,"BAYPARK STADIUM TE MAUNGA","Current","TX",false
-160040,,"SAM CONTRACTING 2000 LIMITED","EE208#",169.4,"MOBILE","Current","TX",false
-160030,236747,"WHAKATANE COAST GUARD ASSOCIATION INC","MM80#",157.025,"WHAKATANE HEADS","Current","TX",false
-160030,236747,"WHAKATANE COAST GUARD ASSOCIATION INC","MM16",156.8,"WHAKATANE HEADS","Current","TX",false
-160030,236747,"WHAKATANE COAST GUARD ASSOCIATION INC","MM71",156.575,"WHAKATANE HEADS","Current","TX",false
-160030,236747,"WHAKATANE COAST GUARD ASSOCIATION INC","MM69",156.475,"WHAKATANE HEADS","Current","TX",false
-160030,236747,"WHAKATANE COAST GUARD ASSOCIATION INC","MM68",156.425,"WHAKATANE HEADS","Current","TX",false
-160030,236747,"WHAKATANE COAST GUARD ASSOCIATION INC","MM63#",156.175,"WHAKATANE HEADS","Current","TX",false
-160030,236747,"WHAKATANE COAST GUARD ASSOCIATION INC","MM60#",156.025,"WHAKATANE HEADS","Current","TX",false
-160026,236689,"CHORUS NEW ZEALAND LIMITED","13G3W#",13157.0,"TAPUAE","Current","TX",false
-160025,236688,"CHORUS NEW ZEALAND LIMITED","13G3W",12891.0,"APITI (VFNZ)","Current","TX",false
-160024,236687,"CHORUS NEW ZEALAND LIMITED","13G2W#",13101.0,"TAPUAE","Current","TX",false
-160021,236686,"CHORUS NEW ZEALAND LIMITED","13G2W",12835.0,"APITI (VFNZ)","Current","TX",false
-160017,236636,"SPARK NEW ZEALAND TRADING LIMITED",,877.5,"TAUMATAMAIRE","Current","TX",false
-159995,,"VITAL LIMITED","DN117#",468.45625,"MOBILE","Current","TX",false
-159992,236572,"VITAL LIMITED","DN117",463.26875,"SKYTOWER AUCKLAND","Current","TX",false
-159985,236607,"TWO DEGREES NETWORKS LIMITED","7GU10A#",7652.0,"TRANSPOWER MICROWAVE TOWER ROUND TOP (CAN-062-014-A)","Current","TX",false
-159984,236606,"TWO DEGREES NETWORKS LIMITED","7GU10A",7491.0,"MT ALFORD MID CANTERBURY NEXT TO VODAFONE SITE (CAN-063-001-A)","Current","TX",false
-159982,,"Proprietors of Anaura","EE66#",167.625,"MOBILE","Current","TX",false
-159978,236701,"Proprietors of Anaura","EE66",163.025,"ANAURA BAY","Current","TX",false
-159964,237375,"NGAMUWAHINE CAMP TRUST","ENX14",150.225,"WESTERN BAY OF PLENTY","Current","TX",false
+428493,422131,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"CARR ROAD","Current","TX",false
+428492,422133,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"CROWN HILL","Current","TX",false
+428491,422122,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"CONSTELLATION DRIVE","Current","TX",false
+428490,422129,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"COMINS CRESCENT","Current","TX",false
+428489,422139,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"CAMPBELLS BAY","Current","TX",false
+428488,422128,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"CLARKS BEACH","Current","TX",false
+428487,422120,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"CORK BEACH","Current","TX",false
+428486,422125,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"CHAPEL ROAD","Current","TX",false
+428485,422127,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"BROWNS BAY BOWLING CLUB #SEZ9#","Current","TX",false
+428484,422126,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"ABBOTS WAY","Current","TX",false
+428483,422124,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"BUCKLAND ROAD ~V7ET~","Current","TX",false
+428482,422130,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"ICE SKATING RINK","Current","TX",false
+428481,422123,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"BRITOMART OUTDOOR","Current","TX",false
+428480,422136,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"BOND ST BRIDGE","Current","TX",false
+428479,422121,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"BROWNS BAY","Current","TX",false
+428478,422117,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"BROWNS ROAD","Current","TX",false
+428477,422116,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"BARRYS POINT ROAD","Current","TX",false
+428476,422112,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"BOTANY ROAD","Current","TX",false
+428475,422118,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"BALMORAL","Current","TX",false
+428474,422119,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"BEN LOMOND CRES","Current","TX",false
+428473,422111,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"BIRKDALE","Current","TX",false
+428472,422114,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"BIRMINGHAM ROAD","Current","TX",false
+428471,422108,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"BRIDGE STREET","Current","TX",false
+428470,422115,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"BLOCKHOUSE BAY","Current","TX",false
+428469,422107,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"BAIRDS ROAD","Current","TX",false
+428468,422113,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"AVONDALE","Current","TX",false
+428467,422105,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"ANZAC AVE","Current","TX",false
+428466,422106,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"VECTOR ARENA","Current","TX",false
+428465,422110,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"MT ALBERT","Current","TX",false
+428464,422103,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"ALBANY STADIUM","Current","TX",false
+428463,422109,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"GLENFIELD SHOPPING MALL","Current","TX",false
+428462,422100,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"GREENWOOD CORNER","Current","TX",false
+428461,422098,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"GREVILLE ROAD INTERCHANGE","Current","TX",false
+428460,422104,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"GRAFTON","Current","TX",false
+428459,422101,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"GREENLANE WEST","Current","TX",false
+428458,422102,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"GLEN ORCHARD","Current","TX",false
+428457,422090,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"GLEN INNES","Current","TX",false
+428456,422096,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"GREENLANE","Current","TX",false
+428455,422092,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"GREVILLE RESERVE","Current","TX",false
+428454,422099,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"GLENFIELD EXCHANGE","Current","TX",false
+428453,422082,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"GREENLANE SOUTH","Current","TX",false
+428452,422077,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"GLEN EDEN","Current","TX",false
 428451,422078,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"GREENLANE EAST","Current","TX",false
 428450,422075,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"GLENBROOK BEACH ROAD ~2UB7~","Current","TX",false
 428449,422083,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"GRAY AVENUE","Current","TX",false
@@ -66957,48 +66999,48 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 427436,,"VITAL LIMITED","TD121#",407.5125,"MOBILE","Current","TX",false
 427435,,"VITAL LIMITED","TD41#",406.5125,"MOBILE","Current","TX",false
 427434,,"VITAL LIMITED","TD21#",406.2625,"MOBILE","Current","TX",false
-427433,421489,"VITAL LIMITED","TD121",415.5125,"PUKEHOKO","Current","TX",false
-427432,421487,"VITAL LIMITED","TD41",414.5125,"PUKEHOKO","Current","TX",false
-427431,421491,"VITAL LIMITED","TD21",414.2625,"PUKEHOKO","Current","TX",false
-427430,408764,"TAIT SYSTEMS NZ LIMITED","7GM10B#",7418.5,"SOUTH WAIRARAPA","Current","TX",false
-427429,408763,"TAIT SYSTEMS NZ LIMITED","7GM10B",7257.5,"MT ERINGA","Current","TX",false
-427428,418165,"TAIT SYSTEMS NZ LIMITED","7GM15C#",7387.0,"SOUTH WAIRARAPA","Current","TX",false
-427421,421201,"TWO DEGREES NETWORKS LIMITED","18G7A#",19480.0,"MANGATARATA (WKT-012-002-A)","Current","TX",false
-427420,421200,"TWO DEGREES NETWORKS LIMITED","18G7A",18470.0,"KAIHERE (WKT-012-011-B)","Current","TX",false
-427419,418164,"TAIT SYSTEMS NZ LIMITED","7GM15C",7226.0,"HAMENGA EAST","Current","TX",false
-427414,,"VITAL LIMITED","TD84#",407.05,"MOBILE","Current","TX",false
-427413,,"VITAL LIMITED","TD50#",406.625,"MOBILE","Current","TX",false
-427412,,"VITAL LIMITED","TD13#",406.1625,"MOBILE","Current","TX",false
-427411,,"VITAL LIMITED","TD153#",407.9125,"MOBILE","Current","TX",false
-427410,,"VITAL LIMITED","TD96#",407.2,"MOBILE","Current","TX",false
-427409,,"VITAL LIMITED","TD156#",407.95,"MOBILE","Current","TX",false
-427404,420939,"MARLBOROUGH LINES LIMITED","11G11#",11645.0,"Wairau River Valley Substation","Current","TX",false
-427403,420938,"MARLBOROUGH LINES LIMITED","11G11",11115.0,"HILLERSDEN","Current","TX",false
-427402,421672,"HILL LOGGING LIMITED","EEX111",170.6,"GISBORNE REGION","Current","TX",false
-427399,,"VITAL LIMITED","TD184#",408.3,"MOBILE","Current","TX",false
-427398,,"VITAL LIMITED","TD280#",409.5,"MOBILE","Current","TX",false
-427397,412747,"VITAL LIMITED","TD84",415.05,"MT ROCHFORT","Current","TX",false
-427396,400996,"VITAL LIMITED","TD50",414.625,"SKYTOWER AUCKLAND","Current","TX",false
-427395,401150,"VITAL LIMITED","TD184",416.3,"MAUNGAKAWA","Current","TX",false
-427394,260656,"VITAL LIMITED","TD280",417.5,"TORBAY RADIO","Current","TX",false
-427393,260658,"VITAL LIMITED","TD13",414.1625,"WRIGHT HILL(TX)","Current","TX",false
-427392,401016,"VITAL LIMITED","TD153",415.9125,"WRIGHT HILL(TX)","Current","TX",false
-427391,260865,"VITAL LIMITED","TD96",415.2,"FITZHERBERT","Current","TX",false
-427390,260827,"VITAL LIMITED","TD156",415.95,"FITZHERBERT","Current","TX",false
-427383,420981,"ONE NEW ZEALAND GROUP LIMITED",,1867.5,"AMI Repair Hub C3ZHR","Current","TX",false
-427382,420909,"TWO DEGREES NETWORKS LIMITED",,3580.0,"(MNW-040-002-B)[KLGV]_KELVIN GROVE","Current","TX",false
-427381,420900,"TWO DEGREES NETWORKS LIMITED",,939.9,"(CAN-062-036-A)[ACPK]_ACLAND PARK","Current","TX",false
-427380,420967,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(MNW-040-002-B)[KLGV]_KELVIN GROVE","Current","TX",false
-427379,420903,"TWO DEGREES NETWORKS LIMITED",,798.0,"(MNW-040-002-B)[KLGV]_KELVIN GROVE","Current","TX",false
-427378,420906,"TWO DEGREES NETWORKS LIMITED",,3580.0,"(CAN-062-036-A)[ACPK]_ACLAND PARK","Current","TX",false
-427377,421112,"PARKER EARTHMOVING LIMITED","ENX46",150.625,"CENTRAL OTAGO DISTRICT TLA","Current","TX",false
-427375,420971,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(CAN-062-036-A)[ACPK]_ACLAND PARK","Current","TX",false
-427374,420901,"TWO DEGREES NETWORKS LIMITED",,798.0,"(CAN-062-036-A)[ACPK]_ACLAND PARK","Current","TX",false
-427373,420904,"TWO DEGREES NETWORKS LIMITED",,3580.0,"(WKT-016-027-A)[WNHS]_WESTERN HEIGHTS","Current","TX",false
-427372,420965,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(WKT-016-027-A)[WNHS]_WESTERN HEIGHTS","Current","TX",false
-427371,420905,"TWO DEGREES NETWORKS LIMITED",,798.0,"(WKT-016-027-A)[WNHS]_WESTERN HEIGHTS","Current","TX",false
-427370,420902,"TWO DEGREES NETWORKS LIMITED",,3580.0,"(AKL-010-015-J)[PUKT]_PUKEKOHE TOWNSHIP","Current","TX",false
-427369,420956,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(AKL-010-015-J)[PUKT]_PUKEKOHE TOWNSHIP","Current","TX",false
+160208,237386,"OCEANA GOLD (NEW ZEALAND) LIMITED","CNX39",453.53125,"MACRAES FLAT","Current","TX",false
+160208,237386,"OCEANA GOLD (NEW ZEALAND) LIMITED","CNX33",453.45625,"MACRAES FLAT","Current","TX",false
+160208,237386,"OCEANA GOLD (NEW ZEALAND) LIMITED","CNX25",453.35625,"MACRAES FLAT","Current","TX",false
+160208,237386,"OCEANA GOLD (NEW ZEALAND) LIMITED","CNX21",453.30625,"MACRAES FLAT","Current","TX",false
+160201,,"AUCKLAND VHF GROUP INC","2AR5650#",145.05,"AMATEUR MOBILE AREA","Current","TX",false
+160198,,"AUCKLAND VHF GROUP INC","70AR8175#",433.175,"AMATEUR MOBILE AREA","Current","TX",false
+160195,236728,"AUCKLAND VHF GROUP INC","2AR5650",145.65,"KLONDYKE ROAD (NZART)","Current","TX",false
+160194,236730,"AUCKLAND VHF GROUP INC","70AR8175",438.175,"KLONDYKE ROAD (NZART)","Current","TX",false
+160162,236804,"ONE NEW ZEALAND GROUP LIMITED",,951.95,"QUEEN STREET NORTHCOTE","Current","TX",false
+160121,236803,"ONE NEW ZEALAND GROUP LIMITED",,951.95,"COOPER AND LYBRAND AUCKLAND (VFNZ)","Current","TX",false
+160118,237630,"VITAL LIMITED","11G9A",11015.0,"KRAACKS HILL","Current","TX",false
+160117,237629,"VITAL LIMITED","11G9A#",11545.0,"MOIRS HILL","Current","TX",false
+160116,236739,"SPECIALISED CONTAINER SERVICES","FNX651",483.86875,"ALL NEW ZEALAND","Current","TX",false
+160116,236739,"SPECIALISED CONTAINER SERVICES","DNX92",466.90625,"ALL NEW ZEALAND","Current","TX",false
+160090,236720,"EONFIBRE LIMITED","11G1#",11245.0,"OREILLYS MINE","Current","TX",false
+160089,236719,"EONFIBRE LIMITED","11G1",10715.0,"MANGAWARA","Current","TX",false
+160088,236718,"EONFIBRE LIMITED","18G8B2#",19590.0,"ARAPAEPAE TRIG","Current","TX",false
+160087,236717,"EONFIBRE LIMITED","18G8B2",18580.0,"LEVIN CENTRAL","Current","TX",false
+160073,236967,"WATERCARE SERVICES LTD","JBX4",449.41875,"HITCHEN ROAD PUMP STATION","Current","TX",false
+160071,236969,"WATERCARE SERVICES LTD","JBX4",449.41875,"MARKET ROAD PUMP STATION","Current","TX",false
+160056,,"BAY VENUES LIMITED","DN190#",469.36875,"MOBILE","Current","TX",false
+160045,236725,"BAY VENUES LIMITED","DN190",464.18125,"BAYPARK STADIUM TE MAUNGA","Current","TX",false
+160040,,"SAM CONTRACTING 2000 LIMITED","EE208#",169.4,"MOBILE","Current","TX",false
+160030,236747,"WHAKATANE COAST GUARD ASSOCIATION INC","MM80#",157.025,"WHAKATANE HEADS","Current","TX",false
+160030,236747,"WHAKATANE COAST GUARD ASSOCIATION INC","MM16",156.8,"WHAKATANE HEADS","Current","TX",false
+160030,236747,"WHAKATANE COAST GUARD ASSOCIATION INC","MM71",156.575,"WHAKATANE HEADS","Current","TX",false
+160030,236747,"WHAKATANE COAST GUARD ASSOCIATION INC","MM69",156.475,"WHAKATANE HEADS","Current","TX",false
+160030,236747,"WHAKATANE COAST GUARD ASSOCIATION INC","MM68",156.425,"WHAKATANE HEADS","Current","TX",false
+160030,236747,"WHAKATANE COAST GUARD ASSOCIATION INC","MM63#",156.175,"WHAKATANE HEADS","Current","TX",false
+160030,236747,"WHAKATANE COAST GUARD ASSOCIATION INC","MM60#",156.025,"WHAKATANE HEADS","Current","TX",false
+160026,236689,"CHORUS NEW ZEALAND LIMITED","13G3W#",13157.0,"TAPUAE","Current","TX",false
+160025,236688,"CHORUS NEW ZEALAND LIMITED","13G3W",12891.0,"APITI (VFNZ)","Current","TX",false
+160024,236687,"CHORUS NEW ZEALAND LIMITED","13G2W#",13101.0,"TAPUAE","Current","TX",false
+160021,236686,"CHORUS NEW ZEALAND LIMITED","13G2W",12835.0,"APITI (VFNZ)","Current","TX",false
+160017,236636,"SPARK NEW ZEALAND TRADING LIMITED",,877.5,"TAUMATAMAIRE","Current","TX",false
+159995,,"VITAL LIMITED","DN117#",468.45625,"MOBILE","Current","TX",false
+159992,236572,"VITAL LIMITED","DN117",463.26875,"SKYTOWER AUCKLAND","Current","TX",false
+159985,236607,"TWO DEGREES NETWORKS LIMITED","7GU10A#",7652.0,"TRANSPOWER MICROWAVE TOWER ROUND TOP (CAN-062-014-A)","Current","TX",false
+159984,236606,"TWO DEGREES NETWORKS LIMITED","7GU10A",7491.0,"MT ALFORD MID CANTERBURY NEXT TO VODAFONE SITE (CAN-063-001-A)","Current","TX",false
+159982,,"Proprietors of Anaura","EE66#",167.625,"MOBILE","Current","TX",false
+159978,236701,"Proprietors of Anaura","EE66",163.025,"ANAURA BAY","Current","TX",false
+159964,237375,"NGAMUWAHINE CAMP TRUST","ENX14",150.225,"WESTERN BAY OF PLENTY","Current","TX",false
 159960,,"THE MOTUKAWA LAND COMPANY LIMITED","EE41#",167.3125,"MOBILE","Current","TX",false
 159957,236927,"THE MOTUKAWA LAND COMPANY LIMITED","EE41",162.7125,"KAUAEKEKE","Current","TX",false
 159956,236555,"BAIRD HARVESTING LIMITED","EEX54",166.375,"ALL NORTH ISLAND","Current","TX",false
@@ -76957,48 +76999,48 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 73327,171780,"DEPARTMENT OF CONSERVATION",,3.0244,"TAPANUI","Current","TX",false
 73327,171780,"DEPARTMENT OF CONSERVATION",,2.4754,"TAPANUI","Current","TX",false
 73327,171780,"DEPARTMENT OF CONSERVATION",,2.3494,"TAPANUI","Current","TX",false
-73327,171780,"DEPARTMENT OF CONSERVATION",,2.2654,"TAPANUI","Current","TX",false
-73327,171780,"DEPARTMENT OF CONSERVATION",,2.1964,"TAPANUI","Current","TX",false
-73326,171779,"DEPARTMENT OF CONSERVATION",,9.9514,"HANMER SPRINGS","Current","TX",false
-73326,171779,"DEPARTMENT OF CONSERVATION",,8.0814,"HANMER SPRINGS","Current","TX",false
-73326,171779,"DEPARTMENT OF CONSERVATION",,7.8914,"HANMER SPRINGS","Current","TX",false
-73326,171779,"DEPARTMENT OF CONSERVATION",,5.8674,"HANMER SPRINGS","Current","TX",false
-73326,171779,"DEPARTMENT OF CONSERVATION",,5.8554,"HANMER SPRINGS","Current","TX",false
-73326,171779,"DEPARTMENT OF CONSERVATION",,5.8254,"HANMER SPRINGS","Current","TX",false
-73326,171779,"DEPARTMENT OF CONSERVATION",,5.7354,"HANMER SPRINGS","Current","TX",false
-73326,171779,"DEPARTMENT OF CONSERVATION",,5.6814,"HANMER SPRINGS","Current","TX",false
-73326,171779,"DEPARTMENT OF CONSERVATION",,5.2264,"HANMER SPRINGS","Current","TX",false
-73326,171779,"DEPARTMENT OF CONSERVATION",,4.8814,"HANMER SPRINGS","Current","TX",false
-73326,171779,"DEPARTMENT OF CONSERVATION",,4.6234,"HANMER SPRINGS","Current","TX",false
-73326,171779,"DEPARTMENT OF CONSERVATION",,4.6204,"HANMER SPRINGS","Current","TX",false
-73326,171779,"DEPARTMENT OF CONSERVATION",,4.6174,"HANMER SPRINGS","Current","TX",false
-73326,171779,"DEPARTMENT OF CONSERVATION",,4.6024,"HANMER SPRINGS","Current","TX",false
-73326,171779,"DEPARTMENT OF CONSERVATION",,4.5874,"HANMER SPRINGS","Current","TX",false
-73326,171779,"DEPARTMENT OF CONSERVATION",,4.4944,"HANMER SPRINGS","Current","TX",false
-73326,171779,"DEPARTMENT OF CONSERVATION",,4.4884,"HANMER SPRINGS","Current","TX",false
-73326,171779,"DEPARTMENT OF CONSERVATION",,3.3464,"HANMER SPRINGS","Current","TX",false
-73326,171779,"DEPARTMENT OF CONSERVATION",,3.3374,"HANMER SPRINGS","Current","TX",false
-73326,171779,"DEPARTMENT OF CONSERVATION",,3.3044,"HANMER SPRINGS","Current","TX",false
-73326,171779,"DEPARTMENT OF CONSERVATION",,3.2804,"HANMER SPRINGS","Current","TX",false
-73326,171779,"DEPARTMENT OF CONSERVATION",,3.2654,"HANMER SPRINGS","Current","TX",false
-73326,171779,"DEPARTMENT OF CONSERVATION",,3.2624,"HANMER SPRINGS","Current","TX",false
-73326,171779,"DEPARTMENT OF CONSERVATION",,3.2414,"HANMER SPRINGS","Current","TX",false
-73326,171779,"DEPARTMENT OF CONSERVATION",,3.1874,"HANMER SPRINGS","Current","TX",false
-73326,171779,"DEPARTMENT OF CONSERVATION",,3.1634,"HANMER SPRINGS","Current","TX",false
-73326,171779,"DEPARTMENT OF CONSERVATION",,3.0244,"HANMER SPRINGS","Current","TX",false
-73326,171779,"DEPARTMENT OF CONSERVATION",,2.4754,"HANMER SPRINGS","Current","TX",false
-73326,171779,"DEPARTMENT OF CONSERVATION",,2.3494,"HANMER SPRINGS","Current","TX",false
-73326,171779,"DEPARTMENT OF CONSERVATION",,2.2654,"HANMER SPRINGS","Current","TX",false
-73326,171779,"DEPARTMENT OF CONSERVATION",,2.1964,"HANMER SPRINGS","Current","TX",false
-73296,11893,"ONE NEW ZEALAND GROUP LIMITED","VF900",952.0,"WHANGAPARAOA","Current","TX",false
-73290,171765,"CHORUS NEW ZEALAND LIMITED","13G3",12821.0,"TE UKU","Current","TX",false
-73289,171764,"CHORUS NEW ZEALAND LIMITED","13G3#",13087.0,"WAINGARO","Current","TX",false
-73288,11890,"ONE NEW ZEALAND GROUP LIMITED","VF900",952.0,"UNITEC","Current","TX",false
-73281,171761,"CHORUS NEW ZEALAND LIMITED","13G3",12821.0,"WHAKAPIRAU TRIG 7352","Current","TX",false
-73280,171760,"CHORUS NEW ZEALAND LIMITED","13G3#",13087.0,"KAWHIA HARBOUR","Current","TX",false
-73268,11880,"ONE NEW ZEALAND GROUP LIMITED","VF900",952.0,"DUNEDIN (OCTAGON) (VFNZ)","Current","TX",false
-73251,11870,"ONE NEW ZEALAND GROUP LIMITED","VF900",952.0,"HORNBY","Current","TX",false
-73242,11863,"ONE NEW ZEALAND GROUP LIMITED","VF900",952.0,"CHRISTCHURCH SOUTH EAST","Current","TX",false
+427433,421489,"VITAL LIMITED","TD121",415.5125,"PUKEHOKO","Current","TX",false
+427432,421487,"VITAL LIMITED","TD41",414.5125,"PUKEHOKO","Current","TX",false
+427431,421491,"VITAL LIMITED","TD21",414.2625,"PUKEHOKO","Current","TX",false
+427430,408764,"TAIT SYSTEMS NZ LIMITED","7GM10B#",7418.5,"SOUTH WAIRARAPA","Current","TX",false
+427429,408763,"TAIT SYSTEMS NZ LIMITED","7GM10B",7257.5,"MT ERINGA","Current","TX",false
+427428,418165,"TAIT SYSTEMS NZ LIMITED","7GM15C#",7387.0,"SOUTH WAIRARAPA","Current","TX",false
+427421,421201,"TWO DEGREES NETWORKS LIMITED","18G7A#",19480.0,"MANGATARATA (WKT-012-002-A)","Current","TX",false
+427420,421200,"TWO DEGREES NETWORKS LIMITED","18G7A",18470.0,"KAIHERE (WKT-012-011-B)","Current","TX",false
+427419,418164,"TAIT SYSTEMS NZ LIMITED","7GM15C",7226.0,"HAMENGA EAST","Current","TX",false
+427414,,"VITAL LIMITED","TD84#",407.05,"MOBILE","Current","TX",false
+427413,,"VITAL LIMITED","TD50#",406.625,"MOBILE","Current","TX",false
+427412,,"VITAL LIMITED","TD13#",406.1625,"MOBILE","Current","TX",false
+427411,,"VITAL LIMITED","TD153#",407.9125,"MOBILE","Current","TX",false
+427410,,"VITAL LIMITED","TD96#",407.2,"MOBILE","Current","TX",false
+427409,,"VITAL LIMITED","TD156#",407.95,"MOBILE","Current","TX",false
+427404,420939,"MARLBOROUGH LINES LIMITED","11G11#",11645.0,"Wairau River Valley Substation","Current","TX",false
+427403,420938,"MARLBOROUGH LINES LIMITED","11G11",11115.0,"HILLERSDEN","Current","TX",false
+427402,421672,"HILL LOGGING LIMITED","EEX111",170.6,"GISBORNE REGION","Current","TX",false
+427399,,"VITAL LIMITED","TD184#",408.3,"MOBILE","Current","TX",false
+427398,,"VITAL LIMITED","TD280#",409.5,"MOBILE","Current","TX",false
+427397,412747,"VITAL LIMITED","TD84",415.05,"MT ROCHFORT","Current","TX",false
+427396,400996,"VITAL LIMITED","TD50",414.625,"SKYTOWER AUCKLAND","Current","TX",false
+427395,401150,"VITAL LIMITED","TD184",416.3,"MAUNGAKAWA","Current","TX",false
+427394,260656,"VITAL LIMITED","TD280",417.5,"TORBAY RADIO","Current","TX",false
+427393,260658,"VITAL LIMITED","TD13",414.1625,"WRIGHT HILL(TX)","Current","TX",false
+427392,401016,"VITAL LIMITED","TD153",415.9125,"WRIGHT HILL(TX)","Current","TX",false
+427391,260865,"VITAL LIMITED","TD96",415.2,"FITZHERBERT","Current","TX",false
+427390,260827,"VITAL LIMITED","TD156",415.95,"FITZHERBERT","Current","TX",false
+427383,420981,"ONE NEW ZEALAND GROUP LIMITED",,1867.5,"AMI Repair Hub C3ZHR","Current","TX",false
+427382,420909,"TWO DEGREES NETWORKS LIMITED",,3580.0,"(MNW-040-002-B)[KLGV]_KELVIN GROVE","Current","TX",false
+427381,420900,"TWO DEGREES NETWORKS LIMITED",,939.9,"(CAN-062-036-A)[ACPK]_ACLAND PARK","Current","TX",false
+427380,420967,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(MNW-040-002-B)[KLGV]_KELVIN GROVE","Current","TX",false
+427379,420903,"TWO DEGREES NETWORKS LIMITED",,798.0,"(MNW-040-002-B)[KLGV]_KELVIN GROVE","Current","TX",false
+427378,420906,"TWO DEGREES NETWORKS LIMITED",,3580.0,"(CAN-062-036-A)[ACPK]_ACLAND PARK","Current","TX",false
+427377,421112,"PARKER EARTHMOVING LIMITED","ENX46",150.625,"CENTRAL OTAGO DISTRICT TLA","Current","TX",false
+427375,420971,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(CAN-062-036-A)[ACPK]_ACLAND PARK","Current","TX",false
+427374,420901,"TWO DEGREES NETWORKS LIMITED",,798.0,"(CAN-062-036-A)[ACPK]_ACLAND PARK","Current","TX",false
+427373,420904,"TWO DEGREES NETWORKS LIMITED",,3580.0,"(WKT-016-027-A)[WNHS]_WESTERN HEIGHTS","Current","TX",false
+427372,420965,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(WKT-016-027-A)[WNHS]_WESTERN HEIGHTS","Current","TX",false
+427371,420905,"TWO DEGREES NETWORKS LIMITED",,798.0,"(WKT-016-027-A)[WNHS]_WESTERN HEIGHTS","Current","TX",false
+427370,420902,"TWO DEGREES NETWORKS LIMITED",,3580.0,"(AKL-010-015-J)[PUKT]_PUKEKOHE TOWNSHIP","Current","TX",false
+427369,420956,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(AKL-010-015-J)[PUKT]_PUKEKOHE TOWNSHIP","Current","TX",false
 427368,420899,"TWO DEGREES NETWORKS LIMITED",,798.0,"(AKL-010-015-J)[PUKT]_PUKEKOHE TOWNSHIP","Current","TX",false
 427367,420908,"TWO DEGREES NETWORKS LIMITED",,798.0,"(WKT-021-007-B)[TAUD]_TAUPO DOWNTOWN","Current","TX",false
 427366,420907,"TWO DEGREES NETWORKS LIMITED",,3580.0,"(WKT-021-007-B)[TAUD]_TAUPO DOWNTOWN","Current","TX",false
@@ -77957,48 +77999,48 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 426539,420428,"EONFIBRE LIMITED","18G8A",18580.0,"CHORUS EXCHANGE 157 PALMERSTON ST WESTPORT (VF S1XWP)","Current","TX",false
 426535,,"WATERCARE SERVICES LTD","F99#",474.4625,"MOBILE","Current","TX",false
 426524,420645,"Fire and Emergency New Zealand","FN526",486.55625,"WATERVIEW TUN HENDON AV","Current","TX",false
-426524,420645,"Fire and Emergency New Zealand","FN526",486.55625,"VICTORIA PARK TUNNEL AUCKLAND","Current","TX",false
-426524,420645,"Fire and Emergency New Zealand","FN526",486.55625,"PENROSE TUNNEL","Current","TX",false
-426524,420645,"Fire and Emergency New Zealand","FN526",486.55625,"NEWMARKET VECTOR TUNNEL","Current","TX",false
-426524,420645,"Fire and Emergency New Zealand","FN526",486.55625,"HOBSON ST VECTOR TUNNEL","Current","TX",false
-426523,420646,"Fire and Emergency New Zealand","FN472",485.88125,"WATERVIEW TUN HENDON AV","Current","TX",false
-426523,420646,"Fire and Emergency New Zealand","FN472",485.88125,"VICTORIA PARK TUNNEL AUCKLAND","Current","TX",false
-426523,420646,"Fire and Emergency New Zealand","FN472",485.88125,"PENROSE TUNNEL","Current","TX",false
-426523,420646,"Fire and Emergency New Zealand","FN472",485.88125,"NEWMARKET VECTOR TUNNEL","Current","TX",false
-426523,420646,"Fire and Emergency New Zealand","FN472",485.88125,"HOBSON ST VECTOR TUNNEL","Current","TX",false
-426522,,"Fire and Emergency New Zealand","FN498#",492.21875,"MOBILE","Current","TX",false
-426521,420354,"TWO DEGREES NETWORKS LIMITED",,3580.0,"(GSB-028-016-A)[WANU]_WAINUI","Current","TX",false
-426520,420383,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(GSB-028-016-A)[WANU]_WAINUI","Current","TX",false
-426519,420353,"TWO DEGREES NETWORKS LIMITED",,3580.0,"(CHC-060-080-B)[QEII]_QEII","Current","TX",false
-426518,420355,"TWO DEGREES NETWORKS LIMITED",,798.0,"(GSB-028-016-A)[WANU]_WAINUI","Current","TX",false
-426517,420378,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(MNW-040-013-A)[TKRO]_TAKARO","Current","TX",false
-426516,420360,"TWO DEGREES NETWORKS LIMITED",,3580.0,"(MNW-040-013-A)[TKRO]_TAKARO","Current","TX",false
-426515,420352,"TWO DEGREES NETWORKS LIMITED",,798.0,"(MNW-040-013-A)[TKRO]_TAKARO","Current","TX",false
-426514,420384,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(STH-074-003-B)[MTRA]_MATAURA","Current","TX",false
-426513,420366,"TWO DEGREES NETWORKS LIMITED",,939.9,"(HKB-030-034-A)[KCHM]_KINGSLEY-CHATHAM","Current","TX",false
-426512,420381,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(HKB-030-034-A)[KCHM]_KINGSLEY-CHATHAM","Current","TX",false
-426511,420351,"TWO DEGREES NETWORKS LIMITED",,798.0,"(HKB-030-034-A)[KCHM]_KINGSLEY-CHATHAM","Current","TX",false
-426510,420359,"TWO DEGREES NETWORKS LIMITED",,939.9,"(HKB-031-021-A)[AHRI]_AHURIRI","Current","TX",false
-426509,420385,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(HKB-031-021-A)[AHRI]_AHURIRI","Current","TX",false
-426508,420358,"TWO DEGREES NETWORKS LIMITED",,798.0,"(HKB-031-021-A)[AHRI]_AHURIRI","Current","TX",false
-426507,420363,"TWO DEGREES NETWORKS LIMITED",,3580.0,"(NTH-002-023-A)[OTPT]_ONE TREE POINT","Current","TX",false
-426506,420350,"TWO DEGREES NETWORKS LIMITED",,3580.0,"(AKL-010-007-A)[PKKR]_PUKEKOHE RACEWAY","Current","TX",false
-426505,420364,"TWO DEGREES NETWORKS LIMITED",,798.0,"(NTH-002-023-A)[OTPT]_ONE TREE POINT","Current","TX",false
-426504,420382,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(NTH-002-023-A)[OTPT]_ONE TREE POINT","Current","TX",false
-426503,420356,"TWO DEGREES NETWORKS LIMITED",,1815.0,"(NTH-002-023-A)[OTPT]_ONE TREE POINT","Current","TX",false
-426502,420375,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(AKL-010-007-A)[PKKR]_PUKEKOHE RACEWAY","Current","TX",false
-426501,420376,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(BOP-022-002-A)[KTHT]_KATIKATI HILLTOP","Current","TX",false
-426500,264100,"WATERCARE SERVICES LTD","JNB46#",459.23125,"BOMBAY WTP","Current","TX",false
-426499,264099,"WATERCARE SERVICES LTD","JNB46",454.19375,"BOMBAY SPRINGS","Current","TX",false
-426498,,"WATERCARE SERVICES LTD","F119#",474.9625,"MOBILE","Current","TX",false
-426497,224601,"WATERCARE SERVICES LTD","F119",480.95,"RUAOTUWHENUA","Current","TX",false
-426496,,"WATERCARE SERVICES LTD","F156#",475.8875,"MOBILE","Current","TX",false
-426495,224605,"WATERCARE SERVICES LTD","F156",481.875,"MANGATANGI TRIG","Current","TX",false
-426494,224602,"WATERCARE SERVICES LTD","F99",480.45,"RUAOTUWHENUA","Current","TX",false
-426493,,"WATERCARE SERVICES LTD","F143#",475.5625,"MOBILE","Current","TX",false
-426492,224606,"WATERCARE SERVICES LTD","F143",481.55,"SKYTOWER AUCKLAND","Current","TX",false
-426491,,"WATERCARE SERVICES LTD","F108#",474.6875,"MOBILE","Current","TX",false
-426490,,"WATERCARE SERVICES LTD","F84#",474.0875,"MOBILE","Current","TX",false
+73327,171780,"DEPARTMENT OF CONSERVATION",,2.2654,"TAPANUI","Current","TX",false
+73327,171780,"DEPARTMENT OF CONSERVATION",,2.1964,"TAPANUI","Current","TX",false
+73326,171779,"DEPARTMENT OF CONSERVATION",,9.9514,"HANMER SPRINGS","Current","TX",false
+73326,171779,"DEPARTMENT OF CONSERVATION",,8.0814,"HANMER SPRINGS","Current","TX",false
+73326,171779,"DEPARTMENT OF CONSERVATION",,7.8914,"HANMER SPRINGS","Current","TX",false
+73326,171779,"DEPARTMENT OF CONSERVATION",,5.8674,"HANMER SPRINGS","Current","TX",false
+73326,171779,"DEPARTMENT OF CONSERVATION",,5.8554,"HANMER SPRINGS","Current","TX",false
+73326,171779,"DEPARTMENT OF CONSERVATION",,5.8254,"HANMER SPRINGS","Current","TX",false
+73326,171779,"DEPARTMENT OF CONSERVATION",,5.7354,"HANMER SPRINGS","Current","TX",false
+73326,171779,"DEPARTMENT OF CONSERVATION",,5.6814,"HANMER SPRINGS","Current","TX",false
+73326,171779,"DEPARTMENT OF CONSERVATION",,5.2264,"HANMER SPRINGS","Current","TX",false
+73326,171779,"DEPARTMENT OF CONSERVATION",,4.8814,"HANMER SPRINGS","Current","TX",false
+73326,171779,"DEPARTMENT OF CONSERVATION",,4.6234,"HANMER SPRINGS","Current","TX",false
+73326,171779,"DEPARTMENT OF CONSERVATION",,4.6204,"HANMER SPRINGS","Current","TX",false
+73326,171779,"DEPARTMENT OF CONSERVATION",,4.6174,"HANMER SPRINGS","Current","TX",false
+73326,171779,"DEPARTMENT OF CONSERVATION",,4.6024,"HANMER SPRINGS","Current","TX",false
+73326,171779,"DEPARTMENT OF CONSERVATION",,4.5874,"HANMER SPRINGS","Current","TX",false
+73326,171779,"DEPARTMENT OF CONSERVATION",,4.4944,"HANMER SPRINGS","Current","TX",false
+73326,171779,"DEPARTMENT OF CONSERVATION",,4.4884,"HANMER SPRINGS","Current","TX",false
+73326,171779,"DEPARTMENT OF CONSERVATION",,3.3464,"HANMER SPRINGS","Current","TX",false
+73326,171779,"DEPARTMENT OF CONSERVATION",,3.3374,"HANMER SPRINGS","Current","TX",false
+73326,171779,"DEPARTMENT OF CONSERVATION",,3.3044,"HANMER SPRINGS","Current","TX",false
+73326,171779,"DEPARTMENT OF CONSERVATION",,3.2804,"HANMER SPRINGS","Current","TX",false
+73326,171779,"DEPARTMENT OF CONSERVATION",,3.2654,"HANMER SPRINGS","Current","TX",false
+73326,171779,"DEPARTMENT OF CONSERVATION",,3.2624,"HANMER SPRINGS","Current","TX",false
+73326,171779,"DEPARTMENT OF CONSERVATION",,3.2414,"HANMER SPRINGS","Current","TX",false
+73326,171779,"DEPARTMENT OF CONSERVATION",,3.1874,"HANMER SPRINGS","Current","TX",false
+73326,171779,"DEPARTMENT OF CONSERVATION",,3.1634,"HANMER SPRINGS","Current","TX",false
+73326,171779,"DEPARTMENT OF CONSERVATION",,3.0244,"HANMER SPRINGS","Current","TX",false
+73326,171779,"DEPARTMENT OF CONSERVATION",,2.4754,"HANMER SPRINGS","Current","TX",false
+73326,171779,"DEPARTMENT OF CONSERVATION",,2.3494,"HANMER SPRINGS","Current","TX",false
+73326,171779,"DEPARTMENT OF CONSERVATION",,2.2654,"HANMER SPRINGS","Current","TX",false
+73326,171779,"DEPARTMENT OF CONSERVATION",,2.1964,"HANMER SPRINGS","Current","TX",false
+73296,11893,"ONE NEW ZEALAND GROUP LIMITED","VF900",952.0,"WHANGAPARAOA","Current","TX",false
+73290,171765,"CHORUS NEW ZEALAND LIMITED","13G3",12821.0,"TE UKU","Current","TX",false
+73289,171764,"CHORUS NEW ZEALAND LIMITED","13G3#",13087.0,"WAINGARO","Current","TX",false
+73288,11890,"ONE NEW ZEALAND GROUP LIMITED","VF900",952.0,"UNITEC","Current","TX",false
+73281,171761,"CHORUS NEW ZEALAND LIMITED","13G3",12821.0,"WHAKAPIRAU TRIG 7352","Current","TX",false
+73280,171760,"CHORUS NEW ZEALAND LIMITED","13G3#",13087.0,"KAWHIA HARBOUR","Current","TX",false
+73268,11880,"ONE NEW ZEALAND GROUP LIMITED","VF900",952.0,"DUNEDIN (OCTAGON) (VFNZ)","Current","TX",false
+73251,11870,"ONE NEW ZEALAND GROUP LIMITED","VF900",952.0,"HORNBY","Current","TX",false
+73242,11863,"ONE NEW ZEALAND GROUP LIMITED","VF900",952.0,"CHRISTCHURCH SOUTH EAST","Current","TX",false
 73241,11862,"ONE NEW ZEALAND GROUP LIMITED","VF900",952.0,"KILMORE STREET WEST","Current","TX",false
 73220,171728,"EDGE CREATIVE","FNX779",488.96875,"ALL NORTH ISLAND","Current","TX",false
 73196,11852,"SPARK NEW ZEALAND TRADING LIMITED",,877.5,"PORANGAHAU","Current","TX",false
@@ -84614,6 +84656,48 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 39,154932,"TELEVISION NEW ZEALAND LIMITED","7GM2",7152.5,"ALL NEW ZEALAND","Current","TX",false
 39,154932,"TELEVISION NEW ZEALAND LIMITED","7GM1A",7138.5,"ALL NEW ZEALAND","Current","TX",false
 39,154932,"TELEVISION NEW ZEALAND LIMITED","7GM1",7124.5,"ALL NEW ZEALAND","Current","TX",false
+426524,420645,"Fire and Emergency New Zealand","FN526",486.55625,"VICTORIA PARK TUNNEL AUCKLAND","Current","TX",false
+426524,420645,"Fire and Emergency New Zealand","FN526",486.55625,"PENROSE TUNNEL","Current","TX",false
+426524,420645,"Fire and Emergency New Zealand","FN526",486.55625,"NEWMARKET VECTOR TUNNEL","Current","TX",false
+426524,420645,"Fire and Emergency New Zealand","FN526",486.55625,"HOBSON ST VECTOR TUNNEL","Current","TX",false
+426523,420646,"Fire and Emergency New Zealand","FN472",485.88125,"WATERVIEW TUN HENDON AV","Current","TX",false
+426523,420646,"Fire and Emergency New Zealand","FN472",485.88125,"VICTORIA PARK TUNNEL AUCKLAND","Current","TX",false
+426523,420646,"Fire and Emergency New Zealand","FN472",485.88125,"PENROSE TUNNEL","Current","TX",false
+426523,420646,"Fire and Emergency New Zealand","FN472",485.88125,"NEWMARKET VECTOR TUNNEL","Current","TX",false
+426523,420646,"Fire and Emergency New Zealand","FN472",485.88125,"HOBSON ST VECTOR TUNNEL","Current","TX",false
+426522,,"Fire and Emergency New Zealand","FN498#",492.21875,"MOBILE","Current","TX",false
+426521,420354,"TWO DEGREES NETWORKS LIMITED",,3580.0,"(GSB-028-016-A)[WANU]_WAINUI","Current","TX",false
+426520,420383,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(GSB-028-016-A)[WANU]_WAINUI","Current","TX",false
+426519,420353,"TWO DEGREES NETWORKS LIMITED",,3580.0,"(CHC-060-080-B)[QEII]_QEII","Current","TX",false
+426518,420355,"TWO DEGREES NETWORKS LIMITED",,798.0,"(GSB-028-016-A)[WANU]_WAINUI","Current","TX",false
+426517,420378,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(MNW-040-013-A)[TKRO]_TAKARO","Current","TX",false
+426516,420360,"TWO DEGREES NETWORKS LIMITED",,3580.0,"(MNW-040-013-A)[TKRO]_TAKARO","Current","TX",false
+426515,420352,"TWO DEGREES NETWORKS LIMITED",,798.0,"(MNW-040-013-A)[TKRO]_TAKARO","Current","TX",false
+426514,420384,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(STH-074-003-B)[MTRA]_MATAURA","Current","TX",false
+426513,420366,"TWO DEGREES NETWORKS LIMITED",,939.9,"(HKB-030-034-A)[KCHM]_KINGSLEY-CHATHAM","Current","TX",false
+426512,420381,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(HKB-030-034-A)[KCHM]_KINGSLEY-CHATHAM","Current","TX",false
+426511,420351,"TWO DEGREES NETWORKS LIMITED",,798.0,"(HKB-030-034-A)[KCHM]_KINGSLEY-CHATHAM","Current","TX",false
+426510,420359,"TWO DEGREES NETWORKS LIMITED",,939.9,"(HKB-031-021-A)[AHRI]_AHURIRI","Current","TX",false
+426509,420385,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(HKB-031-021-A)[AHRI]_AHURIRI","Current","TX",false
+426508,420358,"TWO DEGREES NETWORKS LIMITED",,798.0,"(HKB-031-021-A)[AHRI]_AHURIRI","Current","TX",false
+426507,420363,"TWO DEGREES NETWORKS LIMITED",,3580.0,"(NTH-002-023-A)[OTPT]_ONE TREE POINT","Current","TX",false
+426506,420350,"TWO DEGREES NETWORKS LIMITED",,3580.0,"(AKL-010-007-A)[PKKR]_PUKEKOHE RACEWAY","Current","TX",false
+426505,420364,"TWO DEGREES NETWORKS LIMITED",,798.0,"(NTH-002-023-A)[OTPT]_ONE TREE POINT","Current","TX",false
+426504,420382,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(NTH-002-023-A)[OTPT]_ONE TREE POINT","Current","TX",false
+426503,420356,"TWO DEGREES NETWORKS LIMITED",,1815.0,"(NTH-002-023-A)[OTPT]_ONE TREE POINT","Current","TX",false
+426502,420375,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(AKL-010-007-A)[PKKR]_PUKEKOHE RACEWAY","Current","TX",false
+426501,420376,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(BOP-022-002-A)[KTHT]_KATIKATI HILLTOP","Current","TX",false
+426500,264100,"WATERCARE SERVICES LTD","JNB46#",459.23125,"BOMBAY WTP","Current","TX",false
+426499,264099,"WATERCARE SERVICES LTD","JNB46",454.19375,"BOMBAY SPRINGS","Current","TX",false
+426498,,"WATERCARE SERVICES LTD","F119#",474.9625,"MOBILE","Current","TX",false
+426497,224601,"WATERCARE SERVICES LTD","F119",480.95,"RUAOTUWHENUA","Current","TX",false
+426496,,"WATERCARE SERVICES LTD","F156#",475.8875,"MOBILE","Current","TX",false
+426495,224605,"WATERCARE SERVICES LTD","F156",481.875,"MANGATANGI TRIG","Current","TX",false
+426494,224602,"WATERCARE SERVICES LTD","F99",480.45,"RUAOTUWHENUA","Current","TX",false
+426493,,"WATERCARE SERVICES LTD","F143#",475.5625,"MOBILE","Current","TX",false
+426492,224606,"WATERCARE SERVICES LTD","F143",481.55,"SKYTOWER AUCKLAND","Current","TX",false
+426491,,"WATERCARE SERVICES LTD","F108#",474.6875,"MOBILE","Current","TX",false
+426490,,"WATERCARE SERVICES LTD","F84#",474.0875,"MOBILE","Current","TX",false
 426489,420771,"VITAL LIMITED","7GL8#",7080.0,"WHITE HILL","Current","TX",false
 426488,420777,"VITAL LIMITED","7GL8#",7080.0,"WHITE HILL","Current","TX",false
 426486,420781,"VITAL LIMITED","7GL8",6740.0,"PASSIVE LEANING PEAK","Current","TX",false
@@ -85572,45 +85656,3 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 425718,248520,"HAMPTON DOWNS (NZ) LIMITED","FNX411",477.55625,"ALL NEW ZEALAND","Current","TX",false
 425715,289983,"ENHANCED SOLUTIONS LIMITED","13G2W",12835.0,"MT THREAVE NORTH","Current","TX",false
 425714,291984,"ENHANCED SOLUTIONS LIMITED","13G2W#",13101.0,"TE PUNA AONET","Current","TX",false
-425713,291983,"ENHANCED SOLUTIONS LIMITED","13G2W",12835.0,"MT THREAVE NORTH","Current","TX",false
-425707,419784,"EONFIBRE LIMITED","18G7A#",19480.0,"BURNHAM","Current","TX",false
-425706,419551,"SPARK NEW ZEALAND TRADING LIMITED",,3660.0,"ARKLES BAY ~FAM7~","Current","TX",false
-425705,419550,"SPARK NEW ZEALAND TRADING LIMITED",,2137.5,"ARKLES BAY ~FAM7~","Current","TX",false
-425704,419549,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"ARKLES BAY ~FAM7~","Current","TX",false
-425703,419548,"SPARK NEW ZEALAND TRADING LIMITED",,2665.0,"ARKLES BAY ~FAM7~","Current","TX",false
-425702,419547,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"ARKLES BAY ~FAM7~","Current","TX",false
-425701,419783,"EONFIBRE LIMITED","18G7A",18470.0,"GOULDS ROAD FARINGDON (VF S3FDN)","Current","TX",false
-425699,419734,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"Normandale ONZ W5NDE","Current","TX",false
-425698,419739,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"Paihia Town ONZ N1PIT","Current","TX",false
-425697,419730,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"Taupiri East ONZ C1TPC","Current","TX",false
-425696,419738,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"Te Kauwhata East ONZ C1TKB","Current","TX",false
-425695,419729,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"Horsham Downs ONZ C1HSD","Current","TX",false
-425690,420703,"KING COUNTRY HARVESTING LIMITED","EEX283",172.75,"CENTRAL NORTH ISLAND","Current","TX",false
-425690,420703,"KING COUNTRY HARVESTING LIMITED","EEX251",172.35,"CENTRAL NORTH ISLAND","Current","TX",false
-425690,420703,"KING COUNTRY HARVESTING LIMITED","EEX207",171.8,"CENTRAL NORTH ISLAND","Current","TX",false
-425689,420155,"SPACE OPERATIONS NEW ZEALAND LIMITED",,2066.6,"Awarua Earth Station_Planet 4","Current","TX",false
-425688,419694,"KORDIA LIMITED","I643#",428.575,"PUKEAKURA Maritimes","Current","TX",false
-425686,419693,"KORDIA LIMITED","I643",423.5625,"WHAKAPUNAKE","Current","TX",false
-425685,419644,"KIWIRAIL","JL2C#",448.08125,"Signals 156.4km","Current","TX",false
-425684,419641,"KIWIRAIL","JL2C",443.075,"Inchbonnie Kiwi Rail Radio Site","Current","TX",false
-425682,419643,"KIWIRAIL","JL4C#",448.18125,"Signals 150.15km","Current","TX",false
-425681,419642,"KIWIRAIL","JL4C",443.175,"Inchbonnies Kiwirail Radio Site 1","Current","TX",false
-425676,420090,"TWO DEGREES NETWORKS LIMITED","11G2W#",11365.0,"(TNK-033-045-A)[RPKO]_RATAPIKO","Current","TX",false
-425675,420089,"TWO DEGREES NETWORKS LIMITED","11G2W",10835.0,"(TNK-033-025-A)[IGWD]_INGLEWOOD","Current","TX",false
-425674,420088,"TWO DEGREES NETWORKS LIMITED","11G1W#",11285.0,"(TNK-033-045-A)[RPKO]_RATAPIKO","Current","TX",false
-425673,420087,"TWO DEGREES NETWORKS LIMITED","11G1W",10755.0,"(TNK-033-025-A)[IGWD]_INGLEWOOD","Current","TX",false
-425672,419572,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(HKB-031-017-B)[NAPP]_NAPIER PORT","Current","TX",false
-425671,419577,"TWO DEGREES NETWORKS LIMITED",,798.0,"(HKB-031-017-B)[NAPP]_NAPIER PORT","Current","TX",false
-425670,419573,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(AKL-008-140-A)[BVAU]_BAVERSTOCK RD FLATBUSH","Current","TX",false
-425669,419574,"TWO DEGREES NETWORKS LIMITED",,939.9,"(AKL-008-140-A)[BVAU]_BAVERSTOCK RD FLATBUSH","Current","TX",false
-425668,419575,"TWO DEGREES NETWORKS LIMITED",,798.0,"(AKL-008-140-A)[BVAU]_BAVERSTOCK RD FLATBUSH","Current","TX",false
-425667,419576,"TWO DEGREES NETWORKS LIMITED",,3580.0,"(AKL-008-122-B)[PCAU]_PAPATOETOE ST GEORGE","Current","TX",false
-425666,419571,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(AKL-008-122-B)[PCAU]_PAPATOETOE ST GEORGE","Current","TX",false
-425665,419558,"TWO DEGREES NETWORKS LIMITED",,939.9,"(AKL-008-122-B)[PCAU]_PAPATOETOE ST GEORGE","Current","TX",false
-425664,419570,"TWO DEGREES NETWORKS LIMITED",,939.9,"(AKL-008-126-A)[WIAU]_WIRI","Current","TX",false
-425663,419564,"TWO DEGREES NETWORKS LIMITED",,798.0,"(AKL-008-122-B)[PCAU]_PAPATOETOE ST GEORGE","Current","TX",false
-425662,419569,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(CHC-060-176-A)[ARNN]_ARANUI NORTH","Current","TX",false
-425661,419567,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(AKL-008-126-A)[WIAU]_WIRI","Current","TX",false
-425660,419559,"TWO DEGREES NETWORKS LIMITED",,798.0,"(AKL-008-126-A)[WIAU]_WIRI","Current","TX",false
-425659,419562,"TWO DEGREES NETWORKS LIMITED",,939.9,"(CHC-060-176-A)[ARNN]_ARANUI NORTH","Current","TX",false
-425658,419566,"TWO DEGREES NETWORKS LIMITED",,798.0,"(CHC-060-176-A)[ARNN]_ARANUI NORTH","Current","TX",false
