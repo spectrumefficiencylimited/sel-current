@@ -38388,9 +38388,9 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 220709,280723,"POWERCO LIMITED","I653#",428.825,"MATAPIHI GXP SUBSTATION (POWERCO)","Current","TX",false
 220708,280722,"POWERCO LIMITED","I653",423.8125,"TRITON AVENUE SUBSTATION","Current","TX",false
 220705,280739,"SPARK NEW ZEALAND TRADING LIMITED",,877.5,"SYMONDS STREET","Current","TX",false
-220696,281168,"National Emergency Management Agency","ES129",142.6125,"ROSSAVEEL HEIGHTS","Current","TX",false
 220696,281168,"National Emergency Management Agency","ES129",142.6125,"MT MISERY","Current","TX",false
 220696,281168,"National Emergency Management Agency","ES129",142.6125,"MT GREY(BCL)","Current","TX",false
+220696,281168,"National Emergency Management Agency","ES129",142.6125,"197 Bing Lucas Drive","Current","TX",false
 220687,281178,"National Emergency Management Agency","ES3",141.0375,"TAMAHUNGA","Current","TX",false
 220687,281178,"National Emergency Management Agency","ES3",141.0375,"STATION PEAK (DOWNER)","Current","TX",false
 220687,281178,"National Emergency Management Agency","ES3",141.0375,"HOROWHENUA DC DEPOT","Current","TX",false
