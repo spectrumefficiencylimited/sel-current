@@ -11416,6 +11416,7 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 433036,426614,"KIWIRAIL","13G1",12765.0,"WESTFIELD RAIL REPEATER","Current","TX",false
 433034,,"NELSPECS LIMITED","EE58#",167.525,"MOBILE","Current","TX",false
 433033,425485,"NELSPECS LIMITED","EE58",162.925,"RICHMOND HILL TRIG A6VV","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"Waipukurau FENZ Remote","Current","TX",false
 433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"Waio Station  FENZ Remote","Current","TX",false
 433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WYNDHAM FIRE STATION","Current","TX",false
 433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WOODHILL LOOKOUT","Current","TX",false
@@ -11441,7 +11442,6 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WAITAHUNA FIRE STATION","Current","TX",false
 433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WAITAHUNA FENZ REMOTE","Current","TX",false
 433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WAIRAU VALLEY FIRE STATION","Current","TX",false
-433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WAIPUKURAU NZFS REMOTE","Current","TX",false
 433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WAIPAWA FIRE STATION","Current","TX",false
 433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WAINUI BAY FIRE STATION","Current","TX",false
 433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WAIMATE FIRE STATION","Current","TX",false
