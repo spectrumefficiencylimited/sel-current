@@ -1,4 +1,6 @@
 licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppressed
+435797,,"DOVE COMMUNICATIONS (2023) LIMITED","FN185#",474.30625,"MOBILE","Current","TX",false
+435796,402190,"DOVE COMMUNICATIONS (2023) LIMITED","FN185",480.29375,"578 WAINUI ROAD (CAMPRAGLAN)","Current","TX",false
 435781,428045,"DOVE COMMUNICATIONS (2023) LIMITED","DNX45",461.78125,"ALL NEW ZEALAND","Current","TX",false
 435781,428045,"DOVE COMMUNICATIONS (2023) LIMITED","DNX8",458.43125,"ALL NEW ZEALAND","Current","TX",false
 435778,411077,"TAIT SYSTEMS NZ LIMITED","7GM4A#",7383.5,"KAITAIA","Current","TX",false
@@ -997,8 +999,6 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 434589,427246,"AMAZON KUIPER NEW ZEALAND LIMITED",,28725.0,"OTOROHANGA DISTRICT TLA","Current","TX",false
 434588,427247,"AMAZON KUIPER NEW ZEALAND LIMITED",,28725.0,"OPOTIKI DISTRICT TLA","Current","TX",false
 434587,427248,"AMAZON KUIPER NEW ZEALAND LIMITED",,28725.0,"NEW PLYMOUTH DISTRICT TLA","Current","TX",false
-434586,427554,"AMAZON KUIPER NEW ZEALAND LIMITED",,28725.0,"NELSON CITY TLA","Current","TX",false
-434585,427249,"AMAZON KUIPER NEW ZEALAND LIMITED",,28725.0,"NAPIER CITY TLA","Current","TX",false
 426896,,"INSPIRE NET LIMITED","EE134#",168.475,"MOBILE","Current","TX",false
 426895,262409,"INSPIRE NET LIMITED","EE134",163.875,"Kimbolton (Inspire)","Current","TX",false
 426894,420562,"INSPIRE NET LIMITED","18G6A#",19370.0,"2877 Kimbolton Road, Kimbolton","Current","TX",false
@@ -10999,6 +10999,8 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 414988,411038,"Unifone New Zealand Limited","18G6A",18360.0,"CAPE WANBROW (WORKS)","Current","TX",false
 414987,412335,"H & H CONTRACTORS LIMITED","FNX435",477.85625,"AUCKLAND REGION","Current","TX",false
 414987,412335,"H & H CONTRACTORS LIMITED","FNX422",477.69375,"AUCKLAND REGION","Current","TX",false
+434586,427554,"AMAZON KUIPER NEW ZEALAND LIMITED",,28725.0,"NELSON CITY TLA","Current","TX",false
+434585,427249,"AMAZON KUIPER NEW ZEALAND LIMITED",,28725.0,"NAPIER CITY TLA","Current","TX",false
 434584,427250,"AMAZON KUIPER NEW ZEALAND LIMITED",,28725.0,"MATAMATA-PIAKO DISTRICT TLA","Current","TX",false
 434583,427251,"AMAZON KUIPER NEW ZEALAND LIMITED",,28725.0,"MASTERTON DISTRICT TLA","Current","TX",false
 434582,427555,"AMAZON KUIPER NEW ZEALAND LIMITED",,28725.0,"MARLBOROUGH DISTRICT TLA","Current","TX",false
@@ -11997,8 +11999,6 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 433431,425711,"NEW ZEALAND ROCKETRY ASSOCIATION INCORPORATED","FNX419",477.65625,"ALL NEW ZEALAND","Current","TX",false
 433431,425711,"NEW ZEALAND ROCKETRY ASSOCIATION INCORPORATED","FNX129",470.85625,"ALL NEW ZEALAND","Current","TX",false
 433425,426167,"SPARK NEW ZEALAND TRADING LIMITED",,3710.0,"AUCKLAND AIRPORT RELOCATION","Current","TX",false
-433424,425964,"SPARK NEW ZEALAND TRADING LIMITED",,3660.0,"AUCKLAND AIRPORT RELOCATION","Current","TX",false
-433423,425977,"SPARK NEW ZEALAND TRADING LIMITED",,2137.5,"AUCKLAND AIRPORT RELOCATION","Current","TX",false
 414987,412335,"H & H CONTRACTORS LIMITED","FNX327",476.33125,"AUCKLAND REGION","Current","TX",false
 414987,412335,"H & H CONTRACTORS LIMITED","FNX310",476.11875,"AUCKLAND REGION","Current","TX",false
 414983,,"VITAL LIMITED","F278#",492.9375,"MOBILE","Current","TX",false
@@ -21999,6 +21999,8 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 401004,400865,"FULL FLAVOUR LIMITED","13G2W#",13101.0,"1064B Tarawera Road, Lake Tarawera","Current","TX",false
 401003,400864,"FULL FLAVOUR LIMITED","13G2W",12835.0,"TUTAEHEKE","Current","TX",false
 401002,400439,"LRAE COMMS GROUP LIMITED","11G4#",11365.0,"SPUR HUT ROAD FAIRLIE","Current","TX",false
+433424,425964,"SPARK NEW ZEALAND TRADING LIMITED",,3660.0,"AUCKLAND AIRPORT RELOCATION","Current","TX",false
+433423,425977,"SPARK NEW ZEALAND TRADING LIMITED",,2137.5,"AUCKLAND AIRPORT RELOCATION","Current","TX",false
 433422,425963,"SPARK NEW ZEALAND TRADING LIMITED",,2665.0,"AUCKLAND AIRPORT RELOCATION","Current","TX",false
 433421,425704,"SPARK NEW ZEALAND TRADING LIMITED",,2665.0,"MT EDEN","Current","TX",false
 433420,425703,"SPARK NEW ZEALAND TRADING LIMITED",,2665.0,"PONSONBY WILLIAMSON","Current","TX",false
@@ -22997,8 +22999,6 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 432973,294120,"KIWIRAIL","EN129",152.35,"HOTEO NAL TUNNEL 5","Current","TX",false
 432973,294120,"KIWIRAIL","EN129",152.35,"HOTEO","Current","TX",false
 432973,294120,"KIWIRAIL","EN129",152.35,"HOROKAKA","Current","TX",false
-432973,294120,"KIWIRAIL","EN129",152.35,"HIGH PEAK","Current","TX",false
-432973,294120,"KIWIRAIL","EN129",152.35,"HEYWARD POINT","Current","TX",false
 401000,400438,"LRAE COMMS GROUP LIMITED","11G4",10835.0,"BROTHERS","Current","TX",false
 400999,400443,"LRAE COMMS GROUP LIMITED","11G11#",11645.0,"SPUR HUT ROAD FAIRLIE","Current","TX",false
 400998,400441,"LRAE COMMS GROUP LIMITED","11G11",11115.0,"FAIRLIE","Current","TX",false
@@ -32999,6 +32999,8 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 229486,289105,"FAULDINGS SOUND LIMITED","DNX93",466.91875,"ALL NEW ZEALAND","Current","TX",false
 229486,289105,"FAULDINGS SOUND LIMITED","DNX79",466.69375,"ALL NEW ZEALAND","Current","TX",false
 229486,289105,"FAULDINGS SOUND LIMITED","CNX68",455.24375,"ALL NEW ZEALAND","Current","TX",false
+432973,294120,"KIWIRAIL","EN129",152.35,"HIGH PEAK","Current","TX",false
+432973,294120,"KIWIRAIL","EN129",152.35,"HEYWARD POINT","Current","TX",false
 432973,294120,"KIWIRAIL","EN129",152.35,"HEMOPO TUNNEL 1","Current","TX",false
 432973,294120,"KIWIRAIL","EN129",152.35,"HELENSVILLE","Current","TX",false
 432973,294120,"KIWIRAIL","EN129",152.35,"HEDGEHOPE","Current","TX",false
@@ -33997,8 +33999,6 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 432587,425168,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","AM148",0.954,"EUREKA","Current","TX",false
 432586,425167,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","AM134",0.828,"LONGBURN","Current","TX",false
 432585,425165,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","AM101",0.531,"ALEXANDRA","Current","TX",false
-432584,425162,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","AM180",1.242,"WHAKATANE","Current","TX",false
-432583,425161,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","AM211",1.521,"MATAPIHI","Current","TX",false
 229486,289105,"FAULDINGS SOUND LIMITED","CNX55",455.08125,"ALL NEW ZEALAND","Current","TX",false
 229486,289105,"FAULDINGS SOUND LIMITED","CNX40",453.54375,"ALL NEW ZEALAND","Current","TX",false
 229486,289105,"FAULDINGS SOUND LIMITED","CNX29",453.40625,"ALL NEW ZEALAND","Current","TX",false
@@ -43999,6 +43999,8 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 213107,274728,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"ARIA (VFNZ)","Current","TX",false
 213106,274730,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"TE UKU (VFNZ)","Current","TX",false
 213105,274679,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"OAKURA (VFNZ)","Current","TX",false
+432584,425162,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","AM180",1.242,"WHAKATANE","Current","TX",false
+432583,425161,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","AM211",1.521,"MATAPIHI","Current","TX",false
 432582,425143,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","AM103",0.549,"STOKE","Current","TX",false
 432581,425164,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","AM195",1.377,"THREE MILE HILL DUNEDIN","Current","TX",false
 432580,425163,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","AM110",0.612,"NELSON","Current","TX",false
@@ -44997,8 +44999,6 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 431539,294196,"KIWIRAIL","MSN10",161.08125,"CANNON POINT","Current","TX",false
 431539,294196,"KIWIRAIL","MSN10",161.08125,"BRYNDERWYN","Current","TX",false
 431539,294196,"KIWIRAIL","MSN10",161.08125,"BOMBAY(NZR)","Current","TX",false
-431539,294196,"KIWIRAIL","MSN10",161.08125,"BEALEY SPUR","Current","TX",false
-431539,294196,"KIWIRAIL","MSN10",161.08125,"ARAMOHO TRIANGLE","Current","TX",false
 213104,274719,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"TAPAWERA SOUTH (VFNZ)","Current","TX",false
 213103,274698,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"TAUPO BAY (VFNZ)","Current","TX",false
 213102,274573,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"TE KAO (VFNZ)","Current","TX",false
@@ -54999,6 +54999,8 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 191827,258186,"ONE NEW ZEALAND GROUP LIMITED",,2682.5,"CANTERBURY/OXFORD","Current","TX",false
 191826,258171,"ONE NEW ZEALAND GROUP LIMITED",,2682.5,"BURNHAM MILITARY CAMP (VFNZ)","Current","TX",false
 191825,258154,"ONE NEW ZEALAND GROUP LIMITED",,2682.5,"BANKSIDE (VFNZ)","Current","TX",false
+431539,294196,"KIWIRAIL","MSN10",161.08125,"BEALEY SPUR","Current","TX",false
+431539,294196,"KIWIRAIL","MSN10",161.08125,"ARAMOHO TRIANGLE","Current","TX",false
 431539,294196,"KIWIRAIL","MSN10",161.08125,"APATA HILL","Current","TX",false
 431539,294196,"KIWIRAIL","MSN10",161.08125,"AICKENS","Current","TX",false
 431539,294196,"KIWIRAIL","MSN10",161.08125,"86 LATTER HILL","Current","TX",false
@@ -55202,8 +55204,6 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 431322,424900,"ULTIMATE MOBILE LIMITED","11G1W",10755.0,"RWCHCL - HANNAHS CLEARING","Current","TX",false
 431321,424898,"ULTIMATE MOBILE LIMITED","8GL78",7940.425,"BALD HILL","Current","TX",false
 431320,424489,"SMITH CRANE & CONSTRUCTION LTD","ENX38",150.525,"10 Morningside Drive","Current","TX",false
-431319,,"DOVE COMMUNICATIONS (2023) LIMITED","FN185#",474.30625,"MOBILE","Current","TX",false
-431318,402190,"DOVE COMMUNICATIONS (2023) LIMITED","FN185",480.29375,"209 WHITEHALL ROAD - FORREST BLOCK","Current","TX",false
 431317,,"DOVE COMMUNICATIONS (2023) LIMITED","FN176#",474.19375,"MOBILE","Current","TX",false
 431316,402186,"DOVE COMMUNICATIONS (2023) LIMITED","FN176",480.18125,"209 WHITEHALL ROAD - FORREST BLOCK","Current","TX",false
 431313,,"WAIPA NETWORKS LIMITED","EE217#",169.5125,"MOBILE","Current","TX",false
