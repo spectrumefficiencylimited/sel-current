@@ -1,4 +1,6 @@
 licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppressed
+441499,,"VITAL LIMITED","TD308#",409.85,"MOBILE","Current","TX",false
+441498,406138,"VITAL LIMITED","TD308",417.85,"MT BONAR(TEAMTALK)","Current","TX",false
 441475,433222,"TWO DEGREES NETWORKS LIMITED",,3760.0,"(CHC-060-179-A)[PHLP]_PHILLIPSTOWN","Current","TX",false
 441474,433221,"TWO DEGREES NETWORKS LIMITED",,1815.0,"(OTG-069-033-A)[CRMC]_CROMWELL CENTRAL","Current","TX",false
 441472,433216,"TWO DEGREES NETWORKS LIMITED",,2152.5,"(OTG-069-033-A)[CRMC]_CROMWELL CENTRAL","Current","TX",false
@@ -7,6 +9,7 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 441468,433219,"TWO DEGREES NETWORKS LIMITED",,798.0,"(CHC-060-179-A)[PHLP]_PHILLIPSTOWN","Current","TX",false
 441467,433218,"TWO DEGREES NETWORKS LIMITED",,798.0,"(OTG-069-033-A)[CRMC]_CROMWELL CENTRAL","Current","TX",false
 441466,433217,"TWO DEGREES NETWORKS LIMITED",,939.9,"(CHC-060-179-A)[PHLP]_PHILLIPSTOWN","Current","TX",false
+441464,433242,"KEEPERS HONEY LIMITED","EEX84",166.75,"ALL NORTH ISLAND","Current","TX",false
 441461,241815,"MCS PTT LIMITED","FNX860",489.98125,"ALL NEW ZEALAND","Current","TX",false
 441461,241815,"MCS PTT LIMITED","FNX852",489.88125,"ALL NEW ZEALAND","Current","TX",false
 441461,241815,"MCS PTT LIMITED","FNX842",489.75625,"ALL NEW ZEALAND","Current","TX",false
@@ -996,9 +999,9 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 440252,432169,"SPARK NEW ZEALAND TRADING LIMITED",,3610.0,"PUKEKOHE NORTH","Current","TX",false
 440251,432160,"SPARK NEW ZEALAND TRADING LIMITED",,3610.0,"PILKINGTON ROAD","Current","TX",false
 440250,432156,"SPARK NEW ZEALAND TRADING LIMITED",,3610.0,"PIHA","Current","TX",false
-440249,432176,"SPARK NEW ZEALAND TRADING LIMITED",,3610.0,"PAKURANGA TOWN","Current","TX",false
-440248,432172,"SPARK NEW ZEALAND TRADING LIMITED",,3610.0,"PONSONBY FRANKLIN","Current","TX",false
-440247,432174,"SPARK NEW ZEALAND TRADING LIMITED",,3610.0,"PENROSE EAST","Current","TX",false
+431803,427994,"MINISTRY OF JUSTICE - COURT SECURITY","RP7C",160.4875,"DANNEVIRKE DISTRICT COURT","Current","TX",false
+431803,427994,"MINISTRY OF JUSTICE - COURT SECURITY","RP7C",160.4875,"CHRISTCHURCH HIGH COURT AND DISTRICT COURT","Current","TX",false
+431803,427994,"MINISTRY OF JUSTICE - COURT SECURITY","RP7C",160.4875,"BLENHEIM HIGH COURT & DISTRICT COURT","Current","TX",false
 431803,427994,"MINISTRY OF JUSTICE - COURT SECURITY","RP7C",160.4875,"AUCKLAND HIGH COURT","Current","TX",false
 431803,427994,"MINISTRY OF JUSTICE - COURT SECURITY","RP7C",160.4875,"AUCKLAND DISTRICT COURT","Current","TX",false
 431803,427994,"MINISTRY OF JUSTICE - COURT SECURITY","RP7C",160.4875,"ASHBURTON DISTRICT COURT","Current","TX",false
@@ -6999,8 +7002,6 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 424849,419037,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"Patea South ONZ W2PES","Current","TX",false
 424848,419032,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"RIVERTON (VFNZ)","Current","TX",false
 424847,419025,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"GORE (VFNZ)","Current","TX",false
-424848,419032,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"RIVERTON (VFNZ)","Current","TX",false
-424847,419025,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"GORE (VFNZ)","Current","TX",false
 424846,419024,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"Mt Hutt ONZ S4MHT","Current","TX",false
 424845,419023,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"HINDS VODAFONE","Current","TX",false
 424844,419031,"ONE NEW ZEALAND GROUP LIMITED",,2640.0,"SPRINGFIELD WEST/DARFIELD","Current","TX",false
@@ -10998,7 +10999,9 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 419677,414493,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(AKL-005-006-B)[HBRN]_HARBOUR BRIDGE NTH","Current","TX",false
 419676,414504,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(AKL-008-043-C)[ETMK]_EAST TAMAKI","Current","TX",false
 419675,414508,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(AKL-006-032-A)[GLDS]_GLENDENE SOUTH","Current","TX",false
-419674,414507,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(AKL-008-058-D)[HOMC]_HOMAI CENTRAL","Current","TX",false
+440249,432176,"SPARK NEW ZEALAND TRADING LIMITED",,3610.0,"PAKURANGA TOWN","Current","TX",false
+440248,432172,"SPARK NEW ZEALAND TRADING LIMITED",,3610.0,"PONSONBY FRANKLIN","Current","TX",false
+440247,432174,"SPARK NEW ZEALAND TRADING LIMITED",,3610.0,"PENROSE EAST","Current","TX",false
 440246,432154,"SPARK NEW ZEALAND TRADING LIMITED",,3610.0,"POINT CHEVALIER","Current","TX",false
 440245,432158,"SPARK NEW ZEALAND TRADING LIMITED",,3610.0,"PONSONBY SHOPS","Current","TX",false
 440244,432153,"SPARK NEW ZEALAND TRADING LIMITED",,3610.0,"PARNELL RISE ~HPNG~","Current","TX",false
@@ -11996,9 +11999,7 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 439251,430441,"SPARK NEW ZEALAND TRADING LIMITED",,3660.0,"EDEN TERRACE","Current","TX",false
 439250,430443,"SPARK NEW ZEALAND TRADING LIMITED",,3660.0,"MT EDEN","Current","TX",false
 439249,430436,"SPARK NEW ZEALAND TRADING LIMITED",,3660.0,"KOWHAI ROAD","Current","TX",false
-439248,430446,"SPARK NEW ZEALAND TRADING LIMITED",,3660.0,"DEVONPORT SHOPS","Current","TX",false
-439247,430448,"SPARK NEW ZEALAND TRADING LIMITED",,3660.0,"DOMAIN ROUNDABOUT PANMURE","Current","TX",false
-439246,430451,"SPARK NEW ZEALAND TRADING LIMITED",,3660.0,"DONNOR PLACE","Current","TX",false
+419674,414507,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(AKL-008-058-D)[HOMC]_HOMAI CENTRAL","Current","TX",false
 419673,414509,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(AKL-005-045-A)[MBYN]_MAIRANGI BAY NTH","Current","TX",false
 419672,414495,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(AKL-005-023-G)[NHBR]_NTH HARBOUR RD","Current","TX",false
 419671,414501,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(AKL-006-008-C)[TEAT]_TE ATATU NORTH","Current","TX",false
@@ -21998,7 +21999,9 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 402786,401628,"PARATA LIMITED","EEX91",170.35,"GISBORNE REGION","Current","TX",false
 402776,401580,"ONE NEW ZEALAND GROUP LIMITED",,2682.5,"Hornby South ONZ S3HSH","Current","TX",false
 402775,401577,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"Hornby South ONZ S3HSH","Current","TX",false
-402774,401582,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"Ngauranga West W6NGW","Current","TX",false
+439248,430446,"SPARK NEW ZEALAND TRADING LIMITED",,3660.0,"DEVONPORT SHOPS","Current","TX",false
+439247,430448,"SPARK NEW ZEALAND TRADING LIMITED",,3660.0,"DOMAIN ROUNDABOUT PANMURE","Current","TX",false
+439246,430451,"SPARK NEW ZEALAND TRADING LIMITED",,3660.0,"DONNOR PLACE","Current","TX",false
 439245,430449,"SPARK NEW ZEALAND TRADING LIMITED",,3660.0,"DIANA DRIVE","Current","TX",false
 439244,430440,"SPARK NEW ZEALAND TRADING LIMITED",,3660.0,"DOMINION ROAD","Current","TX",false
 439243,430439,"SPARK NEW ZEALAND TRADING LIMITED",,3660.0,"DEVONPORT","Current","TX",false
@@ -22996,9 +22999,7 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 438038,431444,"TWO DEGREES NETWORKS LIMITED",,3760.0,"(WLG-047-015-D)[WADV]_WADESTOWN VILL","Current","TX",false
 438037,431443,"TWO DEGREES NETWORKS LIMITED",,3760.0,"(WLG-047-001-B)[WLTN]_WILTON","Current","TX",false
 438036,431439,"TWO DEGREES NETWORKS LIMITED",,3760.0,"(WLG-047-009-A)[RARO]_RAROA","Current","TX",false
-438035,431454,"TWO DEGREES NETWORKS LIMITED",,3760.0,"(WLG-047-006-G)[JVLE]_JOHNSONVILLE","Current","TX",false
-438034,431460,"TWO DEGREES NETWORKS LIMITED",,3760.0,"(WLG-047-012-E)[NGAG]_NGAURANGA GORGE","Current","TX",false
-438033,431445,"TWO DEGREES NETWORKS LIMITED",,3760.0,"(WLG-046-027-C)[WWTU]_WAIWHETU","Current","TX",false
+402774,401582,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"Ngauranga West W6NGW","Current","TX",false
 402764,401623,"PRIMOWIRELESS LIMITED","11G6#",11445.0,"KAHUI ROAD (PRIMOWIRELESS)","Current","TX",false
 402763,401622,"PRIMOWIRELESS LIMITED","11G6",10915.0,"PUNGAREHU","Current","TX",false
 402762,297218,"FULL FLAVOUR LIMITED","8GL12#",8073.845,"1058 TIROHANGA ROAD, TIROHANGA","Current","TX",false
@@ -32998,7 +32999,9 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 230514,290159,"EONFIBRE LIMITED","23G10A1",22260.0,"COW OUTSIDE C424 HOLMES ROAD WAIOURU MILITARY CAMP WAIOURU (VF WAIOURU MILITARY COW)","Current","TX",false
 230510,290063,"AIRWAYS CORPORATION OF NEW ZEALAND LIMITED","LL250/7#",1523.625,"CORONET PEAK KORDIA","Current","TX",false
 230509,290108,"SPARK NEW ZEALAND TRADING LIMITED",,2137.5,"ADDINGTON","Current","TX",false
-230508,290109,"SPARK NEW ZEALAND TRADING LIMITED",,2137.5,"COOPERS BEACH","Current","TX",false
+438035,431454,"TWO DEGREES NETWORKS LIMITED",,3760.0,"(WLG-047-006-G)[JVLE]_JOHNSONVILLE","Current","TX",false
+438034,431460,"TWO DEGREES NETWORKS LIMITED",,3760.0,"(WLG-047-012-E)[NGAG]_NGAURANGA GORGE","Current","TX",false
+438033,431445,"TWO DEGREES NETWORKS LIMITED",,3760.0,"(WLG-046-027-C)[WWTU]_WAIWHETU","Current","TX",false
 438032,431463,"TWO DEGREES NETWORKS LIMITED",,3760.0,"(WLG-046-013-C)[LHTC]_LOWER HUTT CBD","Current","TX",false
 438031,431431,"TWO DEGREES NETWORKS LIMITED",,3760.0,"(WLG-045-006-A)[UPHT]_UPPER HUTT","Current","TX",false
 438030,431458,"TWO DEGREES NETWORKS LIMITED",,3760.0,"(WLG-046-009-B)[EPUN]_EPUNI","Current","TX",false
@@ -33996,9 +33999,7 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 436999,429527,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"ALLUM STREET VF A5AST","Current","TX",false
 436998,429523,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"SYDENHAM VF S3SDM","Current","TX",false
 436997,429521,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"VALLEY ROAD VF A4VRD","Current","TX",false
-436996,429524,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"MASSEY UNIVERSITY VF W3MUR","Current","TX",false
-436995,429525,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"WHANGANUI SPRINGVALE VF W2WSV","Current","TX",false
-436994,429526,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"Te Anau Central 2 S6TUC","Current","TX",false
+230508,290109,"SPARK NEW ZEALAND TRADING LIMITED",,2137.5,"COOPERS BEACH","Current","TX",false
 230507,290057,"AIRWAYS CORPORATION OF NEW ZEALAND LIMITED","LL250/3#",1522.625,"CORONET PEAK KORDIA","Current","TX",false
 230504,,"VITAL LIMITED","EN73#",155.83125,"MOBILE","Current","TX",false
 230503,289998,"VITAL LIMITED","EN73",151.65,"RUKUHIA","Current","TX",false
@@ -43998,7 +43999,9 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 214101,275900,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"TAWA NORTH","Current","TX",false
 214100,275880,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"PAPARANGI","Current","TX",false
 214099,275888,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"WAIKIWI NORTH","Current","TX",false
-214098,275937,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"SOUTHSHORE","Current","TX",false
+436996,429524,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"MASSEY UNIVERSITY VF W3MUR","Current","TX",false
+436995,429525,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"WHANGANUI SPRINGVALE VF W2WSV","Current","TX",false
+436994,429526,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"Te Anau Central 2 S6TUC","Current","TX",false
 436993,429515,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"GORE SOUTH VF S6GSO","Current","TX",false
 436992,429517,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"AMBERLEY TOWN VF S2AYT","Current","TX",false
 436991,429518,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"BRIGHTWATER VF S1BWT","Current","TX",false
@@ -44996,9 +44999,7 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 435778,411077,"TAIT SYSTEMS NZ LIMITED","7GM4A#",7383.5,"KAITAIA","Current","TX",false
 435777,411076,"TAIT SYSTEMS NZ LIMITED","7GM4A",7222.5,"Maungataniwha PSN","Current","TX",false
 435775,432954,"TELETRONICS LIMITED","EEX61",166.4625,"WAIRARAPA AREA","Current","TX",false
-435764,428641,"SPACE OPERATIONS NEW ZEALAND LIMITED",,2272.875,"CA-01","Current","TX",false
-435763,428646,"SPACE OPERATIONS NEW ZEALAND LIMITED",,2266.625,"CA-01","Current","TX",false
-435762,428644,"SPACE OPERATIONS NEW ZEALAND LIMITED",,2269.75,"CA-01","Current","TX",false
+214098,275937,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"SOUTHSHORE","Current","TX",false
 214097,275924,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"ST MARTINS","Current","TX",false
 214096,275885,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"RIVERTON NORTH","Current","TX",false
 214095,275916,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"ROLLESTON WEST","Current","TX",false
@@ -54998,7 +54999,9 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 194181,,"CITY COMMS LIMITED","EE211#",169.4375,"MOBILE","Current","TX",false
 194180,259699,"CITY COMMS LIMITED","EE211",164.8375,"AUAHITOTARA NO2","Current","TX",false
 194177,259530,"SPARK NEW ZEALAND TRADING LIMITED","13G2W",12835.0,"BURNHAM","Current","TX",false
-194176,259529,"SPARK NEW ZEALAND TRADING LIMITED","13G2W#",13101.0,"AYLESBURY","Current","TX",false
+435764,428641,"SPACE OPERATIONS NEW ZEALAND LIMITED",,2272.875,"CA-01","Current","TX",false
+435763,428646,"SPACE OPERATIONS NEW ZEALAND LIMITED",,2266.625,"CA-01","Current","TX",false
+435762,428644,"SPACE OPERATIONS NEW ZEALAND LIMITED",,2269.75,"CA-01","Current","TX",false
 435761,428643,"SPACE OPERATIONS NEW ZEALAND LIMITED",,2263.5,"CA-01","Current","TX",false
 435760,428651,"SPACE OPERATIONS NEW ZEALAND LIMITED",,2276.0,"CA-01","Current","TX",false
 435759,428317,"Mathew Baranow","FNX415",477.60625,"ALL NEW ZEALAND","Current","TX",false
@@ -55996,9 +55999,7 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 433920,426286,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM255",96.7,"PUKEPOTO","Current","TX",false
 433919,426274,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM111",89.5,"PUKEPOTO","Current","TX",false
 433918,426285,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM159",91.9,"OTAHOUA","Current","TX",false
-433917,426283,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM207",94.3,"OTAHOUA","Current","TX",false
-433916,426279,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM319",99.9,"POPOITI","Current","TX",false
-433915,426275,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM141",91.0,"MT MARY","Current","TX",false
+194176,259529,"SPARK NEW ZEALAND TRADING LIMITED","13G2W#",13101.0,"AYLESBURY","Current","TX",false
 194175,,"DAVID KING TECHNICIAN LIMITED","MM62#",156.125,"MARITIME MOBILE AREA","Current","TX",false
 194170,259396,"HANLON PLUMBING LIMITED","FNX544",482.53125,"ALL NEW ZEALAND","Current","TX",false
 194170,259396,"HANLON PLUMBING LIMITED","FNX517",482.19375,"ALL NEW ZEALAND","Current","TX",false
@@ -65998,7 +65999,9 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 166800,240669,"MOBICOMM LIMITED","FNX591",483.11875,"ALL NEW ZEALAND","Current","TX",false
 166800,240669,"MOBICOMM LIMITED","FNX589",483.09375,"ALL NEW ZEALAND","Current","TX",false
 166800,240669,"MOBICOMM LIMITED","FNX584",483.03125,"ALL NEW ZEALAND","Current","TX",false
-166800,240669,"MOBICOMM LIMITED","FNX583",483.01875,"ALL NEW ZEALAND","Current","TX",false
+433917,426283,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM207",94.3,"OTAHOUA","Current","TX",false
+433916,426279,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM319",99.9,"POPOITI","Current","TX",false
+433915,426275,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM141",91.0,"MT MARY","Current","TX",false
 433914,426298,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM107",89.3,"MT ROCHFORT","Current","TX",false
 433913,426287,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM155",91.7,"MT ROCHFORT","Current","TX",false
 433912,426278,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM151",91.5,"MAUI STREET KAIKOURA PENINSULA","Current","TX",false
@@ -66996,9 +66999,7 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"OHAI FIRE STATION","Current","TX",false
 433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"OBAN","Current","TX",false
 433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"OAMARU FIRE STATION","Current","TX",false
-433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"NUHAKA FIRE STATION","Current","TX",false
-433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"NORSEWOOD FIRE STATION","Current","TX",false
-433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"NGONGOTAHA FIRE STATION","Current","TX",false
+166800,240669,"MOBICOMM LIMITED","FNX583",483.01875,"ALL NEW ZEALAND","Current","TX",false
 166800,240669,"MOBICOMM LIMITED","FNX581",482.99375,"ALL NEW ZEALAND","Current","TX",false
 166800,240669,"MOBICOMM LIMITED","FNX577",482.94375,"ALL NEW ZEALAND","Current","TX",false
 166800,240669,"MOBICOMM LIMITED","FNX571",482.86875,"ALL NEW ZEALAND","Current","TX",false
@@ -76998,7 +76999,9 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 84030,178369,"RED BADGE GROUP LIMITED","DNX47",461.80625,"ALL NEW ZEALAND","Current","TX",false
 84030,178369,"RED BADGE GROUP LIMITED","DNX41",461.73125,"ALL NEW ZEALAND","Current","TX",false
 84030,178369,"RED BADGE GROUP LIMITED","DNX36",461.66875,"ALL NEW ZEALAND","Current","TX",false
-84030,178369,"RED BADGE GROUP LIMITED","DNX29",461.58125,"ALL NEW ZEALAND","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"NUHAKA FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"NORSEWOOD FIRE STATION","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"NGONGOTAHA FIRE STATION","Current","TX",false
 433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"NEW PLYMOUTH FIRE STATION","Current","TX",false
 433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"NELSON","Current","TX",false
 433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"NATIONAL PARK FIRE STATION","Current","TX",false
@@ -77996,9 +77999,7 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 432843,425390,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM099",88.9,"MATATA MARAE","Current","TX",false
 432842,425419,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM157",91.8,"MAKETU","Current","TX",false
 432841,425394,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM451",106.5,"57 TAWHITI STREET TOKOMARU BAY","Current","TX",false
-432840,425392,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM199",93.9,"PIKIAO MARAE ACCESS ROAD","Current","TX",false
-432839,425412,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM177",92.8,"WAIKINO HOLLIS RD","Current","TX",false
-432838,425396,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM451",106.5,"KOHI POINT","Current","TX",false
+84030,178369,"RED BADGE GROUP LIMITED","DNX29",461.58125,"ALL NEW ZEALAND","Current","TX",false
 84030,178369,"RED BADGE GROUP LIMITED","DNX24",461.51875,"ALL NEW ZEALAND","Current","TX",false
 84030,178369,"RED BADGE GROUP LIMITED","DNX13",458.49375,"ALL NEW ZEALAND","Current","TX",false
 84030,178369,"RED BADGE GROUP LIMITED","DNX5",458.39375,"ALL NEW ZEALAND","Current","TX",false
@@ -85731,6 +85732,9 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 39,154932,"TELEVISION NEW ZEALAND LIMITED","7GM2",7152.5,"ALL NEW ZEALAND","Current","TX",false
 39,154932,"TELEVISION NEW ZEALAND LIMITED","7GM1A",7138.5,"ALL NEW ZEALAND","Current","TX",false
 39,154932,"TELEVISION NEW ZEALAND LIMITED","7GM1",7124.5,"ALL NEW ZEALAND","Current","TX",false
+432840,425392,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM199",93.9,"PIKIAO MARAE ACCESS ROAD","Current","TX",false
+432839,425412,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM177",92.8,"WAIKINO HOLLIS RD","Current","TX",false
+432838,425396,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM451",106.5,"KOHI POINT","Current","TX",false
 432837,425405,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM427",105.3,"RUSSELL2","Current","TX",false
 432836,425393,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM095",88.7,"FOREST HEIGHTS","Current","TX",false
 432835,425399,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM109",89.4,"WAIOURU","Current","TX",false
@@ -86728,6 +86732,3 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 431803,427994,"MINISTRY OF JUSTICE - COURT SECURITY","RP7C",160.4875,"GISBORNE HIGH COURT AND DISTRICT COURT","Current","TX",false
 431803,427994,"MINISTRY OF JUSTICE - COURT SECURITY","RP7C",160.4875,"DUNEDIN HIGH COURT & DISTRICT COURT","Current","TX",false
 431803,427994,"MINISTRY OF JUSTICE - COURT SECURITY","RP7C",160.4875,"DARGAVILLE DISTRICT COURT","Current","TX",false
-431803,427994,"MINISTRY OF JUSTICE - COURT SECURITY","RP7C",160.4875,"DANNEVIRKE DISTRICT COURT","Current","TX",false
-431803,427994,"MINISTRY OF JUSTICE - COURT SECURITY","RP7C",160.4875,"CHRISTCHURCH HIGH COURT AND DISTRICT COURT","Current","TX",false
-431803,427994,"MINISTRY OF JUSTICE - COURT SECURITY","RP7C",160.4875,"BLENHEIM HIGH COURT & DISTRICT COURT","Current","TX",false
