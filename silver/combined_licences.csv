@@ -1,4 +1,6 @@
 licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppressed
+441642,,"WATERCARE SERVICES LTD","EE86#",167.875,"MOBILE","Current","TX",false
+441639,433466,"WATERCARE SERVICES LTD","EE86",163.275,"Watercare Waiwera (WRWWR)","Current","TX",false
 441581,433426,"TWO DEGREES NETWORKS LIMITED",,3760.0,"(BOP-025-020-B)[WNCN]_WHAKATANE CENTRAL","Current","TX",false
 441580,433424,"TWO DEGREES NETWORKS LIMITED",,3760.0,"(AKL-008-174-A)[WIRI]_WIRI RELOCATE","Current","TX",false
 441579,433429,"TWO DEGREES NETWORKS LIMITED",,939.9,"(BOP-025-020-B)[WNCN]_WHAKATANE CENTRAL","Current","TX",false
@@ -997,8 +999,8 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 440370,432271,"SPARK NEW ZEALAND TRADING LIMITED",,3610.0,"DANNEVIRKE TOWN","Current","TX",false
 440369,432269,"SPARK NEW ZEALAND TRADING LIMITED",,3610.0,"DANNEVIRKE","Current","TX",false
 440368,432278,"SPARK NEW ZEALAND TRADING LIMITED",,3610.0,"CARTERTON CENTRAL","Current","TX",false
-440367,432286,"SPARK NEW ZEALAND TRADING LIMITED",,3610.0,"CASTLECLIFF","Current","TX",false
-440366,432275,"SPARK NEW ZEALAND TRADING LIMITED",,3610.0,"CASTLECLIFF BEACH","Current","TX",false
+431865,248745,"RESERVE BANK OF NEW ZEALAND","DN106",463.13125,"TERRACE BOWEN","Current","TX",false
+431862,424723,"PRIMOWIRELESS LIMITED","11G1W#",11285.0,"1803 HASTINGS ROAD MAHOE","Current","TX",false
 431851,424762,"WATERCARE SERVICES LTD","F148",481.675,"Marellan Reservoir Tank","Current","TX",false
 431850,424722,"PRIMOWIRELESS LIMITED","11G1W",10755.0,"300 ORU ROAD, RAWHITIROA","Current","TX",false
 431849,,"PORT OF AUCKLAND LIMITED","TSN406#",818.06875,"NEW ZEALAND PORTS AREAS","Current","TX",false
@@ -10997,8 +10999,8 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 418913,415012,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(CHC-060-071-E)[WSLK]_WESTLAKE","Current","TX",false
 418912,415013,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(CHC-060-125-A)[WIGS]_WIGRAM SKIES","Current","TX",false
 418911,415025,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(CHC-060-205-B)[WANS]_WAINONI SOUTH","Current","TX",false
-418910,415015,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(CHC-060-021-A)[WANN]_WAINONI","Current","TX",false
-418909,415029,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(CHC-060-051-F)[WAIM]_WAIMAIRI","Current","TX",false
+440367,432286,"SPARK NEW ZEALAND TRADING LIMITED",,3610.0,"CASTLECLIFF","Current","TX",false
+440366,432275,"SPARK NEW ZEALAND TRADING LIMITED",,3610.0,"CASTLECLIFF BEACH","Current","TX",false
 440365,432273,"SPARK NEW ZEALAND TRADING LIMITED",,3610.0,"BULLS","Current","TX",false
 440364,432274,"SPARK NEW ZEALAND TRADING LIMITED",,3610.0,"BROOKLANDS","Current","TX",false
 440363,432287,"SPARK NEW ZEALAND TRADING LIMITED",,3610.0,"BARRY PARK","Current","TX",false
@@ -11997,8 +11999,8 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 439369,430568,"SPARK NEW ZEALAND TRADING LIMITED",,3660.0,"ORAMS ROAD","Current","TX",false
 439368,430583,"SPARK NEW ZEALAND TRADING LIMITED",,3660.0,"ORAKEI","Current","TX",false
 439367,430542,"SPARK NEW ZEALAND TRADING LIMITED",,3660.0,"ONEHUNGA","Current","TX",false
-439366,430581,"SPARK NEW ZEALAND TRADING LIMITED",,3660.0,"OTAHUHU OVERBRIDGE RELOCATION","Current","TX",false
-439365,430551,"SPARK NEW ZEALAND TRADING LIMITED",,3660.0,"AIR NZ TERMINAL","Current","TX",false
+418910,415015,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(CHC-060-021-A)[WANN]_WAINONI","Current","TX",false
+418909,415029,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(CHC-060-051-F)[WAIM]_WAIMAIRI","Current","TX",false
 418908,414987,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(CHC-060-017-H)[URIC]_UPPER RICCARTON","Current","TX",false
 418907,415017,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(CHC-060-207-A)[UHOR]_TUPUNAKI HALLS OF RESIDENCE","Current","TX",false
 418906,415011,"TWO DEGREES NETWORKS LIMITED",,2165.0,"(CHC-060-011-K)[TWRJ]_TOWER JUNCTION","Current","TX",false
@@ -21997,8 +21999,8 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 401923,401226,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"Karori Town ONZ W6KRT","Current","TX",false
 401922,401268,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"BROADMEADOWS","Current","TX",false
 401921,401234,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"Raumati South ONZ W4RAU","Current","TX",false
-401920,401232,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"Awapuni ONZ W1APU","Current","TX",false
-401919,401257,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"Dunedin Port Industrial ONZ S5DPI","Current","TX",false
+439366,430581,"SPARK NEW ZEALAND TRADING LIMITED",,3660.0,"OTAHUHU OVERBRIDGE RELOCATION","Current","TX",false
+439365,430551,"SPARK NEW ZEALAND TRADING LIMITED",,3660.0,"AIR NZ TERMINAL","Current","TX",false
 439364,430548,"SPARK NEW ZEALAND TRADING LIMITED",,3660.0,"NEW NORTH ROAD","Current","TX",false
 439363,430544,"SPARK NEW ZEALAND TRADING LIMITED",,3660.0,"NEWMARKET PARK RELOCATION","Current","TX",false
 439362,430543,"SPARK NEW ZEALAND TRADING LIMITED",,3660.0,"NEWMARKET","Current","TX",false
@@ -22997,8 +22999,8 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 438170,429997,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"GREERTON EAST (VFNZ)","Current","TX",false
 438169,430013,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"Melville 2 ONZ C3MLA","Current","TX",false
 438168,430009,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"TE KAUWHATA STRAIGHTS (VFNZ)","Current","TX",false
-438167,430001,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"Papatoetoe South ONZ A8PAS","Current","TX",false
-438166,429996,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"East Tamaki Heights ONZ A8ETH","Current","TX",false
+401920,401232,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"Awapuni ONZ W1APU","Current","TX",false
+401919,401257,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"Dunedin Port Industrial ONZ S5DPI","Current","TX",false
 401918,401244,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"Arrowtown Heights ONZ S5ATH","Current","TX",false
 401917,401249,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"Palmerston ONZ S4PLT","Current","TX",false
 401916,401269,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"Oamaru North ONZ S4ORN","Current","TX",false
@@ -32997,8 +32999,8 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 229511,289125,"NZ DEFENCE FORCE HEADQUARTERS",,3.3974,"ALL NEW ZEALAND","Current","TX",false
 229511,289125,"NZ DEFENCE FORCE HEADQUARTERS",,3.3344,"ALL NEW ZEALAND","Current","TX",false
 229511,289125,"NZ DEFENCE FORCE HEADQUARTERS",,3.3254,"ALL NEW ZEALAND","Current","TX",false
-229511,289125,"NZ DEFENCE FORCE HEADQUARTERS",,3.3014,"ALL NEW ZEALAND","Current","TX",false
-229511,289125,"NZ DEFENCE FORCE HEADQUARTERS",,3.2984,"ALL NEW ZEALAND","Current","TX",false
+438167,430001,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"Papatoetoe South ONZ A8PAS","Current","TX",false
+438166,429996,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"East Tamaki Heights ONZ A8ETH","Current","TX",false
 438165,429998,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"Clover Park ONZ A8CVP","Current","TX",false
 438164,430000,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"CHURCH STREET EAST (VFNZ)","Current","TX",false
 438163,429994,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"TE ATATU MOTORWAY","Current","TX",false
@@ -33997,8 +33999,8 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 437111,429624,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"WARRINGTON VF S3WRN","Current","TX",false
 437110,429622,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"JUSTICE PRECINCT (VFNZ)","Current","TX",false
 437109,429623,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"LYTTELTON VF S3LYN","Current","TX",false
-437108,429618,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"WHAKATANE AWATAPU WALKWAY VF C6WAL","Current","TX",false
-437107,429616,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"OXFORD TERRACE (VFNZ)","Current","TX",false
+229511,289125,"NZ DEFENCE FORCE HEADQUARTERS",,3.3014,"ALL NEW ZEALAND","Current","TX",false
+229511,289125,"NZ DEFENCE FORCE HEADQUARTERS",,3.2984,"ALL NEW ZEALAND","Current","TX",false
 229511,289125,"NZ DEFENCE FORCE HEADQUARTERS",,3.2954,"ALL NEW ZEALAND","Current","TX",false
 229511,289125,"NZ DEFENCE FORCE HEADQUARTERS",,3.2924,"ALL NEW ZEALAND","Current","TX",false
 229511,289125,"NZ DEFENCE FORCE HEADQUARTERS",,3.2894,"ALL NEW ZEALAND","Current","TX",false
@@ -43997,8 +43999,8 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 213073,274627,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"WAIPUKERAU (VF W1WPK)","Current","TX",false
 213072,274591,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"GREENMEADOWS (VF W1GMD)","Current","TX",false
 213071,274774,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"PAHIATUA","Current","TX",false
-213070,274669,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"Te Hana ONZ N2TEH","Current","TX",false
-213069,274585,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"MASTERTON","Current","TX",false
+437108,429618,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"WHAKATANE AWATAPU WALKWAY VF C6WAL","Current","TX",false
+437107,429616,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"OXFORD TERRACE (VFNZ)","Current","TX",false
 437106,429619,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"GLOUCESTER STREET EAST (VFNZ)","Current","TX",false
 437105,429620,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"ADDINGTON EAST","Current","TX",false
 437104,429614,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"POINT ENGLAND","Current","TX",false
@@ -44997,8 +44999,8 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 435964,428371,"MURRAY TREGONNING & ASSOCIATES NZ LIMITED",,72.1,"AMI STADIUM CHRISTCHURCH","Current","TX",false
 435964,428371,"MURRAY TREGONNING & ASSOCIATES NZ LIMITED",,72.1,"AMI STADIUM","Current","TX",false
 435957,428117,"CARRFIELDS LIVESTOCK LIMITED","FNX416",477.61875,"STORTFORD LODGE HASTINGS","Current","TX",false
-435955,,"WIRI OIL SERVICES LTD","FN380#",490.74375,"MOBILE","Current","TX",false
-435954,433255,"WIRI OIL SERVICES LTD","FN380",484.73125,"MARSDEN POINT REFINERY TANKER LOADING FACILITY","Current","TX",false
+213070,274669,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"Te Hana ONZ N2TEH","Current","TX",false
+213069,274585,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"MASTERTON","Current","TX",false
 213068,274532,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"HANMER SPRINGS","Current","TX",false
 213067,274621,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"WELCOME BAY (VFNZ)","Current","TX",false
 213066,274672,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"Dinsdale ONZ C3DIN","Current","TX",false
@@ -54997,8 +54999,8 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 191417,258534,"GANELLEN CONSTRUCTION LIMITED","FNX504",482.03125,"AUCKLAND REGION","Current","TX",false
 191416,257877,"National Emergency Management Agency","ESX46",143.575,"KAIKOURA DISTRICT TLA","Current","TX",false
 191415,257945,"National Emergency Management Agency","ES75",141.9375,"WAIMAKARIRI DISTRICT TLA","Current","TX",false
-191414,,"AMURI IRRIGATION COMPANY LIMITED","C31#",451.0375,"MOBILE","Current","TX",false
-191413,258818,"AMURI IRRIGATION COMPANY LIMITED","C31",456.075,"MT ALEXANDER","Current","TX",false
+435955,,"WIRI OIL SERVICES LTD","FN380#",490.74375,"MOBILE","Current","TX",false
+435954,433255,"WIRI OIL SERVICES LTD","FN380",484.73125,"MARSDEN POINT REFINERY TANKER LOADING FACILITY","Current","TX",false
 435953,,"WIRI OIL SERVICES LTD","DN200#",469.49375,"MOBILE","Current","TX",false
 435952,428144,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"SHERENDEN","Current","TX",false
 435950,428502,"INMARSAT NEW ZEALAND LIMITED",,20072.5,"KOREASAT-116K","Current","TX",false
@@ -55997,8 +55999,8 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 434053,426354,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM391",103.5,"Awanui  Rhema Broadcasting site","Current","TX",false
 434052,426345,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM403",104.1,"PUTAUAKI","Current","TX",false
 434051,426365,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM427",105.3,"COLSONS HILL","Current","TX",false
-434050,426353,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM393",103.6,"PAEROA RANGE","Current","TX",false
-434049,426358,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM439",105.9,"GREYMOUTH","Current","TX",false
+191414,,"AMURI IRRIGATION COMPANY LIMITED","C31#",451.0375,"MOBILE","Current","TX",false
+191413,258818,"AMURI IRRIGATION COMPANY LIMITED","C31",456.075,"MT ALEXANDER","Current","TX",false
 191404,258810,"G & J HUNGER CONTRACTING LIMITED","ENX29",150.4125,"TARANAKI REGION","Current","TX",false
 191402,257732,"METEOROLOGICAL SERVICE OF NEW ZEALAND LIMITED","JBX5",449.43125,"WHANGAPARAOA PENINSULA","Current","TX",false
 191400,257722,"MARLBOROUGH LINES LIMITED","KK7#",854.25,"HILLERSDEN","Current","TX",false
@@ -65997,8 +65999,8 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 163266,239389,"HACKETT AJ BUNGY","ENX86",153.55625,"QUEENSTOWN-LAKES DISTRICT TLA","Current","TX",false
 163266,239389,"HACKETT AJ BUNGY","ENX82",153.50625,"QUEENSTOWN-LAKES DISTRICT TLA","Current","TX",false
 163266,239389,"HACKETT AJ BUNGY","ENX59",150.7875,"QUEENSTOWN-LAKES DISTRICT TLA","Current","TX",false
-163266,239389,"HACKETT AJ BUNGY","ENX8",150.15,"QUEENSTOWN-LAKES DISTRICT TLA","Current","TX",false
-163231,,"VITAL LIMITED","CN155#",452.20625,"MOBILE","Current","TX",false
+434050,426353,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM393",103.6,"PAEROA RANGE","Current","TX",false
+434049,426358,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM439",105.9,"GREYMOUTH","Current","TX",false
 434048,426385,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM443",106.1,"ELECTRICITY ASHBURTON","Current","TX",false
 434047,426336,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM207",94.3,"TAUMARUNUI KURURAU RD","Current","TX",false
 434046,426381,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM413",104.6,"KOPUKAIRUA","Current","TX",false
@@ -66997,8 +66999,8 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WHAKAPAPA FIRE STATION","Current","TX",false
 433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WESTON FIRE STATION","Current","TX",false
 433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WELLINGTON CENTRAL FIRE STATION","Current","TX",false
-433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WEBER FENZ REMOTE PAGING","Current","TX",false
-433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WARKWORTH","Current","TX",false
+163266,239389,"HACKETT AJ BUNGY","ENX8",150.15,"QUEENSTOWN-LAKES DISTRICT TLA","Current","TX",false
+163231,,"VITAL LIMITED","CN155#",452.20625,"MOBILE","Current","TX",false
 163229,238178,"VITAL LIMITED","CN155",457.24375,"SANATORIUM HILL","Current","TX",false
 163189,,"LIVEMEDIA NZ LIMITED","MS3#",158.125,"MOBILE","Current","TX",false
 163186,,"LIVEMEDIA NZ LIMITED","MS3#",158.125,"MOBILE","Current","TX",false
@@ -76997,8 +76999,8 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 75293,172935,"DEPARTMENT OF CONSERVATION",,5.8254,"WANAKA","Current","TX",false
 75293,172935,"DEPARTMENT OF CONSERVATION",,5.7354,"WANAKA","Current","TX",false
 75293,172935,"DEPARTMENT OF CONSERVATION",,5.6814,"WANAKA","Current","TX",false
-75293,172935,"DEPARTMENT OF CONSERVATION",,5.2264,"WANAKA","Current","TX",false
-75293,172935,"DEPARTMENT OF CONSERVATION",,4.8814,"WANAKA","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WEBER FENZ REMOTE PAGING","Current","TX",false
+433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WARKWORTH","Current","TX",false
 433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WARD FIRE STATION","Current","TX",false
 433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WANAKA NZFS REMOTE PAGING TX","Current","TX",false
 433032,297038,"Fire and Emergency New Zealand","RP4C",160.4125,"WANAKA FIRE STATION","Current","TX",false
@@ -77997,8 +77999,8 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 432952,425874,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM209",94.4,"RAMPARTS ROAD","Current","TX",false
 432951,425872,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM167",92.3,"32 MAWHERA QUAY (ZELAN)","Current","TX",false
 432950,425868,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM149",91.4,"WHARITE SOUTH","Current","TX",false
-432949,425869,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM111",89.5,"CROMWELL","Current","TX",false
-432948,425866,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM419",104.9,"MT GREY (MAINPOWER)","Current","TX",false
+75293,172935,"DEPARTMENT OF CONSERVATION",,5.2264,"WANAKA","Current","TX",false
+75293,172935,"DEPARTMENT OF CONSERVATION",,4.8814,"WANAKA","Current","TX",false
 75293,172935,"DEPARTMENT OF CONSERVATION",,4.6234,"WANAKA","Current","TX",false
 75293,172935,"DEPARTMENT OF CONSERVATION",,4.6204,"WANAKA","Current","TX",false
 75293,172935,"DEPARTMENT OF CONSERVATION",,4.6174,"WANAKA","Current","TX",false
@@ -84783,6 +84785,8 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 39,154932,"TELEVISION NEW ZEALAND LIMITED","7GM2",7152.5,"ALL NEW ZEALAND","Current","TX",false
 39,154932,"TELEVISION NEW ZEALAND LIMITED","7GM1A",7138.5,"ALL NEW ZEALAND","Current","TX",false
 39,154932,"TELEVISION NEW ZEALAND LIMITED","7GM1",7124.5,"ALL NEW ZEALAND","Current","TX",false
+432949,425869,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM111",89.5,"CROMWELL","Current","TX",false
+432948,425866,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM419",104.9,"MT GREY (MAINPOWER)","Current","TX",false
 432947,425870,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM175",92.7,"POPOITI","Current","TX",false
 432946,425865,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM409",104.4,"MT EGMONT","Current","TX",false
 432945,425877,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM415",104.7,"TIHIOTONGA","Current","TX",false
@@ -85781,5 +85785,3 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 431869,401426,"EONFIBRE LIMITED","23G9",22176.0,"41 Sir Tim Wallis Drive Wanaka (EonFibreNZ Three Parks Wanaka COW VFC03)","Current","TX",false
 431866,245476,"RESERVE BANK OF NEW ZEALAND","DNX42",461.74375,"WELLINGTON CITY TLA","Current","TX",false
 431866,245476,"RESERVE BANK OF NEW ZEALAND","DNX24",461.51875,"WELLINGTON CITY TLA","Current","TX",false
-431865,248745,"RESERVE BANK OF NEW ZEALAND","DN106",463.13125,"TERRACE BOWEN","Current","TX",false
-431862,424723,"PRIMOWIRELESS LIMITED","11G1W#",11285.0,"1803 HASTINGS ROAD MAHOE","Current","TX",false
