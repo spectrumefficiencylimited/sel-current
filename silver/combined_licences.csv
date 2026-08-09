@@ -38965,7 +38965,6 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 221811,281929,"TOM & JERRY ENTERPRISES LIMITED","CNX40",453.54375,"CENTRAL NORTH ISLAND","Current","TX",false
 221811,281929,"TOM & JERRY ENTERPRISES LIMITED","CNX26",453.36875,"CENTRAL NORTH ISLAND","Current","TX",false
 221811,281929,"TOM & JERRY ENTERPRISES LIMITED","CNX16",449.94375,"CENTRAL NORTH ISLAND","Current","TX",false
-221810,289688,"C Weytmans K Weytmans T/A FM Silvi Hawkes Bay Partnership","EEX82",166.725,"ALL NORTH ISLAND","Current","TX",false
 221804,281786,"CHORUS NEW ZEALAND LIMITED","11G12A#",11665.0,"WILLOWBURN #2","Current","TX",false
 221803,281785,"CHORUS NEW ZEALAND LIMITED","11G12A",11135.0,"HIGH PEAK","Current","TX",false
 221782,281998,"RURAL CONNECTIVITY GROUP LIMITED",,1867.5,"RGBARB - ANAURA BAY","Current","TX",false
@@ -43999,6 +43998,7 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 213062,274606,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"NGONGOTAHA","Current","TX",false
 213061,274664,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"MELVILLE (VF C3MLV)","Current","TX",false
 213060,274687,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"MARAETAI (VFNZ)","Current","TX",false
+213059,274581,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"KARAKA (VFNZ)","Current","TX",false
 437162,428856,"SPARK NEW ZEALAND TRADING LIMITED","11G5W",11075.0,"PIARERE","Current","TX",false
 437161,429672,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"ONEHUNGA EAST (VFNZ)","Current","TX",false
 437160,429677,"ONE NEW ZEALAND GROUP LIMITED",,3500.0,"Orakei Basin VF A5OKB","Current","TX",false
@@ -44999,7 +44999,6 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 435999,428824,"STARLINK NEW ZEALAND, UNLIMITED LIABILITY COMPANY",,28350.0,"Hinds Starlink Array #1","Current","TX",false
 435981,433012,"AMAZON KUIPER NEW ZEALAND LIMITED",,29175.0,"Warkworth - CT","Current","TX",false
 435980,281524,"National Emergency Management Agency","ES150",142.875,"RAINY POINT","Current","TX",false
-213059,274581,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"KARAKA (VFNZ)","Current","TX",false
 213058,274739,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"WAVERLEY","Current","TX",false
 213057,274751,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"WAIHI","Current","TX",false
 213056,274636,"ONE NEW ZEALAND GROUP LIMITED",,785.5,"WAIHI EAST.","Current","TX",false
@@ -54999,6 +54998,7 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 191224,257762,"ASHLEY COMMUNICATIONS LIMITED","EN153",152.65,"HIGHCLIFF (ASHCOMS)","Current","TX",false
 191223,257761,"ASHLEY COMMUNICATIONS LIMITED","EN75",151.675,"HIGHCLIFF (ASHCOMS)","Current","TX",false
 191221,257720,"HAWERA AERO CLUB INC","ARX26",130.65,"HAWERA AERODROME","Current","TX",false
+191218,258888,"CIVIL AVIATION AUTHORITY","ACX73",119.8,"HOKITIKA MBZ","Current","TX",false
 435980,281524,"National Emergency Management Agency","ES150",142.875,"MT CLIMIE (WRC)","Current","TX",false
 435980,281524,"National Emergency Management Agency","ES150",142.875,"MAUNGAKAWA","Current","TX",false
 435980,281524,"National Emergency Management Agency","ES150",142.875,"MARLEYS HILL (CCL) NORTHERN WOODEN POLE","Current","TX",false
@@ -55999,7 +55999,6 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 434106,426434,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM305",99.2,"GRAMPIANS","Current","TX",false
 434105,426469,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM431",105.5,"ALEXANDRA","Current","TX",false
 434104,426438,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM423",105.1,"KAIKOURA PENINSULA","Current","TX",false
-191218,258888,"CIVIL AVIATION AUTHORITY","ACX73",119.8,"HOKITIKA MBZ","Current","TX",false
 191217,259908,"VITAL LIMITED","8GL8",7955.25,"MT STUART (TEAMTALK )","Current","TX",false
 191216,259907,"VITAL LIMITED","8GL8#",8266.57,"OWAKA (VFNZ)","Current","TX",false
 191215,257638,"GROUNDFIX LIMITED","CNX73",455.30625,"ALL NEW ZEALAND","Current","TX",false
@@ -65999,6 +65998,7 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 162997,238138,"CHORUS NEW ZEALAND LIMITED","7GL3#",6880.0,"TE UKU","Current","TX",false
 162996,238140,"CHORUS NEW ZEALAND LIMITED","7GL8#",7080.0,"TE UKU","Current","TX",false
 162995,,"D J ROBINSON","PRS6#",477.3,"MOBILE","Current","TX",false
+162987,,"ENVIRO WASTE SERVICES LIMITED","EE75#",167.7375,"MOBILE","Current","TX",false
 434103,426421,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM407",104.3,"STEVENS HILL","Current","TX",false
 434102,426465,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM323",100.1,"TAKORIKA","Current","TX",false
 434101,426443,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM129",90.4,"MANGAWHAI","Current","TX",false
@@ -66999,7 +66999,6 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 433127,425423,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM139",90.9,"MT ROCHFORT","Current","TX",false
 433126,425464,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM133",90.6,"MT MAUDE KORDIA","Current","TX",false
 433125,425433,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM103",89.1,"MT FREETH","Current","TX",false
-162987,,"ENVIRO WASTE SERVICES LIMITED","EE75#",167.7375,"MOBILE","Current","TX",false
 162986,238132,"HARVESTIT LIMITED","ENX84",153.53125,"ALL NORTH ISLAND","Current","TX",false
 162986,238132,"HARVESTIT LIMITED","ENX19",150.2875,"ALL NORTH ISLAND","Current","TX",false
 162985,239527,"ENVIRO WASTE SERVICES LIMITED","EE75",163.1375,"PORIRUA LANDFILL","Current","TX",false
@@ -76999,6 +76998,7 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 75075,172722,"TEGEL FOODS LTD","FN22",478.25625,"BELL BLOCK","Current","TX",false
 75069,172799,"GENESIS ENERGY LIMITED","L314#",1516.0,"KAIMANAWA","Current","TX",false
 75067,172798,"GENESIS ENERGY LIMITED","L314",1455.5,"PIHANGA","Current","TX",false
+75050,172782,"CHORUS NEW ZEALAND LIMITED","13G1#",13031.0,"LE BONS","Current","TX",false
 433124,425448,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM195",93.7,"TOWAI","Current","TX",false
 433123,425414,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM175",92.7,"FOREST HEIGHTS","Current","TX",false
 433122,425416,"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment","FM139",90.9,"WHEATSTONE RD","Current","TX",false
@@ -77999,7 +77999,6 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 432966,294167,"KIWIRAIL","EN105",152.05,"GLENSIDE NIMT TUNNEL 2","Current","TX",false
 432966,294167,"KIWIRAIL","EN105",152.05,"GLEN INNES TUNNEL","Current","TX",false
 432966,294167,"KIWIRAIL","EN105",152.05,"GAWLER DOWNS","Current","TX",false
-75050,172782,"CHORUS NEW ZEALAND LIMITED","13G1#",13031.0,"LE BONS","Current","TX",false
 75049,172781,"CHORUS NEW ZEALAND LIMITED","13G1",12765.0,"DALGLISH","Current","TX",false
 75047,172766,"CHORUS NEW ZEALAND LIMITED","I517#",425.425,"MCCLEOD","Current","TX",false
 75046,172765,"CHORUS NEW ZEALAND LIMITED","I517",420.4125,"WAITOHI HILL(TELECOM)","Current","TX",false
