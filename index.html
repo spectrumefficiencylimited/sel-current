@@ -353,11 +353,11 @@
             <div class="stats-grid">
                 <div class="stat-card">
                     <div class="stat-number" id="totalLicenses">–</div>
-                    <div class="stat-label">Total Assignments</div>
+                    <div class="stat-label" title="One row per frequency assignment. A licence can hold several.">Assignment Records</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number" id="activeAssignments">–</div>
-                    <div class="stat-label">Current Assignments</div>
+                    <div class="stat-number" id="distinctLicences">–</div>
+                    <div class="stat-label" title="Distinct licence IDs. Fewer than the record count, because a licence bundles extra channels and paired return legs.">Distinct Licences</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-number" id="uniqueHolders">–</div>
@@ -455,7 +455,10 @@
                     lastUpdateTimestamp = new Date(stats.lastUpdateUTC);
 
                     el('totalLicenses').textContent = stats.totalLicenses.toLocaleString();
-                    el('activeAssignments').textContent = stats.activeAssignments.toLocaleString();
+                    // Added later than the other fields; fall back rather than
+                    // rendering "undefined" against an older stats.json.
+                    el('distinctLicences').textContent = stats.distinctLicences != null
+                        ? stats.distinctLicences.toLocaleString() : '–';
                     el('uniqueHolders').textContent = stats.uniqueHolders.toLocaleString();
 
                     const hoursSince = ((Date.now() - lastUpdateTimestamp) / 3600000).toFixed(1);
@@ -474,7 +477,7 @@
                     startCountdown();
                 } catch (error) {
                     console.error('Failed to load statistics:', error);
-                    ['totalLicenses', 'activeAssignments', 'uniqueHolders', 'hoursSinceUpdate']
+                    ['totalLicenses', 'distinctLicences', 'uniqueHolders', 'hoursSinceUpdate']
                         .forEach((id) => { el(id).textContent = '–'; });
                     el('lastUpdateTime').textContent = 'Unavailable';
                     el('countdownTimer').textContent = '--:--';

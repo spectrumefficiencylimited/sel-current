@@ -70,6 +70,20 @@ SELECT
         WHEN TRY_CAST(frequency AS DOUBLE) < 30000.0 THEN 'SHF (3-30 GHz)'
         ELSE                                             'EHF (>30 GHz)'
     END AS band,
+    -- The '#' suffix on a channel marks the second leg of a paired assignment.
+    -- Measured against the current register: 'Land Mobile - Mobile Transmit'
+    -- rows are 6,206 hash to 9 plain, while 'Land Repeater' rows are 10,146
+    -- plain to 3 hash — so the hash side is the mobile/return leg and the plain
+    -- side is the base. Fixed bi-directional types split roughly 50/50, being
+    -- the two ends of one link.
+    --
+    -- This is an empirical read of the naming convention, not a citation.
+    -- RSM's PIB 38 is the authority on what the convention formally means, and
+    -- on which leg is the uplink; check it before labelling these as up/down.
+    CASE
+        WHEN channel LIKE '%#' THEN 'Return leg (#)'
+        ELSE 'Primary leg'
+    END AS pair_leg,
     CASE
         WHEN TRY_CAST(frequency AS DOUBLE) IS NULL  THEN 99
         WHEN TRY_CAST(frequency AS DOUBLE) < 0.03   THEN 1

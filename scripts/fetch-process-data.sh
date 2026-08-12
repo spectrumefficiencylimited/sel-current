@@ -235,10 +235,19 @@ COPY (
 EOF
 
 UNIQUE_HOLDERS=$(jq '[.[] | .licensee] | unique | length' "$WORK_DIR/combined_licences.json")
+
+# A row is one frequency assignment record, not one licence. A licence groups
+# several: extra channels, and the paired return leg of a repeater or link. The
+# original totalLicenses/activeAssignments fields keep counting rows so existing
+# dashboards do not silently change meaning; the accurate figures are added
+# alongside them.
+DISTINCT_LICENCES=$(jq '[.[] | .licenceID] | unique | length' "$WORK_DIR/combined_licences.json")
 cat > "$WORK_DIR/stats.json" << EOF
 {
   "totalLicenses": ${TOTAL_LICENSES},
   "activeAssignments": ${TOTAL_LICENSES},
+  "assignmentRecords": ${TOTAL_LICENSES},
+  "distinctLicences": ${DISTINCT_LICENCES},
   "uniqueHolders": ${UNIQUE_HOLDERS},
   "lastUpdateUTC": "$(date -u --iso-8601=seconds)"
 }
@@ -281,11 +290,24 @@ COPY (
         service,
         link_mode,
         COUNT(*) AS assignment_count,
+        COUNT(DISTINCT licenceId) AS distinct_licences,
         COUNT(DISTINCT licensee) AS distinct_licensees
     FROM enriched
     GROUP BY service, link_mode
     ORDER BY assignment_count DESC, service, link_mode
 ) TO '$WORK_DIR/service_daily_new.csv' (HEADER, DELIMITER ',');
+
+COPY (
+    SELECT
+        '${OBSERVED_DATE}' AS observed_date,
+        service,
+        pair_leg,
+        COUNT(*) AS assignment_count,
+        COUNT(DISTINCT licenceId) AS distinct_licences
+    FROM enriched
+    GROUP BY service, pair_leg
+    ORDER BY assignment_count DESC, service, pair_leg
+) TO '$WORK_DIR/pair_leg_daily_new.csv' (HEADER, DELIMITER ',');
 
 COPY (
     SELECT
@@ -412,11 +434,64 @@ upsert_daily "$GOLD_DIR/location_daily.csv" "$WORK_DIR/location_daily_new.csv"
 upsert_daily "$GOLD_DIR/licence_type_daily.csv" "$WORK_DIR/licence_type_daily_new.csv"
 upsert_daily "$GOLD_DIR/service_daily.csv" "$WORK_DIR/service_daily_new.csv"
 upsert_daily "$GOLD_DIR/band_daily.csv" "$WORK_DIR/band_daily_new.csv"
+upsert_daily "$GOLD_DIR/pair_leg_daily.csv" "$WORK_DIR/pair_leg_daily_new.csv"
 upsert_daily "$GOLD_DIR/licensee_service_daily.csv" "$WORK_DIR/licensee_service_daily_new.csv"
 
 # Current-snapshot artefacts, regenerated whole each run.
 install -m 0644 "$WORK_DIR/licensee_service_current.csv" "$SILVER_DIR/licensee_service_current.csv"
 install -m 0644 "$WORK_DIR/service_summary.csv" "$SILVER_DIR/service_summary.csv"
+
+# --- REVENUE ESTIMATE (only when a fee schedule has been configured) ---
+# Fees are not in the API. config/licence-fees.csv is operator-maintained and
+# ships empty, so no figure here is ever a guess: with no fee rows, no estimate
+# is produced. Charging is per licence, and bundled components such as the paired
+# mobile leg of a repeater are excluded via the `billable` column.
+FEES_FILE="${FEES_FILE:-${SQL_DIR%/sql}/config/licence-fees.csv}"
+if [ -f "$FEES_FILE" ] && [ "$(grep -cvE '^\s*(#|licence_type,|$)' "$FEES_FILE")" -gt 0 ]; then
+    log_orchestrator "Estimating fees from ${FEES_FILE}..."
+    grep -vE '^\s*#' "$FEES_FILE" | grep -vE '^\s*$' > "$WORK_DIR/fees.csv"
+    duckdb "$WORK_DIR/gold.duckdb" <<EOF
+CREATE OR REPLACE TABLE fees AS
+    SELECT * FROM read_csv_auto('$WORK_DIR/fees.csv', ALL_VARCHAR=TRUE);
+
+COPY (
+    WITH per_licence AS (
+        -- Charge once per licence, not once per assignment record.
+        SELECT DISTINCT licenceId, licenceType, licensee FROM enriched
+    ),
+    priced AS (
+        SELECT p.licenceType,
+               COUNT(*) AS licences,
+               MAX(COALESCE(f.annual_fee_nzd, fb.annual_fee_nzd)) AS annual_fee_nzd,
+               MAX(COALESCE(f.billable, fb.billable)) AS billable
+        FROM per_licence p
+        LEFT JOIN fees f  ON f.licence_type = p.licenceType
+        LEFT JOIN fees fb ON fb.licence_type = '*'
+        GROUP BY p.licenceType
+    )
+    SELECT
+        '${OBSERVED_DATE}' AS observed_date,
+        licenceType AS licence_type,
+        licences,
+        CAST(annual_fee_nzd AS DOUBLE) AS annual_fee_nzd,
+        CASE WHEN annual_fee_nzd IS NULL THEN 'no fee configured'
+             WHEN CAST(billable AS INTEGER) = 0 THEN 'bundled, not charged'
+             ELSE 'charged' END AS fee_status,
+        CASE WHEN CAST(billable AS INTEGER) = 0 THEN 0
+             ELSE ROUND(licences * CAST(annual_fee_nzd AS DOUBLE), 2) END AS annual_revenue_nzd
+    FROM priced
+    ORDER BY annual_revenue_nzd DESC NULLS LAST, licence_type
+) TO '$WORK_DIR/fee_estimate_daily_new.csv' (HEADER, DELIMITER ',');
+EOF
+    upsert_daily "$GOLD_DIR/fee_estimate_daily.csv" "$WORK_DIR/fee_estimate_daily_new.csv"
+    UNPRICED=$(duckdb "$WORK_DIR/gold.duckdb" -noheader -list \
+        "SELECT COUNT(*) FROM (SELECT DISTINCT licenceType FROM enriched) t
+         WHERE NOT EXISTS (SELECT 1 FROM fees f WHERE f.licence_type = t.licenceType OR f.licence_type = '*');" \
+        | tr -d '[:space:]')
+    log_orchestrator "Fee estimate written (${UNPRICED:-0} licence type(s) have no configured fee)."
+else
+    log_orchestrator "No fee schedule configured in ${FEES_FILE}; skipping the revenue estimate."
+fi
 
 # A licence type RSM has added that the classification does not know about would
 # otherwise disappear into a catch-all. Surface it instead.
@@ -434,10 +509,10 @@ fi
 # The totals series is one row per run, not per day: it is the finest-grained
 # and cheapest signal, at roughly 500 KB a year.
 if [ ! -f "$GOLD_DIR/totals_history.csv" ]; then
-    echo "observed_at,total_licences,unique_holders" > "$GOLD_DIR/totals_history.csv"
+    echo "observed_at,total_licences,unique_holders,distinct_licences" > "$GOLD_DIR/totals_history.csv"
 fi
 if ! grep -q "^${OBSERVED_AT}," "$GOLD_DIR/totals_history.csv"; then
-    echo "${OBSERVED_AT},${TOTAL_LICENSES},${UNIQUE_HOLDERS}" >> "$GOLD_DIR/totals_history.csv"
+    echo "${OBSERVED_AT},${TOTAL_LICENSES},${UNIQUE_HOLDERS},${DISTINCT_LICENCES}" >> "$GOLD_DIR/totals_history.csv"
 fi
 
 log_orchestrator "Gold layer updated for ${OBSERVED_DATE} ($(wc -l < "$GOLD_DIR/totals_history.csv") total observations)."

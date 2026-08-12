@@ -108,6 +108,72 @@ curl -L -o totals.csv https://spectrumefficiencylimited.github.io/sel-current/go
 
 A year of the whole gold layer is a few megabytes.
 
+### Counting: records, licences, and paired legs
+
+**85,758 is a count of assignment records, not of licences.** The distinction
+matters and the portal previously blurred it:
+
+| Measure | Current value | What it is |
+| --- | --- | --- |
+| Assignment records | 85,758 | one row per frequency assignment |
+| Distinct licences (`licenceID`) | 68,258 | a licence bundles several records |
+| Distinct licensees | 3,203 | holders |
+
+A single licence covers extra channels at the same site, and — the case that
+inflates the headline most — the **paired return leg**. A Land Repeater licence
+carries a second record for the mobile side: the mobile transmit assignment that
+lets handsets talk back to the repeater. Nobody buys that leg separately; it
+comes in the bundle. The same applies to a point-to-point link, where each end is
+its own record.
+
+The `pair_leg` dimension separates them, and roughly **14,300 records — about
+17%** — are return legs rather than independent assignments:
+
+| Service | Primary leg | Return leg (`#`) |
+| --- | --- | --- |
+| Fixed Link | 8,902 | 7,656 |
+| Land Mobile | 24,080 | 6,252 |
+
+**How the leg is identified.** RSM's channel naming suffixes the second leg with
+`#`. Measured against the current register, the correlation is near total:
+`Land Mobile - Mobile Transmit` rows are 6,206 hash to 9 plain, while
+`Land Repeater` rows are 10,146 plain to 3 hash. Fixed bi-directional types split
+close to 50/50, being the two ends of one link.
+
+That is an empirical read of the convention, not a citation. **RSM's PIB 38 is
+the authority** on what the suffix formally means and which leg is the uplink —
+check it before relabelling these as up/down.
+
+**Limits of the current source.** Two things cannot be derived from what the API
+returns, and are deliberately not guessed at:
+
+- **The two ends of a point-to-point link cannot be reliably paired.** Matching on
+  licensee plus base channel yields 899 clean pairs but 725 ambiguous groups, and
+  the pair is not expressed through `licenceID` or `licenceNumber` — each end is
+  its own single-row, single-location licence. Reconstructing link geometry needs
+  a source carrying the far-end location.
+- **The register here is transmit-only.** The query filters `txRx=TRN` and every
+  row returns `txrx = TX`, so the receive side is not present at all.
+
+### Fee and revenue estimation
+
+`config/licence-fees.csv` is an operator-maintained fee schedule. It ships
+**empty on purpose**: fees are not in the API, and no figure in this repository
+is a remembered or invented number. Populate it from the published RSM schedule,
+recording the source and effective date on each row, and the pipeline produces
+`gold/fee_estimate_daily.csv`. Until then it skips the estimate and says so.
+
+Two rules are built into the calculation:
+
+- Fees are charged **per licence**, so the estimate counts distinct `licenceID`
+  values, not assignment records.
+- The `billable` column marks bundled components. Set it to `0` for paired legs
+  so they are not counted as separately-charged licences.
+
+Licence types with no configured fee are reported as `no fee configured` rather
+than being silently treated as zero, and the run log states how many are
+unpriced.
+
 ### Services and bands
 
 A raw frequency tells a reader almost nothing. What matters is what the
