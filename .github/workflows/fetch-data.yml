@@ -82,11 +82,10 @@ jobs:
 
       - name: Commit and Push Data Files
         env:
-          # Only the small, human-readable artefacts are committed, so main keeps
-          # an hourly time series of the headline numbers at roughly 2 KB a run.
-          # The multi-megabyte datasets are build outputs: they are regenerated
+          # Only the small artefacts and the accumulating gold aggregates are
+          # committed. The multi-megabyte datasets are build outputs: regenerated
           # every run and published to the site, never added to git history.
-          COMMIT_PATHS: silver/stats.json silver/licensee_analytics.csv silver/sample_assignments.csv
+          COMMIT_PATHS: silver/stats.json silver/licensee_analytics.csv silver/sample_assignments.csv gold
         run: |
           chmod +x scripts/commit-and-push.sh
           ./scripts/commit-and-push.sh
@@ -98,7 +97,7 @@ jobs:
           # byte-for-byte duplicate of silver/combined_licences.json and nothing
           # links to it, so shipping it doubled every deployment for nothing.
           rm -rf _site
-          mkdir -p _site/silver
+          mkdir -p _site/silver _site/gold
           cp index.html SpectrumEfficiencyLimited.png _site/
           cp silver/combined_licences.csv \
              silver/combined_licences.json \
@@ -107,6 +106,9 @@ jobs:
              silver/sample_assignments.csv \
              silver/stats.json \
              _site/silver/
+          # The gold time series gets stable URLs too, so a dashboard can bind
+          # to the history the same way it binds to the current dataset.
+          cp gold/*.csv _site/gold/
           du -sh _site
 
       - name: Deploy to GitHub Pages

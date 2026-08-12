@@ -14,12 +14,40 @@ unreachable so GitHub can garbage-collect them.
 
 ## What is lost
 
-The hourly full-dataset snapshots in git history. The headline statistics time
-series (`silver/stats.json`, `licensee_analytics.csv`, `sample_assignments.csv`)
-starts fresh from the truncation commit and accumulates from there.
+The hourly full-dataset snapshots in git history — roughly 8,400 copies of a
+dataset whose only useful version is the current one.
 
 **Not** lost: the pipeline, the current data, the site, the repository URL, the
-Pages deployment, stars, forks, issues, or PRs.
+Pages deployment, stars, forks, issues, or PRs — and, importantly, **not the
+history's analytical value**. Before truncating, `scripts/backfill-history.py`
+mined the summary files out of those 8,400 commits into `gold/`, so the record
+back to 2025-07-18 survives as a 568 KB time series that is already committed.
+
+If you want to re-mine or extend that back-fill — for example to pull richer
+dimensions out of the old raw snapshots — **do it before step 3**, because after
+truncation those commits are gone:
+
+```bash
+git clone --filter=blob:limit=10k --no-checkout --single-branch --branch main \
+    https://github.com/spectrumefficiencylimited/sel-current.git hist
+./scripts/backfill-history.py --repo hist --output gold/
+```
+
+The blob filter keeps that clone at a few megabytes instead of 10.6 GB.
+
+### Checking whether an engineer dimension is possible
+
+Aggregating by approved radio engineer needs a field the `/licences` endpoint
+does not return. Before truncating is a good moment to check whether another
+endpoint carries it, since the raw snapshots are still around to compare against:
+
+```bash
+curl -s -H "Ocp-Apim-Subscription-Key: $RSM_API_KEY" \
+  "https://api.business.govt.nz/gateway/radio-spectrum-management/v1/licences/441849" | jq 'keys'
+```
+
+If a licence detail response includes an engineer or certifier, the pipeline can
+be extended to enrich a daily sample rather than every record.
 
 ## Order of operations
 

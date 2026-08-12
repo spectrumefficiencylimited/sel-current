@@ -13,3 +13,7 @@ _site/
 # Local DuckDB write-ahead files.
 *.duckdb.wal
 *.tmp.*
+
+# Python bytecode
+__pycache__/
+*.pyc

@@ -29,6 +29,7 @@ ALLOW_DATA_DROP="${ALLOW_DATA_DROP:-0}"
 
 BRONZE_DIR="${BRONZE_DIR:-./bronze}"
 SILVER_DIR="${SILVER_DIR:-./silver}"
+GOLD_DIR="${GOLD_DIR:-./gold}"
 PAGES_DIR="${PAGES_DIR:-${BRONZE_DIR}/pages}"
 
 export API_BASE PAGE_SIZE MAX_ATTEMPTS CONNECT_TIMEOUT MAX_TIME PAGES_DIR
@@ -241,6 +242,110 @@ cat > "$WORK_DIR/stats.json" << EOF
   "lastUpdateUTC": "$(date -u --iso-8601=seconds)"
 }
 EOF
+
+# 4b. GOLD LAYER: small aggregates that accumulate over time
+#
+# The raw snapshot is deliberately not kept as history — the point of this
+# project is the *current* dataset at a stable URL. What is worth keeping is how
+# the register moves, so each run folds the current snapshot into a compact time
+# series. A year of these is a few megabytes.
+#
+# Aggregates are built from a temporary CSV carrying every field, including
+# licenceType and gridReference, which the published CSV does not expose. The
+# published schema is a stable contract for downstream dashboards and is left
+# exactly as it is.
+log_orchestrator "Building gold layer aggregates..."
+
+echo "licenceId,licenceNumber,licensee,channel,frequency,location,licenceType,gridReference,status,txrx,suppressed" > "$WORK_DIR/analytics_input.csv"
+jq -r '.[] | [.licenceID, .licenceNumber, .licensee, .channel, .frequency, .location, .licenceType, .gridReference, .status, .txrx, .suppressed] | @csv' \
+    "$WORK_DIR/combined_licences.json" >> "$WORK_DIR/analytics_input.csv"
+
+OBSERVED_AT=$(jq -r '.lastUpdateUTC' "$WORK_DIR/stats.json")
+OBSERVED_DATE="${OBSERVED_AT:0:10}"
+
+duckdb "$WORK_DIR/gold.duckdb" <<EOF
+CREATE OR REPLACE TABLE licences AS
+    SELECT * FROM read_csv_auto('$WORK_DIR/analytics_input.csv', ALL_VARCHAR=TRUE);
+
+COPY (
+    SELECT
+        '${OBSERVED_DATE}' AS observed_date,
+        ROW_NUMBER() OVER (ORDER BY COUNT(*) DESC, licensee) AS rank,
+        licensee,
+        COUNT(*) AS assignment_count
+    FROM licences
+    WHERE location IS DISTINCT FROM 'MOBILE'
+    GROUP BY licensee
+    ORDER BY assignment_count DESC, licensee
+    LIMIT ${GOLD_TOP_N:-100}
+) TO '$WORK_DIR/licensee_daily_new.csv' (HEADER, DELIMITER ',');
+
+COPY (
+    SELECT
+        '${OBSERVED_DATE}' AS observed_date,
+        ROW_NUMBER() OVER (ORDER BY COUNT(*) DESC, location) AS rank,
+        location,
+        COUNT(*) AS assignment_count,
+        COUNT(DISTINCT licensee) AS distinct_licensees
+    FROM licences
+    WHERE location IS DISTINCT FROM 'MOBILE' AND location IS NOT NULL
+    GROUP BY location
+    ORDER BY assignment_count DESC, location
+    LIMIT ${GOLD_TOP_N:-100}
+) TO '$WORK_DIR/location_daily_new.csv' (HEADER, DELIMITER ',');
+
+COPY (
+    SELECT
+        '${OBSERVED_DATE}' AS observed_date,
+        licence_type,
+        assignment_count,
+        distinct_licensees
+    FROM (
+        SELECT
+            COALESCE(licenceType, 'UNKNOWN') AS licence_type,
+            COUNT(*) AS assignment_count,
+            COUNT(DISTINCT licensee) AS distinct_licensees
+        FROM licences
+        GROUP BY 1
+    )
+    ORDER BY assignment_count DESC, licence_type
+) TO '$WORK_DIR/licence_type_daily_new.csv' (HEADER, DELIMITER ',');
+EOF
+
+mkdir -p "$GOLD_DIR"
+
+# Replaces any rows already recorded for this date, so re-running within a day
+# refreshes that day rather than duplicating it. observed_date is the first
+# column, which makes the anchored match unambiguous.
+upsert_daily() {
+    local target="$1" incoming="$2" tmp
+    tmp=$(mktemp "${WORK_DIR}/upsert.XXXXXX")
+    if [ -f "$target" ]; then
+        head -n 1 "$target" > "$tmp"
+        tail -n +2 "$target" | { grep -v "^${OBSERVED_DATE}," || true; } >> "$tmp"
+    else
+        head -n 1 "$incoming" > "$tmp"
+    fi
+    tail -n +2 "$incoming" >> "$tmp"
+    # mktemp creates 0600; these are published files.
+    install -m 0644 "$tmp" "$target"
+    rm -f "$tmp"
+}
+
+upsert_daily "$GOLD_DIR/licensee_daily.csv" "$WORK_DIR/licensee_daily_new.csv"
+upsert_daily "$GOLD_DIR/location_daily.csv" "$WORK_DIR/location_daily_new.csv"
+upsert_daily "$GOLD_DIR/licence_type_daily.csv" "$WORK_DIR/licence_type_daily_new.csv"
+
+# The totals series is one row per run, not per day: it is the finest-grained
+# and cheapest signal, at roughly 500 KB a year.
+if [ ! -f "$GOLD_DIR/totals_history.csv" ]; then
+    echo "observed_at,total_licences,unique_holders" > "$GOLD_DIR/totals_history.csv"
+fi
+if ! grep -q "^${OBSERVED_AT}," "$GOLD_DIR/totals_history.csv"; then
+    echo "${OBSERVED_AT},${TOTAL_LICENSES},${UNIQUE_HOLDERS}" >> "$GOLD_DIR/totals_history.csv"
+fi
+
+log_orchestrator "Gold layer updated for ${OBSERVED_DATE} ($(wc -l < "$GOLD_DIR/totals_history.csv") total observations)."
 
 # 5. VALIDATE THE BUILT ARTEFACTS
 log_orchestrator "Validating generated assets..."

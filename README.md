@@ -60,6 +60,7 @@ site, not from git history:
 | `silver/stats.json` | ✅ hourly (~130 B) | ✅ |
 | `silver/licensee_analytics.csv` | ✅ hourly (~800 B) | ✅ |
 | `silver/sample_assignments.csv` | ✅ hourly (~1 KB) | ✅ |
+| `gold/*.csv` (the time series) | ✅ hourly/daily (~6 MB a year) | ✅ |
 | `silver/combined_licences.csv` | ❌ (8.5 MB) | ✅ |
 | `silver/combined_licences.json` | ❌ (34 MB) | ✅ |
 | `silver/combined_licences.duckdb` | ❌ (2.6 MB) | ✅ |
@@ -68,6 +69,58 @@ site, not from git history:
 Committing every snapshot previously added roughly **80 MB of git history per
 hour**. Publishing them to the site instead keeps every download available while
 holding repository growth to a couple of kilobytes a run.
+
+---
+
+## The Gold Layer: how the register changes over time
+
+The raw snapshot is not history worth keeping — this repository is called
+`sel-current` because its job is to hold the **latest** data at a **stable URL**,
+so a Power BI or Python dashboard bound to
+`…/silver/combined_licences.csv` just refreshes and gets today's register.
+
+What *is* worth keeping is how those numbers move. Every run folds the current
+snapshot into a compact time series under `gold/`:
+
+| File | Grain | Columns |
+| --- | --- | --- |
+| `gold/totals_history.csv` | one row per run | `observed_at`, `total_licences`, `unique_holders` |
+| `gold/licensee_daily.csv` | top 100 per day | `observed_date`, `rank`, `licensee`, `assignment_count` |
+| `gold/location_daily.csv` | top 100 per day | `observed_date`, `rank`, `location`, `assignment_count`, `distinct_licensees` |
+| `gold/licence_type_daily.csv` | every type per day | `observed_date`, `licence_type`, `assignment_count`, `distinct_licensees` |
+
+These are published alongside the datasets, so they have stable URLs too:
+
+```bash
+curl -L -o totals.csv https://spectrumefficiencylimited.github.io/sel-current/gold/totals_history.csv
+```
+
+A year of the whole gold layer is a few megabytes.
+
+### Back-filled history
+
+`gold/totals_history.csv` and `gold/licensee_daily.csv` start on **2025-07-18**,
+back-filled from the summary files inside the ~8,400 historical commits by
+`scripts/backfill-history.py`. Two caveats on the back-filled portion:
+
+- Historical `licensee_daily.csv` rows are **top 25**, not top 100, because that
+  is all the old pipeline recorded. Rows from the changeover onward are top 100.
+- The old top-25 table was only rewritten when it changed, so a missing date
+  means the ranking was unchanged from the previous observation, not missing data.
+
+`location_daily.csv` and `licence_type_daily.csv` start from the changeover:
+those dimensions were never computed before, and `licenceType` was fetched from
+the API and then discarded.
+
+### What is not available
+
+Aggregating **by approved radio engineer / certifier is not currently possible.**
+The `/licences` endpoint returns exactly twelve fields — `licenceID`,
+`licenceNumber`, `licensee`, `channel`, `frequency`, `location`,
+`gridRefDefault`, `gridReference`, `licenceType`, `status`, `txrx`, `suppressed`
+— and none of them identifies an engineer or certifier. Adding that dimension
+needs a source that carries it; see the note in `docs/RUNBOOK-history-truncation.md`
+for how to check.
 
 > **Note on timing:** GitHub queues scheduled workflows on a shared pool, so a run
 > triggered at the top of the hour typically starts 10–40 minutes late. The
@@ -166,6 +219,8 @@ above, which always serve the most recent run.
   - `silver/`: Cleaned, production-ready datasets (CSV, JSON, DuckDB) plus the small
     analytics and statistics files. Only the small files are committed; the full
     datasets are published to the site.
+  - `gold/`: Accumulating time series of aggregates by licensee, location and
+    licence type. Small, committed, and published.
 - **Security:** API credentials managed through GitHub Secrets
 
 ---
