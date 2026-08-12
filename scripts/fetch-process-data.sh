@@ -208,6 +208,12 @@ echo "licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,su
 jq -r '.[] | [.licenceID, .licenceNumber, .licensee, .channel, .frequency, .location, .status, .txrx, .suppressed] | @csv' \
     "$WORK_DIR/combined_licences.json" >> "$WORK_DIR/combined_licences.csv"
 
+# A small sample for the web page's preview table. Without this the page has to
+# download the full multi-megabyte CSV just to render ten rows, which is painful
+# on a phone.
+log_orchestrator "Generating preview sample..."
+head -n 11 "$WORK_DIR/combined_licences.csv" > "$WORK_DIR/sample_assignments.csv"
+
 log_orchestrator "Generating DuckDB file..."
 duckdb "$WORK_DIR/combined_licences.duckdb" \
     "CREATE OR REPLACE TABLE licences AS SELECT * FROM read_csv_auto('$WORK_DIR/combined_licences.csv', ALL_VARCHAR=TRUE);"
@@ -243,6 +249,7 @@ CSV_ROWS=$(( $(wc -l < "$WORK_DIR/combined_licences.csv") - 1 ))
 [ "$CSV_ROWS" -gt 0 ] || die "Generated CSV has no data rows."
 [ -s "$WORK_DIR/combined_licences.duckdb" ] || die "Generated DuckDB file is empty."
 [ -s "$WORK_DIR/licensee_analytics.csv" ] || die "Generated analytics CSV is empty."
+[ "$(wc -l < "$WORK_DIR/sample_assignments.csv")" -gt 1 ] || die "Generated preview sample has no data rows."
 DB_ROWS=$(duckdb "$WORK_DIR/combined_licences.duckdb" -noheader -list "SELECT COUNT(*) FROM licences;" | tr -d '[:space:]')
 [ "$DB_ROWS" = "$TOTAL_LICENSES" ] || log_orchestrator "NOTE: DuckDB holds ${DB_ROWS} rows vs ${TOTAL_LICENSES} JSON records (multi-line field values)."
 
@@ -250,7 +257,7 @@ DB_ROWS=$(duckdb "$WORK_DIR/combined_licences.duckdb" -noheader -list "SELECT CO
 log_orchestrator "Publishing assets to ${BRONZE_DIR} and ${SILVER_DIR}..."
 mkdir -p "$BRONZE_DIR" "$SILVER_DIR"
 install -m 0644 "$WORK_DIR/combined_licences.json" "$BRONZE_DIR/combined_licences.json"
-for asset in combined_licences.json combined_licences.csv combined_licences.duckdb licensee_analytics.csv stats.json; do
+for asset in combined_licences.json combined_licences.csv combined_licences.duckdb licensee_analytics.csv sample_assignments.csv stats.json; do
     install -m 0644 "$WORK_DIR/$asset" "$SILVER_DIR/$asset"
 done
 

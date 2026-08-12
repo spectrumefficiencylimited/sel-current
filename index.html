@@ -2,55 +2,304 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Current New Zealand radio spectrum licence assignments, refreshed hourly from the RSM API. Free downloads in CSV, JSON and DuckDB.">
+    <meta name="theme-color" content="#1e3c72">
     <title>Spectrum Efficiency Limited - NZ RSM Data</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='3' fill='%233498db'/><circle cx='16' cy='16' r='8' fill='none' stroke='%233498db' stroke-width='2'/><circle cx='16' cy='16' r='14' fill='none' stroke='%233498db' stroke-width='2' opacity='0.5'/></svg>">
     <style>
+        /* Mobile-first: the base rules target a phone, and min-width queries
+           progressively add the roomier tablet and desktop layouts. */
+        :root {
+            --brand-deep: #1e3c72;
+            --brand-mid: #2a5298;
+            --brand-accent: #3498db;
+            --ink: #333;
+            --ink-muted: #666;
+            --surface: #fff;
+            --surface-alt: #f8f9fa;
+            --border: #e9ecef;
+            --radius: 12px;
+            --pad: 1rem;
+            --shadow-card: 0 4px 12px rgba(0,0,0,0.07);
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); min-height: 100vh; padding: 20px; }
-        .container { max-width: 1400px; margin: 0 auto; background: white; border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); overflow: hidden; }
-        .header { background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%); color: white; padding: 40px; text-align: center; position: relative; }
-        .header::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="radio-waves" patternUnits="userSpaceOnUse" width="20" height="20"><circle cx="10" cy="10" r="2" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/><circle cx="10" cy="10" r="6" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23radio-waves)"/></svg>'); opacity: 0.3; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--ink);
+            background: linear-gradient(135deg, var(--brand-deep) 0%, var(--brand-mid) 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 0;
+            /* Nothing may push the page sideways on a narrow screen. */
+            overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: var(--surface);
+            overflow: hidden;
+        }
+
+        /* ---------- Header ---------- */
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, var(--brand-accent) 100%);
+            color: #fff;
+            padding: 2rem var(--pad) 1.5rem;
+            text-align: center;
+            position: relative;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="radio-waves" patternUnits="userSpaceOnUse" width="20" height="20"><circle cx="10" cy="10" r="2" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/><circle cx="10" cy="10" r="6" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23radio-waves)"/></svg>');
+            opacity: 0.3;
+        }
         .header-content { position: relative; z-index: 1; }
-        .header h1 { font-size: 3em; margin-bottom: 15px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
-        .header p { font-size: 1.3em; opacity: 0.9; margin-bottom: 20px; }
-        .update-status { background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); border-radius: 10px; padding: 20px; margin: 20px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: center; }
-        .last-update { text-align: left; }
-        .next-update { text-align: right; }
-        .countdown-timer { font-size: 1.5em; font-weight: bold; color: #ffeb3b; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
-        .controls { padding: 40px; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-bottom: 1px solid #dee2e6; }
-        .download-section { display: flex; justify-content: center; margin-bottom: 30px; }
-        .download-card { background: white; border-radius: 10px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; width: 100%; max-width: 600px; }
-        .download-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
-        .download-card h3 { color: #2c3e50; margin-bottom: 15px; font-size: 1.4em; }
-        .download-card p { margin-bottom: 20px; color: #666; }
-        .button-group { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; }
-        .download-btn { display: inline-flex; align-items: center; gap: 10px; color: white; padding: 12px 24px; border: none; border-radius: 8px; cursor: pointer; font-size: 1em; font-weight: 500; transition: all 0.3s ease; text-decoration: none; }
-        .download-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        /* Scales smoothly instead of jumping at a breakpoint. */
+        .header h1 { font-size: clamp(1.5rem, 6vw, 3rem); line-height: 1.2; text-wrap: balance; }
+        .header .tagline {
+            font-size: clamp(0.95rem, 3.4vw, 1.3rem);
+            opacity: 0.9;
+            margin: 0.6rem auto 0;
+            max-width: 60ch;
+            text-wrap: balance;
+        }
+
+        .update-status {
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: var(--radius);
+            padding: 0.9rem;
+            margin-top: 1.25rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
+            text-align: center;
+        }
+        .update-status .label {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            opacity: 0.85;
+        }
+        .update-status .value { font-size: 0.95rem; font-weight: 600; }
+        .countdown-timer {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #ffeb3b;
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* ---------- Downloads ---------- */
+        .controls {
+            padding: 1.25rem var(--pad);
+            background: linear-gradient(135deg, var(--surface-alt) 0%, #e9ecef 100%);
+            border-bottom: 1px solid #dee2e6;
+        }
+        .download-card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 1.25rem;
+            box-shadow: var(--shadow-card);
+            max-width: 640px;
+            margin: 0 auto;
+        }
+        .download-card h2 { color: #2c3e50; font-size: 1.15rem; margin-bottom: 0.5rem; }
+        .download-card p { color: var(--ink-muted); font-size: 0.95rem; margin-bottom: 1rem; }
+
+        /* One button per row on a phone, side by side once there is room. */
+        .button-group { display: grid; grid-template-columns: 1fr; gap: 0.6rem; }
+        .download-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            color: #fff;
+            /* Comfortably above the 44px minimum touch target. */
+            min-height: 48px;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .download-btn svg { width: 1.15em; height: 1.15em; flex: none; }
+        .download-btn .size { font-weight: 400; opacity: 0.75; font-size: 0.85em; }
         .btn-csv { background: #1D6F42; }
-        .btn-json { background: #000000; }
+        .btn-json { background: #111; }
         .btn-duckdb { background: #B55B02; }
-        .content { padding: 40px; }
-        .data-previews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 40px; }
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-bottom: 40px; }
-        .stat-card { background: linear-gradient(135deg, #ffffff, #f8f9fa); border-radius: 10px; padding: 25px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.07); transition: transform 0.3s ease; }
-        .stat-card:hover { transform: translateY(-5px); }
-        .stat-number { font-size: 2.5em; font-weight: bold; color: #3498db; margin-bottom: 10px; }
-        .stat-label { color: #666; font-size: 1.1em; }
-        .data-preview { background: #f8f9fa; border-radius: 10px; padding: 25px; margin-top: 30px; }
-        .data-preview h3 { color: #2c3e50; margin-bottom: 20px; font-size: 1.4em; }
-        .data-table { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .data-table th, .data-table td { padding: 15px; text-align: left; border-bottom: 1px solid #e9ecef; }
-        .data-table th { background: linear-gradient(135deg, #3498db, #2980b9); color: white; font-weight: 600; }
-        .data-table tr:hover { background: #f1f5f9; }
-        .loading { text-align: center; padding: 40px; color: #666; }
-        .spinner { border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto 20px; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        .footer { background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); color: white; padding: 30px; text-align: center; }
-        .footer p { margin-bottom: 10px; opacity: 0.9; }
-        .footer a { color: #3498db; text-decoration: none; }
-        .footer a:hover { text-decoration: underline; }
-        @media (max-width: 768px) { .header h1 { font-size: 2em; } .update-status { grid-template-columns: 1fr; text-align: center; } .data-previews-grid { grid-template-columns: 1fr; } }
+
+        /* ---------- Stats ---------- */
+        .content { padding: 1.25rem var(--pad) 1.75rem; }
+        /* Two up even on the narrowest phones: four stacked cards is a lot of
+           scrolling for four numbers. */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #fff, var(--surface-alt));
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 0.9rem 0.6rem;
+            text-align: center;
+            box-shadow: var(--shadow-card);
+        }
+        .stat-number {
+            font-size: clamp(1.35rem, 6.5vw, 2.5rem);
+            font-weight: 700;
+            color: var(--brand-accent);
+            line-height: 1.15;
+            font-variant-numeric: tabular-nums;
+        }
+        .stat-label { color: var(--ink-muted); font-size: 0.78rem; line-height: 1.3; margin-top: 0.25rem; }
+
+        /* ---------- Previews ---------- */
+        /* align-items: start stops a short panel from being stretched to match
+           a taller neighbour and trailing dead space. */
+        .data-previews-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; align-items: start; }
+        .data-preview {
+            background: var(--surface-alt);
+            border-radius: var(--radius);
+            padding: 1rem;
+        }
+        .data-preview h2 { color: #2c3e50; font-size: 1.05rem; margin-bottom: 0.15rem; }
+        .data-preview .sub { color: var(--ink-muted); font-size: 0.82rem; margin-bottom: 0.85rem; }
+
+        .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 8px; }
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--surface);
+            font-size: 0.9rem;
+        }
+        .data-table th, .data-table td {
+            padding: 0.6rem 0.7rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        .data-table th {
+            background: linear-gradient(135deg, var(--brand-accent), #2980b9);
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+        .data-table td.numeric { font-variant-numeric: tabular-nums; }
+        .status-current { color: #27ae60; font-weight: 600; }
+        .status-other { color: #f39c12; font-weight: 600; }
+
+        /* On phones a four column table either overflows or gets crushed, so
+           each row becomes a small labelled card instead. */
+        @media (max-width: 600px) {
+            .data-table.stacked thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+            .data-table.stacked tr {
+                display: block;
+                background: var(--surface);
+                border: 1px solid var(--border);
+                border-radius: 8px;
+                margin-bottom: 0.6rem;
+                padding: 0.25rem 0.15rem;
+            }
+            .data-table.stacked td {
+                display: grid;
+                grid-template-columns: 7rem 1fr;
+                gap: 0.5rem;
+                align-items: baseline;
+                border-bottom: 1px solid var(--border);
+                padding: 0.35rem 0.7rem;
+                font-size: 0.85rem;
+                /* Long licensee and location names must wrap, never overflow. */
+                overflow-wrap: anywhere;
+            }
+            .data-table.stacked tr td:last-child { border-bottom: 0; }
+            .data-table.stacked td::before {
+                content: attr(data-label);
+                font-size: 0.7rem;
+                text-transform: uppercase;
+                letter-spacing: 0.04em;
+                color: var(--ink-muted);
+            }
+            /* The first column identifies the record, so promote it to a card
+               heading instead of spending a label column on the obvious. */
+            .data-table.stacked td:first-child {
+                display: block;
+                font-weight: 600;
+                font-size: 0.9rem;
+                background: var(--surface-alt);
+                border-radius: 7px 7px 0 0;
+                padding: 0.45rem 0.7rem;
+            }
+            .data-table.stacked td:first-child::before { content: none; }
+        }
+
+        .loading { text-align: center; padding: 1.5rem; color: var(--ink-muted); }
+        .spinner {
+            border: 3px solid var(--border);
+            border-top-color: var(--brand-accent);
+            border-radius: 50%;
+            width: 32px; height: 32px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 0.75rem;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .error-note { color: #c0392b; font-size: 0.9rem; }
+
+        /* ---------- Footer ---------- */
+        .footer {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: #fff;
+            padding: 1.5rem var(--pad);
+            text-align: center;
+            font-size: 0.88rem;
+        }
+        .footer p { margin-bottom: 0.5rem; opacity: 0.9; overflow-wrap: anywhere; }
+        .footer p:last-child { margin-bottom: 0; }
+        .footer a { color: #8ecbf5; }
+
+        /* ---------- Progressive enhancement for larger screens ---------- */
+        @media (min-width: 480px) {
+            .button-group { grid-template-columns: repeat(3, 1fr); }
+            .stat-label { font-size: 0.85rem; }
+        }
+        @media (min-width: 600px) {
+            :root { --pad: 1.5rem; }
+            .update-status { grid-template-columns: 1fr 1fr; }
+            .stats-grid { grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+            .stat-card { padding: 1.25rem 0.75rem; }
+        }
+        @media (min-width: 900px) {
+            :root { --pad: 2.5rem; }
+            body { padding: 1.25rem; }
+            .container { border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+            .header { padding: 2.5rem var(--pad); }
+            .data-previews-grid { grid-template-columns: 1fr 1fr; gap: 1.75rem; }
+            .data-preview { padding: 1.5rem; }
+            .data-table th, .data-table td { padding: 0.85rem 1rem; }
+        }
+
+        /* Hover transforms stick on touch screens, so only enable them for
+           devices with a real pointer. */
+        @media (hover: hover) {
+            .download-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+            .stat-card { transition: transform 0.2s ease; }
+            .stat-card:hover { transform: translateY(-3px); }
+            .data-table tr:hover { background: #f1f5f9; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+        }
     </style>
 </head>
 <body>
@@ -58,41 +307,41 @@
         <header class="header">
             <div class="header-content">
                 <h1>Spectrum Efficiency Limited</h1>
-                <p>Real-time data from New Zealand's spectrum database</p>
+                <p class="tagline">Real-time data from New&nbsp;Zealand's spectrum database</p>
                 <div class="update-status">
-                    <div class="last-update">
-                        <strong>Last Updated:</strong><br>
-                        <span id="lastUpdateTime">Loading...</span>
+                    <div>
+                        <span class="label">Last updated</span>
+                        <span class="value" id="lastUpdateTime">Loading…</span>
                     </div>
-                    <div class="next-update">
-                        <strong>Next Update In:</strong><br>
-                        <div class="countdown-timer" id="countdownTimer">--:--</div>
+                    <div>
+                        <span class="label">Next update in</span>
+                        <span class="value countdown-timer" id="countdownTimer">--:--</span>
                     </div>
                 </div>
             </div>
         </header>
 
         <div class="controls">
-            <div class="download-section">
-                <div class="download-card">
-                    <h3>📋 Current Assignments Data</h3>
-                    <p>
-                        Download the latest spectrum assignments, automatically updated hourly. This service modernizes and replaces the decommissioned Spectrum Search Lite, providing fresh, machine-readable data.
-                    </p>
-                    <div class="button-group">
-                        <a href="silver/combined_licences.csv" class="download-btn btn-csv" title="Download as CSV">
-                            <i class="fa-solid fa-file-csv fa-lg"></i>
-                            <span>CSV</span>
-                        </a>
-                        <a href="silver/combined_licences.json" class="download-btn btn-json" title="Download as JSON">
-                            <i class="fa-solid fa-file-code fa-lg"></i>
-                            <span>JSON</span>
-                        </a>
-                        <a href="silver/combined_licences.duckdb" class="download-btn btn-duckdb" title="Download as DuckDB">
-                            <i class="fa-solid fa-database fa-lg"></i>
-                            <span>DuckDB</span>
-                        </a>
-                    </div>
+            <div class="download-card">
+                <h2>📋 Current Assignments Data</h2>
+                <p>
+                    Download the latest spectrum assignments, automatically updated hourly. This service
+                    modernizes and replaces the decommissioned Spectrum Search Lite, providing fresh,
+                    machine-readable data.
+                </p>
+                <div class="button-group">
+                    <a href="silver/combined_licences.csv" class="download-btn btn-csv" download title="Download the full dataset as CSV">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 17h2M14 17h2M8 13h8"/></svg>
+                        <span>CSV</span>
+                    </a>
+                    <a href="silver/combined_licences.json" class="download-btn btn-json" download title="Download the full dataset as JSON">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></svg>
+                        <span>JSON</span>
+                    </a>
+                    <a href="silver/combined_licences.duckdb" class="download-btn btn-duckdb" download title="Download the full dataset as a DuckDB database">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg>
+                        <span>DuckDB</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -100,58 +349,90 @@
         <div class="content">
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-number" id="totalLicenses">-</div>
+                    <div class="stat-number" id="totalLicenses">–</div>
                     <div class="stat-label">Total Assignments</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number" id="activeAssignments">-</div>
+                    <div class="stat-number" id="activeAssignments">–</div>
                     <div class="stat-label">Current Assignments</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number" id="uniqueHolders">-</div>
-                    <div class="stat-label">Unique License Holders</div>
+                    <div class="stat-number" id="uniqueHolders">–</div>
+                    <div class="stat-label">Unique Licence Holders</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number" id="hoursSinceUpdate">-</div>
+                    <div class="stat-number" id="hoursSinceUpdate">–</div>
                     <div class="stat-label">Hours Since Update</div>
                 </div>
             </div>
 
             <div class="data-previews-grid">
-                <div class="data-preview">
-                    <h3>🏆 Top License Holders <small>(by non-mobile assignments)</small></h3>
+                <section class="data-preview">
+                    <h2>🏆 Top Licence Holders</h2>
+                    <p class="sub">By non-mobile assignment count</p>
                     <div id="analyticsPreviewContainer" class="loading">
                         <div class="spinner"></div>
-                        <p>Loading analytics...</p>
+                        <p>Loading analytics…</p>
                     </div>
-                </div>
-                <div class="data-preview">
-                    <h3>📈 Recent Spectrum Assignments (Sample)</h3>
+                </section>
+                <section class="data-preview">
+                    <h2>📈 Recent Spectrum Assignments</h2>
+                    <p class="sub">Ten most recent assignment records</p>
                     <div id="dataPreviewContainer" class="loading">
                         <div class="spinner"></div>
-                        <p>Loading data sample...</p>
+                        <p>Loading data sample…</p>
                     </div>
-                </div>
+                </section>
             </div>
-
         </div>
 
         <footer class="footer">
-            <p>Data sourced from <a href="https://www.rsm.govt.nz/" target="_blank">Radio Spectrum Management New Zealand</a></p>
-            <p>Automated updates every hour • Last build: <span id="buildTime">2026-08-12 17:53:05 UTC</span></p>
-            <p>GitHub Repository: <a href="https://github.com/spectrumefficiencylimited/sel-current" target="_blank">sel-current</a></p>
+            <p>Data sourced from <a href="https://www.rsm.govt.nz/" target="_blank" rel="noopener">Radio Spectrum Management New Zealand</a></p>
+            <p>Automated updates every hour • Last build: <span id="buildTime">…</span></p>
+            <p>GitHub Repository: <a href="https://github.com/spectrumefficiencylimited/sel-current" target="_blank" rel="noopener">sel-current</a></p>
         </footer>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const cacheBuster = `?v=${new Date().getTime()}`;
+        document.addEventListener('DOMContentLoaded', function () {
+            const cacheBuster = `?v=${Date.now()}`;
             const STATS_URL = `silver/stats.json${cacheBuster}`;
-            const CSV_URL = `silver/combined_licences.csv${cacheBuster}`;
             const ANALYTICS_URL = `silver/licensee_analytics.csv${cacheBuster}`;
+            // A pre-built ten row sample. The full CSV is several megabytes and
+            // must never be downloaded just to render a preview table.
+            const SAMPLE_URL = `silver/sample_assignments.csv${cacheBuster}`;
 
             let nextUpdateInterval;
             let lastUpdateTimestamp;
+
+            const el = (id) => document.getElementById(id);
+
+            function escapeHtml(value) {
+                return String(value).replace(/[&<>"']/g, (c) => (
+                    { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+                ));
+            }
+
+            // Splits a CSV line on commas that sit outside double quotes.
+            function parseCsvLine(line) {
+                const fields = [];
+                let current = '';
+                let inQuotes = false;
+                for (let i = 0; i < line.length; i++) {
+                    const char = line[i];
+                    if (char === '"') {
+                        if (inQuotes && line[i + 1] === '"') { current += '"'; i++; }
+                        else { inQuotes = !inQuotes; }
+                    } else if (char === ',' && !inQuotes) {
+                        fields.push(current);
+                        current = '';
+                    } else {
+                        current += char;
+                    }
+                }
+                fields.push(current);
+                return fields;
+            }
 
             async function fetchStats() {
                 try {
@@ -161,97 +442,123 @@
 
                     lastUpdateTimestamp = new Date(stats.lastUpdateUTC);
 
-                    document.getElementById('totalLicenses').textContent = stats.totalLicenses.toLocaleString();
-                    document.getElementById('activeAssignments').textContent = stats.activeAssignments.toLocaleString();
-                    document.getElementById('uniqueHolders').textContent = stats.uniqueHolders.toLocaleString();
-                    
-                    const now = new Date();
-                    const hoursSince = ((now - lastUpdateTimestamp) / (1000 * 60 * 60)).toFixed(1);
-                    document.getElementById('hoursSinceUpdate').textContent = hoursSince;
+                    el('totalLicenses').textContent = stats.totalLicenses.toLocaleString();
+                    el('activeAssignments').textContent = stats.activeAssignments.toLocaleString();
+                    el('uniqueHolders').textContent = stats.uniqueHolders.toLocaleString();
 
-                    const localTimeOptions = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
-                    document.getElementById('lastUpdateTime').textContent = lastUpdateTimestamp.toLocaleString(undefined, localTimeOptions);
+                    const hoursSince = ((Date.now() - lastUpdateTimestamp) / 3600000).toFixed(1);
+                    el('hoursSinceUpdate').textContent = hoursSince;
+
+                    el('lastUpdateTime').textContent = lastUpdateTimestamp.toLocaleString(undefined, {
+                        year: 'numeric', month: 'short', day: 'numeric',
+                        hour: '2-digit', minute: '2-digit'
+                    });
+
+                    // Rendered from the data rather than baked into this file at
+                    // build time, so index.html only changes when the site does.
+                    el('buildTime').textContent = lastUpdateTimestamp.toISOString()
+                        .replace('T', ' ').slice(0, 19) + ' UTC';
 
                     startCountdown();
                 } catch (error) {
-                    console.error("Failed to load statistics:", error);
-                    document.getElementById('totalLicenses').textContent = 'Error';
+                    console.error('Failed to load statistics:', error);
+                    ['totalLicenses', 'activeAssignments', 'uniqueHolders', 'hoursSinceUpdate']
+                        .forEach((id) => { el(id).textContent = '–'; });
+                    el('lastUpdateTime').textContent = 'Unavailable';
+                    el('countdownTimer').textContent = '--:--';
                 }
             }
 
-            async function fetchCsvPreview(url, containerId, columns) {
+            async function fetchCsvPreview(url, containerId, columns, options = {}) {
+                const container = el(containerId);
                 try {
                     const response = await fetch(url);
                     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                    const csvText = await response.text();
-                    
-                    const rows = csvText.trim().split('\n');
-                    const headers = rows[0].split(',');
-                    const data = rows.slice(1, 11);
+                    const rows = (await response.text()).trim().split(/\r?\n/);
+                    const headers = parseCsvLine(rows[0]);
+                    const body = rows.slice(1, 11).filter(Boolean);
 
-                    let tableHTML = `<table class="data-table"><thead><tr>`;
-                    columns.forEach(col => { tableHTML += `<th>${col.title}</th>`; });
-                    tableHTML += `</tr></thead><tbody>`;
-                    
-                    data.forEach(rowStr => {
-                        if (!rowStr) return;
-                        const row = rowStr.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/); // CSV split that handles quoted commas
-                        tableHTML += `<tr>`;
-                        columns.forEach(col => {
-                            const index = headers.indexOf(col.key);
-                            let cellData = (row[index] || 'N/A').replace(/"/g, '');
-                            if (col.key === 'status') {
-                                cellData = `<span style="color: ${cellData.includes('CURRENT') ? '#27ae60' : '#f39c12'}">${cellData}</span>`;
-                            }
-                            tableHTML += `<td>${cellData}</td>`;
-                        });
-                        tableHTML += `</tr>`;
+                    const table = document.createElement('table');
+                    table.className = options.stacked === false ? 'data-table' : 'data-table stacked';
+
+                    const thead = table.createTHead().insertRow();
+                    columns.forEach((col) => {
+                        const th = document.createElement('th');
+                        th.textContent = col.title;
+                        thead.appendChild(th);
                     });
 
-                    tableHTML += `</tbody></table>`;
-                    document.getElementById(containerId).innerHTML = tableHTML;
+                    const tbody = table.createTBody();
+                    body.forEach((rowStr) => {
+                        const values = parseCsvLine(rowStr);
+                        const tr = tbody.insertRow();
+                        columns.forEach((col) => {
+                            const index = headers.indexOf(col.key);
+                            const raw = index >= 0 && values[index] !== undefined ? values[index] : '';
+                            const td = tr.insertCell();
+                            // Drives the stacked mobile layout's row labels.
+                            td.setAttribute('data-label', col.title);
+                            if (col.numeric) td.classList.add('numeric');
+                            if (col.key === 'status') {
+                                const span = document.createElement('span');
+                                span.className = /current/i.test(raw) ? 'status-current' : 'status-other';
+                                span.textContent = raw || 'N/A';
+                                td.appendChild(span);
+                            } else {
+                                td.textContent = raw || 'N/A';
+                            }
+                        });
+                    });
 
+                    container.classList.remove('loading');
+                    container.replaceChildren(Object.assign(document.createElement('div'), { className: 'table-scroll' }));
+                    container.firstChild.appendChild(table);
                 } catch (error) {
                     console.error(`Failed to load preview for ${url}:`, error);
-                    document.getElementById(containerId).innerHTML = `<p>Error loading data preview.</p>`;
+                    container.classList.remove('loading');
+                    container.innerHTML = `<p class="error-note">Preview unavailable right now. The download links above still work.</p>`;
                 }
             }
 
             function startCountdown() {
                 if (nextUpdateInterval) clearInterval(nextUpdateInterval);
-
-                const nextUpdateTime = new Date(lastUpdateTimestamp.getTime() + 60 * 60 * 1000); // Hourly
+                const nextUpdateTime = new Date(lastUpdateTimestamp.getTime() + 3600000); // Hourly
 
                 const updateTimer = () => {
-                    const now = new Date();
-                    const timeLeft = nextUpdateTime - now;
-
+                    const timeLeft = nextUpdateTime - new Date();
                     if (timeLeft <= 0) {
-                        document.getElementById('countdownTimer').textContent = 'Updating...';
+                        el('countdownTimer').textContent = 'Due now';
                         clearInterval(nextUpdateInterval);
                         return;
                     }
-
-                    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-                    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-                    
-                    document.getElementById('countdownTimer').textContent = 
-                        `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                    const minutes = Math.floor(timeLeft / 60000);
+                    const seconds = Math.floor((timeLeft % 60000) / 1000);
+                    el('countdownTimer').textContent =
+                        `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
                 };
 
                 updateTimer();
                 nextUpdateInterval = setInterval(updateTimer, 1000);
             }
-            
-            // Fetch all data on load
+
+            // Pause the ticking countdown while the tab is hidden — it is pure
+            // battery drain on a phone in someone's pocket.
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) {
+                    clearInterval(nextUpdateInterval);
+                } else if (lastUpdateTimestamp) {
+                    startCountdown();
+                }
+            });
+
             fetchStats();
             fetchCsvPreview(ANALYTICS_URL, 'analyticsPreviewContainer', [
                 { key: 'licensee', title: 'Licensee' },
-                { key: 'assignment_count', title: 'Assignments' }
-            ]);
-            fetchCsvPreview(CSV_URL, 'dataPreviewContainer', [
+                { key: 'assignment_count', title: 'Assignments', numeric: true }
+            ], { stacked: false });
+            fetchCsvPreview(SAMPLE_URL, 'dataPreviewContainer', [
                 { key: 'licensee', title: 'Licensee' },
-                { key: 'frequency', title: 'Frequency (MHz)' },
+                { key: 'frequency', title: 'Frequency (MHz)', numeric: true },
                 { key: 'location', title: 'Location' },
                 { key: 'status', title: 'Status' }
             ]);

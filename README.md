@@ -17,7 +17,7 @@ This project was created to fill that gap by serving as a modern, automated, and
 - **Providing Fresh Data:** Instead of a static database, this portal provides data that is refreshed **every hour**.
 - **Using Open, Standard Formats:** We provide data in CSV, JSON, and DuckDB formats, which are easily consumed by modern programming languages and data analysis tools, removing the dependency on Microsoft Access.
 - **Being Fully Automated:** The entire data pipeline runs on its own via GitHub Actions, ensuring the data is always as current as the API allows.
-- **Offering Historical Insight:** By committing the data back to this Git repository, we are building a version-controlled history of the NZ radio spectrum, something not previously possible.
+- **Offering Historical Insight:** The headline figures and the top-holder rankings are committed to this repository every hour, building a version-controlled time series of the NZ radio spectrum, something not previously possible.
 - **Enhanced Analytics:** The portal includes pre-calculated summaries of top license holders and key statistics.
 
 This tool aims to empower the next generation of spectrum analysis with reliable, timely, and easy-to-use data.
@@ -32,7 +32,7 @@ This tool aims to empower the next generation of spectrum analysis with reliable
 - **Data Analytics:** Pre-calculated summaries of top license holders by assignment count
 - **Open and Accessible:** All code and data are publicly available, encouraging transparency and community use
 - **Secure:** API keys are managed securely using GitHub Secrets and are not exposed in the repository
-- **Historical Records:** Complete version history of spectrum data changes over time
+- **Historical Records:** An hourly, version-controlled history of the headline statistics and top licence holders
 
 ---
 
@@ -43,14 +43,31 @@ This project is powered entirely by GitHub Actions, running on an hourly schedul
 1. **Fetch:** A Bash script (`scripts/fetch-process-data.sh`) calls the RSM API to fetch all current license assignments. The script handles pagination and parallel requests for efficiency.
 2. **Process:** The raw JSON data from the API is combined and processed using `jq` for JSON manipulation.
 3. **Transform:** Data is converted into multiple formats and analyzed using DuckDB for advanced analytics.
-4. **Store:**
-   - The combined raw data is stored as `bronze/combined_licences.json`
-   - The processed data is saved into multiple formats (`.csv`, `.json`, `.duckdb`) in the `silver/` directory
-   - Key statistics and analytics are generated and saved to `silver/stats.json` and `silver/licensee_analytics.csv`
-5. **Commit:** The updated data files are committed back to the `main` branch of this repository, creating a historical record of the data over time.
-6. **Deploy:** The `index.html` file and the `silver/` data assets are pushed to a dedicated `gh-pages` branch, which is automatically published as a live website using GitHub Pages.
+4. **Store:** The combined raw data is written to `bronze/combined_licences.json` and processed into `silver/` as `.csv`, `.json` and `.duckdb`, alongside `stats.json`, `licensee_analytics.csv` and a small `sample_assignments.csv` used by the web page.
+5. **Commit:** Only the small artefacts — `stats.json`, `licensee_analytics.csv` and `sample_assignments.csv`, about 2 KB a run — are committed to `main`, building a time series of the headline numbers. The multi-megabyte datasets are build outputs and are deliberately **not** committed; see "Where the data lives" below.
+6. **Deploy:** `index.html` and the complete `silver/` datasets are published to the `gh-pages` branch as a fresh orphan commit, served as a live website by GitHub Pages.
 
 This entire cycle requires zero manual intervention and ensures data is always current.
+
+### Where the data lives
+
+The full CSV, JSON and DuckDB downloads are always available, always current,
+and always regenerated from scratch by the workflow — they are served from the
+site, not from git history:
+
+| Asset | Committed to `main` | Published to the site |
+| --- | --- | --- |
+| `silver/stats.json` | ✅ hourly (~130 B) | ✅ |
+| `silver/licensee_analytics.csv` | ✅ hourly (~800 B) | ✅ |
+| `silver/sample_assignments.csv` | ✅ hourly (~1 KB) | ✅ |
+| `silver/combined_licences.csv` | ❌ (8.5 MB) | ✅ |
+| `silver/combined_licences.json` | ❌ (34 MB) | ✅ |
+| `silver/combined_licences.duckdb` | ❌ (2.6 MB) | ✅ |
+| `bronze/combined_licences.json` | ❌ (34 MB, duplicate of the silver JSON) | ❌ |
+
+Committing every snapshot previously added roughly **80 MB of git history per
+hour**. Publishing them to the site instead keeps every download available while
+holding repository growth to a couple of kilobytes a run.
 
 > **Note on timing:** GitHub queues scheduled workflows on a shared pool, so a run
 > triggered at the top of the hour typically starts 10–40 minutes late. The
@@ -125,13 +142,15 @@ Use `curl` or other tools to download the latest data directly:
 
 ### 3. Cloning the Repository
 
-You can clone this repository to get the full history of the data updates:
+Cloning gets you the pipeline and the hourly time series of headline statistics
+and top licence holders:
 
 ```bash
 git clone https://github.com/spectrumefficiencylimited/sel-current.git
 ```
 
-The primary data files are located in the `/silver` directory.
+The full datasets are **not** in git history — download them from the links
+above, which always serve the most recent run.
 
 ---
 
@@ -143,8 +162,10 @@ The primary data files are located in the `/silver` directory.
 - **Frontend:** Single-page application using HTML, CSS, and vanilla JavaScript
 - **Hosting:** [GitHub Pages](https://pages.github.com/) with automated deployment
 - **Data Architecture:**
-  - `bronze/`: Stores the raw, combined JSON data from the API
-  - `silver/`: Contains the cleaned, production-ready datasets (CSV, JSON, DuckDB) and analytics files
+  - `bronze/`: Raw combined JSON from the API (build output, not committed)
+  - `silver/`: Cleaned, production-ready datasets (CSV, JSON, DuckDB) plus the small
+    analytics and statistics files. Only the small files are committed; the full
+    datasets are published to the site.
 - **Security:** API credentials managed through GitHub Secrets
 
 ---

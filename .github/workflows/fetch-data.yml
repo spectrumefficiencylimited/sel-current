@@ -80,24 +80,23 @@ jobs:
           chmod +x scripts/fetch-process-data.sh
           ./scripts/fetch-process-data.sh
 
-      - name: Update build timestamp in index.html
-        run: |
-          # Use the stats.json file as the source of truth for the update time
-          LAST_UPDATE_TIME=$(jq -re '.lastUpdateUTC' silver/stats.json)
-          BUILD_TIME_FORMATTED=$(date -d "$LAST_UPDATE_TIME" '+%Y-%m-%d %H:%M:%S UTC')
-          sed -i 's|Last build: <span id="buildTime">.*</span>|Last build: <span id="buildTime">'"$BUILD_TIME_FORMATTED"'</span>|g' index.html
-          echo "Updated index.html with build time: $BUILD_TIME_FORMATTED"
-
       - name: Commit and Push Data Files
+        env:
+          # Only the small, human-readable artefacts are committed, so main keeps
+          # an hourly time series of the headline numbers at roughly 2 KB a run.
+          # The multi-megabyte datasets are build outputs: they are regenerated
+          # every run and published to the site, never added to git history.
+          COMMIT_PATHS: silver/stats.json silver/licensee_analytics.csv silver/sample_assignments.csv
         run: |
           chmod +x scripts/commit-and-push.sh
           ./scripts/commit-and-push.sh
 
       - name: Stage the site for GitHub Pages
         run: |
-          # Publish only what the site actually serves. The bronze layer is a
+          # The deployed site is the complete, current dataset — this is what
+          # every download link and API consumer reads. The bronze layer is a
           # byte-for-byte duplicate of silver/combined_licences.json and nothing
-          # on the page links to it, so shipping it doubled every deployment.
+          # links to it, so shipping it doubled every deployment for nothing.
           rm -rf _site
           mkdir -p _site/silver
           cp index.html SpectrumEfficiencyLimited.png _site/
@@ -105,6 +104,7 @@ jobs:
              silver/combined_licences.json \
              silver/combined_licences.duckdb \
              silver/licensee_analytics.csv \
+             silver/sample_assignments.csv \
              silver/stats.json \
              _site/silver/
           du -sh _site
