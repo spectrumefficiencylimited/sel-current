@@ -44,7 +44,7 @@ This project is powered entirely by GitHub Actions, running on an hourly schedul
 2. **Process:** The raw JSON data from the API is combined and processed using `jq` for JSON manipulation.
 3. **Transform:** Data is converted into multiple formats and analyzed using DuckDB for advanced analytics.
 4. **Store:** The combined raw data is written to `bronze/combined_licences.json` and processed into `silver/` as `.csv`, `.json` and `.duckdb`, alongside `stats.json`, `licensee_analytics.csv` and a small `sample_assignments.csv` used by the web page.
-5. **Commit:** Only the small artefacts — `stats.json`, `licensee_analytics.csv` and `sample_assignments.csv`, about 2 KB a run — are committed to `main`, building a time series of the headline numbers. The multi-megabyte datasets are build outputs and are deliberately **not** committed; see "Where the data lives" below.
+5. **Commit:** Only the small artefacts — `stats.json`, `licensee_analytics.csv`, `sample_assignments.csv`, `service_summary.csv` and the `gold/` time series — are committed to `main`. The multi-megabyte datasets are build outputs and are deliberately **not** committed; see "Where the data lives" below.
 6. **Deploy:** `index.html` and the complete `silver/` datasets are published to the `gh-pages` branch as a fresh orphan commit, served as a live website by GitHub Pages.
 
 This entire cycle requires zero manual intervention and ensures data is always current.
@@ -60,7 +60,7 @@ site, not from git history:
 | `silver/stats.json` | ✅ hourly (~130 B) | ✅ |
 | `silver/licensee_analytics.csv` | ✅ hourly (~800 B) | ✅ |
 | `silver/sample_assignments.csv` | ✅ hourly (~1 KB) | ✅ |
-| `gold/*.csv` (the time series) | ✅ hourly/daily (~6 MB a year) | ✅ |
+| `gold/*.csv` (the time series) | ✅ hourly/daily (~10 MB a year) | ✅ |
 | `silver/combined_licences.csv` | ❌ (8.5 MB) | ✅ |
 | `silver/combined_licences.json` | ❌ (34 MB) | ✅ |
 | `silver/combined_licences.duckdb` | ❌ (2.6 MB) | ✅ |
@@ -68,7 +68,7 @@ site, not from git history:
 
 Committing every snapshot previously added roughly **80 MB of git history per
 hour**. Publishing them to the site instead keeps every download available while
-holding repository growth to a couple of kilobytes a run.
+holding repository growth to a few kilobytes a run.
 
 ---
 
@@ -84,9 +84,10 @@ snapshot into a compact time series under `gold/`:
 
 | File | Grain | Columns |
 | --- | --- | --- |
-| `gold/totals_history.csv` | one row per run | `observed_at`, `total_licences`, `unique_holders` |
-| `gold/service_daily.csv` | service × mode per day | `observed_date`, `service`, `link_mode`, `assignment_count`, `distinct_licensees` |
+| `gold/totals_history.csv` | one row per run | `observed_at`, `total_licences`, `unique_holders`, `distinct_licences` |
+| `gold/service_daily.csv` | service × mode per day | `observed_date`, `service`, `link_mode`, `assignment_count`, `distinct_licences`, `distinct_licensees` |
 | `gold/band_daily.csv` | ITU band per day | `observed_date`, `band`, `assignment_count`, `distinct_licensees` |
+| `gold/pair_leg_daily.csv` | service × leg per day | `observed_date`, `service`, `pair_leg`, `assignment_count`, `distinct_licences` |
 | `gold/licensee_service_daily.csv` | top 100 clients × service per day | `observed_date`, `licensee`, `service`, `assignment_count` |
 | `gold/licensee_daily.csv` | top 100 per day | `observed_date`, `rank`, `licensee`, `assignment_count` |
 | `gold/location_daily.csv` | top 100 per day | `observed_date`, `rank`, `location`, `assignment_count`, `distinct_licensees` |
@@ -106,7 +107,8 @@ These are published alongside the datasets, so they have stable URLs too:
 curl -L -o totals.csv https://spectrumefficiencylimited.github.io/sel-current/gold/totals_history.csv
 ```
 
-A year of the whole gold layer is a few megabytes.
+The whole gold layer adds about 27 KB a day — roughly 10 MB a year, measured
+against the current register rather than estimated.
 
 ### Counting: records, licences, and paired legs
 

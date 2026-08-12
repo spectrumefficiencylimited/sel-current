@@ -418,6 +418,16 @@ upsert_daily() {
     local target="$1" incoming="$2" tmp
     tmp=$(mktemp "${WORK_DIR}/upsert.XXXXXX")
     if [ -f "$target" ]; then
+        # A schema change would otherwise keep the old header and append rows of
+        # a different width, silently producing a ragged CSV that still looks
+        # fine to `tail`. Refuse, and say exactly how to fix it.
+        if [ "$(head -n 1 "$target")" != "$(head -n 1 "$incoming")" ]; then
+            die "Schema drift in ${target}.
+    existing: $(head -n 1 "$target")
+    incoming: $(head -n 1 "$incoming")
+  Migrate the existing file to the new columns before this run can continue;
+  appending would produce a ragged CSV."
+        fi
         head -n 1 "$target" > "$tmp"
         tail -n +2 "$target" | { grep -v "^${OBSERVED_DATE}," || true; } >> "$tmp"
     else
@@ -522,6 +532,10 @@ log_orchestrator "Validating generated assets..."
 jq -e . "$WORK_DIR/stats.json" >/dev/null || die "Generated stats.json is not valid JSON."
 CSV_ROWS=$(( $(wc -l < "$WORK_DIR/combined_licences.csv") - 1 ))
 [ "$CSV_ROWS" -gt 0 ] || die "Generated CSV has no data rows."
+# One physical line per record. jq's @csv keeps newlines inside quoted fields, so
+# if RSM ever emits one, `head -n 11` would cut a record in half and the DuckDB
+# load would mis-parse. Catch it here rather than shipping a broken sample.
+[ "$CSV_ROWS" -eq "$TOTAL_LICENSES" ] || die "CSV has ${CSV_ROWS} lines for ${TOTAL_LICENSES} records — a field value contains a newline. The preview sample and DuckDB load both assume one line per record."
 [ -s "$WORK_DIR/combined_licences.duckdb" ] || die "Generated DuckDB file is empty."
 [ -s "$WORK_DIR/licensee_analytics.csv" ] || die "Generated analytics CSV is empty."
 [ "$(wc -l < "$WORK_DIR/sample_assignments.csv")" -gt 1 ] || die "Generated preview sample has no data rows."

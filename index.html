@@ -499,6 +499,7 @@
                     const thead = table.createTHead().insertRow();
                     columns.forEach((col) => {
                         const th = document.createElement('th');
+                        th.scope = 'col';
                         th.textContent = col.title;
                         thead.appendChild(th);
                     });
