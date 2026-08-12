@@ -1,139 +1,219 @@
-#!/bin/bash
-# Fetches API pages, combines them, and processes into final data assets.
+#!/usr/bin/env bash
+# Fetches RSM API pages, combines them, and processes into final data assets.
+#
+# Design goals (see README "Pipeline reliability"):
+#   * every network call is bounded by a timeout and retried with backoff
+#   * a single flaky page is retried serially instead of killing the whole run
+#   * every page is validated (HTTP status + parseable JSON + .items array)
+#   * outputs are built in a staging directory and only published atomically
+#     once they pass sanity checks, so a bad API response can never overwrite
+#     good committed data
 # ----------------------------------------------------------------------
-set -euo pipefail
+set -Eeuo pipefail
 
-# --- CONFIGURATION ---
-# API Key is read from the environment variable RSM_API_KEY
-if [ -z "${RSM_API_KEY:-}" ]; then
-    echo "FATAL: RSM_API_KEY environment variable is not set."
-    exit 1
-fi
+# --- CONFIGURATION (all overridable from the workflow) ---
+API_BASE="${RSM_API_BASE:-https://api.business.govt.nz/gateway/radio-spectrum-management/v1/licences}"
+PAGE_SIZE="${RSM_PAGE_SIZE:-1000}"
+PARALLELISM="${RSM_PARALLELISM:-8}"
+MAX_ATTEMPTS="${RSM_MAX_ATTEMPTS:-5}"
+CONNECT_TIMEOUT="${RSM_CONNECT_TIMEOUT:-20}"
+MAX_TIME="${RSM_MAX_TIME:-120}"
+MAX_PAGES="${RSM_MAX_PAGES:-500}"
 
-BRONZE_DIR="./bronze"
-PAGES_DIR="${BRONZE_DIR}/pages"
-SILVER_DIR="./silver"
+# Data quality gates. A run that would publish fewer than MIN_LICENCES rows, or
+# lose more than MAX_DROP_PCT of the previously published rows, aborts before
+# touching the committed data. Set ALLOW_DATA_DROP=1 to override deliberately.
+MIN_LICENCES="${RSM_MIN_LICENCES:-1000}"
+MAX_DROP_PCT="${RSM_MAX_DROP_PCT:-10}"
+ALLOW_DATA_DROP="${ALLOW_DATA_DROP:-0}"
 
-mkdir -p "$PAGES_DIR" "$SILVER_DIR"
+BRONZE_DIR="${BRONZE_DIR:-./bronze}"
+SILVER_DIR="${SILVER_DIR:-./silver}"
+PAGES_DIR="${PAGES_DIR:-${BRONZE_DIR}/pages}"
 
-# --- LOGGING FUNCTIONS ---
-log_orchestrator() {
-    echo "$(date '+%Y-%m-%d %H:%M:%S') - ORCHESTRATOR: $1"
+export API_BASE PAGE_SIZE MAX_ATTEMPTS CONNECT_TIMEOUT MAX_TIME PAGES_DIR
+
+# --- LOGGING ---
+log() { printf '%s - %s\n' "$(date -u '+%Y-%m-%dT%H:%M:%SZ')" "$*"; }
+log_orchestrator() { log "ORCHESTRATOR: $*"; }
+log_worker() { log "WORKER[$$]: $*"; }
+die() { log "FATAL: $*" >&2; exit 1; }
+
+# Report the failing line instead of an anonymous non-zero exit.
+# shellcheck disable=SC2154  # rc is assigned inside the trap body
+trap 'rc=$?; log "FATAL: ${BASH_SOURCE[0]}:${LINENO} exited with status ${rc}" >&2; exit "$rc"' ERR
+
+# Appends a line to the GitHub Actions job summary when running in CI.
+summary() {
+    [ -n "${GITHUB_STEP_SUMMARY:-}" ] && printf '%s\n' "$*" >> "$GITHUB_STEP_SUMMARY"
+    return 0
 }
 
-log_worker() {
-    echo "$(date '+%Y-%m-%d %H:%M:%S') - WORKER[$$]: $1"
+page_url() {
+    local page_num=$1
+    printf '%s?page=%s&page-size=%s&sort-by=Licence%%20ID&sort-order=desc&txRx=TRN&licenceStatus=CURRENT&gridRefDefault=LAT_LONG_NZGD2000_D2000' \
+        "$API_BASE" "$page_num" "$PAGE_SIZE"
 }
 
 # --- API FETCH FUNCTION (WORKER) ---
+# Writes $PAGES_DIR/page_N.json only once the response is a 200 carrying an
+# `items` array, so a half-written or error-body page can never reach the
+# combine step.
 fetch_api_page() {
     local page_num=$1
     local output_path="$PAGES_DIR/page_${page_num}.json"
-    local url="https://api.business.govt.nz/gateway/radio-spectrum-management/v1/licences?page=${page_num}&page-size=1000&sort-by=Licence%20ID&sort-order=desc&txRx=TRN&licenceStatus=CURRENT&gridRefDefault=LAT_LONG_NZGD2000_D2000"
+    local url
+    url=$(page_url "$page_num")
 
-    log_worker "Fetching page $page_num..."
-    
-    local attempt=0
-    local max_retries=3
-    
-    while [ $attempt -lt $max_retries ]; do
-        local tmp_file
+    local attempt=1
+    while [ "$attempt" -le "$MAX_ATTEMPTS" ]; do
+        local tmp_file http_code curl_rc backoff
         tmp_file=$(mktemp "$PAGES_DIR/page_${page_num}.tmp.XXXXXX")
 
-        if http_code=$(curl --location -s -w "%{http_code}" -H "Ocp-Apim-Subscription-Key: $RSM_API_KEY" "$url" -o "$tmp_file"); then
-            if [ "$http_code" -eq 200 ] && jq -e . "$tmp_file" >/dev/null 2>&1; then
-                mv "$tmp_file" "$output_path"
-                log_worker "SUCCESS: Page $page_num saved."
-                return 0
-            elif [ "$http_code" -eq 429 ]; then
-                log_worker "RATE LIMITED: Sleeping 4s..."
-                sleep 4
-            else
-                log_worker "WARN (Attempt $((attempt+1))/$max_retries): HTTP $http_code"
-                sleep 5
-                attempt=$((attempt + 1))
-            fi
+        set +e
+        http_code=$(curl --location --silent --show-error \
+            --connect-timeout "$CONNECT_TIMEOUT" --max-time "$MAX_TIME" \
+            -w '%{http_code}' \
+            -H "Ocp-Apim-Subscription-Key: $RSM_API_KEY" \
+            "$url" -o "$tmp_file")
+        curl_rc=$?
+        set -e
+
+        # Exponential backoff, capped, so a rate-limited API cannot spin forever.
+        backoff=$(( attempt * 5 ))
+        [ "$backoff" -gt 60 ] && backoff=60
+
+        if [ "$curl_rc" -ne 0 ]; then
+            log_worker "WARN (attempt ${attempt}/${MAX_ATTEMPTS}): curl exit ${curl_rc} on page ${page_num}; retrying in ${backoff}s"
+        elif [ "$http_code" = "200" ] && jq -e 'has("items") and (.items | type == "array")' "$tmp_file" >/dev/null 2>&1; then
+            mv "$tmp_file" "$output_path"
+            log_worker "SUCCESS: page ${page_num} saved ($(jq -r '.items | length' "$output_path") items)."
+            return 0
+        elif [ "$http_code" = "429" ]; then
+            log_worker "RATE LIMITED (attempt ${attempt}/${MAX_ATTEMPTS}) on page ${page_num}; sleeping ${backoff}s"
+        elif [ "$http_code" = "200" ]; then
+            log_worker "WARN (attempt ${attempt}/${MAX_ATTEMPTS}): page ${page_num} returned 200 but no usable items array; retrying in ${backoff}s"
         else
-            log_worker "CURL ERROR: Retrying in 5s..."
-            sleep 5
-            attempt=$((attempt + 1))
+            log_worker "WARN (attempt ${attempt}/${MAX_ATTEMPTS}): HTTP ${http_code} on page ${page_num}; retrying in ${backoff}s"
         fi
+
         rm -f "$tmp_file"
+        attempt=$(( attempt + 1 ))
+        [ "$attempt" -le "$MAX_ATTEMPTS" ] && sleep "$backoff"
     done
-    
-    log_worker "FATAL: Failed to fetch page $page_num after $max_retries attempts."
+
+    log_worker "FAILED: page ${page_num} after ${MAX_ATTEMPTS} attempts."
     return 1
 }
 
-# --- SCRIPT ENTRY POINT ---
-if [ "$#" -eq 1 ] && [ "$1" != "orchestrator" ]; then
-    page_to_fetch=$1
-    fetch_api_page "$page_to_fetch"
+# --- SCRIPT ENTRY POINT (worker invocation from xargs) ---
+if [ "${1:-}" = "--fetch-page" ]; then
+    [ -n "${2:-}" ] || die "--fetch-page requires a page number"
+    # A worker returning non-zero is an expected, recoverable outcome: the
+    # orchestrator retries the gap serially. Don't dress it up as a crash.
+    trap - ERR
+    fetch_api_page "$2"
     exit $?
 fi
 
 # --- ORCHESTRATOR MODE ---
+[ -n "${RSM_API_KEY:-}" ] || die "RSM_API_KEY environment variable is not set."
+command -v jq >/dev/null || die "jq is not installed."
+command -v duckdb >/dev/null || die "duckdb is not installed."
+
+mkdir -p "$PAGES_DIR" "$SILVER_DIR"
+rm -f "$PAGES_DIR"/page_*.json "$PAGES_DIR"/page_*.tmp.*
+
+WORK_DIR=$(mktemp -d "${TMPDIR:-/tmp}/rsm-build.XXXXXX")
+cleanup() { rm -rf "$WORK_DIR"; }
+trap cleanup EXIT
+
 log_orchestrator "Starting data fetch and process..."
-rm -rf "$PAGES_DIR"/*.json
 
 # 1. FETCHING DATA
-# ... (This part remains unchanged)
-log_orchestrator "Fetching initial page to determine total pages..."
-if ! curl --location -s -H "Ocp-Apim-Subscription-Key: $RSM_API_KEY" \
-    "https://api.business.govt.nz/gateway/radio-spectrum-management/v1/licences?page=1&page-size=1000&sort-by=Licence%20ID&sort-order=desc&txRx=TRN&licenceStatus=CURRENT&gridRefDefault=LAT_LONG_NZGD2000_D2000" \
-    > "$PAGES_DIR/page_1.json"; then
-    log_orchestrator "FATAL: Could not fetch initial page. Exiting."
-    exit 1
-fi
+log_orchestrator "Fetching page 1 to determine total pages..."
+fetch_api_page 1 || die "Could not fetch the first page. The API or the API key is unavailable."
 
 TOTAL_PAGES=$(jq -r '.totalPages // 1' "$PAGES_DIR/page_1.json")
-if ! [[ "$TOTAL_PAGES" =~ ^[0-9]+$ ]] || [ "$TOTAL_PAGES" -eq 0 ]; then
-    log_orchestrator "FATAL: Invalid total pages found: '$TOTAL_PAGES'. Exiting."
-    exit 1
-fi
-log_orchestrator "Total pages to fetch: $TOTAL_PAGES"
+[[ "$TOTAL_PAGES" =~ ^[0-9]+$ ]] || die "Invalid totalPages returned by the API: '${TOTAL_PAGES}'"
+[ "$TOTAL_PAGES" -ge 1 ] || die "API reported ${TOTAL_PAGES} pages."
+[ "$TOTAL_PAGES" -le "$MAX_PAGES" ] || die "API reported ${TOTAL_PAGES} pages, above the ${MAX_PAGES} guard rail. Refusing to run."
+API_TOTAL_ITEMS=$(jq -r '(.totalItems // .totalCount // .total // .totalRecords // empty) | tostring' "$PAGES_DIR/page_1.json")
+log_orchestrator "Total pages to fetch: ${TOTAL_PAGES}${API_TOTAL_ITEMS:+ (API reports ${API_TOTAL_ITEMS} items)}"
 
 if [ "$TOTAL_PAGES" -gt 1 ]; then
-    log_orchestrator "Spawning parallel workers for pages 2 to $TOTAL_PAGES..."
-    seq 2 "$TOTAL_PAGES" | xargs -P 8 -I{} bash "$0" {}
+    log_orchestrator "Fetching pages 2..${TOTAL_PAGES} with ${PARALLELISM} workers..."
+    # xargs exits non-zero when any worker fails; that is expected and handled
+    # by the gap-filling pass below rather than aborting the whole run.
+    seq 2 "$TOTAL_PAGES" | xargs -P "$PARALLELISM" -I{} bash "$0" --fetch-page {} || true
+
+    missing=()
+    for page in $(seq 2 "$TOTAL_PAGES"); do
+        [ -s "$PAGES_DIR/page_${page}.json" ] || missing+=("$page")
+    done
+
+    if [ "${#missing[@]}" -gt 0 ]; then
+        log_orchestrator "Retrying ${#missing[@]} missing page(s) serially: ${missing[*]}"
+        still_missing=()
+        for page in "${missing[@]}"; do
+            fetch_api_page "$page" || still_missing+=("$page")
+        done
+        [ "${#still_missing[@]}" -eq 0 ] || die "Could not fetch page(s): ${still_missing[*]}. Refusing to publish an incomplete dataset."
+    fi
 fi
 
+rm -f "$PAGES_DIR"/page_*.tmp.*
+
 # 2. COMBINING DATA (BRONZE LAYER)
-log_orchestrator "Combining all page JSONs into a single file..."
-jq -s '[.[].items] | add' "$PAGES_DIR"/page_*.json > "$BRONZE_DIR/combined_licences.json"
+log_orchestrator "Combining ${TOTAL_PAGES} page(s) into a single document..."
+jq -s '[.[].items] | add // []' "$PAGES_DIR"/page_*.json > "$WORK_DIR/combined_licences.json"
 
-# 3. PROCESSING DATA (SILVER LAYER)
-log_orchestrator "Processing data into Silver layer assets..."
+TOTAL_LICENSES=$(jq 'length' "$WORK_DIR/combined_licences.json")
+[[ "$TOTAL_LICENSES" =~ ^[0-9]+$ ]] || die "Could not count records in the combined document."
 
-cp "$BRONZE_DIR/combined_licences.json" "$SILVER_DIR/combined_licences.json"
+# 3. DATA QUALITY GATES (before anything is published)
+[ "$TOTAL_LICENSES" -ge "$MIN_LICENCES" ] || die "Only ${TOTAL_LICENSES} records fetched, below the ${MIN_LICENCES} floor. Refusing to publish."
 
-# Create final CSV
+PREVIOUS_TOTAL=0
+if [ -f "$SILVER_DIR/stats.json" ]; then
+    PREVIOUS_TOTAL=$(jq -r '.totalLicenses // 0' "$SILVER_DIR/stats.json" 2>/dev/null || echo 0)
+    [[ "$PREVIOUS_TOTAL" =~ ^[0-9]+$ ]] || PREVIOUS_TOTAL=0
+fi
+
+if [ "$PREVIOUS_TOTAL" -gt 0 ]; then
+    FLOOR=$(( PREVIOUS_TOTAL * (100 - MAX_DROP_PCT) / 100 ))
+    if [ "$TOTAL_LICENSES" -lt "$FLOOR" ]; then
+        if [ "$ALLOW_DATA_DROP" = "1" ]; then
+            log_orchestrator "WARN: record count dropped ${PREVIOUS_TOTAL} -> ${TOTAL_LICENSES}; publishing anyway (ALLOW_DATA_DROP=1)."
+        else
+            die "Record count dropped ${PREVIOUS_TOTAL} -> ${TOTAL_LICENSES} (more than ${MAX_DROP_PCT}%). Refusing to publish. Re-run with ALLOW_DATA_DROP=1 if this is a genuine change."
+        fi
+    fi
+fi
+
+if [ -n "$API_TOTAL_ITEMS" ] && [[ "$API_TOTAL_ITEMS" =~ ^[0-9]+$ ]] && [ "$API_TOTAL_ITEMS" -ne "$TOTAL_LICENSES" ]; then
+    log_orchestrator "NOTE: API advertised ${API_TOTAL_ITEMS} items, collected ${TOTAL_LICENSES} (the register changes while we paginate)."
+fi
+
+DUPLICATE_IDS=$(jq '[.[].licenceID] | length - (unique | length)' "$WORK_DIR/combined_licences.json")
+if [ "$DUPLICATE_IDS" -gt 0 ]; then
+    log_orchestrator "NOTE: ${DUPLICATE_IDS} duplicate licenceID(s) present (records shifting between pages during pagination)."
+fi
+
+# 4. PROCESSING DATA (SILVER LAYER), still in staging
+log_orchestrator "Processing ${TOTAL_LICENSES} records into Silver layer assets..."
+
 log_orchestrator "Generating CSV file..."
-echo "licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppressed" > "$SILVER_DIR/combined_licences.csv"
+echo "licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppressed" > "$WORK_DIR/combined_licences.csv"
 jq -r '.[] | [.licenceID, .licenceNumber, .licensee, .channel, .frequency, .location, .status, .txrx, .suppressed] | @csv' \
-  "$BRONZE_DIR/combined_licences.json" >> "$SILVER_DIR/combined_licences.csv"
+    "$WORK_DIR/combined_licences.json" >> "$WORK_DIR/combined_licences.csv"
 
-# Create DuckDB file
 log_orchestrator "Generating DuckDB file..."
-duckdb "$SILVER_DIR/combined_licences.duckdb" "CREATE OR REPLACE TABLE licences AS SELECT * FROM read_csv_auto('$SILVER_DIR/combined_licences.csv', ALL_VARCHAR=TRUE);"
+duckdb "$WORK_DIR/combined_licences.duckdb" \
+    "CREATE OR REPLACE TABLE licences AS SELECT * FROM read_csv_auto('$WORK_DIR/combined_licences.csv', ALL_VARCHAR=TRUE);"
 
-# Create statistics file for the website
-log_orchestrator "Generating statistics file..."
-TOTAL_LICENSES=$(jq 'length' "$BRONZE_DIR/combined_licences.json")
-UNIQUE_HOLDERS=$(jq '[.[] | .licensee] | unique | length' "$BRONZE_DIR/combined_licences.json")
-
-cat > "$SILVER_DIR/stats.json" << EOF
-{
-  "totalLicenses": ${TOTAL_LICENSES},
-  "activeAssignments": ${TOTAL_LICENSES},
-  "uniqueHolders": ${UNIQUE_HOLDERS},
-  "lastUpdateUTC": "$(date -u --iso-8601=seconds)"
-}
-EOF
-
-# 4. PERFORM AND EXPORT ANALYTICS (NEW SECTION)
 log_orchestrator "Generating licensee analytics..."
-duckdb "$SILVER_DIR/combined_licences.duckdb" <<EOF
+duckdb "$WORK_DIR/combined_licences.duckdb" <<EOF
 COPY (
     SELECT
         licensee,
@@ -143,8 +223,47 @@ COPY (
     GROUP BY licensee
     ORDER BY assignment_count DESC
     LIMIT 25
-) TO '$SILVER_DIR/licensee_analytics.csv' (HEADER, DELIMITER ',');
+) TO '$WORK_DIR/licensee_analytics.csv' (HEADER, DELIMITER ',');
 EOF
 
+UNIQUE_HOLDERS=$(jq '[.[] | .licensee] | unique | length' "$WORK_DIR/combined_licences.json")
+cat > "$WORK_DIR/stats.json" << EOF
+{
+  "totalLicenses": ${TOTAL_LICENSES},
+  "activeAssignments": ${TOTAL_LICENSES},
+  "uniqueHolders": ${UNIQUE_HOLDERS},
+  "lastUpdateUTC": "$(date -u --iso-8601=seconds)"
+}
+EOF
+
+# 5. VALIDATE THE BUILT ARTEFACTS
+log_orchestrator "Validating generated assets..."
+jq -e . "$WORK_DIR/stats.json" >/dev/null || die "Generated stats.json is not valid JSON."
+CSV_ROWS=$(( $(wc -l < "$WORK_DIR/combined_licences.csv") - 1 ))
+[ "$CSV_ROWS" -gt 0 ] || die "Generated CSV has no data rows."
+[ -s "$WORK_DIR/combined_licences.duckdb" ] || die "Generated DuckDB file is empty."
+[ -s "$WORK_DIR/licensee_analytics.csv" ] || die "Generated analytics CSV is empty."
+DB_ROWS=$(duckdb "$WORK_DIR/combined_licences.duckdb" -noheader -list "SELECT COUNT(*) FROM licences;" | tr -d '[:space:]')
+[ "$DB_ROWS" = "$TOTAL_LICENSES" ] || log_orchestrator "NOTE: DuckDB holds ${DB_ROWS} rows vs ${TOTAL_LICENSES} JSON records (multi-line field values)."
+
+# 6. PUBLISH ATOMICALLY
+log_orchestrator "Publishing assets to ${BRONZE_DIR} and ${SILVER_DIR}..."
+mkdir -p "$BRONZE_DIR" "$SILVER_DIR"
+install -m 0644 "$WORK_DIR/combined_licences.json" "$BRONZE_DIR/combined_licences.json"
+for asset in combined_licences.json combined_licences.csv combined_licences.duckdb licensee_analytics.csv stats.json; do
+    install -m 0644 "$WORK_DIR/$asset" "$SILVER_DIR/$asset"
+done
+
+rm -f "$PAGES_DIR"/page_*.json
+
 log_orchestrator "Data processing and analytics complete!"
-log_orchestrator "Assets created in $SILVER_DIR"
+log_orchestrator "Assets created in ${SILVER_DIR}"
+
+summary "### RSM data refresh"
+summary ""
+summary "| Metric | Value |"
+summary "| --- | --- |"
+summary "| Pages fetched | ${TOTAL_PAGES} |"
+summary "| Licences | ${TOTAL_LICENSES} (previous: ${PREVIOUS_TOTAL}) |"
+summary "| Unique holders | ${UNIQUE_HOLDERS} |"
+summary "| Duplicate licence IDs | ${DUPLICATE_IDS} |"

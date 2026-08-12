@@ -2,31 +2,80 @@ name: Fetch and Process RSM Spectrum Data
 
 on:
   schedule:
-    # Run every 30 minutes
+    # Hourly, at the top of the hour. GitHub queues scheduled runs on a shared
+    # pool, so the actual start time drifts by 10-40 minutes under load.
     - cron: '0 * * * *'
   workflow_dispatch: # Allows manual triggering from the Actions tab for testing
+    inputs:
+      allow_data_drop:
+        description: 'Publish even if the record count drops sharply (use when the register genuinely shrank)'
+        type: boolean
+        default: false
+
+# Only one refresh at a time: overlapping runs race on `git push` to main and
+# on the gh-pages deployment. Queued runs wait rather than being cancelled, so
+# a scheduled refresh is never silently dropped.
+concurrency:
+  group: fetch-rsm-data
+  cancel-in-progress: false
+
+env:
+  DUCKDB_VERSION: v1.0.0
+  DUCKDB_DEST: /home/runner/.local/bin
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    # A healthy run takes ~2 minutes. Anything past 20 is hung, and without this
+    # the job would sit there burning Actions minutes until the 6 hour default.
+    timeout-minutes: 20
     permissions:
       contents: write # Needed to commit changes back to the repository
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
+        with:
+          # This repository stores every data snapshot, so its history is large.
+          # Only the tip is needed to rebuild and commit the current snapshot.
+          fetch-depth: 1
 
-      - name: Install Dependencies (jq, DuckDB)
+      - name: Ensure jq is available
         run: |
-          sudo apt-get update && sudo apt-get install -y jq
-          wget https://github.com/duckdb/duckdb/releases/download/v1.0.0/duckdb_cli-linux-amd64.zip -O duckdb.zip
-          unzip duckdb.zip
-          sudo mv duckdb /usr/local/bin/
-          rm duckdb.zip
+          if command -v jq >/dev/null 2>&1; then
+            echo "jq already present: $(jq --version)"
+          else
+            sudo apt-get update && sudo apt-get install -y jq
+          fi
+
+      - name: Add local bin to PATH
+        run: echo "$DUCKDB_DEST" >> "$GITHUB_PATH"
+
+      - name: Restore DuckDB CLI from cache
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ env.DUCKDB_DEST }}/duckdb
+          key: duckdb-cli-${{ env.DUCKDB_VERSION }}-linux-amd64
+
+      - name: Install DuckDB CLI
+        id: duckdb
+        run: |
+          chmod +x scripts/install-duckdb.sh
+          ./scripts/install-duckdb.sh
+
+      - name: Cache the DuckDB CLI
+        # Only the real release binary is self-contained and worth caching.
+        if: steps.duckdb.outputs.source == 'release'
+        continue-on-error: true
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ env.DUCKDB_DEST }}/duckdb
+          key: duckdb-cli-${{ env.DUCKDB_VERSION }}-linux-amd64
 
       - name: Run Data Fetch and Process Script
         env:
           RSM_API_KEY: ${{ secrets.RSM_API_KEY }}
+          ALLOW_DATA_DROP: ${{ inputs.allow_data_drop && '1' || '0' }}
         run: |
           chmod +x scripts/fetch-process-data.sh
           ./scripts/fetch-process-data.sh
@@ -34,33 +83,52 @@ jobs:
       - name: Update build timestamp in index.html
         run: |
           # Use the stats.json file as the source of truth for the update time
-          LAST_UPDATE_TIME=$(jq -r '.lastUpdateUTC' silver/stats.json)
+          LAST_UPDATE_TIME=$(jq -re '.lastUpdateUTC' silver/stats.json)
           BUILD_TIME_FORMATTED=$(date -d "$LAST_UPDATE_TIME" '+%Y-%m-%d %H:%M:%S UTC')
           sed -i 's|Last build: <span id="buildTime">.*</span>|Last build: <span id="buildTime">'"$BUILD_TIME_FORMATTED"'</span>|g' index.html
           echo "Updated index.html with build time: $BUILD_TIME_FORMATTED"
 
       - name: Commit and Push Data Files
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          
-          # Add the generated files. Use --force to add files even if they are in .gitignore
-          # We don't want to commit the pages, so we specifically add the results.
-          git add silver/ bronze/combined_licences.json index.html
-          
-          # Check for changes before committing
-          if git diff --staged --quiet; then
-            echo "No changes to commit."
-          else
-            git commit -m "📊 Data Update: $(date -u --iso-8601=seconds)"
-            git push
-          fi
-          
+          chmod +x scripts/commit-and-push.sh
+          ./scripts/commit-and-push.sh
+
+      - name: Stage the site for GitHub Pages
+        run: |
+          # Publish only what the site actually serves. The bronze layer is a
+          # byte-for-byte duplicate of silver/combined_licences.json and nothing
+          # on the page links to it, so shipping it doubled every deployment.
+          rm -rf _site
+          mkdir -p _site/silver
+          cp index.html SpectrumEfficiencyLimited.png _site/
+          cp silver/combined_licences.csv \
+             silver/combined_licences.json \
+             silver/combined_licences.duckdb \
+             silver/licensee_analytics.csv \
+             silver/stats.json \
+             _site/silver/
+          du -sh _site
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          # The publish_dir should be the root of your repo since index.html is there.
-          publish_dir: ./
-          # This will ensure that the commit from the previous step is included in the deployment
-          keep_files: true 
+          publish_dir: ./_site
+          # Replace the branch contents each time instead of layering snapshots
+          # on top of each other; gh-pages is a build output, not an archive.
+          # main remains the historical record.
+          keep_files: false
+          force_orphan: true
+
+      - name: Report failure in the job summary
+        if: failure()
+        run: |
+          {
+            echo "### ❌ RSM data refresh failed"
+            echo ""
+            echo "Run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+            echo ""
+            echo "The committed data was left untouched — the pipeline only publishes"
+            echo "assets that pass its validation gates, so the site is still serving"
+            echo "the last good snapshot."
+          } >> "$GITHUB_STEP_SUMMARY"

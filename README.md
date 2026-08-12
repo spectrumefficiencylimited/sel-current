@@ -4,7 +4,7 @@
 
 **Live Data Portal:** [**https://spectrumefficiencylimited.github.io/sel-current/**](https://spectrumefficiencylimited.github.io/sel-current/)
 
-This repository provides a modern, automated, and publicly accessible data portal for New Zealand's radio spectrum licenses. The data is fetched automatically every 30 minutes from the official [NZ Government Radio Spectrum Management (RSM) API](https://www.rsm.govt.nz/developers/), processed, and made available for download in multiple formats.
+This repository provides a modern, automated, and publicly accessible data portal for New Zealand's radio spectrum licenses. The data is fetched automatically every hour from the official [NZ Government Radio Spectrum Management (RSM) API](https://www.rsm.govt.nz/developers/), processed, and made available for download in multiple formats.
 
 ---
 
@@ -14,7 +14,7 @@ The official "Spectrum Search Lite" tool, which provided a downloadable Microsof
 
 This project was created to fill that gap by serving as a modern, automated, and more accessible successor:
 
-- **Providing Fresh Data:** Instead of a static database, this portal provides data that is refreshed **every 30 minutes**.
+- **Providing Fresh Data:** Instead of a static database, this portal provides data that is refreshed **every hour**.
 - **Using Open, Standard Formats:** We provide data in CSV, JSON, and DuckDB formats, which are easily consumed by modern programming languages and data analysis tools, removing the dependency on Microsoft Access.
 - **Being Fully Automated:** The entire data pipeline runs on its own via GitHub Actions, ensuring the data is always as current as the API allows.
 - **Offering Historical Insight:** By committing the data back to this Git repository, we are building a version-controlled history of the NZ radio spectrum, something not previously possible.
@@ -26,7 +26,7 @@ This tool aims to empower the next generation of spectrum analysis with reliable
 
 ## Features
 
-- **Automated Updates:** Data is automatically fetched and refreshed every 30 minutes using GitHub Actions
+- **Automated Updates:** Data is automatically fetched and refreshed hourly using GitHub Actions
 - **Live Data Portal:** An easy-to-use web interface to view key statistics and data samples
 - **Multiple Data Formats:** Download the complete dataset as **CSV**, **JSON**, or a **DuckDB** database file
 - **Data Analytics:** Pre-calculated summaries of top license holders by assignment count
@@ -38,7 +38,7 @@ This tool aims to empower the next generation of spectrum analysis with reliable
 
 ## How It Works
 
-This project is powered entirely by GitHub Actions, running on a 30-minute schedule. Here is the complete automation process:
+This project is powered entirely by GitHub Actions, running on an hourly schedule. Here is the complete automation process:
 
 1. **Fetch:** A Bash script (`scripts/fetch-process-data.sh`) calls the RSM API to fetch all current license assignments. The script handles pagination and parallel requests for efficiency.
 2. **Process:** The raw JSON data from the API is combined and processed using `jq` for JSON manipulation.
@@ -51,6 +51,47 @@ This project is powered entirely by GitHub Actions, running on a 30-minute sched
 6. **Deploy:** The `index.html` file and the `silver/` data assets are pushed to a dedicated `gh-pages` branch, which is automatically published as a live website using GitHub Pages.
 
 This entire cycle requires zero manual intervention and ensures data is always current.
+
+> **Note on timing:** GitHub queues scheduled workflows on a shared pool, so a run
+> triggered at the top of the hour typically starts 10–40 minutes late. The
+> `lastUpdateUTC` field in `silver/stats.json` is always the authoritative
+> timestamp for the published data.
+
+---
+
+## Pipeline Reliability
+
+The refresh is unattended, so the pipeline is built to fail safe: **it either
+publishes a complete, sane dataset or it changes nothing at all.**
+
+- **Bounded, retried network calls.** Every API request has a connect and total
+  timeout and is retried with exponential backoff (including a bounded retry on
+  HTTP 429), so a slow or rate-limiting API can never hang the job.
+- **Per-page validation.** A page is only accepted when it returns HTTP 200 and
+  parses as JSON containing an `items` array. Error bodies and truncated
+  responses are retried, never combined into the dataset.
+- **Gap filling.** If a page still fails after the parallel pass, it is retried
+  serially. Only a page that cannot be fetched at all aborts the run — one flaky
+  request no longer kills a whole refresh.
+- **Atomic publish.** All assets are built in a temporary directory and are
+  copied over `bronze/` and `silver/` only after passing validation, so a failed
+  run always leaves the last good snapshot in place.
+- **Data quality gates.** A run aborts before publishing if the record count
+  falls below `RSM_MIN_LICENCES` (default 1000) or drops more than
+  `RSM_MAX_DROP_PCT` (default 10%) below the previously published count. Use the
+  `allow_data_drop` input on a manual run when the register genuinely shrank.
+- **Cached DuckDB CLI.** The CLI is restored from the Actions cache and, on a
+  cache miss, downloaded with retries, falling back to the DuckDB PyPI wheel if
+  GitHub's release CDN is unavailable. Transient CDN failures were historically
+  the single biggest cause of failed runs.
+- **Serialised, race-tolerant pushes.** A `concurrency` group prevents
+  overlapping runs, and if the branch moves under a run anyway, the commit is
+  rebuilt on the new tip rather than failing on a non-fast-forward push.
+- **Bounded runtime.** The job is capped at 20 minutes (a healthy run takes ~2).
+
+Tunable environment variables: `RSM_PAGE_SIZE`, `RSM_PARALLELISM`,
+`RSM_MAX_ATTEMPTS`, `RSM_CONNECT_TIMEOUT`, `RSM_MAX_TIME`, `RSM_MAX_PAGES`,
+`RSM_MIN_LICENCES`, `RSM_MAX_DROP_PCT`, `ALLOW_DATA_DROP`.
 
 ---
 
@@ -97,7 +138,7 @@ The primary data files are located in the `/silver` directory.
 ## Technical Overview
 
 - **Data Source:** [Radio Spectrum Management (RSM) API](https://www.rsm.govt.nz/developers/)
-- **Automation:** [GitHub Actions](https://github.com/features/actions) with 30-minute scheduling
+- **Automation:** [GitHub Actions](https://github.com/features/actions) on an hourly schedule
 - **Data Processing:** `Bash`, `jq` (for JSON manipulation), and `DuckDB` (for analytics and transformation)
 - **Frontend:** Single-page application using HTML, CSS, and vanilla JavaScript
 - **Hosting:** [GitHub Pages](https://pages.github.com/) with automated deployment

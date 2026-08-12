@@ -1,0 +1,9 @@
+# Raw per-page API responses: intermediate build state, never committed.
+bronze/pages/
+*.tmp.*
+
+# Staging directory for the GitHub Pages deployment.
+_site/
+
+# Local DuckDB write-ahead files.
+*.duckdb.wal
