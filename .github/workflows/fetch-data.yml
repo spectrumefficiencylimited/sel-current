@@ -85,7 +85,7 @@ jobs:
           # Only the small artefacts and the accumulating gold aggregates are
           # committed. The multi-megabyte datasets are build outputs: regenerated
           # every run and published to the site, never added to git history.
-          COMMIT_PATHS: silver/stats.json silver/licensee_analytics.csv silver/sample_assignments.csv gold
+          COMMIT_PATHS: silver/stats.json silver/licensee_analytics.csv silver/sample_assignments.csv silver/service_summary.csv gold
         run: |
           chmod +x scripts/commit-and-push.sh
           ./scripts/commit-and-push.sh
@@ -103,7 +103,9 @@ jobs:
              silver/combined_licences.json \
              silver/combined_licences.duckdb \
              silver/licensee_analytics.csv \
+             silver/licensee_service_current.csv \
              silver/sample_assignments.csv \
+             silver/service_summary.csv \
              silver/stats.json \
              _site/silver/
           # The gold time series gets stable URLs too, so a dashboard can bind

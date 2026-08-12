@@ -85,9 +85,20 @@ snapshot into a compact time series under `gold/`:
 | File | Grain | Columns |
 | --- | --- | --- |
 | `gold/totals_history.csv` | one row per run | `observed_at`, `total_licences`, `unique_holders` |
+| `gold/service_daily.csv` | service × mode per day | `observed_date`, `service`, `link_mode`, `assignment_count`, `distinct_licensees` |
+| `gold/band_daily.csv` | ITU band per day | `observed_date`, `band`, `assignment_count`, `distinct_licensees` |
+| `gold/licensee_service_daily.csv` | top 100 clients × service per day | `observed_date`, `licensee`, `service`, `assignment_count` |
 | `gold/licensee_daily.csv` | top 100 per day | `observed_date`, `rank`, `licensee`, `assignment_count` |
 | `gold/location_daily.csv` | top 100 per day | `observed_date`, `rank`, `location`, `assignment_count`, `distinct_licensees` |
 | `gold/licence_type_daily.csv` | every type per day | `observed_date`, `licence_type`, `assignment_count`, `distinct_licensees` |
+
+Two current-snapshot views are published alongside them, regenerated whole each
+run rather than accumulated:
+
+| File | Rows | What it answers |
+| --- | --- | --- |
+| `silver/licensee_service_current.csv` | ~6,300 | every client × service × mode × band, with the frequency range each occupies |
+| `silver/service_summary.csv` | 14 | assignments and distinct licensees per service |
 
 These are published alongside the datasets, so they have stable URLs too:
 
@@ -96,6 +107,40 @@ curl -L -o totals.csv https://spectrumefficiencylimited.github.io/sel-current/go
 ```
 
 A year of the whole gold layer is a few megabytes.
+
+### Services and bands
+
+A raw frequency tells a reader almost nothing. What matters is what the
+assignment is *for*: a bi-directional microwave link, a satellite earth station,
+a simplex land mobile channel, a repeater. RSM already encodes that in
+`licenceType`, so `sql/enrich.sql` derives three dimensions from their own
+designations rather than inventing a taxonomy:
+
+- **`service`** — the 55 RSM licence types grouped into 14 services (Land Mobile,
+  Fixed Link, Spectrum Licence, Broadcasting, Satellite & Space, Maritime,
+  Aeronautical, Amateur, Paging, Radiodetermination, Telemetry & Telecommand,
+  Outside Broadcast, Meteorological, General User Licence).
+- **`link_mode`** — the duplex arrangement read out of the same designation:
+  Bi-directional, Uni-directional, Simplex, Repeater, Mobile Transmit, Base
+  Station, Beacon.
+- **`band`** — the standard ITU band the frequency falls in, from VLF to EHF.
+
+Together these turn "85,758 frequencies" into a picture of who uses the spectrum
+and what for. Two services dominate by volume but look nothing alike:
+
+| Service | Assignments | Licensees |
+| --- | --- | --- |
+| Land Mobile | 30,332 | 2,769 |
+| Spectrum Licence | 30,167 | **25** |
+
+Practically the same number of assignments, spread over a hundred times fewer
+holders — the cellular operators against the long tail of everyone else.
+
+**Maintaining the classification:** `service` must never come out as
+`Unclassified`. Every run counts unclassified rows and reports them in the job
+summary, so when RSM introduces a new licence type it surfaces as a warning
+rather than silently landing in a catch-all. Add the new type to
+`sql/enrich.sql`.
 
 ### Back-filled history
 

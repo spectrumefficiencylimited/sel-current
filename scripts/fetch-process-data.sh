@@ -30,6 +30,7 @@ ALLOW_DATA_DROP="${ALLOW_DATA_DROP:-0}"
 BRONZE_DIR="${BRONZE_DIR:-./bronze}"
 SILVER_DIR="${SILVER_DIR:-./silver}"
 GOLD_DIR="${GOLD_DIR:-./gold}"
+SQL_DIR="${SQL_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)/sql}"
 PAGES_DIR="${PAGES_DIR:-${BRONZE_DIR}/pages}"
 
 export API_BASE PAGE_SIZE MAX_ATTEMPTS CONNECT_TIMEOUT MAX_TIME PAGES_DIR
@@ -263,9 +264,83 @@ jq -r '.[] | [.licenceID, .licenceNumber, .licensee, .channel, .frequency, .loca
 OBSERVED_AT=$(jq -r '.lastUpdateUTC' "$WORK_DIR/stats.json")
 OBSERVED_DATE="${OBSERVED_AT:0:10}"
 
+# The service/band classification lives in sql/enrich.sql so the domain logic is
+# editable on its own. It is inlined rather than loaded with duckdb's `.read`
+# dot-command, which the PyPI fallback shim does not implement.
+ENRICH_SQL=$(cat "$SQL_DIR/enrich.sql")
+
 duckdb "$WORK_DIR/gold.duckdb" <<EOF
 CREATE OR REPLACE TABLE licences AS
     SELECT * FROM read_csv_auto('$WORK_DIR/analytics_input.csv', ALL_VARCHAR=TRUE);
+
+$ENRICH_SQL
+
+COPY (
+    SELECT
+        '${OBSERVED_DATE}' AS observed_date,
+        service,
+        link_mode,
+        COUNT(*) AS assignment_count,
+        COUNT(DISTINCT licensee) AS distinct_licensees
+    FROM enriched
+    GROUP BY service, link_mode
+    ORDER BY assignment_count DESC, service, link_mode
+) TO '$WORK_DIR/service_daily_new.csv' (HEADER, DELIMITER ',');
+
+COPY (
+    SELECT
+        '${OBSERVED_DATE}' AS observed_date,
+        band,
+        COUNT(*) AS assignment_count,
+        COUNT(DISTINCT licensee) AS distinct_licensees
+    FROM enriched
+    GROUP BY band, band_order
+    ORDER BY band_order
+) TO '$WORK_DIR/band_daily_new.csv' (HEADER, DELIMITER ',');
+
+-- Client x service for the largest holders. The full cross-tab is published
+-- separately as a current snapshot; only the top slice accumulates as history.
+COPY (
+    SELECT
+        '${OBSERVED_DATE}' AS observed_date,
+        licensee,
+        service,
+        COUNT(*) AS assignment_count
+    FROM enriched
+    WHERE licensee IN (
+        SELECT licensee FROM enriched GROUP BY licensee
+        ORDER BY COUNT(*) DESC, licensee LIMIT ${GOLD_TOP_N:-100}
+    )
+    GROUP BY licensee, service
+    ORDER BY assignment_count DESC, licensee, service
+) TO '$WORK_DIR/licensee_service_daily_new.csv' (HEADER, DELIMITER ',');
+
+-- Every licensee by every service, current register. ~3,800 rows: small enough
+-- to publish whole, and the artefact that answers "who uses what, for what".
+COPY (
+    SELECT
+        licensee,
+        service,
+        link_mode,
+        band,
+        COUNT(*) AS assignment_count,
+        ROUND(MIN(freq_mhz), 4) AS min_frequency_mhz,
+        ROUND(MAX(freq_mhz), 4) AS max_frequency_mhz
+    FROM enriched
+    GROUP BY licensee, service, link_mode, band
+    ORDER BY assignment_count DESC, licensee, service
+) TO '$WORK_DIR/licensee_service_current.csv' (HEADER, DELIMITER ',');
+
+-- Drives the "by service" panel on the web page.
+COPY (
+    SELECT
+        service,
+        COUNT(*) AS assignment_count,
+        COUNT(DISTINCT licensee) AS distinct_licensees
+    FROM enriched
+    GROUP BY service
+    ORDER BY assignment_count DESC
+) TO '$WORK_DIR/service_summary.csv' (HEADER, DELIMITER ',');
 
 COPY (
     SELECT
@@ -335,6 +410,26 @@ upsert_daily() {
 upsert_daily "$GOLD_DIR/licensee_daily.csv" "$WORK_DIR/licensee_daily_new.csv"
 upsert_daily "$GOLD_DIR/location_daily.csv" "$WORK_DIR/location_daily_new.csv"
 upsert_daily "$GOLD_DIR/licence_type_daily.csv" "$WORK_DIR/licence_type_daily_new.csv"
+upsert_daily "$GOLD_DIR/service_daily.csv" "$WORK_DIR/service_daily_new.csv"
+upsert_daily "$GOLD_DIR/band_daily.csv" "$WORK_DIR/band_daily_new.csv"
+upsert_daily "$GOLD_DIR/licensee_service_daily.csv" "$WORK_DIR/licensee_service_daily_new.csv"
+
+# Current-snapshot artefacts, regenerated whole each run.
+install -m 0644 "$WORK_DIR/licensee_service_current.csv" "$SILVER_DIR/licensee_service_current.csv"
+install -m 0644 "$WORK_DIR/service_summary.csv" "$SILVER_DIR/service_summary.csv"
+
+# A licence type RSM has added that the classification does not know about would
+# otherwise disappear into a catch-all. Surface it instead.
+UNCLASSIFIED=$(duckdb "$WORK_DIR/gold.duckdb" -noheader -list \
+    "SELECT COUNT(*) FROM enriched WHERE service = 'Unclassified';" | tr -d '[:space:]')
+if [ "${UNCLASSIFIED:-0}" -gt 0 ]; then
+    log_orchestrator "WARN: ${UNCLASSIFIED} assignment(s) have an unrecognised licence type. Add them to sql/enrich.sql:"
+    duckdb "$WORK_DIR/gold.duckdb" -noheader -list \
+        "SELECT DISTINCT licenceType FROM enriched WHERE service = 'Unclassified';" \
+        | sed 's/^/    /'
+    summary ""
+    summary "> ⚠️ ${UNCLASSIFIED} assignment(s) have a licence type missing from \`sql/enrich.sql\`."
+fi
 
 # The totals series is one row per run, not per day: it is the finest-grained
 # and cheapest signal, at roughly 500 KB a year.

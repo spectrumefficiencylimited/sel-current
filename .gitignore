@@ -6,6 +6,8 @@ bronze/
 silver/combined_licences.json
 silver/combined_licences.csv
 silver/combined_licences.duckdb
+# Full client x service cross-tab: ~530 KB regenerated every run, published only.
+silver/licensee_service_current.csv
 
 # Staging directory for the GitHub Pages deployment.
 _site/

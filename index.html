@@ -285,6 +285,9 @@
             .container { border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
             .header { padding: 2.5rem var(--pad); }
             .data-previews-grid { grid-template-columns: 1fr 1fr; gap: 1.75rem; }
+            /* The assignments table has four columns and gets squeezed into an
+               unreadable sliver in a third of the width, so it takes its own row. */
+            .data-preview.wide { grid-column: 1 / -1; }
             .data-preview { padding: 1.5rem; }
             .data-table th, .data-table td { padding: 0.85rem 1rem; }
         }
@@ -376,6 +379,14 @@
                     </div>
                 </section>
                 <section class="data-preview">
+                    <h2>📡 Assignments by Service</h2>
+                    <p class="sub">What the spectrum is actually used for</p>
+                    <div id="servicePreviewContainer" class="loading">
+                        <div class="spinner"></div>
+                        <p>Loading services…</p>
+                    </div>
+                </section>
+                <section class="data-preview wide">
                     <h2>📈 Recent Spectrum Assignments</h2>
                     <p class="sub">Ten most recent assignment records</p>
                     <div id="dataPreviewContainer" class="loading">
@@ -401,6 +412,7 @@
             // A pre-built ten row sample. The full CSV is several megabytes and
             // must never be downloaded just to render a preview table.
             const SAMPLE_URL = `silver/sample_assignments.csv${cacheBuster}`;
+            const SERVICE_URL = `silver/service_summary.csv${cacheBuster}`;
 
             let nextUpdateInterval;
             let lastUpdateTimestamp;
@@ -476,7 +488,7 @@
                     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                     const rows = (await response.text()).trim().split(/\r?\n/);
                     const headers = parseCsvLine(rows[0]);
-                    const body = rows.slice(1, 11).filter(Boolean);
+                    const body = rows.slice(1, 1 + (options.limit || 10)).filter(Boolean);
 
                     const table = document.createElement('table');
                     table.className = options.stacked === false ? 'data-table' : 'data-table stacked';
@@ -556,6 +568,11 @@
                 { key: 'licensee', title: 'Licensee' },
                 { key: 'assignment_count', title: 'Assignments', numeric: true }
             ], { stacked: false });
+            fetchCsvPreview(SERVICE_URL, 'servicePreviewContainer', [
+                { key: 'service', title: 'Service' },
+                { key: 'assignment_count', title: 'Assignments', numeric: true },
+                { key: 'distinct_licensees', title: 'Licensees', numeric: true }
+            ], { stacked: false, limit: 14 });
             fetchCsvPreview(SAMPLE_URL, 'dataPreviewContainer', [
                 { key: 'licensee', title: 'Licensee' },
                 { key: 'frequency', title: 'Frequency (MHz)', numeric: true },
