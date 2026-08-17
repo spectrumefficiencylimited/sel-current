@@ -1,0 +1,27 @@
+licence_type,annual_fee_nzd,billable,effective_from,source
+# Annual RSM fee per LICENCE (not per assignment record) by licence type.
+#
+# This file ships EMPTY on purpose. Fee amounts are not in the API and were not
+# invented here — populate it from the current RSM fee schedule so the estimate
+# is traceable to a published source rather than to a remembered figure.
+#
+# Columns
+#   licence_type    must match silver/licence_type_daily.csv exactly, or use * as
+#                   a fallback row applied to any type without its own entry
+#   annual_fee_nzd  annual fee for one licence, in NZD
+#   billable        1 if this type is charged in its own right, 0 if it is a
+#                   bundled component. The paired mobile leg of a repeater is the
+#                   case in point: it is part of the repeater licence, so counting
+#                   it as a separate paid licence would overstate revenue.
+#   effective_from  ISO date the fee took effect. Keep old rows when a fee
+#                   changes and add a new one, so historical estimates stay
+#                   reconstructable.
+#   source          where the figure came from, e.g. an RSM fee schedule URL and
+#                   the date it was read.
+#
+# Example of the shape (delete the leading '# ' and use real figures):
+# Land Repeater,150.00,1,2026-01-01,https://www.rsm.govt.nz/... read 2026-08-12
+# Land Mobile - Mobile Transmit,0.00,0,2026-01-01,bundled with the repeater licence
+#
+# Until at least one data row exists, the pipeline skips the revenue estimate
+# and says so in the run log; it never guesses a number.

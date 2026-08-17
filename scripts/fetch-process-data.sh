@@ -1,0 +1,565 @@
+#!/usr/bin/env bash
+# Fetches RSM API pages, combines them, and processes into final data assets.
+#
+# Design goals (see README "Pipeline reliability"):
+#   * every network call is bounded by a timeout and retried with backoff
+#   * a single flaky page is retried serially instead of killing the whole run
+#   * every page is validated (HTTP status + parseable JSON + .items array)
+#   * outputs are built in a staging directory and only published atomically
+#     once they pass sanity checks, so a bad API response can never overwrite
+#     good committed data
+# ----------------------------------------------------------------------
+set -Eeuo pipefail
+
+# --- CONFIGURATION (all overridable from the workflow) ---
+API_BASE="${RSM_API_BASE:-https://api.business.govt.nz/gateway/radio-spectrum-management/v1/licences}"
+PAGE_SIZE="${RSM_PAGE_SIZE:-1000}"
+PARALLELISM="${RSM_PARALLELISM:-8}"
+MAX_ATTEMPTS="${RSM_MAX_ATTEMPTS:-5}"
+CONNECT_TIMEOUT="${RSM_CONNECT_TIMEOUT:-20}"
+MAX_TIME="${RSM_MAX_TIME:-120}"
+MAX_PAGES="${RSM_MAX_PAGES:-500}"
+
+# Data quality gates. A run that would publish fewer than MIN_LICENCES rows, or
+# lose more than MAX_DROP_PCT of the previously published rows, aborts before
+# touching the committed data. Set ALLOW_DATA_DROP=1 to override deliberately.
+MIN_LICENCES="${RSM_MIN_LICENCES:-1000}"
+MAX_DROP_PCT="${RSM_MAX_DROP_PCT:-10}"
+ALLOW_DATA_DROP="${ALLOW_DATA_DROP:-0}"
+
+BRONZE_DIR="${BRONZE_DIR:-./bronze}"
+SILVER_DIR="${SILVER_DIR:-./silver}"
+GOLD_DIR="${GOLD_DIR:-./gold}"
+SQL_DIR="${SQL_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)/sql}"
+PAGES_DIR="${PAGES_DIR:-${BRONZE_DIR}/pages}"
+
+export API_BASE PAGE_SIZE MAX_ATTEMPTS CONNECT_TIMEOUT MAX_TIME PAGES_DIR
+
+# --- LOGGING ---
+log() { printf '%s - %s\n' "$(date -u '+%Y-%m-%dT%H:%M:%SZ')" "$*"; }
+log_orchestrator() { log "ORCHESTRATOR: $*"; }
+log_worker() { log "WORKER[$$]: $*"; }
+die() { log "FATAL: $*" >&2; exit 1; }
+
+# Report the failing line instead of an anonymous non-zero exit.
+# shellcheck disable=SC2154  # rc is assigned inside the trap body
+trap 'rc=$?; log "FATAL: ${BASH_SOURCE[0]}:${LINENO} exited with status ${rc}" >&2; exit "$rc"' ERR
+
+# Appends a line to the GitHub Actions job summary when running in CI.
+summary() {
+    [ -n "${GITHUB_STEP_SUMMARY:-}" ] && printf '%s\n' "$*" >> "$GITHUB_STEP_SUMMARY"
+    return 0
+}
+
+page_url() {
+    local page_num=$1
+    printf '%s?page=%s&page-size=%s&sort-by=Licence%%20ID&sort-order=desc&txRx=TRN&licenceStatus=CURRENT&gridRefDefault=LAT_LONG_NZGD2000_D2000' \
+        "$API_BASE" "$page_num" "$PAGE_SIZE"
+}
+
+# --- API FETCH FUNCTION (WORKER) ---
+# Writes $PAGES_DIR/page_N.json only once the response is a 200 carrying an
+# `items` array, so a half-written or error-body page can never reach the
+# combine step.
+fetch_api_page() {
+    local page_num=$1
+    local output_path="$PAGES_DIR/page_${page_num}.json"
+    local url
+    url=$(page_url "$page_num")
+
+    local attempt=1
+    while [ "$attempt" -le "$MAX_ATTEMPTS" ]; do
+        local tmp_file http_code curl_rc backoff
+        tmp_file=$(mktemp "$PAGES_DIR/page_${page_num}.tmp.XXXXXX")
+
+        set +e
+        http_code=$(curl --location --silent --show-error \
+            --connect-timeout "$CONNECT_TIMEOUT" --max-time "$MAX_TIME" \
+            -w '%{http_code}' \
+            -H "Ocp-Apim-Subscription-Key: $RSM_API_KEY" \
+            "$url" -o "$tmp_file")
+        curl_rc=$?
+        set -e
+
+        # Exponential backoff, capped, so a rate-limited API cannot spin forever.
+        backoff=$(( attempt * 5 ))
+        [ "$backoff" -gt 60 ] && backoff=60
+
+        if [ "$curl_rc" -ne 0 ]; then
+            log_worker "WARN (attempt ${attempt}/${MAX_ATTEMPTS}): curl exit ${curl_rc} on page ${page_num}; retrying in ${backoff}s"
+        elif [ "$http_code" = "200" ] && jq -e 'has("items") and (.items | type == "array")' "$tmp_file" >/dev/null 2>&1; then
+            mv "$tmp_file" "$output_path"
+            log_worker "SUCCESS: page ${page_num} saved ($(jq -r '.items | length' "$output_path") items)."
+            return 0
+        elif [ "$http_code" = "429" ]; then
+            log_worker "RATE LIMITED (attempt ${attempt}/${MAX_ATTEMPTS}) on page ${page_num}; sleeping ${backoff}s"
+        elif [ "$http_code" = "200" ]; then
+            log_worker "WARN (attempt ${attempt}/${MAX_ATTEMPTS}): page ${page_num} returned 200 but no usable items array; retrying in ${backoff}s"
+        else
+            log_worker "WARN (attempt ${attempt}/${MAX_ATTEMPTS}): HTTP ${http_code} on page ${page_num}; retrying in ${backoff}s"
+        fi
+
+        rm -f "$tmp_file"
+        attempt=$(( attempt + 1 ))
+        [ "$attempt" -le "$MAX_ATTEMPTS" ] && sleep "$backoff"
+    done
+
+    log_worker "FAILED: page ${page_num} after ${MAX_ATTEMPTS} attempts."
+    return 1
+}
+
+# --- SCRIPT ENTRY POINT (worker invocation from xargs) ---
+if [ "${1:-}" = "--fetch-page" ]; then
+    [ -n "${2:-}" ] || die "--fetch-page requires a page number"
+    # A worker returning non-zero is an expected, recoverable outcome: the
+    # orchestrator retries the gap serially. Don't dress it up as a crash.
+    trap - ERR
+    fetch_api_page "$2"
+    exit $?
+fi
+
+# --- ORCHESTRATOR MODE ---
+[ -n "${RSM_API_KEY:-}" ] || die "RSM_API_KEY environment variable is not set."
+command -v jq >/dev/null || die "jq is not installed."
+command -v duckdb >/dev/null || die "duckdb is not installed."
+
+mkdir -p "$PAGES_DIR" "$SILVER_DIR"
+rm -f "$PAGES_DIR"/page_*.json "$PAGES_DIR"/page_*.tmp.*
+
+WORK_DIR=$(mktemp -d "${TMPDIR:-/tmp}/rsm-build.XXXXXX")
+cleanup() { rm -rf "$WORK_DIR"; }
+trap cleanup EXIT
+
+log_orchestrator "Starting data fetch and process..."
+
+# 1. FETCHING DATA
+log_orchestrator "Fetching page 1 to determine total pages..."
+fetch_api_page 1 || die "Could not fetch the first page. The API or the API key is unavailable."
+
+TOTAL_PAGES=$(jq -r '.totalPages // 1' "$PAGES_DIR/page_1.json")
+[[ "$TOTAL_PAGES" =~ ^[0-9]+$ ]] || die "Invalid totalPages returned by the API: '${TOTAL_PAGES}'"
+[ "$TOTAL_PAGES" -ge 1 ] || die "API reported ${TOTAL_PAGES} pages."
+[ "$TOTAL_PAGES" -le "$MAX_PAGES" ] || die "API reported ${TOTAL_PAGES} pages, above the ${MAX_PAGES} guard rail. Refusing to run."
+API_TOTAL_ITEMS=$(jq -r '(.totalItems // .totalCount // .total // .totalRecords // empty) | tostring' "$PAGES_DIR/page_1.json")
+log_orchestrator "Total pages to fetch: ${TOTAL_PAGES}${API_TOTAL_ITEMS:+ (API reports ${API_TOTAL_ITEMS} items)}"
+
+if [ "$TOTAL_PAGES" -gt 1 ]; then
+    log_orchestrator "Fetching pages 2..${TOTAL_PAGES} with ${PARALLELISM} workers..."
+    # xargs exits non-zero when any worker fails; that is expected and handled
+    # by the gap-filling pass below rather than aborting the whole run.
+    seq 2 "$TOTAL_PAGES" | xargs -P "$PARALLELISM" -I{} bash "$0" --fetch-page {} || true
+
+    missing=()
+    for page in $(seq 2 "$TOTAL_PAGES"); do
+        [ -s "$PAGES_DIR/page_${page}.json" ] || missing+=("$page")
+    done
+
+    if [ "${#missing[@]}" -gt 0 ]; then
+        log_orchestrator "Retrying ${#missing[@]} missing page(s) serially: ${missing[*]}"
+        still_missing=()
+        for page in "${missing[@]}"; do
+            fetch_api_page "$page" || still_missing+=("$page")
+        done
+        [ "${#still_missing[@]}" -eq 0 ] || die "Could not fetch page(s): ${still_missing[*]}. Refusing to publish an incomplete dataset."
+    fi
+fi
+
+rm -f "$PAGES_DIR"/page_*.tmp.*
+
+# 2. COMBINING DATA (BRONZE LAYER)
+log_orchestrator "Combining ${TOTAL_PAGES} page(s) into a single document..."
+jq -s '[.[].items] | add // []' "$PAGES_DIR"/page_*.json > "$WORK_DIR/combined_licences.json"
+
+TOTAL_LICENSES=$(jq 'length' "$WORK_DIR/combined_licences.json")
+[[ "$TOTAL_LICENSES" =~ ^[0-9]+$ ]] || die "Could not count records in the combined document."
+
+# 3. DATA QUALITY GATES (before anything is published)
+[ "$TOTAL_LICENSES" -ge "$MIN_LICENCES" ] || die "Only ${TOTAL_LICENSES} records fetched, below the ${MIN_LICENCES} floor. Refusing to publish."
+
+PREVIOUS_TOTAL=0
+if [ -f "$SILVER_DIR/stats.json" ]; then
+    PREVIOUS_TOTAL=$(jq -r '.totalLicenses // 0' "$SILVER_DIR/stats.json" 2>/dev/null || echo 0)
+    [[ "$PREVIOUS_TOTAL" =~ ^[0-9]+$ ]] || PREVIOUS_TOTAL=0
+fi
+
+if [ "$PREVIOUS_TOTAL" -gt 0 ]; then
+    FLOOR=$(( PREVIOUS_TOTAL * (100 - MAX_DROP_PCT) / 100 ))
+    if [ "$TOTAL_LICENSES" -lt "$FLOOR" ]; then
+        if [ "$ALLOW_DATA_DROP" = "1" ]; then
+            log_orchestrator "WARN: record count dropped ${PREVIOUS_TOTAL} -> ${TOTAL_LICENSES}; publishing anyway (ALLOW_DATA_DROP=1)."
+        else
+            die "Record count dropped ${PREVIOUS_TOTAL} -> ${TOTAL_LICENSES} (more than ${MAX_DROP_PCT}%). Refusing to publish. Re-run with ALLOW_DATA_DROP=1 if this is a genuine change."
+        fi
+    fi
+fi
+
+if [ -n "$API_TOTAL_ITEMS" ] && [[ "$API_TOTAL_ITEMS" =~ ^[0-9]+$ ]] && [ "$API_TOTAL_ITEMS" -ne "$TOTAL_LICENSES" ]; then
+    log_orchestrator "NOTE: API advertised ${API_TOTAL_ITEMS} items, collected ${TOTAL_LICENSES} (the register changes while we paginate)."
+fi
+
+DUPLICATE_IDS=$(jq '[.[].licenceID] | length - (unique | length)' "$WORK_DIR/combined_licences.json")
+if [ "$DUPLICATE_IDS" -gt 0 ]; then
+    log_orchestrator "NOTE: ${DUPLICATE_IDS} duplicate licenceID(s) present (records shifting between pages during pagination)."
+fi
+
+# 4. PROCESSING DATA (SILVER LAYER), still in staging
+log_orchestrator "Processing ${TOTAL_LICENSES} records into Silver layer assets..."
+
+log_orchestrator "Generating CSV file..."
+echo "licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppressed" > "$WORK_DIR/combined_licences.csv"
+jq -r '.[] | [.licenceID, .licenceNumber, .licensee, .channel, .frequency, .location, .status, .txrx, .suppressed] | @csv' \
+    "$WORK_DIR/combined_licences.json" >> "$WORK_DIR/combined_licences.csv"
+
+# A small sample for the web page's preview table. Without this the page has to
+# download the full multi-megabyte CSV just to render ten rows, which is painful
+# on a phone.
+log_orchestrator "Generating preview sample..."
+head -n 11 "$WORK_DIR/combined_licences.csv" > "$WORK_DIR/sample_assignments.csv"
+
+log_orchestrator "Generating DuckDB file..."
+duckdb "$WORK_DIR/combined_licences.duckdb" \
+    "CREATE OR REPLACE TABLE licences AS SELECT * FROM read_csv_auto('$WORK_DIR/combined_licences.csv', ALL_VARCHAR=TRUE);"
+
+log_orchestrator "Generating licensee analytics..."
+duckdb "$WORK_DIR/combined_licences.duckdb" <<EOF
+COPY (
+    SELECT
+        licensee,
+        COUNT(*) AS assignment_count
+    FROM licences
+    WHERE location != 'MOBILE'
+    GROUP BY licensee
+    ORDER BY assignment_count DESC
+    LIMIT 25
+) TO '$WORK_DIR/licensee_analytics.csv' (HEADER, DELIMITER ',');
+EOF
+
+UNIQUE_HOLDERS=$(jq '[.[] | .licensee] | unique | length' "$WORK_DIR/combined_licences.json")
+
+# A row is one frequency assignment record, not one licence. A licence groups
+# several: extra channels, and the paired return leg of a repeater or link. The
+# original totalLicenses/activeAssignments fields keep counting rows so existing
+# dashboards do not silently change meaning; the accurate figures are added
+# alongside them.
+DISTINCT_LICENCES=$(jq '[.[] | .licenceID] | unique | length' "$WORK_DIR/combined_licences.json")
+cat > "$WORK_DIR/stats.json" << EOF
+{
+  "totalLicenses": ${TOTAL_LICENSES},
+  "activeAssignments": ${TOTAL_LICENSES},
+  "assignmentRecords": ${TOTAL_LICENSES},
+  "distinctLicences": ${DISTINCT_LICENCES},
+  "uniqueHolders": ${UNIQUE_HOLDERS},
+  "lastUpdateUTC": "$(date -u --iso-8601=seconds)"
+}
+EOF
+
+# 4b. GOLD LAYER: small aggregates that accumulate over time
+#
+# The raw snapshot is deliberately not kept as history — the point of this
+# project is the *current* dataset at a stable URL. What is worth keeping is how
+# the register moves, so each run folds the current snapshot into a compact time
+# series. A year of these is a few megabytes.
+#
+# Aggregates are built from a temporary CSV carrying every field, including
+# licenceType and gridReference, which the published CSV does not expose. The
+# published schema is a stable contract for downstream dashboards and is left
+# exactly as it is.
+log_orchestrator "Building gold layer aggregates..."
+
+echo "licenceId,licenceNumber,licensee,channel,frequency,location,licenceType,gridReference,status,txrx,suppressed" > "$WORK_DIR/analytics_input.csv"
+jq -r '.[] | [.licenceID, .licenceNumber, .licensee, .channel, .frequency, .location, .licenceType, .gridReference, .status, .txrx, .suppressed] | @csv' \
+    "$WORK_DIR/combined_licences.json" >> "$WORK_DIR/analytics_input.csv"
+
+OBSERVED_AT=$(jq -r '.lastUpdateUTC' "$WORK_DIR/stats.json")
+OBSERVED_DATE="${OBSERVED_AT:0:10}"
+
+# The service/band classification lives in sql/enrich.sql so the domain logic is
+# editable on its own. It is inlined rather than loaded with duckdb's `.read`
+# dot-command, which the PyPI fallback shim does not implement.
+ENRICH_SQL=$(cat "$SQL_DIR/enrich.sql")
+
+duckdb "$WORK_DIR/gold.duckdb" <<EOF
+CREATE OR REPLACE TABLE licences AS
+    SELECT * FROM read_csv_auto('$WORK_DIR/analytics_input.csv', ALL_VARCHAR=TRUE);
+
+$ENRICH_SQL
+
+COPY (
+    SELECT
+        '${OBSERVED_DATE}' AS observed_date,
+        service,
+        link_mode,
+        COUNT(*) AS assignment_count,
+        COUNT(DISTINCT licenceId) AS distinct_licences,
+        COUNT(DISTINCT licensee) AS distinct_licensees
+    FROM enriched
+    GROUP BY service, link_mode
+    ORDER BY assignment_count DESC, service, link_mode
+) TO '$WORK_DIR/service_daily_new.csv' (HEADER, DELIMITER ',');
+
+COPY (
+    SELECT
+        '${OBSERVED_DATE}' AS observed_date,
+        service,
+        pair_leg,
+        COUNT(*) AS assignment_count,
+        COUNT(DISTINCT licenceId) AS distinct_licences
+    FROM enriched
+    GROUP BY service, pair_leg
+    ORDER BY assignment_count DESC, service, pair_leg
+) TO '$WORK_DIR/pair_leg_daily_new.csv' (HEADER, DELIMITER ',');
+
+COPY (
+    SELECT
+        '${OBSERVED_DATE}' AS observed_date,
+        band,
+        COUNT(*) AS assignment_count,
+        COUNT(DISTINCT licensee) AS distinct_licensees
+    FROM enriched
+    GROUP BY band, band_order
+    ORDER BY band_order
+) TO '$WORK_DIR/band_daily_new.csv' (HEADER, DELIMITER ',');
+
+-- Client x service for the largest holders. The full cross-tab is published
+-- separately as a current snapshot; only the top slice accumulates as history.
+COPY (
+    SELECT
+        '${OBSERVED_DATE}' AS observed_date,
+        licensee,
+        service,
+        COUNT(*) AS assignment_count
+    FROM enriched
+    WHERE licensee IN (
+        SELECT licensee FROM enriched GROUP BY licensee
+        ORDER BY COUNT(*) DESC, licensee LIMIT ${GOLD_TOP_N:-100}
+    )
+    GROUP BY licensee, service
+    ORDER BY assignment_count DESC, licensee, service
+) TO '$WORK_DIR/licensee_service_daily_new.csv' (HEADER, DELIMITER ',');
+
+-- Every licensee by every service, current register. ~3,800 rows: small enough
+-- to publish whole, and the artefact that answers "who uses what, for what".
+COPY (
+    SELECT
+        licensee,
+        service,
+        link_mode,
+        band,
+        COUNT(*) AS assignment_count,
+        ROUND(MIN(freq_mhz), 4) AS min_frequency_mhz,
+        ROUND(MAX(freq_mhz), 4) AS max_frequency_mhz
+    FROM enriched
+    GROUP BY licensee, service, link_mode, band
+    ORDER BY assignment_count DESC, licensee, service
+) TO '$WORK_DIR/licensee_service_current.csv' (HEADER, DELIMITER ',');
+
+-- Drives the "by service" panel on the web page.
+COPY (
+    SELECT
+        service,
+        COUNT(*) AS assignment_count,
+        COUNT(DISTINCT licensee) AS distinct_licensees
+    FROM enriched
+    GROUP BY service
+    ORDER BY assignment_count DESC
+) TO '$WORK_DIR/service_summary.csv' (HEADER, DELIMITER ',');
+
+COPY (
+    SELECT
+        '${OBSERVED_DATE}' AS observed_date,
+        ROW_NUMBER() OVER (ORDER BY COUNT(*) DESC, licensee) AS rank,
+        licensee,
+        COUNT(*) AS assignment_count
+    FROM licences
+    WHERE location IS DISTINCT FROM 'MOBILE'
+    GROUP BY licensee
+    ORDER BY assignment_count DESC, licensee
+    LIMIT ${GOLD_TOP_N:-100}
+) TO '$WORK_DIR/licensee_daily_new.csv' (HEADER, DELIMITER ',');
+
+COPY (
+    SELECT
+        '${OBSERVED_DATE}' AS observed_date,
+        ROW_NUMBER() OVER (ORDER BY COUNT(*) DESC, location) AS rank,
+        location,
+        COUNT(*) AS assignment_count,
+        COUNT(DISTINCT licensee) AS distinct_licensees
+    FROM licences
+    WHERE location IS DISTINCT FROM 'MOBILE' AND location IS NOT NULL
+    GROUP BY location
+    ORDER BY assignment_count DESC, location
+    LIMIT ${GOLD_TOP_N:-100}
+) TO '$WORK_DIR/location_daily_new.csv' (HEADER, DELIMITER ',');
+
+COPY (
+    SELECT
+        '${OBSERVED_DATE}' AS observed_date,
+        licence_type,
+        assignment_count,
+        distinct_licensees
+    FROM (
+        SELECT
+            COALESCE(licenceType, 'UNKNOWN') AS licence_type,
+            COUNT(*) AS assignment_count,
+            COUNT(DISTINCT licensee) AS distinct_licensees
+        FROM licences
+        GROUP BY 1
+    )
+    ORDER BY assignment_count DESC, licence_type
+) TO '$WORK_DIR/licence_type_daily_new.csv' (HEADER, DELIMITER ',');
+EOF
+
+mkdir -p "$GOLD_DIR"
+
+# Replaces any rows already recorded for this date, so re-running within a day
+# refreshes that day rather than duplicating it. observed_date is the first
+# column, which makes the anchored match unambiguous.
+upsert_daily() {
+    local target="$1" incoming="$2" tmp
+    tmp=$(mktemp "${WORK_DIR}/upsert.XXXXXX")
+    if [ -f "$target" ]; then
+        # A schema change would otherwise keep the old header and append rows of
+        # a different width, silently producing a ragged CSV that still looks
+        # fine to `tail`. Refuse, and say exactly how to fix it.
+        if [ "$(head -n 1 "$target")" != "$(head -n 1 "$incoming")" ]; then
+            die "Schema drift in ${target}.
+    existing: $(head -n 1 "$target")
+    incoming: $(head -n 1 "$incoming")
+  Migrate the existing file to the new columns before this run can continue;
+  appending would produce a ragged CSV."
+        fi
+        head -n 1 "$target" > "$tmp"
+        tail -n +2 "$target" | { grep -v "^${OBSERVED_DATE}," || true; } >> "$tmp"
+    else
+        head -n 1 "$incoming" > "$tmp"
+    fi
+    tail -n +2 "$incoming" >> "$tmp"
+    # mktemp creates 0600; these are published files.
+    install -m 0644 "$tmp" "$target"
+    rm -f "$tmp"
+}
+
+upsert_daily "$GOLD_DIR/licensee_daily.csv" "$WORK_DIR/licensee_daily_new.csv"
+upsert_daily "$GOLD_DIR/location_daily.csv" "$WORK_DIR/location_daily_new.csv"
+upsert_daily "$GOLD_DIR/licence_type_daily.csv" "$WORK_DIR/licence_type_daily_new.csv"
+upsert_daily "$GOLD_DIR/service_daily.csv" "$WORK_DIR/service_daily_new.csv"
+upsert_daily "$GOLD_DIR/band_daily.csv" "$WORK_DIR/band_daily_new.csv"
+upsert_daily "$GOLD_DIR/pair_leg_daily.csv" "$WORK_DIR/pair_leg_daily_new.csv"
+upsert_daily "$GOLD_DIR/licensee_service_daily.csv" "$WORK_DIR/licensee_service_daily_new.csv"
+
+# Current-snapshot artefacts, regenerated whole each run.
+install -m 0644 "$WORK_DIR/licensee_service_current.csv" "$SILVER_DIR/licensee_service_current.csv"
+install -m 0644 "$WORK_DIR/service_summary.csv" "$SILVER_DIR/service_summary.csv"
+
+# --- REVENUE ESTIMATE (only when a fee schedule has been configured) ---
+# Fees are not in the API. config/licence-fees.csv is operator-maintained and
+# ships empty, so no figure here is ever a guess: with no fee rows, no estimate
+# is produced. Charging is per licence, and bundled components such as the paired
+# mobile leg of a repeater are excluded via the `billable` column.
+FEES_FILE="${FEES_FILE:-${SQL_DIR%/sql}/config/licence-fees.csv}"
+if [ -f "$FEES_FILE" ] && [ "$(grep -cvE '^\s*(#|licence_type,|$)' "$FEES_FILE")" -gt 0 ]; then
+    log_orchestrator "Estimating fees from ${FEES_FILE}..."
+    grep -vE '^\s*#' "$FEES_FILE" | grep -vE '^\s*$' > "$WORK_DIR/fees.csv"
+    duckdb "$WORK_DIR/gold.duckdb" <<EOF
+CREATE OR REPLACE TABLE fees AS
+    SELECT * FROM read_csv_auto('$WORK_DIR/fees.csv', ALL_VARCHAR=TRUE);
+
+COPY (
+    WITH per_licence AS (
+        -- Charge once per licence, not once per assignment record.
+        SELECT DISTINCT licenceId, licenceType, licensee FROM enriched
+    ),
+    priced AS (
+        SELECT p.licenceType,
+               COUNT(*) AS licences,
+               MAX(COALESCE(f.annual_fee_nzd, fb.annual_fee_nzd)) AS annual_fee_nzd,
+               MAX(COALESCE(f.billable, fb.billable)) AS billable
+        FROM per_licence p
+        LEFT JOIN fees f  ON f.licence_type = p.licenceType
+        LEFT JOIN fees fb ON fb.licence_type = '*'
+        GROUP BY p.licenceType
+    )
+    SELECT
+        '${OBSERVED_DATE}' AS observed_date,
+        licenceType AS licence_type,
+        licences,
+        CAST(annual_fee_nzd AS DOUBLE) AS annual_fee_nzd,
+        CASE WHEN annual_fee_nzd IS NULL THEN 'no fee configured'
+             WHEN CAST(billable AS INTEGER) = 0 THEN 'bundled, not charged'
+             ELSE 'charged' END AS fee_status,
+        CASE WHEN CAST(billable AS INTEGER) = 0 THEN 0
+             ELSE ROUND(licences * CAST(annual_fee_nzd AS DOUBLE), 2) END AS annual_revenue_nzd
+    FROM priced
+    ORDER BY annual_revenue_nzd DESC NULLS LAST, licence_type
+) TO '$WORK_DIR/fee_estimate_daily_new.csv' (HEADER, DELIMITER ',');
+EOF
+    upsert_daily "$GOLD_DIR/fee_estimate_daily.csv" "$WORK_DIR/fee_estimate_daily_new.csv"
+    UNPRICED=$(duckdb "$WORK_DIR/gold.duckdb" -noheader -list \
+        "SELECT COUNT(*) FROM (SELECT DISTINCT licenceType FROM enriched) t
+         WHERE NOT EXISTS (SELECT 1 FROM fees f WHERE f.licence_type = t.licenceType OR f.licence_type = '*');" \
+        | tr -d '[:space:]')
+    log_orchestrator "Fee estimate written (${UNPRICED:-0} licence type(s) have no configured fee)."
+else
+    log_orchestrator "No fee schedule configured in ${FEES_FILE}; skipping the revenue estimate."
+fi
+
+# A licence type RSM has added that the classification does not know about would
+# otherwise disappear into a catch-all. Surface it instead.
+UNCLASSIFIED=$(duckdb "$WORK_DIR/gold.duckdb" -noheader -list \
+    "SELECT COUNT(*) FROM enriched WHERE service = 'Unclassified';" | tr -d '[:space:]')
+if [ "${UNCLASSIFIED:-0}" -gt 0 ]; then
+    log_orchestrator "WARN: ${UNCLASSIFIED} assignment(s) have an unrecognised licence type. Add them to sql/enrich.sql:"
+    duckdb "$WORK_DIR/gold.duckdb" -noheader -list \
+        "SELECT DISTINCT licenceType FROM enriched WHERE service = 'Unclassified';" \
+        | sed 's/^/    /'
+    summary ""
+    summary "> ⚠️ ${UNCLASSIFIED} assignment(s) have a licence type missing from \`sql/enrich.sql\`."
+fi
+
+# The totals series is one row per run, not per day: it is the finest-grained
+# and cheapest signal, at roughly 500 KB a year.
+if [ ! -f "$GOLD_DIR/totals_history.csv" ]; then
+    echo "observed_at,total_licences,unique_holders,distinct_licences" > "$GOLD_DIR/totals_history.csv"
+fi
+if ! grep -q "^${OBSERVED_AT}," "$GOLD_DIR/totals_history.csv"; then
+    echo "${OBSERVED_AT},${TOTAL_LICENSES},${UNIQUE_HOLDERS},${DISTINCT_LICENCES}" >> "$GOLD_DIR/totals_history.csv"
+fi
+
+log_orchestrator "Gold layer updated for ${OBSERVED_DATE} ($(wc -l < "$GOLD_DIR/totals_history.csv") total observations)."
+
+# 5. VALIDATE THE BUILT ARTEFACTS
+log_orchestrator "Validating generated assets..."
+jq -e . "$WORK_DIR/stats.json" >/dev/null || die "Generated stats.json is not valid JSON."
+CSV_ROWS=$(( $(wc -l < "$WORK_DIR/combined_licences.csv") - 1 ))
+[ "$CSV_ROWS" -gt 0 ] || die "Generated CSV has no data rows."
+# One physical line per record. jq's @csv keeps newlines inside quoted fields, so
+# if RSM ever emits one, `head -n 11` would cut a record in half and the DuckDB
+# load would mis-parse. Catch it here rather than shipping a broken sample.
+[ "$CSV_ROWS" -eq "$TOTAL_LICENSES" ] || die "CSV has ${CSV_ROWS} lines for ${TOTAL_LICENSES} records — a field value contains a newline. The preview sample and DuckDB load both assume one line per record."
+[ -s "$WORK_DIR/combined_licences.duckdb" ] || die "Generated DuckDB file is empty."
+[ -s "$WORK_DIR/licensee_analytics.csv" ] || die "Generated analytics CSV is empty."
+[ "$(wc -l < "$WORK_DIR/sample_assignments.csv")" -gt 1 ] || die "Generated preview sample has no data rows."
+DB_ROWS=$(duckdb "$WORK_DIR/combined_licences.duckdb" -noheader -list "SELECT COUNT(*) FROM licences;" | tr -d '[:space:]')
+[ "$DB_ROWS" = "$TOTAL_LICENSES" ] || log_orchestrator "NOTE: DuckDB holds ${DB_ROWS} rows vs ${TOTAL_LICENSES} JSON records (multi-line field values)."
+
+# 6. PUBLISH ATOMICALLY
+log_orchestrator "Publishing assets to ${BRONZE_DIR} and ${SILVER_DIR}..."
+mkdir -p "$BRONZE_DIR" "$SILVER_DIR"
+install -m 0644 "$WORK_DIR/combined_licences.json" "$BRONZE_DIR/combined_licences.json"
+for asset in combined_licences.json combined_licences.csv combined_licences.duckdb licensee_analytics.csv sample_assignments.csv stats.json; do
+    install -m 0644 "$WORK_DIR/$asset" "$SILVER_DIR/$asset"
+done
+
+rm -f "$PAGES_DIR"/page_*.json
+
+log_orchestrator "Data processing and analytics complete!"
+log_orchestrator "Assets created in ${SILVER_DIR}"
+
+summary "### RSM data refresh"
+summary ""
+summary "| Metric | Value |"
+summary "| --- | --- |"
+summary "| Pages fetched | ${TOTAL_PAGES} |"
+summary "| Licences | ${TOTAL_LICENSES} (previous: ${PREVIOUS_TOTAL}) |"
+summary "| Unique holders | ${UNIQUE_HOLDERS} |"
+summary "| Duplicate licence IDs | ${DUPLICATE_IDS} |"

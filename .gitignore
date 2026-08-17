@@ -1,0 +1,21 @@
+# Build outputs, not source. These are regenerated on every workflow run and
+# published to the live site; committing them added ~80 MB to git history every
+# hour. Download them from:
+#   https://spectrumefficiencylimited.github.io/sel-current/silver/
+bronze/
+silver/combined_licences.json
+silver/combined_licences.csv
+silver/combined_licences.duckdb
+# Full client x service cross-tab: ~530 KB regenerated every run, published only.
+silver/licensee_service_current.csv
+
+# Staging directory for the GitHub Pages deployment.
+_site/
+
+# Local DuckDB write-ahead files.
+*.duckdb.wal
+*.tmp.*
+
+# Python bytecode
+__pycache__/
+*.pyc
