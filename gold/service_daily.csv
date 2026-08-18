@@ -55,3 +55,31 @@ observed_date,service,link_mode,assignment_count,distinct_licences,distinct_lice
 2026-08-17,Aeronautical,Unspecified,7,7,7
 2026-08-17,Aeronautical,Mobile Transmit,4,4,2
 2026-08-17,Aeronautical,Repeater,4,4,2
+2026-08-18,Spectrum Licence,Unspecified,30296,30227,25
+2026-08-18,Fixed Link,Bi-directional,15319,15319,277
+2026-08-18,Land Mobile,Simplex,13886,3408,2379
+2026-08-18,Land Mobile,Repeater,10194,6233,903
+2026-08-18,Land Mobile,Mobile Transmit,6257,6255,907
+2026-08-18,Broadcasting,Unspecified,2389,2289,130
+2026-08-18,Satellite & Space,Unspecified,1524,1493,22
+2026-08-18,Fixed Link,Uni-directional,1221,849,128
+2026-08-18,Paging,Unspecified,1121,175,99
+2026-08-18,Aeronautical,Base Station,769,514,83
+2026-08-18,Maritime,Unspecified,719,174,51
+2026-08-18,General User Licence,Unspecified,576,23,1
+2026-08-18,Amateur,Repeater,316,297,80
+2026-08-18,Amateur,Mobile Transmit,290,272,74
+2026-08-18,Telemetry & Telecommand,Uni-directional,245,229,75
+2026-08-18,Radiodetermination,Unspecified,127,114,9
+2026-08-18,Maritime,Mobile Transmit,119,119,46
+2026-08-18,Maritime,Repeater,119,119,46
+2026-08-18,Outside Broadcast,Unspecified,98,9,5
+2026-08-18,Radiodetermination,Beacon,87,87,4
+2026-08-18,Radiodetermination,Mobile Transmit,84,84,3
+2026-08-18,Meteorological,Unspecified,38,31,7
+2026-08-18,Amateur,Unspecified,25,3,3
+2026-08-18,Telemetry & Telecommand,Bi-directional,24,24,6
+2026-08-18,Amateur,Beacon,22,18,8
+2026-08-18,Aeronautical,Unspecified,7,7,7
+2026-08-18,Aeronautical,Mobile Transmit,4,4,2
+2026-08-18,Aeronautical,Repeater,4,4,2
