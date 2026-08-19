@@ -176,7 +176,7 @@ observed_date,licence_type,assignment_count,distinct_licensees
 2026-08-19,Fixed < 1GHz; BW >50kHz (Uni-directional),618,87
 2026-08-19,General user licence (Radio),568,1
 2026-08-19,Fixed <1 GHz; BW <=50 kHz (Uni-directional),561,45
-2026-08-19,Aero Base (Off Route),449,71
+2026-08-19,Aero Base (Off Route),448,71
 2026-08-19,Aero Base (Route),324,25
 2026-08-19,MF AM,306,31
 2026-08-19,Amateur Repeater - Mobile Transmit,290,74
