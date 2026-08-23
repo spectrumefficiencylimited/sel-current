@@ -353,6 +353,22 @@ COPY (
     ORDER BY assignment_count DESC, licensee, service
 ) TO '$WORK_DIR/licensee_service_current.csv' (HEADER, DELIMITER ',');
 
+-- Frequency-axis summary. The original SpectrumSearch put frequency on the X
+-- axis with occupancy bands stacked up the Y; this is the data behind that.
+COPY (
+    SELECT
+        band,
+        band_order,
+        COUNT(*) AS assignment_count,
+        COUNT(DISTINCT licenceId) AS distinct_licences,
+        COUNT(DISTINCT licensee) AS distinct_licensees,
+        ROUND(MIN(freq_mhz), 4) AS min_frequency_mhz,
+        ROUND(MAX(freq_mhz), 4) AS max_frequency_mhz
+    FROM enriched
+    GROUP BY band, band_order
+    ORDER BY band_order
+) TO '$WORK_DIR/band_summary.csv' (HEADER, DELIMITER ',');
+
 -- Drives the "by service" panel on the web page.
 COPY (
     SELECT
@@ -450,6 +466,7 @@ upsert_daily "$GOLD_DIR/licensee_service_daily.csv" "$WORK_DIR/licensee_service_
 # Current-snapshot artefacts, regenerated whole each run.
 install -m 0644 "$WORK_DIR/licensee_service_current.csv" "$SILVER_DIR/licensee_service_current.csv"
 install -m 0644 "$WORK_DIR/service_summary.csv" "$SILVER_DIR/service_summary.csv"
+install -m 0644 "$WORK_DIR/band_summary.csv" "$SILVER_DIR/band_summary.csv"
 
 # --- REVENUE ESTIMATE (only when a fee schedule has been configured) ---
 # Fees are not in the API. config/licence-fees.csv is operator-maintained and
