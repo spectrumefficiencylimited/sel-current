@@ -1,4 +1,5 @@
 licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppressed
+442115,433707,"University of Canterbury (School of Forestry)",,9300.0,"ALL NEW ZEALAND","Current","TX",false
 442097,433705,"SMITH CRANE & CONSTRUCTION LTD","FNX135",470.93125,"NEW DUNEDIN HOSPITAL PROJECT, CRANE TC3","Current","TX",false
 442097,433705,"SMITH CRANE & CONSTRUCTION LTD","FNX135",470.93125,"NEW DUNEDIN HOSPITAL PROJECT, CRANE TC2","Current","TX",false
 442097,433705,"SMITH CRANE & CONSTRUCTION LTD","FNX135",470.93125,"NEW DUNEDIN HOSPITAL PROJECT, CRANE TC1","Current","TX",false
@@ -8,4 +9,3 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 442082,249305,"New Zealand Transport Agency Christchurch","CN83",456.34375,"MT CAVENDISH","Current","TX",false
 442078,,"SUMMIT RADIO SOLUTIONS LIMITED","EE193#",169.2125,"MOBILE","Current","TX",false
 442077,,"SUMMIT RADIO SOLUTIONS LIMITED","DN36#",467.44375,"MOBILE","Current","TX",false
-442039,433701,"SPARK NEW ZEALAND TRADING LIMITED",,3660.0,"THREE PARKS ~JFYA~","Current","TX",false
