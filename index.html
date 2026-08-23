@@ -4,301 +4,399 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="description" content="Current New Zealand radio spectrum licence assignments, refreshed hourly from the RSM API. Free downloads in CSV, JSON and DuckDB.">
-    <meta name="theme-color" content="#1e3c72">
+    <meta name="theme-color" content="#0d1013">
     <title>Spectrum Efficiency Limited - NZ RSM Data</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='3' fill='%233498db'/><circle cx='16' cy='16' r='8' fill='none' stroke='%233498db' stroke-width='2'/><circle cx='16' cy='16' r='14' fill='none' stroke='%233498db' stroke-width='2' opacity='0.5'/></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a7331'/><circle cx='16' cy='16' r='3' fill='%23ffe000'/><circle cx='16' cy='16' r='9' fill='none' stroke='%23a9e8a9' stroke-width='2'/></svg>">
     <style>
-        /* Mobile-first: the base rules target a phone, and min-width queries
-           progressively add the roomier tablet and desktop layouts. */
+        /* ------------------------------------------------------------------
+           Visual language taken from RSM's SpectrumSearch Lite (2001-2003),
+           the tool this portal succeeds. Colours and structure follow the
+           training guide: the green spectrum field with district codes down
+           the right edge, the amber centre-frequency readout, black limit
+           boxes, beveled control groups, and the status bar carrying a record
+           count and timestamp.
+
+           The legend is theirs verbatim (guide p.10):
+             Management Right - Red      Planned Spectrum - Yellow
+             PIB21 Plans - Blue          Licensed Spectrum - Green
+             Pending Spectrum - Orange
+
+           This is a single-theme design on purpose — an instrument panel is a
+           dark instrument panel — so every colour is painted explicitly rather
+           than inherited from the viewer's theme.
+           ------------------------------------------------------------------ */
         :root {
-            --brand-deep: #1e3c72;
-            --brand-mid: #2a5298;
-            --brand-accent: #3498db;
-            --ink: #333;
-            --ink-muted: #666;
-            --surface: #fff;
-            --surface-alt: #f8f9fa;
-            --border: #e9ecef;
-            --radius: 12px;
-            --pad: 1rem;
-            --shadow-card: 0 4px 12px rgba(0,0,0,0.07);
+            /* Instrument chrome */
+            --chrome:        #22262b;
+            --chrome-raised: #2c3138;
+            --chrome-sunk:   #171a1e;
+            --shell:         #0d1013;
+            --bevel-hi:      rgba(255,255,255,0.13);
+            --bevel-lo:      rgba(0,0,0,0.65);
+            --hairline:      #3a4149;
+
+            /* The spectrum display itself */
+            --crt:           #0a7331;
+            --crt-dark:      #075626;
+            --crt-grid:      rgba(255,255,255,0.14);
+            --crt-label:     #a9e8a9;
+            --amber:         #ffe000;
+
+            /* RSM's documented colour code */
+            --c-mgmt:        #d0342c;
+            --c-planned:     #f2c200;
+            --c-pib21:       #17a5e0;
+            --c-licensed:    #4caf50;
+            --c-pending:     #ff8c00;
+
+            --ink:           #dfe5e9;
+            --ink-dim:       #97a3ad;
+            --ink-faint:     #6e7a84;
+
+            --ui: Tahoma, Verdana, "DejaVu Sans", system-ui, sans-serif;
+            --mono: Consolas, "DejaVu Sans Mono", ui-monospace, Menlo, monospace;
+
+            --pad: 0.75rem;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
+            background: var(--shell);
             color: var(--ink);
-            background: linear-gradient(135deg, var(--brand-deep) 0%, var(--brand-mid) 100%);
-            background-attachment: fixed;
-            min-height: 100vh;
-            padding: 0;
-            /* Nothing may push the page sideways on a narrow screen. */
+            font-family: var(--ui);
+            font-size: 15px;
+            line-height: 1.55;
             overflow-x: hidden;
             -webkit-text-size-adjust: 100%;
         }
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            background: var(--surface);
-            overflow: hidden;
+        .app { max-width: 1500px; margin: 0 auto; }
+
+        /* Raised and sunken edges, the way the original's panels were drawn. */
+        .raised {
+            border-top: 1px solid var(--bevel-hi);
+            border-left: 1px solid var(--bevel-hi);
+            border-right: 1px solid var(--bevel-lo);
+            border-bottom: 1px solid var(--bevel-lo);
+        }
+        .sunk {
+            border-top: 1px solid var(--bevel-lo);
+            border-left: 1px solid var(--bevel-lo);
+            border-right: 1px solid var(--bevel-hi);
+            border-bottom: 1px solid var(--bevel-hi);
         }
 
-        /* ---------- Header ---------- */
-        .header {
-            background: linear-gradient(135deg, #2c3e50 0%, var(--brand-accent) 100%);
+        /* ---------- Title bar ---------- */
+        .titlebar {
+            background: linear-gradient(180deg, #1b5fa8 0%, #10406f 100%);
             color: #fff;
-            padding: 2rem var(--pad) 1.5rem;
-            text-align: center;
-            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.5rem var(--pad);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
         }
-        .header::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="radio-waves" patternUnits="userSpaceOnUse" width="20" height="20"><circle cx="10" cy="10" r="2" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/><circle cx="10" cy="10" r="6" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23radio-waves)"/></svg>');
-            opacity: 0.3;
+        .titlebar .glyph {
+            width: 14px; height: 14px; flex: none;
+            background: var(--crt);
+            border: 1px solid rgba(255,255,255,0.5);
         }
-        .header-content { position: relative; z-index: 1; }
-        /* Scales smoothly instead of jumping at a breakpoint. */
-        .header h1 { font-size: clamp(1.5rem, 6vw, 3rem); line-height: 1.2; text-wrap: balance; }
-        .header .tagline {
-            font-size: clamp(0.95rem, 3.4vw, 1.3rem);
-            opacity: 0.9;
-            margin: 0.6rem auto 0;
-            max-width: 60ch;
-            text-wrap: balance;
+        .titlebar .path { font-family: var(--mono); font-weight: 400; opacity: 0.85; }
+        .titlebar .boxes { margin-left: auto; display: flex; gap: 3px; }
+        .titlebar .boxes i {
+            width: 15px; height: 13px;
+            background: #c9ced3;
+            border-top: 1px solid #fff; border-left: 1px solid #fff;
+            border-right: 1px solid #55595d; border-bottom: 1px solid #55595d;
         }
 
-        .update-status {
-            background: rgba(255,255,255,0.15);
-            border: 1px solid rgba(255,255,255,0.18);
-            border-radius: var(--radius);
-            padding: 0.9rem;
-            margin-top: 1.25rem;
+        .masthead {
+            background: var(--chrome);
+            padding: 1rem var(--pad);
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+            border-bottom: 1px solid var(--hairline);
+        }
+        .masthead h1 {
+            font-size: clamp(1.15rem, 4.6vw, 1.9rem);
+            line-height: 1.15;
+            letter-spacing: -0.01em;
+        }
+        .masthead .sub { color: var(--ink-dim); font-size: 0.88rem; max-width: 70ch; }
+        .masthead .lineage {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            color: var(--ink-faint);
+            border-left: 2px solid var(--c-licensed);
+            padding-left: 0.6rem;
+            margin-top: 0.35rem;
+        }
+
+        /* ---------- Spectrum display ---------- */
+        .workspace {
+            padding: var(--pad);
             display: grid;
             grid-template-columns: 1fr;
-            gap: 0.75rem;
-            text-align: center;
+            gap: var(--pad);
+            background: var(--chrome);
         }
-        .update-status .label {
-            display: block;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            opacity: 0.85;
-        }
-        .update-status .value { font-size: 0.95rem; font-weight: 600; }
-        .countdown-timer {
-            font-size: 1.35rem;
+
+        .panel { background: var(--chrome-raised); padding: 0.6rem; }
+        .panel > .legendbar {
+            font-size: 0.68rem;
             font-weight: 700;
-            color: #ffeb3b;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--ink-faint);
+            margin-bottom: 0.5rem;
+        }
+
+        .display {
+            background: var(--crt);
+            /* The faint vertical rules of the original frequency grid. */
+            background-image: repeating-linear-gradient(90deg,
+                var(--crt-grid) 0 1px, transparent 1px 12.5%);
+            padding: 0.5rem;
+        }
+
+        .limits { display: flex; gap: 0.4rem; align-items: stretch; margin-bottom: 0.5rem; }
+        .limit {
+            background: #000;
+            color: var(--crt-label);
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            padding: 0.3rem 0.45rem;
+            flex: 1;
+            min-width: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
             font-variant-numeric: tabular-nums;
         }
+        .limit b { display: block; color: var(--ink-faint); font-weight: 400; font-size: 0.62rem; letter-spacing: 0.08em; }
 
-        /* ---------- Downloads ---------- */
-        .controls {
-            padding: 1.25rem var(--pad);
-            background: linear-gradient(135deg, var(--surface-alt) 0%, #e9ecef 100%);
-            border-bottom: 1px solid #dee2e6;
+        /* The band ladder: horizontal occupancy bands with the code column on
+           the right, exactly where SpectrumSearch put its district labels. */
+        .ladder { display: flex; flex-direction: column; gap: 2px; }
+        .rung { display: grid; grid-template-columns: 1fr 3.1rem; align-items: center; gap: 0.4rem; }
+        .rung .track {
+            position: relative;
+            height: 1.45rem;
+            background: var(--crt-dark);
+            overflow: hidden;
         }
-        .download-card {
-            background: var(--surface);
-            border-radius: var(--radius);
-            padding: 1.25rem;
-            box-shadow: var(--shadow-card);
-            max-width: 640px;
-            margin: 0 auto;
+        .rung .fill {
+            position: absolute; inset: 0 auto 0 0;
+            background: var(--crt-label);
+            /* Grows on load, like the original redrawing after a search. */
+            animation: sweep 700ms cubic-bezier(0.22, 0.7, 0.3, 1) both;
         }
-        .download-card h2 { color: #2c3e50; font-size: 1.15rem; margin-bottom: 0.5rem; }
-        .download-card p { color: var(--ink-muted); font-size: 0.95rem; margin-bottom: 1rem; }
+        .rung .cap {
+            position: relative;
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #05391a;
+            padding: 0 0.4rem;
+            line-height: 1.45rem;
+            mix-blend-mode: normal;
+        }
+        .rung .cap.outside { color: var(--crt-label); }
+        .rung .code {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            font-weight: 700;
+            color: var(--crt-label);
+            text-align: right;
+            letter-spacing: 0.04em;
+        }
+        @keyframes sweep { from { transform: scaleX(0); transform-origin: left; } to { transform: scaleX(1); transform-origin: left; } }
 
-        /* One button per row on a phone, side by side once there is room. */
-        .button-group { display: grid; grid-template-columns: 1fr; gap: 0.6rem; }
-        .download-btn {
+        .display-foot {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 0.5rem;
+            margin-top: 0.55rem;
+            flex-wrap: wrap;
+        }
+        .display-foot .tag { font-family: var(--mono); font-size: 0.7rem; color: var(--crt-label); }
+        .readout {
+            font-family: var(--mono);
+            font-size: clamp(1.5rem, 7vw, 2.6rem);
+            font-weight: 700;
+            color: var(--amber);
+            letter-spacing: 0.02em;
+            font-variant-numeric: tabular-nums;
+            text-shadow: 0 0 12px rgba(255,224,0,0.35);
+            line-height: 1.1;
+        }
+        .scale-note { font-family: var(--mono); font-size: 0.66rem; color: var(--ink-faint); margin-top: 0.45rem; }
+
+        /* ---------- Legend ---------- */
+        .legend-list { display: grid; gap: 0.3rem; }
+        .legend-list div { display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; }
+        .legend-list i { width: 0.85rem; height: 0.85rem; flex: none; border: 1px solid rgba(0,0,0,0.5); }
+        .legend-list .off { color: var(--ink-faint); }
+        .legend-note { font-size: 0.74rem; color: var(--ink-faint); margin-top: 0.6rem; line-height: 1.45; }
+
+        /* ---------- Readout boxes ---------- */
+        .meters { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
+        .meter { background: #000; padding: 0.6rem 0.7rem; min-width: 0; }
+        .meter .v {
+            font-family: var(--mono);
+            font-size: clamp(1.1rem, 5vw, 1.6rem);
+            font-weight: 700;
+            color: var(--crt-label);
+            font-variant-numeric: tabular-nums;
+            line-height: 1.15;
+        }
+        .meter .k {
+            font-size: 0.66rem;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            color: var(--ink-faint);
+            margin-top: 0.15rem;
+        }
+
+        /* ---------- Control group (downloads) ---------- */
+        .fieldset { background: var(--chrome-raised); padding: 0.9rem 0.7rem 0.7rem; position: relative; margin-top: 0.5rem; }
+        .fieldset > .caption {
+            position: absolute;
+            top: -0.62rem; left: 0.6rem;
+            background: var(--chrome);
+            padding: 0 0.4rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--c-planned);
+            letter-spacing: 0.04em;
+        }
+        .fieldset p { font-size: 0.86rem; color: var(--ink-dim); margin-bottom: 0.7rem; }
+        .buttons { display: grid; grid-template-columns: 1fr; gap: 0.5rem; }
+        .btn {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.6rem;
-            color: #fff;
-            /* Comfortably above the 44px minimum touch target. */
-            min-height: 48px;
-            padding: 0.75rem 1.25rem;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        .download-btn svg { width: 1.15em; height: 1.15em; flex: none; }
-        .download-btn .size { font-weight: 400; opacity: 0.75; font-size: 0.85em; }
-        .btn-csv { background: #1D6F42; }
-        .btn-json { background: #111; }
-        .btn-duckdb { background: #B55B02; }
-
-        /* ---------- Stats ---------- */
-        .content { padding: 1.25rem var(--pad) 1.75rem; }
-        /* Two up even on the narrowest phones: four stacked cards is a lot of
-           scrolling for four numbers. */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0.75rem;
-            margin-bottom: 1.5rem;
-        }
-        .stat-card {
-            background: linear-gradient(135deg, #fff, var(--surface-alt));
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 0.9rem 0.6rem;
-            text-align: center;
-            box-shadow: var(--shadow-card);
-        }
-        .stat-number {
-            font-size: clamp(1.35rem, 6.5vw, 2.5rem);
-            font-weight: 700;
-            color: var(--brand-accent);
-            line-height: 1.15;
-            font-variant-numeric: tabular-nums;
-        }
-        .stat-label { color: var(--ink-muted); font-size: 0.78rem; line-height: 1.3; margin-top: 0.25rem; }
-
-        /* ---------- Previews ---------- */
-        /* align-items: start stops a short panel from being stretched to match
-           a taller neighbour and trailing dead space. */
-        .data-previews-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; align-items: start; }
-        .data-preview {
-            background: var(--surface-alt);
-            border-radius: var(--radius);
-            padding: 1rem;
-        }
-        .data-preview h2 { color: #2c3e50; font-size: 1.05rem; margin-bottom: 0.15rem; }
-        .data-preview .sub { color: var(--ink-muted); font-size: 0.82rem; margin-bottom: 0.85rem; }
-
-        .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 8px; }
-        .data-table {
-            width: 100%;
-            border-collapse: collapse;
-            background: var(--surface);
+            gap: 0.5rem;
+            min-height: 46px;
+            padding: 0.6rem 1rem;
+            background: var(--chrome-raised);
+            color: var(--ink);
+            font-family: var(--mono);
             font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            text-decoration: none;
+            border-top: 2px solid var(--bevel-hi);
+            border-left: 2px solid var(--bevel-hi);
+            border-right: 2px solid var(--bevel-lo);
+            border-bottom: 2px solid var(--bevel-lo);
         }
-        .data-table th, .data-table td {
-            padding: 0.6rem 0.7rem;
-            text-align: left;
-            border-bottom: 1px solid var(--border);
-        }
-        .data-table th {
-            background: linear-gradient(135deg, var(--brand-accent), #2980b9);
-            color: #fff;
-            font-weight: 600;
-            font-size: 0.8rem;
+        .btn:active { border-top-color: var(--bevel-lo); border-left-color: var(--bevel-lo); border-right-color: var(--bevel-hi); border-bottom-color: var(--bevel-hi); }
+        .btn .swatch { width: 0.8rem; height: 0.8rem; flex: none; }
+        .btn:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+        .btn-csv .swatch { background: #1D6F42; }
+        .btn-json .swatch { background: #d8dde2; }
+        .btn-duckdb .swatch { background: #B55B02; }
+
+        /* ---------- Data grids ---------- */
+        .grids { display: grid; grid-template-columns: 1fr; gap: var(--pad); padding: 0 var(--pad) var(--pad); background: var(--chrome); align-items: start; }
+        .grid-panel { background: var(--chrome-raised); padding: 0.6rem; min-width: 0; }
+        .grid-panel h2 { font-size: 0.9rem; letter-spacing: 0.01em; }
+        .grid-panel .sub { font-size: 0.74rem; color: var(--ink-faint); margin: 0.1rem 0 0.6rem; }
+
+        .scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; background: var(--chrome-sunk); }
+        table { border-collapse: collapse; width: 100%; font-family: var(--mono); font-size: 0.78rem; }
+        th, td { padding: 0.35rem 0.5rem; text-align: left; border: 1px solid var(--hairline); }
+        thead th {
+            background: var(--chrome);
+            color: var(--ink-dim);
+            font-weight: 700;
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
             white-space: nowrap;
         }
-        .data-table td.numeric { font-variant-numeric: tabular-nums; }
-        .status-current { color: #27ae60; font-weight: 600; }
-        .status-other { color: #f39c12; font-weight: 600; }
+        td.numeric { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+        .status-current { color: var(--c-licensed); font-weight: 700; }
+        .status-other { color: var(--c-pending); font-weight: 700; }
 
-        /* On phones a four column table either overflows or gets crushed, so
-           each row becomes a small labelled card instead. */
-        @media (max-width: 600px) {
-            .data-table.stacked thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
-            .data-table.stacked tr {
-                display: block;
-                background: var(--surface);
-                border: 1px solid var(--border);
-                border-radius: 8px;
-                margin-bottom: 0.6rem;
-                padding: 0.25rem 0.15rem;
-            }
-            .data-table.stacked td {
+        /* A four-column grid is unreadable on a phone, so each record becomes a
+           labelled block instead. */
+        @media (max-width: 620px) {
+            /* Three mono columns do not fit 360px at full padding, and a number
+               clipped mid-digit reads as broken even inside a scroll box. */
+            table:not(.stacked) th, table:not(.stacked) td { padding: 0.3rem 0.35rem; font-size: 0.72rem; }
+            table.stacked thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+            table.stacked tr { display: block; border: 1px solid var(--hairline); margin-bottom: 0.4rem; }
+            table.stacked td {
                 display: grid;
-                grid-template-columns: 7rem 1fr;
-                gap: 0.5rem;
-                align-items: baseline;
-                border-bottom: 1px solid var(--border);
-                padding: 0.35rem 0.7rem;
-                font-size: 0.85rem;
-                /* Long licensee and location names must wrap, never overflow. */
+                grid-template-columns: 6.5rem 1fr;
+                gap: 0.4rem;
+                border: 0;
+                border-bottom: 1px solid var(--hairline);
+                padding: 0.3rem 0.5rem;
                 overflow-wrap: anywhere;
             }
-            .data-table.stacked tr td:last-child { border-bottom: 0; }
-            .data-table.stacked td::before {
+            table.stacked tr td:last-child { border-bottom: 0; }
+            table.stacked td::before {
                 content: attr(data-label);
-                font-size: 0.7rem;
+                font-size: 0.64rem;
                 text-transform: uppercase;
                 letter-spacing: 0.04em;
-                color: var(--ink-muted);
+                color: var(--ink-faint);
             }
-            /* The first column identifies the record, so promote it to a card
-               heading instead of spending a label column on the obvious. */
-            .data-table.stacked td:first-child {
-                display: block;
-                font-weight: 600;
-                font-size: 0.9rem;
-                background: var(--surface-alt);
-                border-radius: 7px 7px 0 0;
-                padding: 0.45rem 0.7rem;
-            }
-            .data-table.stacked td:first-child::before { content: none; }
+            table.stacked td:first-child { display: block; background: var(--chrome); font-weight: 700; }
+            table.stacked td:first-child::before { content: none; }
         }
 
-        .loading { text-align: center; padding: 1.5rem; color: var(--ink-muted); }
-        .spinner {
-            border: 3px solid var(--border);
-            border-top-color: var(--brand-accent);
-            border-radius: 50%;
-            width: 32px; height: 32px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 0.75rem;
-        }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        .error-note { color: #c0392b; font-size: 0.9rem; }
+        .loading { text-align: center; padding: 1.2rem; color: var(--ink-faint); font-size: 0.82rem; }
+        .blink { display: inline-block; width: 0.55rem; height: 1rem; background: var(--crt-label); animation: blink 1s steps(2) infinite; vertical-align: -2px; }
+        @keyframes blink { 0%,50% { opacity: 1; } 50.01%,100% { opacity: 0; } }
+        .error-note { color: var(--c-pending); font-size: 0.82rem; }
 
-        /* ---------- Footer ---------- */
-        .footer {
-            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-            color: #fff;
-            padding: 1.5rem var(--pad);
-            text-align: center;
-            font-size: 0.88rem;
+        /* ---------- Status bar ---------- */
+        .statusbar {
+            display: grid;
+            grid-template-columns: 1fr auto auto;
+            gap: 1px;
+            background: var(--hairline);
+            border-top: 1px solid var(--bevel-hi);
+            font-family: var(--mono);
+            font-size: 0.7rem;
         }
-        .footer p { margin-bottom: 0.5rem; opacity: 0.9; overflow-wrap: anywhere; }
-        .footer p:last-child { margin-bottom: 0; }
-        .footer a { color: #8ecbf5; }
+        .statusbar span { background: var(--chrome); padding: 0.35rem 0.6rem; color: var(--ink-dim); white-space: nowrap; }
+        .statusbar span:first-child { overflow: hidden; text-overflow: ellipsis; }
 
-        /* ---------- Progressive enhancement for larger screens ---------- */
-        @media (min-width: 480px) {
-            .button-group { grid-template-columns: repeat(3, 1fr); }
-            .stat-label { font-size: 0.85rem; }
+        footer.credits {
+            background: var(--shell);
+            padding: 1rem var(--pad) 2rem;
+            font-size: 0.78rem;
+            color: var(--ink-faint);
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
         }
-        @media (min-width: 600px) {
-            :root { --pad: 1.5rem; }
-            .update-status { grid-template-columns: 1fr 1fr; }
-            .stats-grid { grid-template-columns: repeat(4, 1fr); gap: 1rem; }
-            .stat-card { padding: 1.25rem 0.75rem; }
-        }
-        @media (min-width: 900px) {
-            :root { --pad: 2.5rem; }
-            body { padding: 1.25rem; }
-            .container { border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-            .header { padding: 2.5rem var(--pad); }
-            .data-previews-grid { grid-template-columns: 1fr 1fr; gap: 1.75rem; }
-            /* The assignments table has four columns and gets squeezed into an
-               unreadable sliver in a third of the width, so it takes its own row. */
-            .data-preview.wide { grid-column: 1 / -1; }
-            .data-preview { padding: 1.5rem; }
-            .data-table th, .data-table td { padding: 0.85rem 1rem; }
-        }
+        footer.credits a { color: var(--c-pib21); }
+        a:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
 
-        /* Hover transforms stick on touch screens, so only enable them for
-           devices with a real pointer. */
-        @media (hover: hover) {
-            .download-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
-            .stat-card { transition: transform 0.2s ease; }
-            .stat-card:hover { transform: translateY(-3px); }
-            .data-table tr:hover { background: #f1f5f9; }
+        /* ---------- Larger screens ---------- */
+        @media (min-width: 700px) {
+            :root { --pad: 1rem; }
+            .meters { grid-template-columns: repeat(4, 1fr); }
+            .buttons { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (min-width: 1000px) {
+            .workspace { grid-template-columns: minmax(0, 2.15fr) minmax(0, 1fr); }
+            /* Four meters across a narrow sidebar crushes the numbers. */
+            .stack .meters { grid-template-columns: repeat(2, 1fr); }
+            .workspace .stack { display: flex; flex-direction: column; gap: var(--pad); }
+            .grids { grid-template-columns: 1fr 1fr; }
+            .grid-panel.wide { grid-column: 1 / -1; }
         }
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
@@ -306,101 +404,114 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <div class="header-content">
-                <h1>Spectrum Efficiency Limited</h1>
-                <p class="tagline">Real-time data from New&nbsp;Zealand's spectrum database</p>
-                <div class="update-status">
-                    <div>
-                        <span class="label">Last updated</span>
-                        <span class="value" id="lastUpdateTime">Loading…</span>
-                    </div>
-                    <div>
-                        <span class="label">Next update in</span>
-                        <span class="value countdown-timer" id="countdownTimer">--:--</span>
-                    </div>
-                </div>
-            </div>
+    <div class="app">
+        <div class="titlebar">
+            <span class="glyph" aria-hidden="true"></span>
+            <span>Spectrum Search</span>
+            <span class="path">— sel-current</span>
+            <span class="boxes" aria-hidden="true"><i></i><i></i><i></i></span>
+        </div>
+
+        <header class="masthead">
+            <h1>Spectrum Efficiency Limited</h1>
+            <p class="sub">The current New Zealand Register of Radio Frequencies, refreshed every hour and published at stable URLs. Bind a dashboard to a link below and it stays current.</p>
+            <p class="lineage">Successor to RSM SpectrumSearch Lite / PRISMS Lite — last updated December 2022.</p>
         </header>
 
-        <div class="controls">
-            <div class="download-card">
-                <h2>📋 Current Assignments Data</h2>
-                <p>
-                    Download the latest spectrum assignments, automatically updated hourly. This service
-                    modernizes and replaces the decommissioned Spectrum Search Lite, providing fresh,
-                    machine-readable data.
-                </p>
-                <div class="button-group">
-                    <a href="silver/combined_licences.csv" class="download-btn btn-csv" download title="Download the full dataset as CSV">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 17h2M14 17h2M8 13h8"/></svg>
-                        <span>CSV</span>
-                    </a>
-                    <a href="silver/combined_licences.json" class="download-btn btn-json" download title="Download the full dataset as JSON">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></svg>
-                        <span>JSON</span>
-                    </a>
-                    <a href="silver/combined_licences.duckdb" class="download-btn btn-duckdb" download title="Download the full dataset as a DuckDB database">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg>
-                        <span>DuckDB</span>
-                    </a>
+        <div class="workspace">
+            <section class="panel raised">
+                <p class="legendbar">Spectrum display — occupancy by ITU band</p>
+                <div class="display sunk">
+                    <div class="limits">
+                        <span class="limit sunk"><b>LOW FREQUENCY LIMIT</b><span id="freqLow">—</span></span>
+                        <span class="limit sunk"><b>HIGH FREQUENCY LIMIT</b><span id="freqHigh">—</span></span>
+                    </div>
+                    <div class="ladder" id="ladder">
+                        <p class="loading" style="color:var(--crt-label)">Plotting spectrum <span class="blink"></span></p>
+                    </div>
+                    <div class="display-foot">
+                        <span class="tag">Assignment records</span>
+                        <span class="readout" id="readout">——————</span>
+                        <span class="tag" id="bandCount">Bands ——</span>
+                    </div>
+                </div>
+                <p class="scale-note">Bar length is logarithmic: UHF carries over five thousand times the assignments of LF, and a linear axis would render the low bands invisible. Counts shown are exact.</p>
+            </section>
+
+            <div class="stack">
+                <section class="panel raised">
+                    <p class="legendbar">Spectrum label colour code</p>
+                    <div class="legend-list">
+                        <div><i style="background:var(--c-licensed)"></i><span>Currently licensed spectrum</span></div>
+                        <div class="off"><i style="background:var(--c-mgmt)"></i><span>Management right</span></div>
+                        <div class="off"><i style="background:var(--c-planned)"></i><span>Planned spectrum</span></div>
+                        <div class="off"><i style="background:var(--c-pib21)"></i><span>PIB21 plans</span></div>
+                        <div class="off"><i style="background:var(--c-pending)"></i><span>Pending spectrum</span></div>
+                    </div>
+                    <p class="legend-note">RSM's own code, from the SpectrumSearch Lite training guide. This portal queries current licensed records only, so every assignment plotted above is green; the greyed entries are shown for continuity with the original tool, not populated from data we hold.</p>
+                </section>
+
+                <div class="meters">
+                    <div class="meter sunk">
+                        <div class="v" id="assignmentRecords">—</div>
+                        <div class="k" title="One row per frequency assignment">Assignment records</div>
+                    </div>
+                    <div class="meter sunk">
+                        <div class="v" id="distinctLicences">—</div>
+                        <div class="k" title="Distinct licence IDs; a licence bundles extra channels and paired legs">Distinct licences</div>
+                    </div>
+                    <div class="meter sunk">
+                        <div class="v" id="uniqueHolders">—</div>
+                        <div class="k">Licensees</div>
+                    </div>
+                    <div class="meter sunk">
+                        <div class="v" id="hoursSinceUpdate">—</div>
+                        <div class="k">Hours since update</div>
+                    </div>
+                </div>
+
+                <div class="fieldset raised">
+                    <span class="caption">Download the register</span>
+                    <p>The complete current dataset, regenerated every run. These URLs do not change.</p>
+                    <div class="buttons">
+                        <a href="silver/combined_licences.csv" class="btn btn-csv" download><span class="swatch"></span>CSV</a>
+                        <a href="silver/combined_licences.json" class="btn btn-json" download><span class="swatch"></span>JSON</a>
+                        <a href="silver/combined_licences.duckdb" class="btn btn-duckdb" download><span class="swatch"></span>DUCKDB</a>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="content">
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number" id="totalLicenses">–</div>
-                    <div class="stat-label" title="One row per frequency assignment. A licence can hold several.">Assignment Records</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="distinctLicences">–</div>
-                    <div class="stat-label" title="Distinct licence IDs. Fewer than the record count, because a licence bundles extra channels and paired return legs.">Distinct Licences</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="uniqueHolders">–</div>
-                    <div class="stat-label">Unique Licence Holders</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="hoursSinceUpdate">–</div>
-                    <div class="stat-label">Hours Since Update</div>
-                </div>
-            </div>
+        <div class="grids">
+            <section class="grid-panel raised">
+                <h2>Assignments by service</h2>
+                <p class="sub">What the spectrum is used for</p>
+                <div id="servicePreviewContainer" class="loading">Loading services <span class="blink"></span></div>
+            </section>
 
-            <div class="data-previews-grid">
-                <section class="data-preview">
-                    <h2>🏆 Top Licence Holders</h2>
-                    <p class="sub">By non-mobile assignment count</p>
-                    <div id="analyticsPreviewContainer" class="loading">
-                        <div class="spinner"></div>
-                        <p>Loading analytics…</p>
-                    </div>
-                </section>
-                <section class="data-preview">
-                    <h2>📡 Assignments by Service</h2>
-                    <p class="sub">What the spectrum is actually used for</p>
-                    <div id="servicePreviewContainer" class="loading">
-                        <div class="spinner"></div>
-                        <p>Loading services…</p>
-                    </div>
-                </section>
-                <section class="data-preview wide">
-                    <h2>📈 Recent Spectrum Assignments</h2>
-                    <p class="sub">Ten most recent assignment records</p>
-                    <div id="dataPreviewContainer" class="loading">
-                        <div class="spinner"></div>
-                        <p>Loading data sample…</p>
-                    </div>
-                </section>
-            </div>
+            <section class="grid-panel raised">
+                <h2>Top licence holders</h2>
+                <p class="sub">By non-mobile assignment count</p>
+                <div id="analyticsPreviewContainer" class="loading">Loading analytics <span class="blink"></span></div>
+            </section>
+
+            <section class="grid-panel raised wide">
+                <h2>Data grid — recent assignments</h2>
+                <p class="sub">Ten most recent assignment records</p>
+                <div id="dataPreviewContainer" class="loading">Loading data grid <span class="blink"></span></div>
+            </section>
         </div>
 
-        <footer class="footer">
-            <p>Data sourced from <a href="https://www.rsm.govt.nz/" target="_blank" rel="noopener">Radio Spectrum Management New Zealand</a></p>
-            <p>Automated updates every hour • Last build: <span id="buildTime">…</span></p>
-            <p>GitHub Repository: <a href="https://github.com/spectrumefficiencylimited/sel-current" target="_blank" rel="noopener">sel-current</a></p>
+        <div class="statusbar">
+            <span id="statusPlotted">— records plotted</span>
+            <span id="statusDate">——/——/————</span>
+            <span id="statusTime">——:——</span>
+        </div>
+
+        <footer class="credits">
+            <span>Data sourced from <a href="https://www.rsm.govt.nz/" target="_blank" rel="noopener">Radio Spectrum Management New Zealand</a>. Crown data, subject to the RSM API terms of use.</span>
+            <span>Updated hourly by GitHub Actions • Last build <span id="buildTime">…</span></span>
+            <span>Source: <a href="https://github.com/spectrumefficiencylimited/sel-current" target="_blank" rel="noopener">sel-current</a></span>
         </footer>
     </div>
 
@@ -409,21 +520,17 @@
             const cacheBuster = `?v=${Date.now()}`;
             const STATS_URL = `silver/stats.json${cacheBuster}`;
             const ANALYTICS_URL = `silver/licensee_analytics.csv${cacheBuster}`;
+            const SERVICE_URL = `silver/service_summary.csv${cacheBuster}`;
+            const BAND_URL = `silver/band_summary.csv${cacheBuster}`;
             // A pre-built ten row sample. The full CSV is several megabytes and
             // must never be downloaded just to render a preview table.
             const SAMPLE_URL = `silver/sample_assignments.csv${cacheBuster}`;
-            const SERVICE_URL = `silver/service_summary.csv${cacheBuster}`;
 
             let nextUpdateInterval;
             let lastUpdateTimestamp;
 
             const el = (id) => document.getElementById(id);
-
-            function escapeHtml(value) {
-                return String(value).replace(/[&<>"']/g, (c) => (
-                    { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
-                ));
-            }
+            const fmt = (n) => Number(n).toLocaleString();
 
             // Splits a CSV line on commas that sit outside double quotes.
             function parseCsvLine(line) {
@@ -446,71 +553,132 @@
                 return fields;
             }
 
+            async function fetchCsv(url) {
+                const response = await fetch(url);
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                const lines = (await response.text()).trim().split(/\r?\n/);
+                const headers = parseCsvLine(lines[0]);
+                return lines.slice(1).filter(Boolean).map((line) => {
+                    const values = parseCsvLine(line);
+                    return Object.fromEntries(headers.map((h, i) => [h, values[i]]));
+                });
+            }
+
             async function fetchStats() {
                 try {
                     const response = await fetch(STATS_URL);
-                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    if (!response.ok) throw new Error(`HTTP ${response.status}`);
                     const stats = await response.json();
 
                     lastUpdateTimestamp = new Date(stats.lastUpdateUTC);
 
-                    el('totalLicenses').textContent = stats.totalLicenses.toLocaleString();
-                    // Added later than the other fields; fall back rather than
-                    // rendering "undefined" against an older stats.json.
-                    el('distinctLicences').textContent = stats.distinctLicences != null
-                        ? stats.distinctLicences.toLocaleString() : '–';
-                    el('uniqueHolders').textContent = stats.uniqueHolders.toLocaleString();
+                    el('assignmentRecords').textContent = fmt(stats.totalLicenses);
+                    el('readout').textContent = fmt(stats.totalLicenses);
+                    el('uniqueHolders').textContent = fmt(stats.uniqueHolders);
+                    // Added after the original stats shape; fall back rather
+                    // than rendering "undefined" against an older stats.json.
+                    el('distinctLicences').textContent =
+                        stats.distinctLicences != null ? fmt(stats.distinctLicences) : '—';
+                    el('hoursSinceUpdate').textContent =
+                        ((Date.now() - lastUpdateTimestamp) / 3600000).toFixed(1);
 
-                    const hoursSince = ((Date.now() - lastUpdateTimestamp) / 3600000).toFixed(1);
-                    el('hoursSinceUpdate').textContent = hoursSince;
-
-                    el('lastUpdateTime').textContent = lastUpdateTimestamp.toLocaleString(undefined, {
-                        year: 'numeric', month: 'short', day: 'numeric',
-                        hour: '2-digit', minute: '2-digit'
-                    });
-
-                    // Rendered from the data rather than baked into this file at
-                    // build time, so index.html only changes when the site does.
-                    el('buildTime').textContent = lastUpdateTimestamp.toISOString()
-                        .replace('T', ' ').slice(0, 19) + ' UTC';
+                    el('statusPlotted').textContent = `${fmt(stats.totalLicenses)} records plotted`;
+                    el('statusDate').textContent = lastUpdateTimestamp.toLocaleDateString('en-NZ');
+                    el('statusTime').textContent = lastUpdateTimestamp.toLocaleTimeString('en-NZ', { hour: '2-digit', minute: '2-digit' });
+                    el('buildTime').textContent = lastUpdateTimestamp.toISOString().replace('T', ' ').slice(0, 19) + ' UTC';
 
                     startCountdown();
                 } catch (error) {
                     console.error('Failed to load statistics:', error);
-                    ['totalLicenses', 'distinctLicences', 'uniqueHolders', 'hoursSinceUpdate']
-                        .forEach((id) => { el(id).textContent = '–'; });
-                    el('lastUpdateTime').textContent = 'Unavailable';
-                    el('countdownTimer').textContent = '--:--';
+                    ['assignmentRecords', 'distinctLicences', 'uniqueHolders', 'hoursSinceUpdate']
+                        .forEach((id) => { el(id).textContent = '—'; });
+                    el('statusPlotted').textContent = 'Statistics unavailable';
+                }
+            }
+
+            // The band ladder: the original put frequency on the X axis with
+            // occupancy stacked up the Y and the district code on the right.
+            async function drawLadder() {
+                const container = el('ladder');
+                try {
+                    const rows = await fetchCsv(BAND_URL);
+                    if (!rows.length) throw new Error('no bands');
+
+                    const counts = rows.map((r) => Number(r.assignment_count) || 0);
+                    // Logarithmic, because UHF outweighs LF by five thousand to
+                    // one and a linear axis would erase the low bands entirely.
+                    const scale = (n) => (n > 0 ? Math.log10(n + 1) / Math.log10(Math.max(...counts) + 1) : 0);
+
+                    // The Unknown band has no frequency at all; its empty
+                    // strings would become 0 and drag the low limit to 0.0000.
+                    const freqs = rows
+                        .flatMap((r) => [r.min_frequency_mhz, r.max_frequency_mhz])
+                        .filter((v) => v !== undefined && String(v).trim() !== '')
+                        .map(Number)
+                        .filter(Number.isFinite);
+                    if (freqs.length) {
+                        el('freqLow').textContent = Math.min(...freqs).toFixed(4) + ' MHz';
+                        el('freqHigh').textContent = Math.max(...freqs).toLocaleString() + ' MHz';
+                    }
+                    el('bandCount').textContent = `Bands ${rows.length}`;
+
+                    container.replaceChildren();
+                    rows.forEach((row, i) => {
+                        const count = Number(row.assignment_count) || 0;
+                        const pct = Math.max(scale(count) * 100, count > 0 ? 6 : 0);
+
+                        const rung = document.createElement('div');
+                        rung.className = 'rung';
+
+                        const track = document.createElement('div');
+                        track.className = 'track';
+                        const fill = document.createElement('div');
+                        fill.className = 'fill';
+                        fill.style.width = pct + '%';
+                        fill.style.animationDelay = (i * 55) + 'ms';
+                        const cap = document.createElement('span');
+                        // Keep the number legible when the bar is too short to
+                        // sit it inside.
+                        cap.className = pct < 24 ? 'cap outside' : 'cap';
+                        cap.textContent = fmt(count);
+                        if (pct < 24) cap.style.paddingLeft = `calc(${pct}% + 0.4rem)`;
+                        track.append(fill, cap);
+
+                        const code = document.createElement('span');
+                        code.className = 'code';
+                        code.textContent = (row.band || '').split(' ')[0];
+                        code.title = `${row.band} — ${fmt(count)} assignments across ${fmt(row.distinct_licensees)} licensees`;
+
+                        rung.append(track, code);
+                        container.appendChild(rung);
+                    });
+                } catch (error) {
+                    console.error('Failed to plot bands:', error);
+                    container.innerHTML = '<p class="error-note">Spectrum display unavailable. The download links still work.</p>';
                 }
             }
 
             async function fetchCsvPreview(url, containerId, columns, options = {}) {
                 const container = el(containerId);
                 try {
-                    const response = await fetch(url);
-                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                    const rows = (await response.text()).trim().split(/\r?\n/);
-                    const headers = parseCsvLine(rows[0]);
-                    const body = rows.slice(1, 1 + (options.limit || 10)).filter(Boolean);
+                    const rows = (await fetchCsv(url)).slice(0, options.limit || 10);
 
                     const table = document.createElement('table');
-                    table.className = options.stacked === false ? 'data-table' : 'data-table stacked';
+                    table.className = options.stacked === false ? '' : 'stacked';
 
-                    const thead = table.createTHead().insertRow();
+                    const headRow = table.createTHead().insertRow();
                     columns.forEach((col) => {
                         const th = document.createElement('th');
                         th.scope = 'col';
                         th.textContent = col.title;
-                        thead.appendChild(th);
+                        headRow.appendChild(th);
                     });
 
                     const tbody = table.createTBody();
-                    body.forEach((rowStr) => {
-                        const values = parseCsvLine(rowStr);
+                    rows.forEach((row) => {
                         const tr = tbody.insertRow();
                         columns.forEach((col) => {
-                            const index = headers.indexOf(col.key);
-                            const raw = index >= 0 && values[index] !== undefined ? values[index] : '';
+                            const raw = row[col.key] !== undefined ? row[col.key] : '';
                             const td = tr.insertCell();
                             // Drives the stacked mobile layout's row labels.
                             td.setAttribute('data-label', col.title);
@@ -521,44 +689,45 @@
                                 span.textContent = raw || 'N/A';
                                 td.appendChild(span);
                             } else {
-                                td.textContent = raw || 'N/A';
+                                td.textContent = col.numeric && raw !== '' ? fmt(raw) : (raw || 'N/A');
                             }
                         });
                     });
 
+                    const scroll = document.createElement('div');
+                    scroll.className = 'scroll';
+                    scroll.appendChild(table);
                     container.classList.remove('loading');
-                    container.replaceChildren(Object.assign(document.createElement('div'), { className: 'table-scroll' }));
-                    container.firstChild.appendChild(table);
+                    container.replaceChildren(scroll);
                 } catch (error) {
                     console.error(`Failed to load preview for ${url}:`, error);
                     container.classList.remove('loading');
-                    container.innerHTML = `<p class="error-note">Preview unavailable right now. The download links above still work.</p>`;
+                    container.innerHTML = '<p class="error-note">Preview unavailable right now. The download links above still work.</p>';
                 }
             }
 
             function startCountdown() {
                 if (nextUpdateInterval) clearInterval(nextUpdateInterval);
-                const nextUpdateTime = new Date(lastUpdateTimestamp.getTime() + 3600000); // Hourly
+                const nextUpdateTime = new Date(lastUpdateTimestamp.getTime() + 3600000);
 
-                const updateTimer = () => {
+                const tick = () => {
                     const timeLeft = nextUpdateTime - new Date();
                     if (timeLeft <= 0) {
-                        el('countdownTimer').textContent = 'Due now';
+                        el('statusTime').textContent = 'refresh due';
                         clearInterval(nextUpdateInterval);
                         return;
                     }
-                    const minutes = Math.floor(timeLeft / 60000);
-                    const seconds = Math.floor((timeLeft % 60000) / 1000);
-                    el('countdownTimer').textContent =
-                        `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                    const m = Math.floor(timeLeft / 60000);
+                    const s = Math.floor((timeLeft % 60000) / 1000);
+                    el('statusTime').textContent =
+                        `next ${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
                 };
-
-                updateTimer();
-                nextUpdateInterval = setInterval(updateTimer, 1000);
+                tick();
+                nextUpdateInterval = setInterval(tick, 1000);
             }
 
-            // Pause the ticking countdown while the tab is hidden — it is pure
-            // battery drain on a phone in someone's pocket.
+            // Pause the ticking clock while the tab is hidden — pure battery
+            // drain on a phone in someone's pocket.
             document.addEventListener('visibilitychange', () => {
                 if (document.hidden) {
                     clearInterval(nextUpdateInterval);
@@ -568,15 +737,16 @@
             });
 
             fetchStats();
-            fetchCsvPreview(ANALYTICS_URL, 'analyticsPreviewContainer', [
-                { key: 'licensee', title: 'Licensee' },
-                { key: 'assignment_count', title: 'Assignments', numeric: true }
-            ], { stacked: false });
+            drawLadder();
             fetchCsvPreview(SERVICE_URL, 'servicePreviewContainer', [
                 { key: 'service', title: 'Service' },
                 { key: 'assignment_count', title: 'Assignments', numeric: true },
                 { key: 'distinct_licensees', title: 'Licensees', numeric: true }
             ], { stacked: false, limit: 14 });
+            fetchCsvPreview(ANALYTICS_URL, 'analyticsPreviewContainer', [
+                { key: 'licensee', title: 'Licensee' },
+                { key: 'assignment_count', title: 'Assignments', numeric: true }
+            ], { stacked: false });
             fetchCsvPreview(SAMPLE_URL, 'dataPreviewContainer', [
                 { key: 'licensee', title: 'Licensee' },
                 { key: 'frequency', title: 'Frequency (MHz)', numeric: true },

@@ -100,6 +100,7 @@ run rather than accumulated:
 | --- | --- | --- |
 | `silver/licensee_service_current.csv` | ~6,300 | every client × service × mode × band, with the frequency range each occupies |
 | `silver/service_summary.csv` | 14 | assignments and distinct licensees per service |
+| `silver/band_summary.csv` | 8 | assignments, licences and licensees per ITU band, with the frequency range each spans |
 
 These are published alongside the datasets, so they have stable URLs too:
 
