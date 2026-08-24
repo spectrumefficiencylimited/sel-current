@@ -14,12 +14,13 @@
 
      The design is a fixed 1280x720 desktop window. That size is preserved
      exactly and the whole window is scaled to fit whatever viewport it lands
-     in, so the layout is identical on a 27" monitor, a laptop and a phone —
-     and identical again when the file is saved and opened from disk.
+     in, so the layout is identical on a 27" monitor, a laptop and a phone.
 
-     Self-contained by construction: no external stylesheet, font, script or
-     data fetch. The register snapshot is embedded below, so behaviour does not
-     change between the hosted page and a downloaded copy.
+     The page reads the register LIVE on every load, and again on REFRESH and
+     on a timer, so it tracks the hourly pipeline like the rest of the site. A
+     copy of the same files is embedded only as a fallback, for when there is
+     nothing to fetch from — a saved copy opened off disk, or an outage. The
+     status bar always says which of the two you are looking at.
      ------------------------------------------------------------------------ */
   * { box-sizing: border-box; }
   html, body { margin: 0; height: 100%; background: #0d0d0d; }
@@ -158,7 +159,7 @@
     <div class="toolbar">
       <div style="display:flex;gap:2px">
         <span class="tbtn strong">NEW QUERY</span>
-        <span class="tbtn">REFRESH</span>
+        <button type="button" class="tbtn" id="btnRefresh">REFRESH</button>
         <a class="tbtn" href="silver/combined_licences.csv" download>EXPORT CSV</a>
         <span class="tbtn pressed">GRID VIEW</span>
         <span class="tbtn">MAP VIEW</span>
@@ -289,7 +290,7 @@
     </div>
 
     <div class="status">
-      <div class="first"><span class="led"></span>QUERY COMPLETE</div>
+      <div class="first"><span class="led" id="led"></span><span id="stSource">CONNECTING</span></div>
       <div id="stRecords">RECORDS: —</div>
       <div id="stLicences">LICENCES: —</div>
       <div id="stHolders">HOLDERS: —</div>
@@ -304,292 +305,427 @@
 </div>
 
 <script>
-/* The register snapshot, embedded at build time by scripts/build-analyser.py.
-   Nothing is fetched at runtime, so a saved copy of this file behaves exactly
-   as the hosted one does. */
-const SNAPSHOT = __SNAPSHOT__;
+/* Data layer.
+
+   Live-first: every file is fetched on load, on REFRESH, and on a timer, so
+   the page tracks the hourly pipeline. EMBEDDED holds the same files as text,
+   baked in at build time, and is used only when a fetch cannot succeed — a
+   copy saved to disk and opened over file://, or the site being unreachable.
+
+   Both sources are raw file text and go through the same parse and the same
+   render, so the fallback view cannot drift from the live one. */
+const EMBEDDED = __SNAPSHOT__;
+
+const FILES = [
+  'silver/stats.json',
+  'silver/band_summary.csv',
+  'silver/service_summary.csv',
+  'silver/band_service_matrix.csv',
+  'silver/sample_assignments.csv',
+  'silver/licensee_analytics.csv',
+  'silver/site_plot.csv',
+  'gold/pair_leg_daily.csv'
+];
+
+// Short codes for the matrix column heads: the design's columns were region
+// codes, and this API carries no region, so the axis is service abbreviated to
+// keep the 9px heads legible.
+const SERVICE_CODE = {
+  'Land Mobile': 'LMR', 'Spectrum Licence': 'SPC', 'Fixed Link': 'FXD',
+  'Broadcasting': 'BCS', 'Satellite & Space': 'SAT', 'Paging': 'PGE',
+  'Maritime': 'MAR', 'Aeronautical': 'AER', 'Amateur': 'AMR',
+  'General User Licence': 'GUL', 'Radiodetermination': 'RDT',
+  'Telemetry & Telecommand': 'TLM', 'Outside Broadcast': 'OBV',
+  'Meteorological': 'MET'
+};
 
 (function () {
   'use strict';
   const el = (id) => document.getElementById(id);
-  const num = (n) => Number(n).toLocaleString('en-NZ').replace(/,/g, ' ');
-  const S = SNAPSHOT || {};
+  const num = (n) => Number(n).toLocaleString('en-NZ').replace(/,/g, ' ');
+  const int = (v) => { const n = parseFloat(v); return Number.isFinite(n) ? Math.round(n) : 0; };
+  const flt = (v) => { const n = parseFloat(v); return Number.isFinite(n) ? n : null; };
 
   /* ---- fit the fixed 1280x720 window to whatever viewport it lands in ---- */
   function fit() {
-    const stage = el('stage');
-    const s = Math.min(window.innerWidth / 1284, window.innerHeight / 724);
-    stage.style.transform = 'scale(' + s + ')';
+    el('stage').style.transform =
+      'scale(' + Math.min(window.innerWidth / 1284, window.innerHeight / 724) + ')';
   }
   window.addEventListener('resize', fit);
   fit();
 
-  /* ---- headline figures ---- */
-  const st = S.stats || {};
-  const records = st.totalLicenses || 0;
-  el('sRecords').textContent = num(records);
-  el('sLicences').textContent = num(st.distinctLicences || 0);
-  el('sHolders').textContent = num(st.uniqueHolders || 0);
-  el('sLegs').textContent = num(S.returnLegs || 0);
-  el('stRecords').textContent = 'RECORDS: ' + num(records);
-  el('stLicences').textContent = 'LICENCES: ' + num(st.distinctLicences || 0);
-  el('stHolders').textContent = 'HOLDERS: ' + num(st.uniqueHolders || 0);
-  el('stSites').textContent = 'SITES: ' + num((S.sites || []).length);
-  if (st.lastUpdateUTC) {
-    el('stUpdate').textContent = 'LAST UPDATE ' +
-      st.lastUpdateUTC.replace('T', ' ').slice(0, 19) + ' UTC';
+  /* ---------------------------------------------------------------- parsing */
+  function parseCsvLine(line) {
+    const out = []; let cur = '', q = false;
+    for (let i = 0; i < line.length; i++) {
+      const c = line[i];
+      if (c === '"') { if (q && line[i + 1] === '"') { cur += '"'; i++; } else q = !q; }
+      else if (c === ',' && !q) { out.push(cur); cur = ''; }
+      else cur += c;
+    }
+    out.push(cur);
+    return out;
   }
-
-  /* ---- frequency tuning readouts, driven by the real band limits ---- */
-  const bands = (S.bands || []).filter((b) => b.min !== null && b.max !== null);
-  if (bands.length) {
-    const lo = Math.min(...bands.map((b) => b.min));
-    const hi = Math.max(...bands.map((b) => b.max));
-    el('fLow').textContent = lo.toFixed(5);
-    el('fHigh').textContent = hi.toFixed(0);
-  }
-  el('fBands').textContent = String((S.bands || []).length);
-  const ticks = el('tuneTicks');
-  for (let i = 0; i < 24; i++) {
-    const t = document.createElement('i');
-    if (i < 23) t.style.borderRight = '1px solid #1e3a1e';
-    ticks.appendChild(t);
-  }
-  // The lit span marks where the bulk of the register sits: UHF and VHF.
-  el('tuneMark').style.left = '34%';
-  el('tuneSpan').style.left = '34%';
-  el('tuneSpan').style.width = '34%';
-  el('tuneMgmt').style.left = '80%';
-  el('tuneMgmt').style.width = '6%';
-
-  const services = S.services || [];
-  if (services.length) el('selService').textContent = services[0].service + ' ▼';
-  const spectrum = services.find((s) => s.service === 'Spectrum Licence');
-  if (spectrum) {
-    el('spectrumNote').textContent =
-      'SPECTRUM LICENCE SERVICE — ' + num(spectrum.assignment_count) +
-      ' RECS / ' + num(spectrum.licensees) + ' HOLDERS';
-  }
-
-  /* ---- band allocation ---- */
-  // Logarithmic: UHF outweighs LF by five thousand to one, and a linear bar
-  // would render every low band as an empty box.
-  const bandRows = S.bands || [];
-  const maxBand = Math.max(1, ...bandRows.map((b) => b.count));
-  const logScale = (n) => (n > 0 ? Math.log10(n + 1) / Math.log10(maxBand + 1) : 0);
-  const bandColour = (n) => (n > maxBand * 0.5 ? '#00ff00' : n > maxBand * 0.05 ? '#32cd32' : n > 100 ? '#ffa500' : '#0066cc');
-  const bandHost = el('bandRows');
-  bandRows.forEach((b) => {
-    const row = document.createElement('div');
-    row.className = 'bandrow';
-    const code = document.createElement('div');
-    code.style.color = '#fff';
-    code.textContent = b.code;
-    const bar = document.createElement('div');
-    bar.className = 'bar';
-    const fill = document.createElement('i');
-    fill.style.width = Math.max(2, logScale(b.count) * 100) + '%';
-    fill.style.background = bandColour(b.count);
-    bar.appendChild(fill);
-    const n = document.createElement('div');
-    n.style.cssText = 'text-align:right;color:' + (b.count > 500 ? '#00ff00' : '#c0c0c0');
-    n.textContent = num(b.count);
-    row.append(code, bar, n);
-    bandHost.appendChild(row);
-  });
-
-  /* ---- occupancy matrix: real band x service counts ---- */
-  const mx = S.matrix || { services: [], rows: [] };
-  const cols = mx.services.length;
-  if (cols) {
-    const template = '96px repeat(' + cols + ', 1fr)';
-    const head = el('mxHead');
-    head.style.gridTemplateColumns = template;
-    head.appendChild(document.createElement('div'));
-    mx.services.forEach((s) => {
-      const d = document.createElement('div');
-      d.textContent = s.code;
-      d.title = s.name;
-      head.appendChild(d);
+  function parseCsv(text) {
+    const lines = (text || '').trim().split(/\r?\n/).filter(Boolean);
+    if (!lines.length) return [];
+    const head = parseCsvLine(lines[0]);
+    return lines.slice(1).map((l) => {
+      const v = parseCsvLine(l);
+      return Object.fromEntries(head.map((h, i) => [h, v[i]]));
     });
+  }
 
-    const grid = el('mxGrid');
-    grid.style.gridTemplateColumns = template;
-    // Density is scaled per cell against the busiest cell in the matrix.
-    const peak = Math.max(1, ...mx.rows.flatMap((r) => r.cells));
-    const cellColour = (v) => {
-      if (!v) return '#0a2a0a';
-      const f = Math.log10(v + 1) / Math.log10(peak + 1);
-      if (f > 0.75) return '#00ff00';
-      if (f > 0.5) return '#32cd32';
-      if (f > 0.25) return '#1d7a2e';
-      return '#ffa500';
+  /* ------------------------------------------------------------ model build */
+  function buildModel(files) {
+    let stats = {};
+    try { stats = JSON.parse(files['silver/stats.json'] || '{}'); } catch (e) { stats = {}; }
+
+    const bands = parseCsv(files['silver/band_summary.csv']).map((r) => ({
+      band: r.band || '',
+      code: (r.band || '').split(' ')[0],
+      count: int(r.assignment_count),
+      min: flt(r.min_frequency_mhz),
+      max: flt(r.max_frequency_mhz)
+    }));
+
+    const services = parseCsv(files['silver/service_summary.csv']).map((r) => ({
+      service: r.service || '',
+      count: int(r.assignment_count),
+      licensees: int(r.distinct_licensees)
+    }));
+
+    // Matrix: bands as rows, the busiest services as columns.
+    const cells = {}, order = {};
+    parseCsv(files['silver/band_service_matrix.csv']).forEach((r) => {
+      cells[(r.band || '') + ' ' + (r.service || '')] = int(r.assignment_count);
+      order[r.band || ''] = int(r.band_order) || 99;
+    });
+    const cols = services.slice(0, 13).map((s) => ({
+      code: SERVICE_CODE[s.service] || s.service.slice(0, 3).toUpperCase(),
+      name: s.service
+    }));
+    const bandLabel = (b) => (b.includes('(')
+      ? b.split('(')[0].trim() + '  ' + b.split('(')[1].replace(')', '') : b);
+    const matrix = {
+      services: cols,
+      rows: Object.keys(order).sort((a, b) => order[a] - order[b]).map((b) => ({
+        band: b,
+        label: bandLabel(b),
+        cells: cols.map((c) => cells[b + ' ' + c.name] || 0)
+      }))
     };
-    mx.rows.forEach((r) => {
-      const label = document.createElement('div');
-      label.className = 'rl';
-      label.textContent = r.label;
-      label.title = r.band;
-      grid.appendChild(label);
-      r.cells.forEach((v, i) => {
-        const c = document.createElement('i');
-        // Spectrum Licence is the auctioned/management-right column; the
-        // original tool coloured that class distinctly, so it keeps its own.
-        c.style.background = v && mx.services[i].code === 'SPC' ? '#ffff00' : cellColour(v);
-        c.title = r.band + ' × ' + mx.services[i].name + ' — ' + num(v) + ' assignments';
-        grid.appendChild(c);
-      });
-    });
+
+    const sample = parseCsv(files['silver/sample_assignments.csv']).slice(0, 10).map((r) => ({
+      licenceId: r.licenceId || '',
+      licenceNumber: r.licenceNumber || '',
+      licensee: r.licensee || '',
+      channel: r.channel || '',
+      frequency: (flt(r.frequency) || 0).toFixed(5),
+      location: r.location || '',
+      status: r.status || ''
+    }));
+
+    const holders = parseCsv(files['silver/licensee_analytics.csv']).slice(0, 8).map((r) => ({
+      licensee: r.licensee || '', count: int(r.assignment_count)
+    }));
+
+    const sites = parseCsv(files['silver/site_plot.csv'])
+      .map((r) => ({ lat: flt(r.lat), lon: flt(r.lon), count: int(r.assignment_count), service: r.service || '' }))
+      .filter((s) => s.lat !== null && s.lon !== null);
+
+    // Return legs, from the latest day in the pair-leg series.
+    const pair = parseCsv(files['gold/pair_leg_daily.csv']);
+    let returnLegs = 0;
+    if (pair.length) {
+      const latest = pair.reduce((m, r) => (r.observed_date > m ? r.observed_date : m), '');
+      returnLegs = pair
+        .filter((r) => r.observed_date === latest && /Return/.test(r.pair_leg || ''))
+        .reduce((t, r) => t + int(r.assignment_count), 0);
+    }
+
+    return { stats, bands, services, matrix, sample, holders, sites, returnLegs };
   }
 
-  /* ---- licence query result set ---- */
-  const rows = S.sample || [];
-  const body = el('gridBody');
-  rows.forEach((r, i) => {
-    const tr = document.createElement('div');
-    tr.className = 'gridrow' + (i === 0 ? ' on' : i % 2 === 0 ? ' alt' : '');
-    const cells = [
-      { v: r.licenceId },
-      { v: r.licenceNumber || '—', dim: !r.licenceNumber },
-      { v: r.licensee, prose: true },
-      { v: r.channel || '—', hash: /#$/.test(r.channel || ''), dim: !r.channel },
-      { v: r.frequency, num: true, green: true },
-      { v: r.location, prose: true },
-      { v: r.status, green: true }
-    ];
-    cells.forEach((c) => {
-      const d = document.createElement('div');
-      if (c.prose) d.className = 'prose';
-      if (c.num) d.className = (d.className + ' num').trim();
-      if (i !== 0) {
-        if (c.green) d.style.color = '#00ff00';
-        if (c.hash) d.style.color = '#ffff00';
-        if (c.dim) d.style.color = '#808080';
+  /* ---------------------------------------------------------------- loading */
+  async function fetchFile(path) {
+    // Cache-busted so a refresh actually re-reads the hourly rebuild.
+    const res = await fetch(path + '?t=' + Date.now(), { cache: 'no-store' });
+    if (!res.ok) throw new Error(path + ' HTTP ' + res.status);
+    return res.text();
+  }
+
+  async function load() {
+    const files = {};
+    let live = true;
+    await Promise.all(FILES.map(async (p) => {
+      try {
+        files[p] = await fetchFile(p);
+      } catch (e) {
+        // file:// or an unreachable site: fall back to the baked-in copy.
+        files[p] = (EMBEDDED || {})[p] || '';
+        live = false;
       }
-      d.textContent = c.v;
-      tr.appendChild(d);
-    });
-    body.appendChild(tr);
-  });
-  el('rowsNote').textContent = 'ROWS 1–' + rows.length + ' OF ' + num(records);
+    }));
+    return { model: buildModel(files), live };
+  }
 
-  /* ---- management rights & holdings ---- */
-  const holders = S.holders || [];
-  const topHold = holders.length ? holders[0].count : 1;
-  const holdHost = el('holdRows');
-  holders.forEach((h, i) => {
-    const row = document.createElement('div');
-    row.className = 'holdrow';
-    const nm = document.createElement('div');
-    nm.className = 'nm';
-    nm.textContent = h.licensee;
-    nm.title = h.licensee;
-    const n = document.createElement('div');
-    n.className = 'n';
-    n.textContent = num(h.count);
-    const bar = document.createElement('div');
-    bar.className = 'bar';
-    const fill = document.createElement('i');
-    fill.style.width = Math.round((h.count / topHold) * 100) + '%';
-    // The three national cellular holders are the management-right holders.
-    fill.style.background = i < 3 ? '#ff0000' : '#00ff00';
-    bar.appendChild(fill);
-    row.append(nm, n, bar);
-    holdHost.appendChild(row);
-  });
-
-  /* ---- transmit site plot ---- */
-  // Real coordinates from the register's gridReference field, drawn on canvas.
-  // No map tiles and no geometry download: the sites themselves describe the
-  // country, which is what the 2001 tool plotted too.
-  const sites = S.sites || [];
-  const canvas = el('plot');
+  /* ----------------------------------------------------------------- render */
   const CLASS_COLOUR = {
-    'Spectrum Licence': '#ff0000',
-    'Fixed Link': '#00ff00',
-    'Land Mobile': '#32cd32',
-    'Broadcasting': '#ffff00',
-    'Satellite & Space': '#0066cc',
-    'Maritime': '#ffa500',
-    'Aeronautical': '#ffa500'
+    'Spectrum Licence': '#ff0000', 'Fixed Link': '#00ff00', 'Land Mobile': '#32cd32',
+    'Broadcasting': '#ffff00', 'Satellite & Space': '#0066cc',
+    'Maritime': '#ffa500', 'Aeronautical': '#ffa500'
   };
+  let current = null;
 
+  function render(M, live) {
+    current = M;
+    const st = M.stats || {};
+    const records = st.totalLicenses || 0;
+
+    el('sRecords').textContent = num(records);
+    el('sLicences').textContent = num(st.distinctLicences || 0);
+    el('sHolders').textContent = num(st.uniqueHolders || 0);
+    el('sLegs').textContent = num(M.returnLegs || 0);
+    el('stRecords').textContent = 'RECORDS: ' + num(records);
+    el('stLicences').textContent = 'LICENCES: ' + num(st.distinctLicences || 0);
+    el('stHolders').textContent = 'HOLDERS: ' + num(st.uniqueHolders || 0);
+    el('stSites').textContent = 'SITES: ' + num(M.sites.length);
+    if (st.lastUpdateUTC) {
+      el('stUpdate').textContent = 'LAST UPDATE ' + st.lastUpdateUTC.replace('T', ' ').slice(0, 19) + ' UTC';
+    }
+    el('stSource').textContent = live ? 'LIVE FEED' : 'EMBEDDED SNAPSHOT';
+    el('led').style.background = live ? '#008000' : '#a06000';
+    el('led').style.borderColor = live ? '#004000' : '#503000';
+
+    const withFreq = M.bands.filter((b) => b.min !== null && b.max !== null);
+    if (withFreq.length) {
+      el('fLow').textContent = Math.min.apply(null, withFreq.map((b) => b.min)).toFixed(5);
+      el('fHigh').textContent = Math.max.apply(null, withFreq.map((b) => b.max)).toFixed(0);
+    }
+    el('fBands').textContent = String(M.bands.length);
+
+    if (!el('tuneTicks').childElementCount) {
+      for (let i = 0; i < 24; i++) {
+        const t = document.createElement('i');
+        if (i < 23) t.style.borderRight = '1px solid #1e3a1e';
+        el('tuneTicks').appendChild(t);
+      }
+      el('tuneMark').style.left = '34%';
+      el('tuneSpan').style.left = '34%';
+      el('tuneSpan').style.width = '34%';
+      el('tuneMgmt').style.left = '80%';
+      el('tuneMgmt').style.width = '6%';
+    }
+
+    if (M.services.length) el('selService').textContent = M.services[0].service + ' ▼';
+    const spc = M.services.find((s) => s.service === 'Spectrum Licence');
+    el('spectrumNote').textContent = spc
+      ? 'SPECTRUM LICENCE SERVICE — ' + num(spc.count) + ' RECS / ' + num(spc.licensees) + ' HOLDERS'
+      : '';
+
+    // Band allocation. Logarithmic: UHF outweighs LF by five thousand to one,
+    // and a linear bar renders every low band as an empty box.
+    const maxBand = Math.max(1, ...M.bands.map((b) => b.count));
+    const host = el('bandRows');
+    host.replaceChildren();
+    M.bands.forEach((b) => {
+      const row = document.createElement('div');
+      row.className = 'bandrow';
+      const code = document.createElement('div');
+      code.style.color = '#fff';
+      code.textContent = b.code;
+      const bar = document.createElement('div');
+      bar.className = 'bar';
+      const fill = document.createElement('i');
+      fill.style.width = Math.max(2, (Math.log10(b.count + 1) / Math.log10(maxBand + 1)) * 100) + '%';
+      fill.style.background = b.count > maxBand * 0.5 ? '#00ff00'
+        : b.count > maxBand * 0.05 ? '#32cd32' : b.count > 100 ? '#ffa500' : '#0066cc';
+      bar.appendChild(fill);
+      const n = document.createElement('div');
+      n.style.cssText = 'text-align:right;color:' + (b.count > 500 ? '#00ff00' : '#c0c0c0');
+      n.textContent = num(b.count);
+      row.append(code, bar, n);
+      host.appendChild(row);
+    });
+
+    // Occupancy matrix.
+    const mx = M.matrix;
+    const head = el('mxHead'), grid = el('mxGrid');
+    head.replaceChildren(); grid.replaceChildren();
+    if (mx.services.length) {
+      const template = '96px repeat(' + mx.services.length + ', 1fr)';
+      head.style.gridTemplateColumns = template;
+      grid.style.gridTemplateColumns = template;
+      head.appendChild(document.createElement('div'));
+      mx.services.forEach((s) => {
+        const d = document.createElement('div');
+        d.textContent = s.code; d.title = s.name;
+        head.appendChild(d);
+      });
+      const peak = Math.max(1, ...mx.rows.flatMap((r) => r.cells));
+      const colour = (v) => {
+        if (!v) return '#0a2a0a';
+        const f = Math.log10(v + 1) / Math.log10(peak + 1);
+        return f > 0.75 ? '#00ff00' : f > 0.5 ? '#32cd32' : f > 0.25 ? '#1d7a2e' : '#ffa500';
+      };
+      mx.rows.forEach((r) => {
+        const label = document.createElement('div');
+        label.className = 'rl'; label.textContent = r.label; label.title = r.band;
+        grid.appendChild(label);
+        r.cells.forEach((v, i) => {
+          const c = document.createElement('i');
+          // Spectrum Licence is the auctioned class; the original tool gave
+          // that its own colour, so it keeps one here.
+          c.style.background = v && mx.services[i].code === 'SPC' ? '#ffff00' : colour(v);
+          c.title = r.band + ' × ' + mx.services[i].name + ' — ' + num(v) + ' assignments';
+          grid.appendChild(c);
+        });
+      });
+    }
+
+    // Result set.
+    const body = el('gridBody');
+    body.replaceChildren();
+    M.sample.forEach((r, i) => {
+      const tr = document.createElement('div');
+      tr.className = 'gridrow' + (i === 0 ? ' on' : i % 2 === 0 ? ' alt' : '');
+      [
+        { v: r.licenceId },
+        { v: r.licenceNumber || '—', dim: !r.licenceNumber },
+        { v: r.licensee, prose: true },
+        { v: r.channel || '—', hash: /#$/.test(r.channel), dim: !r.channel },
+        { v: r.frequency, num: true, green: true },
+        { v: r.location, prose: true },
+        { v: r.status, green: true }
+      ].forEach((c) => {
+        const d = document.createElement('div');
+        if (c.prose) d.className = 'prose';
+        if (c.num) d.className = (d.className + ' num').trim();
+        if (i !== 0) {
+          if (c.green) d.style.color = '#00ff00';
+          if (c.hash) d.style.color = '#ffff00';
+          if (c.dim) d.style.color = '#808080';
+        }
+        d.textContent = c.v;
+        tr.appendChild(d);
+      });
+      body.appendChild(tr);
+    });
+    el('rowsNote').textContent = 'ROWS 1–10 OF ' + num(records);
+
+    // Holdings.
+    const top = M.holders.length ? M.holders[0].count : 1;
+    const hh = el('holdRows');
+    hh.replaceChildren();
+    M.holders.forEach((h, i) => {
+      const row = document.createElement('div');
+      row.className = 'holdrow';
+      const nm = document.createElement('div');
+      nm.className = 'nm'; nm.textContent = h.licensee; nm.title = h.licensee;
+      const n = document.createElement('div');
+      n.className = 'n'; n.textContent = num(h.count);
+      const bar = document.createElement('div');
+      bar.className = 'bar';
+      const fill = document.createElement('i');
+      fill.style.width = Math.round((h.count / top) * 100) + '%';
+      // The three national cellular holders are the management-right holders.
+      fill.style.background = i < 3 ? '#ff0000' : '#00ff00';
+      bar.appendChild(fill);
+      row.append(nm, n, bar);
+      hh.appendChild(row);
+    });
+
+    drawPlot();
+  }
+
+  /* ---- transmit site plot: real coordinates, drawn on canvas ---- */
   function drawPlot() {
-    const host = canvas.parentElement;
+    if (!current || !current.sites.length) return;
+    const sites = current.sites;
+    const canvas = el('plot'), host = canvas.parentElement;
     const w = host.clientWidth, h = host.clientHeight;
-    if (!w || !h || !sites.length) return;
+    if (!w || !h) return;
     const dpr = window.devicePixelRatio || 1;
-    canvas.width = w * dpr;
-    canvas.height = h * dpr;
-    canvas.style.width = w + 'px';
-    canvas.style.height = h + 'px';
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
     const g = canvas.getContext('2d');
     g.setTransform(dpr, 0, 0, dpr, 0, 0);
-
     g.fillStyle = '#0b140b';
     g.fillRect(0, 0, w, h);
 
-    // Mercator, fitted to the sites' own bounding box with an 8px margin.
-    // Both axes must be in radians: mercator y is a natural-log value in
-    // radian units, so pairing it with x in degrees squashes the whole country
-    // into a thin horizontal band.
+    // Mercator. Both axes must be in radians: mercator y is a natural-log
+    // value in radian units, so pairing it with x in degrees squashes the
+    // whole country into a thin horizontal band.
     const lats = sites.map((s) => s.lat), lons = sites.map((s) => s.lon);
     const rad = (d) => d * Math.PI / 180;
     const merc = (lat) => Math.log(Math.tan(Math.PI / 4 + rad(lat) / 2));
     const y0 = merc(Math.max(...lats)), y1 = merc(Math.min(...lats));
     const x0 = rad(Math.min(...lons)), x1 = rad(Math.max(...lons));
     const m = 8;
-    const sx = (w - m * 2) / (x1 - x0), sy = (h - m * 2) / (y1 - y0);
-    const s = Math.min(sx, sy);
+    const s = Math.min((w - m * 2) / (x1 - x0), (h - m * 2) / (y1 - y0));
     const ox = m + ((w - m * 2) - (x1 - x0) * s) / 2;
     const oy = m + ((h - m * 2) - (y1 - y0) * s) / 2;
     const px = (lon) => ox + (rad(lon) - x0) * s;
     const py = (lat) => oy + (merc(lat) - y0) * s;
 
-    g.strokeStyle = '#1c3a1c';
-    g.lineWidth = 0.5;
+    g.strokeStyle = '#1c3a1c'; g.lineWidth = 0.5;
     for (let x = 0; x < w; x += 22) { g.beginPath(); g.moveTo(x, 0); g.lineTo(x, h); g.stroke(); }
     for (let y = 0; y < h; y += 22) { g.beginPath(); g.moveTo(0, y); g.lineTo(w, y); g.stroke(); }
 
     g.strokeStyle = '#173017';
     const lonMin = Math.min(...lons), lonMax = Math.max(...lons);
+    const latMin = Math.min(...lats), latMax = Math.max(...lats);
     for (let lon = Math.ceil(lonMin / 2) * 2; lon <= lonMax; lon += 2) {
       g.beginPath(); g.moveTo(px(lon), 0); g.lineTo(px(lon), h); g.stroke();
     }
-    for (let lat = Math.ceil(Math.min(...lats) / 2) * 2; lat <= Math.max(...lats); lat += 2) {
+    for (let lat = Math.ceil(latMin / 2) * 2; lat <= latMax; lat += 2) {
       g.beginPath(); g.moveTo(0, py(lat)); g.lineTo(w, py(lat)); g.stroke();
     }
 
     const maxCount = Math.max(...sites.map((x) => x.count));
     sites.forEach((site) => {
-      const r = 1.2 + 2.6 * Math.sqrt(site.count / maxCount);
       g.beginPath();
-      g.arc(px(site.lon), py(site.lat), r, 0, Math.PI * 2);
+      g.arc(px(site.lon), py(site.lat), 1.2 + 2.6 * Math.sqrt(site.count / maxCount), 0, Math.PI * 2);
       g.fillStyle = CLASS_COLOUR[site.service] || '#32cd32';
-      g.globalAlpha = 0.85;
-      g.fill();
-      g.globalAlpha = 1;
+      g.globalAlpha = 0.85; g.fill(); g.globalAlpha = 1;
     });
 
-    // Compass rose, top right, as in the design.
     const cx = w - 24, cy = 24;
-    g.strokeStyle = '#00ff00';
-    g.lineWidth = 0.7;
+    g.strokeStyle = '#00ff00'; g.lineWidth = 0.7;
     g.beginPath(); g.arc(cx, cy, 10, 0, Math.PI * 2); g.stroke();
     g.beginPath(); g.moveTo(cx, cy - 12); g.lineTo(cx, cy + 12);
     g.moveTo(cx - 11, cy); g.lineTo(cx + 11, cy); g.stroke();
-    g.fillStyle = '#00ff00';
-    g.font = '8px Consolas, monospace';
+    g.fillStyle = '#00ff00'; g.font = '8px Consolas, monospace';
     g.fillText('N', cx - 3, cy - 14);
 
-    el('cursor').textContent =
-      'PLOT  ' + num(sites.length) + ' SITES  ' +
-      Math.abs(Math.min(...lats)).toFixed(1) + '°S–' + Math.abs(Math.max(...lats)).toFixed(1) + '°S';
+    el('cursor').textContent = 'PLOT  ' + num(sites.length) + ' SITES  ' +
+      Math.abs(latMin).toFixed(1) + '°S–' + Math.abs(latMax).toFixed(1) + '°S';
     el('mapScale').textContent = '1:4 000 000';
   }
-
   window.addEventListener('resize', drawPlot);
-  drawPlot();
+
+  /* ---------------------------------------------------------------- control */
+  let busy = false;
+  async function refresh() {
+    if (busy) return;
+    busy = true;
+    const btn = el('btnRefresh');
+    btn.classList.add('pressed');
+    try {
+      const loaded = await load();
+      render(loaded.model, loaded.live);
+    } finally {
+      busy = false;
+      setTimeout(() => btn.classList.remove('pressed'), 180);
+    }
+  }
+
+  el('btnRefresh').addEventListener('click', refresh);
+  // Track the hourly pipeline without the reader doing anything.
+  setInterval(function () { if (!document.hidden) refresh(); }, 5 * 60 * 1000);
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) refresh(); });
+  refresh();
 })();
 </script>
 </body>
