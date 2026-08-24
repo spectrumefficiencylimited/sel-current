@@ -1,7 +1,7 @@
 band,band_order,service,assignment_count
 LF (30-300 kHz),2,Radiodetermination,6
 LF (30-300 kHz),2,General User Licence,4
-MF (300 kHz-3 MHz),3,Broadcasting,307
+MF (300 kHz-3 MHz),3,Broadcasting,306
 MF (300 kHz-3 MHz),3,Maritime,121
 MF (300 kHz-3 MHz),3,Land Mobile,62
 MF (300 kHz-3 MHz),3,Fixed Link,45
@@ -18,18 +18,18 @@ HF (3-30 MHz),4,Broadcasting,103
 HF (3-30 MHz),4,Amateur,27
 HF (3-30 MHz),4,Paging,9
 HF (3-30 MHz),4,Telemetry & Telecommand,1
-VHF (30-300 MHz),5,Land Mobile,11948
-VHF (30-300 MHz),5,Broadcasting,1794
+VHF (30-300 MHz),5,Land Mobile,11957
+VHF (30-300 MHz),5,Broadcasting,1793
 VHF (30-300 MHz),5,Paging,1084
-VHF (30-300 MHz),5,Aeronautical,627
-VHF (30-300 MHz),5,Maritime,540
+VHF (30-300 MHz),5,Aeronautical,632
+VHF (30-300 MHz),5,Maritime,541
 VHF (30-300 MHz),5,Fixed Link,432
 VHF (30-300 MHz),5,Amateur,281
 VHF (30-300 MHz),5,General User Licence,105
 VHF (30-300 MHz),5,Telemetry & Telecommand,89
 VHF (30-300 MHz),5,Radiodetermination,45
-UHF (300 MHz-3 GHz),6,Spectrum Licence,26226
-UHF (300 MHz-3 GHz),6,Land Mobile,17759
+UHF (300 MHz-3 GHz),6,Spectrum Licence,26355
+UHF (300 MHz-3 GHz),6,Land Mobile,17758
 UHF (300 MHz-3 GHz),6,Fixed Link,5390
 UHF (300 MHz-3 GHz),6,Satellite & Space,702
 UHF (300 MHz-3 GHz),6,Amateur,330
@@ -41,14 +41,14 @@ UHF (300 MHz-3 GHz),6,Outside Broadcast,50
 UHF (300 MHz-3 GHz),6,Paging,28
 UHF (300 MHz-3 GHz),6,Meteorological,18
 UHF (300 MHz-3 GHz),6,Aeronautical,3
-SHF (3-30 GHz),7,Fixed Link,9972
-SHF (3-30 GHz),7,Spectrum Licence,3941
-SHF (3-30 GHz),7,Satellite & Space,751
+SHF (3-30 GHz),7,Fixed Link,9958
+SHF (3-30 GHz),7,Spectrum Licence,3964
+SHF (3-30 GHz),7,Satellite & Space,761
 SHF (3-30 GHz),7,Outside Broadcast,48
 SHF (3-30 GHz),7,General User Licence,45
-SHF (3-30 GHz),7,Radiodetermination,18
+SHF (3-30 GHz),7,Radiodetermination,19
 SHF (3-30 GHz),7,Meteorological,15
-SHF (3-30 GHz),7,Aeronautical,9
+SHF (3-30 GHz),7,Aeronautical,6
 SHF (3-30 GHz),7,Amateur,2
 SHF (3-30 GHz),7,Land Mobile,1
 EHF (>30 GHz),8,Fixed Link,375
