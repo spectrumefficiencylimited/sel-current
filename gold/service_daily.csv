@@ -226,8 +226,8 @@ observed_date,service,link_mode,assignment_count,distinct_licences,distinct_lice
 2026-08-24,Spectrum Licence,Unspecified,30319,30250,25
 2026-08-24,Fixed Link,Bi-directional,15321,15321,277
 2026-08-24,Land Mobile,Simplex,13889,3406,2377
-2026-08-24,Land Mobile,Repeater,10194,6233,903
-2026-08-24,Land Mobile,Mobile Transmit,6257,6255,907
+2026-08-24,Land Mobile,Repeater,10193,6232,902
+2026-08-24,Land Mobile,Mobile Transmit,6256,6254,906
 2026-08-24,Broadcasting,Unspecified,2389,2289,130
 2026-08-24,Satellite & Space,Unspecified,1524,1493,22
 2026-08-24,Fixed Link,Uni-directional,1221,849,128
