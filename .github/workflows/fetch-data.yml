@@ -80,12 +80,19 @@ jobs:
           chmod +x scripts/fetch-process-data.sh
           ./scripts/fetch-process-data.sh
 
+      - name: Build the analyser page
+        run: |
+          # Bakes the current register snapshot into a single self-contained
+          # file, so a downloaded copy behaves exactly like the hosted one.
+          chmod +x scripts/build-analyser.py
+          ./scripts/build-analyser.py .
+
       - name: Commit and Push Data Files
         env:
           # Only the small artefacts and the accumulating gold aggregates are
           # committed. The multi-megabyte datasets are build outputs: regenerated
           # every run and published to the site, never added to git history.
-          COMMIT_PATHS: silver/stats.json silver/licensee_analytics.csv silver/sample_assignments.csv silver/service_summary.csv silver/band_summary.csv gold
+          COMMIT_PATHS: silver/stats.json silver/licensee_analytics.csv silver/sample_assignments.csv silver/service_summary.csv silver/band_summary.csv silver/band_service_matrix.csv gold
         run: |
           chmod +x scripts/commit-and-push.sh
           ./scripts/commit-and-push.sh
@@ -98,8 +105,10 @@ jobs:
           # links to it, so shipping it doubled every deployment for nothing.
           rm -rf _site
           mkdir -p _site/silver _site/gold
-          cp index.html SpectrumEfficiencyLimited.png _site/
-          cp silver/band_summary.csv \
+          cp index.html analyser.html SpectrumEfficiencyLimited.png _site/
+          cp silver/band_service_matrix.csv \
+             silver/band_summary.csv \
+             silver/site_plot.csv \
              silver/combined_licences.csv \
              silver/combined_licences.json \
              silver/combined_licences.duckdb \

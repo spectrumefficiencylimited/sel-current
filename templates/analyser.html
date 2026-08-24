@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="RSM Spectrum Assignment Analyser — the current New Zealand Register of Radio Frequencies in a Y2K government terminal.">
+<meta name="theme-color" content="#0d0d0d">
+<title>Register of Radio Frequencies — Spectrum Assignment Analyser</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230066cc'/><rect x='6' y='8' width='20' height='16' fill='%23000'/><path d='M8 20h4v-6h3v9h3v-4h4' stroke='%2300ff00' stroke-width='2' fill='none'/></svg>">
+<style>
+  /* ------------------------------------------------------------------------
+     RSM Spectrum Assignment Analyser — a faithful build of the Claude Design
+     "Y2K Government Spectrum Theme" mockup, wired to the live register.
+
+     The design is a fixed 1280x720 desktop window. That size is preserved
+     exactly and the whole window is scaled to fit whatever viewport it lands
+     in, so the layout is identical on a 27" monitor, a laptop and a phone —
+     and identical again when the file is saved and opened from disk.
+
+     Self-contained by construction: no external stylesheet, font, script or
+     data fetch. The register snapshot is embedded below, so behaviour does not
+     change between the hosted page and a downloaded copy.
+     ------------------------------------------------------------------------ */
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: #0d0d0d; }
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, 'Trebuchet MS', sans-serif;
+  }
+  a { color: #00ff00; text-decoration: none; }
+  a:hover { color: #ffff00; text-decoration: underline; }
+  a:focus-visible { outline: 2px solid #ffff00; outline-offset: 1px; }
+
+  /* The window keeps its design dimensions; only the scale factor changes. */
+  #stage { width: 1280px; height: 720px; transform-origin: 50% 50%; flex: none; }
+
+  .win {
+    position: relative;
+    width: 1280px; height: 720px;
+    background: #1a1a1a;
+    font-size: 11px;
+    color: #ffffff;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid;
+    border-color: #e8e8e8 #303030 #303030 #e8e8e8;
+  }
+
+  /* ---- title bar ---- */
+  .titlebar { display: flex; align-items: center; gap: 6px; height: 22px; flex: 0 0 22px; background: #0066cc; padding: 0 3px 0 5px; }
+  .titlebar .ico { width: 12px; height: 12px; background: #c0c0c0; border: 1px solid; border-color: #ffffff #404040 #404040 #ffffff; }
+  .titlebar .t { font-weight: 700; font-size: 11px; letter-spacing: .02em; }
+  .titlebar .boxes { display: flex; gap: 2px; }
+  .titlebar .boxes i { width: 16px; height: 14px; background: #c0c0c0; border: 1px solid; border-color: #ffffff #404040 #404040 #ffffff; color: #000; font: 700 9px/12px 'Segoe UI', sans-serif; text-align: center; font-style: normal; }
+
+  /* ---- menu + toolbar ---- */
+  .menubar { display: flex; gap: 14px; height: 19px; flex: 0 0 19px; align-items: center; background: #c0c0c0; color: #000; padding: 0 8px; border-bottom: 1px solid #808080; font-size: 11px; }
+  .toolbar { display: flex; gap: 3px; align-items: center; height: 26px; flex: 0 0 26px; background: #c0c0c0; padding: 0 5px; border-bottom: 2px solid #808080; }
+  .tbtn { padding: 2px 8px; background: #c0c0c0; border: 2px solid; border-color: #ffffff #808080 #808080 #ffffff; color: #000; font-size: 10px; }
+  .tbtn.strong { font-weight: 700; }
+  .tbtn.pressed { border-color: #808080 #ffffff #ffffff #808080; }
+  .tsep { width: 2px; height: 18px; background: #808080; border-right: 1px solid #ffffff; margin: 0 4px; }
+  .tlabel { color: #000; font-size: 10px; font-weight: 700; }
+  .tfield { padding: 2px 6px; background: #ffffff; border: 2px solid; border-color: #808080 #ffffff #ffffff #808080; color: #000; font-family: Consolas, 'Courier New', monospace; font-size: 10px; }
+  .tsrc { color: #000; font-family: Consolas, 'Courier New', monospace; font-size: 10px; }
+  .grow { flex: 1; }
+
+  /* ---- panels ---- */
+  .body { flex: 1; min-height: 0; display: flex; gap: 4px; padding: 4px; background: #1a1a1a; }
+  .col { display: flex; flex-direction: column; gap: 4px; min-height: 0; }
+  .panel { background: #2d2d2d; border: 2px solid; border-color: #5a5a5a #0e0e0e #0e0e0e #5a5a5a; display: flex; flex-direction: column; min-height: 0; }
+  .cap { display: flex; align-items: center; background: #0066cc; padding: 3px 6px; }
+  .cap h2 { margin: 0; font-weight: 700; font-size: 10px; letter-spacing: .08em; }
+  .cap .note { font-family: Consolas, monospace; font-size: 9px; color: #c8dcf5; }
+
+  .readout { background: #000; border: 2px solid; border-color: #0e0e0e #5a5a5a #5a5a5a #0e0e0e; padding: 2px 5px; font-family: Consolas, 'Courier New', monospace; font-size: 12px; color: #00ff00; text-align: right; }
+  .lbl { font-size: 10px; color: #c0c0c0; }
+  .sel { background: #ffffff; border: 2px solid; border-color: #808080 #ffffff #ffffff #808080; color: #000; padding: 1px 4px; font-size: 10px; }
+  .push { flex: 1; text-align: center; padding: 3px; background: #c0c0c0; border: 2px solid; border-color: #ffffff #808080 #808080 #ffffff; color: #000; font-size: 10px; }
+  .push.strong { font-weight: 700; }
+
+  /* ---- band allocation ---- */
+  .bandhead, .bandrow { display: grid; grid-template-columns: 38px 1fr 46px; gap: 0 4px; align-items: center; }
+  .bandhead { font-size: 9px; color: #c0c0c0; border-bottom: 1px solid #5a5a5a; padding-bottom: 2px; margin-bottom: 2px; letter-spacing: .05em; }
+  .bandrow { font-family: Consolas, 'Courier New', monospace; font-size: 10px; margin-bottom: 3px; }
+  .bar { height: 8px; background: #1e1e1e; border: 1px solid #444; }
+  .bar i { display: block; height: 100%; }
+  .stats { margin-top: 8px; border-top: 1px solid #5a5a5a; padding-top: 5px; display: grid; grid-template-columns: 1fr auto; gap: 2px 6px; font-size: 10px; }
+  .stats b { font-family: Consolas, monospace; font-weight: 400; color: #00ff00; }
+
+  /* ---- occupancy matrix ---- */
+  .mx { display: grid; gap: 1px; background: #3a3a3a; border: 1px solid #3a3a3a; }
+  .mx .rl { background: #242424; padding: 2px 4px; font-family: Consolas, monospace; font-size: 9px; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mx i { display: block; min-height: 17px; }
+  .mxhead { display: grid; font-size: 9px; font-family: Consolas, 'Courier New', monospace; color: #c0c0c0; margin-bottom: 2px; gap: 1px; }
+  .mxhead div { text-align: center; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .legend { display: flex; gap: 14px; margin-top: 5px; font-size: 9px; color: #c0c0c0; align-items: center; flex-wrap: wrap; }
+  .legend span { display: flex; align-items: center; gap: 4px; }
+  .legend i { width: 10px; height: 10px; display: block; }
+
+  /* ---- result grid ---- */
+  .gridhead, .gridrow { display: grid; grid-template-columns: 56px 56px 1.5fr 56px 78px 1.6fr 62px; }
+  .gridhead { background: #c0c0c0; color: #000; font-weight: 700; font-size: 9px; letter-spacing: .04em; border-bottom: 2px solid #808080; }
+  .gridhead div { padding: 3px 4px; border-right: 1px solid #808080; }
+  .gridhead div:last-child { border-right: 0; }
+  .gridbody { font-size: 10px; font-family: Consolas, 'Courier New', monospace; }
+  .gridrow div { padding: 2px 4px; border-bottom: 1px solid #1a1a1a; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .gridrow.alt div { background: #242424; }
+  .gridrow.on div { background: #0066cc; }
+  .gridrow .prose { font-family: 'Segoe UI', sans-serif; }
+  .gridrow .num { text-align: right; }
+
+  /* ---- map ---- */
+  .map { flex: 1; min-height: 0; position: relative; background: #0f1a0f; border: 2px solid; border-color: #0e0e0e #5a5a5a #5a5a5a #0e0e0e; margin: 4px; overflow: hidden; }
+  .cursor { position: absolute; left: 4px; bottom: 4px; background: rgba(0,0,0,.72); border: 1px solid #2f6b3a; padding: 2px 5px; font-family: Consolas, monospace; font-size: 9px; color: #00ff00; }
+
+  /* ---- holdings ---- */
+  .holdhead, .holdrow { display: grid; grid-template-columns: 1fr 44px 52px; align-items: center; }
+  .holdhead { font-size: 9px; color: #c0c0c0; letter-spacing: .04em; border-bottom: 1px solid #5a5a5a; padding-bottom: 2px; margin-bottom: 3px; }
+  .holdrow { font-size: 10px; margin-bottom: 2px; }
+  .holdrow .nm { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .holdrow .n { text-align: right; font-family: Consolas, monospace; color: #00ff00; }
+  .holdrow .bar { margin-left: 6px; }
+
+  /* ---- status bar ---- */
+  .status { flex: 0 0 22px; height: 22px; display: flex; align-items: stretch; background: #c0c0c0; color: #000; font-size: 10px; border-top: 2px solid #ffffff; }
+  .status div { padding: 3px 8px; border-right: 1px solid #808080; font-family: Consolas, 'Courier New', monospace; display: flex; align-items: center; }
+  .status .first { border-left: 1px solid #ffffff; gap: 6px; font-weight: 700; font-family: 'Segoe UI', sans-serif; }
+  .status .led { width: 8px; height: 8px; background: #008000; border: 1px solid #004000; animation: blink 1.4s steps(1) infinite; }
+  @keyframes blink { 0%,49% { opacity: 1 } 50%,100% { opacity: .15 } }
+
+  .scan { position: absolute; inset: 0; pointer-events: none; background: repeating-linear-gradient(to bottom, rgba(0,0,0,.13) 0px, rgba(0,0,0,.13) 1px, transparent 1px, transparent 3px); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .status .led { animation: none; }
+  }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="win">
+
+    <div class="titlebar">
+      <span class="ico"></span>
+      <span class="t">Register of Radio Frequencies — Spectrum Assignment Analyser&nbsp; [RSM-RRF v4.2]</span>
+      <span class="grow"></span>
+      <span class="boxes"><i>_</i><i>□</i><i>×</i></span>
+    </div>
+
+    <div class="menubar">
+      <span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>Q</u>uery</span><span><u>L</u>icence</span><span><u>B</u>ands</span><span><u>R</u>ights</span><span><u>T</u>ools</span><span><u>W</u>indow</span><span><u>H</u>elp</span>
+    </div>
+
+    <div class="toolbar">
+      <div style="display:flex;gap:2px">
+        <span class="tbtn strong">NEW QUERY</span>
+        <span class="tbtn">REFRESH</span>
+        <a class="tbtn" href="silver/combined_licences.csv" download>EXPORT CSV</a>
+        <span class="tbtn pressed">GRID VIEW</span>
+        <span class="tbtn">MAP VIEW</span>
+      </div>
+      <span class="tsep"></span>
+      <span class="tlabel">DATASET:</span>
+      <span class="tfield">SEL-CURRENT / silver / combined_licences.csv&nbsp; ▼</span>
+      <span class="grow"></span>
+      <span class="tsrc">SRC: RSM API (txRx=TRN)</span>
+    </div>
+
+    <div class="body">
+
+      <!-- ================= left column ================= -->
+      <div class="col" style="width:236px;flex:0 0 236px">
+
+        <div class="panel">
+          <div class="cap"><h2>FREQUENCY TUNING / SEARCH</h2></div>
+          <div style="padding:6px;display:flex;flex-direction:column;gap:6px">
+            <div style="display:grid;grid-template-columns:52px 1fr;gap:4px;align-items:center">
+              <span class="lbl">LOW MHz</span><span class="readout" id="fLow">—</span>
+              <span class="lbl">HIGH MHz</span><span class="readout" id="fHigh">—</span>
+              <span class="lbl">BANDS</span><span class="readout" id="fBands">—</span>
+            </div>
+            <div style="height:26px;position:relative;background:#000;border:2px solid;border-color:#0e0e0e #5a5a5a #5a5a5a #0e0e0e;overflow:hidden">
+              <div style="position:absolute;inset:0;display:grid;grid-template-columns:repeat(24,1fr)" id="tuneTicks"></div>
+              <div id="tuneMark" style="position:absolute;top:0;bottom:0;width:2px;background:#ffff00"></div>
+              <div id="tuneSpan" style="position:absolute;top:0;bottom:0;background:rgba(0,255,0,.18);border-left:1px solid #00ff00;border-right:1px solid #00ff00"></div>
+              <div id="tuneMgmt" style="position:absolute;top:0;bottom:0;background:rgba(255,0,0,.35)"></div>
+            </div>
+            <div style="display:grid;grid-template-columns:56px 1fr;gap:4px;align-items:center">
+              <span class="lbl">SERVICE</span><span class="sel" id="selService">— ▼</span>
+              <span class="lbl">LINK MODE</span><span class="sel">Repeater ▼</span>
+              <span class="lbl">STATUS</span><span class="sel">Current ▼</span>
+            </div>
+            <div style="display:flex;gap:12px;font-size:10px;color:#c0c0c0">
+              <span style="display:flex;align-items:center;gap:4px"><i style="width:9px;height:9px;background:#00ff00;border:1px solid #000;display:block"></i>TX only</span>
+              <span style="display:flex;align-items:center;gap:4px"><i style="width:9px;height:9px;background:#2d2d2d;border:1px solid #808080;display:block"></i>Suppressed</span>
+            </div>
+            <div style="display:flex;gap:4px">
+              <span class="push strong">EXECUTE</span>
+              <span class="push">CLEAR</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" style="flex:1">
+          <div class="cap"><h2>BAND ALLOCATION — ITU</h2></div>
+          <div style="flex:1;min-height:0;overflow:hidden;padding:4px">
+            <div class="bandhead"><div>BAND</div><div>OCCUPANCY</div><div style="text-align:right">RECS</div></div>
+            <div id="bandRows"></div>
+            <div class="stats">
+              <span style="color:#c0c0c0">Assignment records</span><b id="sRecords">—</b>
+              <span style="color:#c0c0c0">Distinct licences</span><b id="sLicences">—</b>
+              <span style="color:#c0c0c0">Unique licensees</span><b id="sHolders">—</b>
+              <span style="color:#c0c0c0">Paired return legs</span><b id="sLegs" style="color:#ffff00">—</b>
+              <span style="color:#c0c0c0">Unclassified</span><b id="sUnclass" style="color:#ffa500">0</b>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= centre column ================= -->
+      <div class="col" style="flex:1;min-width:0">
+
+        <div class="panel" style="flex:0 0 auto">
+          <div class="cap">
+            <h2>SPECTRUM OCCUPANCY MATRIX — FREQUENCY × SERVICE</h2>
+            <span class="grow"></span>
+            <span class="note">CELL = ASSIGNMENT DENSITY</span>
+          </div>
+          <div style="padding:5px 6px 6px">
+            <div class="mxhead" id="mxHead"></div>
+            <div class="mx" id="mxGrid"></div>
+            <div class="legend">
+              <span><i style="background:#00ff00"></i>HIGH DENSITY</span>
+              <span><i style="background:#32cd32"></i>MODERATE</span>
+              <span><i style="background:#1d7a2e"></i>LOW</span>
+              <span><i style="background:#ffff00"></i>SPECTRUM LICENCE</span>
+              <span><i style="background:#ffa500"></i>SPARSE</span>
+              <span><i style="background:#0a2a0a"></i>UNASSIGNED</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" style="flex:1">
+          <div class="cap">
+            <h2>LICENCE QUERY RESULT SET</h2>
+            <span class="grow"></span>
+            <span class="note" id="rowsNote">ROWS —</span>
+          </div>
+          <div style="flex:1;min-height:0;overflow:hidden">
+            <div class="gridhead">
+              <div>LIC ID</div><div>NUMBER</div><div>LICENSEE</div><div>CHANNEL</div>
+              <div style="text-align:right">FREQ (MHz)</div><div>LOCATION</div><div>STATUS</div>
+            </div>
+            <div class="gridbody" id="gridBody"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= right column ================= -->
+      <div class="col" style="width:322px;flex:0 0 322px">
+
+        <div class="panel" style="flex:1">
+          <div class="cap">
+            <h2>TRANSMIT SITE PLOT — NZGD2000</h2>
+            <span class="grow"></span>
+            <span class="note" id="mapScale">—</span>
+          </div>
+          <div class="map"><canvas id="plot"></canvas>
+            <div class="cursor" id="cursor">CURSOR  —</div>
+          </div>
+        </div>
+
+        <div class="panel" style="flex:0 0 auto">
+          <div class="cap"><h2>MANAGEMENT RIGHTS &amp; HOLDINGS</h2></div>
+          <div style="padding:5px 6px">
+            <div class="holdhead"><div>LICENSEE</div><div style="text-align:right">RECS</div><div style="text-align:right">SHARE</div></div>
+            <div id="holdRows"></div>
+            <div style="margin-top:5px;border-top:1px solid #5a5a5a;padding-top:4px;display:flex;justify-content:space-between;font-size:9px;color:#c0c0c0">
+              <span id="spectrumNote">—</span>
+              <span style="color:#ff0000;font-weight:700">MGMT RIGHT</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="status">
+      <div class="first"><span class="led"></span>QUERY COMPLETE</div>
+      <div id="stRecords">RECORDS: —</div>
+      <div id="stLicences">LICENCES: —</div>
+      <div id="stHolders">HOLDERS: —</div>
+      <div id="stSites">SITES: —</div>
+      <div class="grow" style="border-right:0"></div>
+      <div id="stUpdate" style="border-left:1px solid #808080;border-right:0">LAST UPDATE —</div>
+      <div style="border-left:1px solid #808080;border-right:0">NUM&nbsp; CAPS&nbsp; SCRL</div>
+    </div>
+
+    <div class="scan"></div>
+  </div>
+</div>
+
+<script>
+/* The register snapshot, embedded at build time by scripts/build-analyser.py.
+   Nothing is fetched at runtime, so a saved copy of this file behaves exactly
+   as the hosted one does. */
+const SNAPSHOT = __SNAPSHOT__;
+
+(function () {
+  'use strict';
+  const el = (id) => document.getElementById(id);
+  const num = (n) => Number(n).toLocaleString('en-NZ').replace(/,/g, ' ');
+  const S = SNAPSHOT || {};
+
+  /* ---- fit the fixed 1280x720 window to whatever viewport it lands in ---- */
+  function fit() {
+    const stage = el('stage');
+    const s = Math.min(window.innerWidth / 1284, window.innerHeight / 724);
+    stage.style.transform = 'scale(' + s + ')';
+  }
+  window.addEventListener('resize', fit);
+  fit();
+
+  /* ---- headline figures ---- */
+  const st = S.stats || {};
+  const records = st.totalLicenses || 0;
+  el('sRecords').textContent = num(records);
+  el('sLicences').textContent = num(st.distinctLicences || 0);
+  el('sHolders').textContent = num(st.uniqueHolders || 0);
+  el('sLegs').textContent = num(S.returnLegs || 0);
+  el('stRecords').textContent = 'RECORDS: ' + num(records);
+  el('stLicences').textContent = 'LICENCES: ' + num(st.distinctLicences || 0);
+  el('stHolders').textContent = 'HOLDERS: ' + num(st.uniqueHolders || 0);
+  el('stSites').textContent = 'SITES: ' + num((S.sites || []).length);
+  if (st.lastUpdateUTC) {
+    el('stUpdate').textContent = 'LAST UPDATE ' +
+      st.lastUpdateUTC.replace('T', ' ').slice(0, 19) + ' UTC';
+  }
+
+  /* ---- frequency tuning readouts, driven by the real band limits ---- */
+  const bands = (S.bands || []).filter((b) => b.min !== null && b.max !== null);
+  if (bands.length) {
+    const lo = Math.min(...bands.map((b) => b.min));
+    const hi = Math.max(...bands.map((b) => b.max));
+    el('fLow').textContent = lo.toFixed(5);
+    el('fHigh').textContent = hi.toFixed(0);
+  }
+  el('fBands').textContent = String((S.bands || []).length);
+  const ticks = el('tuneTicks');
+  for (let i = 0; i < 24; i++) {
+    const t = document.createElement('i');
+    if (i < 23) t.style.borderRight = '1px solid #1e3a1e';
+    ticks.appendChild(t);
+  }
+  // The lit span marks where the bulk of the register sits: UHF and VHF.
+  el('tuneMark').style.left = '34%';
+  el('tuneSpan').style.left = '34%';
+  el('tuneSpan').style.width = '34%';
+  el('tuneMgmt').style.left = '80%';
+  el('tuneMgmt').style.width = '6%';
+
+  const services = S.services || [];
+  if (services.length) el('selService').textContent = services[0].service + ' ▼';
+  const spectrum = services.find((s) => s.service === 'Spectrum Licence');
+  if (spectrum) {
+    el('spectrumNote').textContent =
+      'SPECTRUM LICENCE SERVICE — ' + num(spectrum.assignment_count) +
+      ' RECS / ' + num(spectrum.licensees) + ' HOLDERS';
+  }
+
+  /* ---- band allocation ---- */
+  // Logarithmic: UHF outweighs LF by five thousand to one, and a linear bar
+  // would render every low band as an empty box.
+  const bandRows = S.bands || [];
+  const maxBand = Math.max(1, ...bandRows.map((b) => b.count));
+  const logScale = (n) => (n > 0 ? Math.log10(n + 1) / Math.log10(maxBand + 1) : 0);
+  const bandColour = (n) => (n > maxBand * 0.5 ? '#00ff00' : n > maxBand * 0.05 ? '#32cd32' : n > 100 ? '#ffa500' : '#0066cc');
+  const bandHost = el('bandRows');
+  bandRows.forEach((b) => {
+    const row = document.createElement('div');
+    row.className = 'bandrow';
+    const code = document.createElement('div');
+    code.style.color = '#fff';
+    code.textContent = b.code;
+    const bar = document.createElement('div');
+    bar.className = 'bar';
+    const fill = document.createElement('i');
+    fill.style.width = Math.max(2, logScale(b.count) * 100) + '%';
+    fill.style.background = bandColour(b.count);
+    bar.appendChild(fill);
+    const n = document.createElement('div');
+    n.style.cssText = 'text-align:right;color:' + (b.count > 500 ? '#00ff00' : '#c0c0c0');
+    n.textContent = num(b.count);
+    row.append(code, bar, n);
+    bandHost.appendChild(row);
+  });
+
+  /* ---- occupancy matrix: real band x service counts ---- */
+  const mx = S.matrix || { services: [], rows: [] };
+  const cols = mx.services.length;
+  if (cols) {
+    const template = '96px repeat(' + cols + ', 1fr)';
+    const head = el('mxHead');
+    head.style.gridTemplateColumns = template;
+    head.appendChild(document.createElement('div'));
+    mx.services.forEach((s) => {
+      const d = document.createElement('div');
+      d.textContent = s.code;
+      d.title = s.name;
+      head.appendChild(d);
+    });
+
+    const grid = el('mxGrid');
+    grid.style.gridTemplateColumns = template;
+    // Density is scaled per cell against the busiest cell in the matrix.
+    const peak = Math.max(1, ...mx.rows.flatMap((r) => r.cells));
+    const cellColour = (v) => {
+      if (!v) return '#0a2a0a';
+      const f = Math.log10(v + 1) / Math.log10(peak + 1);
+      if (f > 0.75) return '#00ff00';
+      if (f > 0.5) return '#32cd32';
+      if (f > 0.25) return '#1d7a2e';
+      return '#ffa500';
+    };
+    mx.rows.forEach((r) => {
+      const label = document.createElement('div');
+      label.className = 'rl';
+      label.textContent = r.label;
+      label.title = r.band;
+      grid.appendChild(label);
+      r.cells.forEach((v, i) => {
+        const c = document.createElement('i');
+        // Spectrum Licence is the auctioned/management-right column; the
+        // original tool coloured that class distinctly, so it keeps its own.
+        c.style.background = v && mx.services[i].code === 'SPC' ? '#ffff00' : cellColour(v);
+        c.title = r.band + ' × ' + mx.services[i].name + ' — ' + num(v) + ' assignments';
+        grid.appendChild(c);
+      });
+    });
+  }
+
+  /* ---- licence query result set ---- */
+  const rows = S.sample || [];
+  const body = el('gridBody');
+  rows.forEach((r, i) => {
+    const tr = document.createElement('div');
+    tr.className = 'gridrow' + (i === 0 ? ' on' : i % 2 === 0 ? ' alt' : '');
+    const cells = [
+      { v: r.licenceId },
+      { v: r.licenceNumber || '—', dim: !r.licenceNumber },
+      { v: r.licensee, prose: true },
+      { v: r.channel || '—', hash: /#$/.test(r.channel || ''), dim: !r.channel },
+      { v: r.frequency, num: true, green: true },
+      { v: r.location, prose: true },
+      { v: r.status, green: true }
+    ];
+    cells.forEach((c) => {
+      const d = document.createElement('div');
+      if (c.prose) d.className = 'prose';
+      if (c.num) d.className = (d.className + ' num').trim();
+      if (i !== 0) {
+        if (c.green) d.style.color = '#00ff00';
+        if (c.hash) d.style.color = '#ffff00';
+        if (c.dim) d.style.color = '#808080';
+      }
+      d.textContent = c.v;
+      tr.appendChild(d);
+    });
+    body.appendChild(tr);
+  });
+  el('rowsNote').textContent = 'ROWS 1–' + rows.length + ' OF ' + num(records);
+
+  /* ---- management rights & holdings ---- */
+  const holders = S.holders || [];
+  const topHold = holders.length ? holders[0].count : 1;
+  const holdHost = el('holdRows');
+  holders.forEach((h, i) => {
+    const row = document.createElement('div');
+    row.className = 'holdrow';
+    const nm = document.createElement('div');
+    nm.className = 'nm';
+    nm.textContent = h.licensee;
+    nm.title = h.licensee;
+    const n = document.createElement('div');
+    n.className = 'n';
+    n.textContent = num(h.count);
+    const bar = document.createElement('div');
+    bar.className = 'bar';
+    const fill = document.createElement('i');
+    fill.style.width = Math.round((h.count / topHold) * 100) + '%';
+    // The three national cellular holders are the management-right holders.
+    fill.style.background = i < 3 ? '#ff0000' : '#00ff00';
+    bar.appendChild(fill);
+    row.append(nm, n, bar);
+    holdHost.appendChild(row);
+  });
+
+  /* ---- transmit site plot ---- */
+  // Real coordinates from the register's gridReference field, drawn on canvas.
+  // No map tiles and no geometry download: the sites themselves describe the
+  // country, which is what the 2001 tool plotted too.
+  const sites = S.sites || [];
+  const canvas = el('plot');
+  const CLASS_COLOUR = {
+    'Spectrum Licence': '#ff0000',
+    'Fixed Link': '#00ff00',
+    'Land Mobile': '#32cd32',
+    'Broadcasting': '#ffff00',
+    'Satellite & Space': '#0066cc',
+    'Maritime': '#ffa500',
+    'Aeronautical': '#ffa500'
+  };
+
+  function drawPlot() {
+    const host = canvas.parentElement;
+    const w = host.clientWidth, h = host.clientHeight;
+    if (!w || !h || !sites.length) return;
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+    canvas.style.width = w + 'px';
+    canvas.style.height = h + 'px';
+    const g = canvas.getContext('2d');
+    g.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    g.fillStyle = '#0b140b';
+    g.fillRect(0, 0, w, h);
+
+    // Mercator, fitted to the sites' own bounding box with an 8px margin.
+    // Both axes must be in radians: mercator y is a natural-log value in
+    // radian units, so pairing it with x in degrees squashes the whole country
+    // into a thin horizontal band.
+    const lats = sites.map((s) => s.lat), lons = sites.map((s) => s.lon);
+    const rad = (d) => d * Math.PI / 180;
+    const merc = (lat) => Math.log(Math.tan(Math.PI / 4 + rad(lat) / 2));
+    const y0 = merc(Math.max(...lats)), y1 = merc(Math.min(...lats));
+    const x0 = rad(Math.min(...lons)), x1 = rad(Math.max(...lons));
+    const m = 8;
+    const sx = (w - m * 2) / (x1 - x0), sy = (h - m * 2) / (y1 - y0);
+    const s = Math.min(sx, sy);
+    const ox = m + ((w - m * 2) - (x1 - x0) * s) / 2;
+    const oy = m + ((h - m * 2) - (y1 - y0) * s) / 2;
+    const px = (lon) => ox + (rad(lon) - x0) * s;
+    const py = (lat) => oy + (merc(lat) - y0) * s;
+
+    g.strokeStyle = '#1c3a1c';
+    g.lineWidth = 0.5;
+    for (let x = 0; x < w; x += 22) { g.beginPath(); g.moveTo(x, 0); g.lineTo(x, h); g.stroke(); }
+    for (let y = 0; y < h; y += 22) { g.beginPath(); g.moveTo(0, y); g.lineTo(w, y); g.stroke(); }
+
+    g.strokeStyle = '#173017';
+    const lonMin = Math.min(...lons), lonMax = Math.max(...lons);
+    for (let lon = Math.ceil(lonMin / 2) * 2; lon <= lonMax; lon += 2) {
+      g.beginPath(); g.moveTo(px(lon), 0); g.lineTo(px(lon), h); g.stroke();
+    }
+    for (let lat = Math.ceil(Math.min(...lats) / 2) * 2; lat <= Math.max(...lats); lat += 2) {
+      g.beginPath(); g.moveTo(0, py(lat)); g.lineTo(w, py(lat)); g.stroke();
+    }
+
+    const maxCount = Math.max(...sites.map((x) => x.count));
+    sites.forEach((site) => {
+      const r = 1.2 + 2.6 * Math.sqrt(site.count / maxCount);
+      g.beginPath();
+      g.arc(px(site.lon), py(site.lat), r, 0, Math.PI * 2);
+      g.fillStyle = CLASS_COLOUR[site.service] || '#32cd32';
+      g.globalAlpha = 0.85;
+      g.fill();
+      g.globalAlpha = 1;
+    });
+
+    // Compass rose, top right, as in the design.
+    const cx = w - 24, cy = 24;
+    g.strokeStyle = '#00ff00';
+    g.lineWidth = 0.7;
+    g.beginPath(); g.arc(cx, cy, 10, 0, Math.PI * 2); g.stroke();
+    g.beginPath(); g.moveTo(cx, cy - 12); g.lineTo(cx, cy + 12);
+    g.moveTo(cx - 11, cy); g.lineTo(cx + 11, cy); g.stroke();
+    g.fillStyle = '#00ff00';
+    g.font = '8px Consolas, monospace';
+    g.fillText('N', cx - 3, cy - 14);
+
+    el('cursor').textContent =
+      'PLOT  ' + num(sites.length) + ' SITES  ' +
+      Math.abs(Math.min(...lats)).toFixed(1) + '°S–' + Math.abs(Math.max(...lats)).toFixed(1) + '°S';
+    el('mapScale').textContent = '1:4 000 000';
+  }
+
+  window.addEventListener('resize', drawPlot);
+  drawPlot();
+})();
+</script>
+</body>
+</html>

@@ -369,6 +369,42 @@ COPY (
     ORDER BY band_order
 ) TO '$WORK_DIR/band_summary.csv' (HEADER, DELIMITER ',');
 
+-- Transmit site coordinates for the analyser's map panel. gridReference is
+-- "lat lon"; the Chathams sit east of the antimeridian and come back negative,
+-- so those are normalised to 180+ to keep the plot contiguous.
+COPY (
+    WITH sites AS (
+        SELECT location, licensee, service,
+               TRY_CAST(split_part(gridReference, ' ', 1) AS DOUBLE) AS lat,
+               CASE WHEN TRY_CAST(split_part(gridReference, ' ', 2) AS DOUBLE) < 0
+                    THEN TRY_CAST(split_part(gridReference, ' ', 2) AS DOUBLE) + 360
+                    ELSE TRY_CAST(split_part(gridReference, ' ', 2) AS DOUBLE) END AS lon
+        FROM enriched
+        WHERE gridReference IS NOT NULL AND TRIM(gridReference) <> ''
+          AND location IS DISTINCT FROM 'MOBILE'
+    )
+    SELECT location,
+           ROUND(AVG(lat), 5) AS lat,
+           ROUND(AVG(lon), 5) AS lon,
+           COUNT(*) AS assignment_count,
+           COUNT(DISTINCT licensee) AS licensees,
+           MODE(service) AS service
+    FROM sites
+    WHERE lat BETWEEN -47.5 AND -34.2 AND lon BETWEEN 166 AND 184
+    GROUP BY location
+    ORDER BY assignment_count DESC
+    LIMIT ${SITE_PLOT_N:-600}
+) TO '$WORK_DIR/site_plot.csv' (HEADER, DELIMITER ',');
+
+-- Band x service occupancy. The 2001 tool plotted frequency against district;
+-- district is not in this API, so the second axis is service, which is.
+COPY (
+    SELECT band, band_order, service, COUNT(*) AS assignment_count
+    FROM enriched
+    GROUP BY band, band_order, service
+    ORDER BY band_order, assignment_count DESC
+) TO '$WORK_DIR/band_service_matrix.csv' (HEADER, DELIMITER ',');
+
 -- Drives the "by service" panel on the web page.
 COPY (
     SELECT
@@ -467,6 +503,8 @@ upsert_daily "$GOLD_DIR/licensee_service_daily.csv" "$WORK_DIR/licensee_service_
 install -m 0644 "$WORK_DIR/licensee_service_current.csv" "$SILVER_DIR/licensee_service_current.csv"
 install -m 0644 "$WORK_DIR/service_summary.csv" "$SILVER_DIR/service_summary.csv"
 install -m 0644 "$WORK_DIR/band_summary.csv" "$SILVER_DIR/band_summary.csv"
+install -m 0644 "$WORK_DIR/site_plot.csv" "$SILVER_DIR/site_plot.csv"
+install -m 0644 "$WORK_DIR/band_service_matrix.csv" "$SILVER_DIR/band_service_matrix.csv"
 
 # --- REVENUE ESTIMATE (only when a fee schedule has been configured) ---
 # Fees are not in the API. config/licence-fees.csv is operator-maintained and
