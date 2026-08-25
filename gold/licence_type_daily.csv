@@ -487,7 +487,7 @@ observed_date,licence_type,assignment_count,distinct_licensees
 2026-08-24,Radar,2,1
 2026-08-25,Other (Spectrum),29674,6
 2026-08-25,Land Simplex,13577,2359
-2026-08-25,Fixed >=1 GHz (Bi-directional),10724,146
+2026-08-25,Fixed >=1 GHz (Bi-directional),10728,146
 2026-08-25,Land Repeater,10153,871
 2026-08-25,Land Mobile - Mobile Transmit,6220,878
 2026-08-25,Fixed <1 GHz; BW <=50 kHz (Bi-directional),2742,162
