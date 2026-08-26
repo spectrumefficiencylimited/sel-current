@@ -539,3 +539,57 @@ observed_date,licence_type,assignment_count,distinct_licensees
 2026-08-25,Amateur TV Repeater,4,1
 2026-08-25,Aero Mobile (Route),2,2
 2026-08-25,Radar,2,1
+2026-08-26,Other (Spectrum),29674,6
+2026-08-26,Land Simplex,13580,2358
+2026-08-26,Fixed >=1 GHz (Bi-directional),10728,146
+2026-08-26,Land Repeater,10147,870
+2026-08-26,Land Mobile - Mobile Transmit,6214,877
+2026-08-26,Fixed <1 GHz; BW <=50 kHz (Bi-directional),2742,162
+2026-08-26,VHF FM,1793,111
+2026-08-26,Fixed Bi-directional Point-to-Multipoint,1644,70
+2026-08-26,Satellite,1346,21
+2026-08-26,Paging,1121,99
+2026-08-26,Maritime Coast Station,719,51
+2026-08-26,Managed Spectrum Park,639,20
+2026-08-26,Fixed < 1GHz; BW >50kHz (Uni-directional),618,87
+2026-08-26,General user licence (Radio),568,1
+2026-08-26,Fixed <1 GHz; BW <=50 kHz (Uni-directional),561,45
+2026-08-26,Aero Base (Off Route),448,71
+2026-08-26,Aero Base (Route),324,25
+2026-08-26,MF AM,306,31
+2026-08-26,Amateur Repeater - Mobile Transmit,290,74
+2026-08-26,Amateur Repeater,281,74
+2026-08-26,Telemetry/Telecommand (Uni-directional),245,75
+2026-08-26,Land Simplex Govt. use only,235,22
+2026-08-26,Fixed < 1GHz; BW >50kHz (Bi-directional),213,14
+2026-08-26,UHF TV,187,9
+2026-08-26,Satellite - Satellite Transmit,168,15
+2026-08-26,Maritime Mobile - Mobile Transmit,119,46
+2026-08-26,Maritime Repeater,119,46
+2026-08-26,HF AM (Radio),103,2
+2026-08-26,"Radiodet - Radio Beacons (VOR, NDB, ILS)",87,4
+2026-08-26,Radiodetermination - Mobile Transmit,84,3
+2026-08-26,Land Simplex - General Channels,78,16
+2026-08-26,"Two Frequency (SSR, DME)",77,3
+2026-08-26,Fixed Television Outside Broadcast 2G8 Band,50,3
+2026-08-26,Radar (Other),49,10
+2026-08-26,Fixed Television Outside Broadcast 7G Band,48,5
+2026-08-26,PRS Repeater,39,37
+2026-08-26,Fixed Uni-directional Point-to-Multipoint,36,10
+2026-08-26,PRS - Mobile Transmit,35,33
+2026-08-26,Amateur Digipeater,31,19
+2026-08-26,Amateur Fixed,25,3
+2026-08-26,Telemetry/Telecommand (Bi-directional),24,6
+2026-08-26,Amateur Beacon,22,8
+2026-08-26,Meteorological Radar,20,4
+2026-08-26,Meteorological Aid (Radiosonde),18,4
+2026-08-26,General user licence (Spectrum),8,1
+2026-08-26,Aero Mobile (Off Route),7,6
+2026-08-26,Fixed >=1 GHz (Uni-directional),6,2
+2026-08-26,Space operations earth stations,5,2
+2026-08-26,Space operations spacecraft,5,2
+2026-08-26,Aero Repeater,4,2
+2026-08-26,Aero Repeater - Mobile Transmit,4,2
+2026-08-26,Amateur TV Repeater,4,1
+2026-08-26,Aero Mobile (Route),2,2
+2026-08-26,Radar,2,1
