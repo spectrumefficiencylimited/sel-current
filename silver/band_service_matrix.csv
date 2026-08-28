@@ -7,8 +7,8 @@ MF (300 kHz-3 MHz),3,Land Mobile,62
 MF (300 kHz-3 MHz),3,Fixed Link,45
 MF (300 kHz-3 MHz),3,General User Licence,35
 MF (300 kHz-3 MHz),3,Radiodetermination,24
-MF (300 kHz-3 MHz),3,Amateur,1
 MF (300 kHz-3 MHz),3,Telemetry & Telecommand,1
+MF (300 kHz-3 MHz),3,Amateur,1
 HF (3-30 MHz),4,Land Mobile,561
 HF (3-30 MHz),4,Fixed Link,344
 HF (3-30 MHz),4,Maritime,295
@@ -18,7 +18,7 @@ HF (3-30 MHz),4,Broadcasting,103
 HF (3-30 MHz),4,Amateur,27
 HF (3-30 MHz),4,Paging,9
 HF (3-30 MHz),4,Telemetry & Telecommand,1
-VHF (30-300 MHz),5,Land Mobile,11961
+VHF (30-300 MHz),5,Land Mobile,11963
 VHF (30-300 MHz),5,Broadcasting,1793
 VHF (30-300 MHz),5,Paging,1084
 VHF (30-300 MHz),5,Aeronautical,632
