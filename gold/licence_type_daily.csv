@@ -731,8 +731,8 @@ observed_date,licence_type,assignment_count,distinct_licensees
 2026-08-29,HF AM (Radio),103,2
 2026-08-29,"Radiodet - Radio Beacons (VOR, NDB, ILS)",87,4
 2026-08-29,Radiodetermination - Mobile Transmit,84,3
-2026-08-29,Land Simplex - General Channels,78,16
 2026-08-29,"Two Frequency (SSR, DME)",77,3
+2026-08-29,Land Simplex - General Channels,74,15
 2026-08-29,Fixed Television Outside Broadcast 2G8 Band,50,3
 2026-08-29,Radar (Other),49,10
 2026-08-29,Fixed Television Outside Broadcast 7G Band,48,5
