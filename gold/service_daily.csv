@@ -393,12 +393,12 @@ observed_date,service,link_mode,assignment_count,distinct_licences,distinct_lice
 2026-08-29,Aeronautical,Repeater,4,4,2
 2026-08-30,Spectrum Licence,Unspecified,30313,30244,25
 2026-08-30,Fixed Link,Bi-directional,15331,15331,278
-2026-08-30,Land Mobile,Simplex,13892,3404,2376
+2026-08-30,Land Mobile,Simplex,13885,3402,2374
 2026-08-30,Land Mobile,Repeater,10188,6227,903
 2026-08-30,Land Mobile,Mobile Transmit,6251,6249,907
 2026-08-30,Broadcasting,Unspecified,2389,2289,130
 2026-08-30,Satellite & Space,Unspecified,1524,1493,22
-2026-08-30,Fixed Link,Uni-directional,1221,849,128
+2026-08-30,Fixed Link,Uni-directional,1220,848,127
 2026-08-30,Paging,Unspecified,1121,175,99
 2026-08-30,Aeronautical,Base Station,772,517,84
 2026-08-30,Maritime,Unspecified,719,174,51
