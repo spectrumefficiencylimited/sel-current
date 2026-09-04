@@ -1028,8 +1028,8 @@ observed_date,licence_type,assignment_count,distinct_licensees
 2026-09-04,Other (Spectrum),29727,6
 2026-09-04,Land Simplex,13585,2358
 2026-09-04,Fixed >=1 GHz (Bi-directional),10754,146
-2026-09-04,Land Repeater,10147,870
-2026-09-04,Land Mobile - Mobile Transmit,6216,877
+2026-09-04,Land Repeater,10142,869
+2026-09-04,Land Mobile - Mobile Transmit,6213,876
 2026-09-04,Fixed <1 GHz; BW <=50 kHz (Bi-directional),2744,163
 2026-09-04,VHF FM,1793,111
 2026-09-04,Fixed Bi-directional Point-to-Multipoint,1644,70
@@ -1045,8 +1045,8 @@ observed_date,licence_type,assignment_count,distinct_licensees
 2026-09-04,MF AM,306,31
 2026-09-04,Amateur Repeater - Mobile Transmit,290,74
 2026-09-04,Amateur Repeater,281,74
-2026-09-04,Land Simplex Govt. use only,235,22
 2026-09-04,Telemetry/Telecommand (Uni-directional),235,74
+2026-09-04,Land Simplex Govt. use only,234,21
 2026-09-04,Fixed < 1GHz; BW >50kHz (Bi-directional),213,14
 2026-09-04,UHF TV,187,9
 2026-09-04,Satellite - Satellite Transmit,163,15
