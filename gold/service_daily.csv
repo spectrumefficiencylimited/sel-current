@@ -531,3 +531,31 @@ observed_date,service,link_mode,assignment_count,distinct_licences,distinct_lice
 2026-09-03,Aeronautical,Unspecified,9,9,8
 2026-09-03,Aeronautical,Mobile Transmit,4,4,2
 2026-09-03,Aeronautical,Repeater,4,4,2
+2026-09-04,Spectrum Licence,Unspecified,30366,30297,25
+2026-09-04,Fixed Link,Bi-directional,15355,15355,278
+2026-09-04,Land Mobile,Simplex,13894,3403,2376
+2026-09-04,Land Mobile,Repeater,10186,6225,902
+2026-09-04,Land Mobile,Mobile Transmit,6251,6249,906
+2026-09-04,Broadcasting,Unspecified,2389,2289,130
+2026-09-04,Satellite & Space,Unspecified,1520,1489,22
+2026-09-04,Fixed Link,Uni-directional,1220,848,127
+2026-09-04,Paging,Unspecified,1121,175,99
+2026-09-04,Aeronautical,Base Station,772,517,84
+2026-09-04,Maritime,Unspecified,719,174,51
+2026-09-04,General User Licence,Unspecified,576,23,1
+2026-09-04,Amateur,Repeater,316,297,80
+2026-09-04,Amateur,Mobile Transmit,290,272,74
+2026-09-04,Telemetry & Telecommand,Uni-directional,235,219,74
+2026-09-04,Radiodetermination,Unspecified,128,115,10
+2026-09-04,Maritime,Mobile Transmit,119,119,46
+2026-09-04,Maritime,Repeater,119,119,46
+2026-09-04,Outside Broadcast,Unspecified,98,9,5
+2026-09-04,Radiodetermination,Beacon,87,87,4
+2026-09-04,Radiodetermination,Mobile Transmit,84,84,3
+2026-09-04,Meteorological,Unspecified,38,31,7
+2026-09-04,Amateur,Unspecified,25,3,3
+2026-09-04,Telemetry & Telecommand,Bi-directional,24,24,6
+2026-09-04,Amateur,Beacon,22,18,8
+2026-09-04,Aeronautical,Unspecified,9,9,8
+2026-09-04,Aeronautical,Mobile Transmit,4,4,2
+2026-09-04,Aeronautical,Repeater,4,4,2
