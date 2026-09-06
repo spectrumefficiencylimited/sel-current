@@ -588,7 +588,7 @@ observed_date,service,link_mode,assignment_count,distinct_licences,distinct_lice
 2026-09-05,Aeronautical,Mobile Transmit,4,4,2
 2026-09-05,Aeronautical,Repeater,4,4,2
 2026-09-06,Spectrum Licence,Unspecified,30366,30297,25
-2026-09-06,Fixed Link,Bi-directional,15355,15355,278
+2026-09-06,Fixed Link,Bi-directional,15359,15359,278
 2026-09-06,Land Mobile,Simplex,13893,3402,2375
 2026-09-06,Land Mobile,Repeater,10182,6222,902
 2026-09-06,Land Mobile,Mobile Transmit,6249,6247,906
