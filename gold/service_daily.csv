@@ -617,7 +617,7 @@ observed_date,service,link_mode,assignment_count,distinct_licences,distinct_lice
 2026-09-06,Aeronautical,Repeater,4,4,2
 2026-09-07,Spectrum Licence,Unspecified,30418,30349,25
 2026-09-07,Fixed Link,Bi-directional,15359,15359,278
-2026-09-07,Land Mobile,Simplex,13893,3402,2375
+2026-09-07,Land Mobile,Simplex,13892,3401,2374
 2026-09-07,Land Mobile,Repeater,10185,6225,902
 2026-09-07,Land Mobile,Mobile Transmit,6252,6250,906
 2026-09-07,Broadcasting,Unspecified,2389,2289,130
@@ -627,8 +627,8 @@ observed_date,service,link_mode,assignment_count,distinct_licences,distinct_lice
 2026-09-07,Aeronautical,Base Station,772,517,84
 2026-09-07,Maritime,Unspecified,719,174,51
 2026-09-07,General User Licence,Unspecified,576,23,1
-2026-09-07,Amateur,Repeater,316,297,80
-2026-09-07,Amateur,Mobile Transmit,290,272,74
+2026-09-07,Amateur,Repeater,317,298,80
+2026-09-07,Amateur,Mobile Transmit,291,273,74
 2026-09-07,Telemetry & Telecommand,Uni-directional,235,219,74
 2026-09-07,Radiodetermination,Unspecified,128,115,10
 2026-09-07,Maritime,Mobile Transmit,119,119,46
