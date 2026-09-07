@@ -1,0 +1,507 @@
+observed_date,service,pair_leg,assignment_count,distinct_licences
+2026-08-12,Spectrum Licence,Primary leg,30167,30098
+2026-08-12,Land Mobile,Primary leg,24080,9640
+2026-08-12,Fixed Link,Primary leg,8902,8530
+2026-08-12,Fixed Link,Return leg (#),7656,7656
+2026-08-12,Land Mobile,Return leg (#),6252,6251
+2026-08-12,Broadcasting,Primary leg,2391,2291
+2026-08-12,Satellite & Space,Primary leg,1514,1483
+2026-08-12,Paging,Primary leg,1121,175
+2026-08-12,Maritime,Primary leg,816,286
+2026-08-12,Aeronautical,Primary leg,786,531
+2026-08-12,General User Licence,Primary leg,553,23
+2026-08-12,Amateur,Primary leg,466,420
+2026-08-12,Radiodetermination,Primary leg,282,269
+2026-08-12,Telemetry & Telecommand,Primary leg,269,253
+2026-08-12,Amateur,Return leg (#),187,170
+2026-08-12,Maritime,Return leg (#),140,129
+2026-08-12,Outside Broadcast,Primary leg,50,9
+2026-08-12,Outside Broadcast,Return leg (#),48,9
+2026-08-12,Meteorological,Primary leg,38,31
+2026-08-12,General User Licence,Return leg (#),23,2
+2026-08-12,Radiodetermination,Return leg (#),16,16
+2026-08-12,Aeronautical,Return leg (#),1,1
+2026-08-17,Spectrum Licence,Primary leg,30296,30227
+2026-08-17,Land Mobile,Primary leg,24082,9642
+2026-08-17,Fixed Link,Primary leg,8893,8521
+2026-08-17,Fixed Link,Return leg (#),7647,7647
+2026-08-17,Land Mobile,Return leg (#),6255,6254
+2026-08-17,Broadcasting,Primary leg,2389,2289
+2026-08-17,Satellite & Space,Primary leg,1524,1493
+2026-08-17,Paging,Primary leg,1121,175
+2026-08-17,Maritime,Primary leg,817,287
+2026-08-17,Aeronautical,Primary leg,783,528
+2026-08-17,General User Licence,Primary leg,553,23
+2026-08-17,Amateur,Primary leg,466,420
+2026-08-17,Radiodetermination,Primary leg,282,269
+2026-08-17,Telemetry & Telecommand,Primary leg,269,253
+2026-08-17,Amateur,Return leg (#),187,170
+2026-08-17,Maritime,Return leg (#),140,129
+2026-08-17,Outside Broadcast,Primary leg,50,9
+2026-08-17,Outside Broadcast,Return leg (#),48,9
+2026-08-17,Meteorological,Primary leg,38,31
+2026-08-17,General User Licence,Return leg (#),23,2
+2026-08-17,Radiodetermination,Return leg (#),16,16
+2026-08-17,Aeronautical,Return leg (#),1,1
+2026-08-18,Spectrum Licence,Primary leg,30296,30227
+2026-08-18,Land Mobile,Primary leg,24082,9642
+2026-08-18,Fixed Link,Primary leg,8893,8521
+2026-08-18,Fixed Link,Return leg (#),7647,7647
+2026-08-18,Land Mobile,Return leg (#),6256,6255
+2026-08-18,Broadcasting,Primary leg,2389,2289
+2026-08-18,Satellite & Space,Primary leg,1524,1493
+2026-08-18,Paging,Primary leg,1121,175
+2026-08-18,Maritime,Primary leg,817,287
+2026-08-18,Aeronautical,Primary leg,789,534
+2026-08-18,General User Licence,Primary leg,553,23
+2026-08-18,Amateur,Primary leg,466,420
+2026-08-18,Radiodetermination,Primary leg,282,269
+2026-08-18,Telemetry & Telecommand,Primary leg,269,253
+2026-08-18,Amateur,Return leg (#),187,170
+2026-08-18,Maritime,Return leg (#),140,129
+2026-08-18,Outside Broadcast,Primary leg,50,9
+2026-08-18,Outside Broadcast,Return leg (#),48,9
+2026-08-18,Meteorological,Primary leg,38,31
+2026-08-18,General User Licence,Return leg (#),23,2
+2026-08-18,Radiodetermination,Return leg (#),16,16
+2026-08-18,Aeronautical,Return leg (#),1,1
+2026-08-19,Spectrum Licence,Primary leg,30298,30229
+2026-08-19,Land Mobile,Primary leg,24087,9643
+2026-08-19,Fixed Link,Primary leg,8894,8522
+2026-08-19,Fixed Link,Return leg (#),7648,7648
+2026-08-19,Land Mobile,Return leg (#),6256,6255
+2026-08-19,Broadcasting,Primary leg,2389,2289
+2026-08-19,Satellite & Space,Primary leg,1524,1493
+2026-08-19,Paging,Primary leg,1121,175
+2026-08-19,Maritime,Primary leg,817,287
+2026-08-19,Aeronautical,Primary leg,788,533
+2026-08-19,General User Licence,Primary leg,553,23
+2026-08-19,Amateur,Primary leg,466,420
+2026-08-19,Radiodetermination,Primary leg,282,269
+2026-08-19,Telemetry & Telecommand,Primary leg,269,253
+2026-08-19,Amateur,Return leg (#),187,170
+2026-08-19,Maritime,Return leg (#),140,129
+2026-08-19,Outside Broadcast,Primary leg,50,9
+2026-08-19,Outside Broadcast,Return leg (#),48,9
+2026-08-19,Meteorological,Primary leg,38,31
+2026-08-19,General User Licence,Return leg (#),23,2
+2026-08-19,Radiodetermination,Return leg (#),16,16
+2026-08-19,Aeronautical,Return leg (#),1,1
+2026-08-20,Spectrum Licence,Primary leg,30298,30229
+2026-08-20,Land Mobile,Primary leg,24084,9641
+2026-08-20,Fixed Link,Primary leg,8894,8522
+2026-08-20,Fixed Link,Return leg (#),7648,7648
+2026-08-20,Land Mobile,Return leg (#),6255,6254
+2026-08-20,Broadcasting,Primary leg,2389,2289
+2026-08-20,Satellite & Space,Primary leg,1524,1493
+2026-08-20,Paging,Primary leg,1121,175
+2026-08-20,Maritime,Primary leg,817,287
+2026-08-20,Aeronautical,Primary leg,788,533
+2026-08-20,General User Licence,Primary leg,553,23
+2026-08-20,Amateur,Primary leg,466,420
+2026-08-20,Radiodetermination,Primary leg,282,269
+2026-08-20,Telemetry & Telecommand,Primary leg,269,253
+2026-08-20,Amateur,Return leg (#),187,170
+2026-08-20,Maritime,Return leg (#),140,129
+2026-08-20,Outside Broadcast,Primary leg,50,9
+2026-08-20,Outside Broadcast,Return leg (#),48,9
+2026-08-20,Meteorological,Primary leg,38,31
+2026-08-20,General User Licence,Return leg (#),23,2
+2026-08-20,Radiodetermination,Return leg (#),16,16
+2026-08-20,Aeronautical,Return leg (#),1,1
+2026-08-21,Spectrum Licence,Primary leg,30298,30229
+2026-08-21,Land Mobile,Primary leg,24086,9641
+2026-08-21,Fixed Link,Primary leg,8894,8522
+2026-08-21,Fixed Link,Return leg (#),7648,7648
+2026-08-21,Land Mobile,Return leg (#),6255,6254
+2026-08-21,Broadcasting,Primary leg,2389,2289
+2026-08-21,Satellite & Space,Primary leg,1524,1493
+2026-08-21,Paging,Primary leg,1121,175
+2026-08-21,Maritime,Primary leg,817,287
+2026-08-21,Aeronautical,Primary leg,788,533
+2026-08-21,General User Licence,Primary leg,553,23
+2026-08-21,Amateur,Primary leg,466,420
+2026-08-21,Radiodetermination,Primary leg,282,269
+2026-08-21,Telemetry & Telecommand,Primary leg,269,253
+2026-08-21,Amateur,Return leg (#),187,170
+2026-08-21,Maritime,Return leg (#),140,129
+2026-08-21,Outside Broadcast,Primary leg,50,9
+2026-08-21,Outside Broadcast,Return leg (#),48,9
+2026-08-21,Meteorological,Primary leg,38,31
+2026-08-21,General User Licence,Return leg (#),23,2
+2026-08-21,Radiodetermination,Return leg (#),16,16
+2026-08-21,Aeronautical,Return leg (#),1,1
+2026-08-22,Spectrum Licence,Primary leg,30298,30229
+2026-08-22,Land Mobile,Primary leg,24086,9641
+2026-08-22,Fixed Link,Primary leg,8894,8522
+2026-08-22,Fixed Link,Return leg (#),7648,7648
+2026-08-22,Land Mobile,Return leg (#),6255,6254
+2026-08-22,Broadcasting,Primary leg,2389,2289
+2026-08-22,Satellite & Space,Primary leg,1524,1493
+2026-08-22,Paging,Primary leg,1121,175
+2026-08-22,Maritime,Primary leg,817,287
+2026-08-22,Aeronautical,Primary leg,788,533
+2026-08-22,General User Licence,Primary leg,553,23
+2026-08-22,Amateur,Primary leg,466,420
+2026-08-22,Radiodetermination,Primary leg,282,269
+2026-08-22,Telemetry & Telecommand,Primary leg,269,253
+2026-08-22,Amateur,Return leg (#),187,170
+2026-08-22,Maritime,Return leg (#),140,129
+2026-08-22,Outside Broadcast,Primary leg,50,9
+2026-08-22,Outside Broadcast,Return leg (#),48,9
+2026-08-22,Meteorological,Primary leg,38,31
+2026-08-22,General User Licence,Return leg (#),23,2
+2026-08-22,Radiodetermination,Return leg (#),16,16
+2026-08-22,Aeronautical,Return leg (#),1,1
+2026-08-23,Spectrum Licence,Primary leg,30298,30229
+2026-08-23,Land Mobile,Primary leg,24085,9640
+2026-08-23,Fixed Link,Primary leg,8884,8512
+2026-08-23,Fixed Link,Return leg (#),7638,7638
+2026-08-23,Land Mobile,Return leg (#),6255,6254
+2026-08-23,Broadcasting,Primary leg,2389,2289
+2026-08-23,Satellite & Space,Primary leg,1524,1493
+2026-08-23,Paging,Primary leg,1121,175
+2026-08-23,Maritime,Primary leg,817,287
+2026-08-23,Aeronautical,Primary leg,788,533
+2026-08-23,General User Licence,Primary leg,553,23
+2026-08-23,Amateur,Primary leg,466,420
+2026-08-23,Radiodetermination,Primary leg,283,270
+2026-08-23,Telemetry & Telecommand,Primary leg,269,253
+2026-08-23,Amateur,Return leg (#),187,170
+2026-08-23,Maritime,Return leg (#),140,129
+2026-08-23,Outside Broadcast,Primary leg,50,9
+2026-08-23,Outside Broadcast,Return leg (#),48,9
+2026-08-23,Meteorological,Primary leg,38,31
+2026-08-23,General User Licence,Return leg (#),23,2
+2026-08-23,Radiodetermination,Return leg (#),16,16
+2026-08-23,Aeronautical,Return leg (#),1,1
+2026-08-24,Spectrum Licence,Primary leg,30319,30250
+2026-08-24,Land Mobile,Primary leg,24084,9639
+2026-08-24,Fixed Link,Primary leg,8894,8522
+2026-08-24,Fixed Link,Return leg (#),7648,7648
+2026-08-24,Land Mobile,Return leg (#),6254,6253
+2026-08-24,Broadcasting,Primary leg,2389,2289
+2026-08-24,Satellite & Space,Primary leg,1524,1493
+2026-08-24,Paging,Primary leg,1121,175
+2026-08-24,Maritime,Primary leg,817,287
+2026-08-24,Aeronautical,Primary leg,788,533
+2026-08-24,General User Licence,Primary leg,553,23
+2026-08-24,Amateur,Primary leg,466,420
+2026-08-24,Radiodetermination,Primary leg,283,270
+2026-08-24,Telemetry & Telecommand,Primary leg,269,253
+2026-08-24,Amateur,Return leg (#),187,170
+2026-08-24,Maritime,Return leg (#),140,129
+2026-08-24,Outside Broadcast,Primary leg,50,9
+2026-08-24,Outside Broadcast,Return leg (#),48,9
+2026-08-24,Meteorological,Primary leg,38,31
+2026-08-24,General User Licence,Return leg (#),23,2
+2026-08-24,Radiodetermination,Return leg (#),16,16
+2026-08-24,Aeronautical,Return leg (#),1,1
+2026-08-25,Spectrum Licence,Primary leg,30313,30244
+2026-08-25,Land Mobile,Primary leg,24075,9631
+2026-08-25,Fixed Link,Primary leg,8897,8525
+2026-08-25,Fixed Link,Return leg (#),7651,7651
+2026-08-25,Land Mobile,Return leg (#),6247,6246
+2026-08-25,Broadcasting,Primary leg,2389,2289
+2026-08-25,Satellite & Space,Primary leg,1524,1493
+2026-08-25,Paging,Primary leg,1121,175
+2026-08-25,Maritime,Primary leg,817,287
+2026-08-25,Aeronautical,Primary leg,788,533
+2026-08-25,General User Licence,Primary leg,553,23
+2026-08-25,Amateur,Primary leg,466,420
+2026-08-25,Radiodetermination,Primary leg,283,270
+2026-08-25,Telemetry & Telecommand,Primary leg,269,253
+2026-08-25,Amateur,Return leg (#),187,170
+2026-08-25,Maritime,Return leg (#),140,129
+2026-08-25,Outside Broadcast,Primary leg,50,9
+2026-08-25,Outside Broadcast,Return leg (#),48,9
+2026-08-25,Meteorological,Primary leg,38,31
+2026-08-25,General User Licence,Return leg (#),23,2
+2026-08-25,Radiodetermination,Return leg (#),16,16
+2026-08-25,Aeronautical,Return leg (#),1,1
+2026-08-26,Spectrum Licence,Primary leg,30313,30244
+2026-08-26,Land Mobile,Primary leg,24089,9636
+2026-08-26,Fixed Link,Primary leg,8898,8526
+2026-08-26,Fixed Link,Return leg (#),7652,7652
+2026-08-26,Land Mobile,Return leg (#),6251,6250
+2026-08-26,Broadcasting,Primary leg,2389,2289
+2026-08-26,Satellite & Space,Primary leg,1524,1493
+2026-08-26,Paging,Primary leg,1121,175
+2026-08-26,Maritime,Primary leg,817,287
+2026-08-26,Aeronautical,Primary leg,788,533
+2026-08-26,General User Licence,Primary leg,553,23
+2026-08-26,Amateur,Primary leg,466,420
+2026-08-26,Radiodetermination,Primary leg,283,270
+2026-08-26,Telemetry & Telecommand,Primary leg,269,253
+2026-08-26,Amateur,Return leg (#),187,170
+2026-08-26,Maritime,Return leg (#),140,129
+2026-08-26,Outside Broadcast,Primary leg,50,9
+2026-08-26,Outside Broadcast,Return leg (#),48,9
+2026-08-26,Meteorological,Primary leg,38,31
+2026-08-26,General User Licence,Return leg (#),23,2
+2026-08-26,Radiodetermination,Return leg (#),16,16
+2026-08-26,Aeronautical,Return leg (#),1,1
+2026-08-27,Spectrum Licence,Primary leg,30313,30244
+2026-08-27,Land Mobile,Primary leg,24088,9635
+2026-08-27,Fixed Link,Primary leg,8898,8526
+2026-08-27,Fixed Link,Return leg (#),7652,7652
+2026-08-27,Land Mobile,Return leg (#),6251,6250
+2026-08-27,Broadcasting,Primary leg,2389,2289
+2026-08-27,Satellite & Space,Primary leg,1524,1493
+2026-08-27,Paging,Primary leg,1121,175
+2026-08-27,Maritime,Primary leg,817,287
+2026-08-27,Aeronautical,Primary leg,788,533
+2026-08-27,General User Licence,Primary leg,553,23
+2026-08-27,Amateur,Primary leg,466,420
+2026-08-27,Radiodetermination,Primary leg,283,270
+2026-08-27,Telemetry & Telecommand,Primary leg,269,253
+2026-08-27,Amateur,Return leg (#),187,170
+2026-08-27,Maritime,Return leg (#),140,129
+2026-08-27,Outside Broadcast,Primary leg,50,9
+2026-08-27,Outside Broadcast,Return leg (#),48,9
+2026-08-27,Meteorological,Primary leg,38,31
+2026-08-27,General User Licence,Return leg (#),23,2
+2026-08-27,Radiodetermination,Return leg (#),16,16
+2026-08-27,Aeronautical,Return leg (#),1,1
+2026-08-28,Spectrum Licence,Primary leg,30313,30244
+2026-08-28,Land Mobile,Primary leg,24089,9636
+2026-08-28,Fixed Link,Primary leg,8899,8527
+2026-08-28,Fixed Link,Return leg (#),7653,7653
+2026-08-28,Land Mobile,Return leg (#),6252,6251
+2026-08-28,Broadcasting,Primary leg,2389,2289
+2026-08-28,Satellite & Space,Primary leg,1524,1493
+2026-08-28,Paging,Primary leg,1121,175
+2026-08-28,Maritime,Primary leg,817,287
+2026-08-28,Aeronautical,Primary leg,788,533
+2026-08-28,General User Licence,Primary leg,553,23
+2026-08-28,Amateur,Primary leg,466,420
+2026-08-28,Radiodetermination,Primary leg,283,270
+2026-08-28,Telemetry & Telecommand,Primary leg,269,253
+2026-08-28,Amateur,Return leg (#),187,170
+2026-08-28,Maritime,Return leg (#),140,129
+2026-08-28,Outside Broadcast,Primary leg,50,9
+2026-08-28,Outside Broadcast,Return leg (#),48,9
+2026-08-28,Meteorological,Primary leg,38,31
+2026-08-28,General User Licence,Return leg (#),23,2
+2026-08-28,Radiodetermination,Return leg (#),16,16
+2026-08-28,Aeronautical,Return leg (#),1,1
+2026-08-29,Spectrum Licence,Primary leg,30313,30244
+2026-08-29,Land Mobile,Primary leg,24085,9635
+2026-08-29,Fixed Link,Primary leg,8899,8527
+2026-08-29,Fixed Link,Return leg (#),7653,7653
+2026-08-29,Land Mobile,Return leg (#),6252,6251
+2026-08-29,Broadcasting,Primary leg,2389,2289
+2026-08-29,Satellite & Space,Primary leg,1524,1493
+2026-08-29,Paging,Primary leg,1121,175
+2026-08-29,Maritime,Primary leg,817,287
+2026-08-29,Aeronautical,Primary leg,788,533
+2026-08-29,General User Licence,Primary leg,553,23
+2026-08-29,Amateur,Primary leg,466,420
+2026-08-29,Radiodetermination,Primary leg,283,270
+2026-08-29,Telemetry & Telecommand,Primary leg,269,253
+2026-08-29,Amateur,Return leg (#),187,170
+2026-08-29,Maritime,Return leg (#),140,129
+2026-08-29,Outside Broadcast,Primary leg,50,9
+2026-08-29,Outside Broadcast,Return leg (#),48,9
+2026-08-29,Meteorological,Primary leg,38,31
+2026-08-29,General User Licence,Return leg (#),23,2
+2026-08-29,Radiodetermination,Return leg (#),16,16
+2026-08-29,Aeronautical,Return leg (#),1,1
+2026-08-30,Spectrum Licence,Primary leg,30313,30244
+2026-08-30,Land Mobile,Primary leg,24075,9630
+2026-08-30,Fixed Link,Primary leg,8899,8527
+2026-08-30,Fixed Link,Return leg (#),7652,7652
+2026-08-30,Land Mobile,Return leg (#),6249,6248
+2026-08-30,Broadcasting,Primary leg,2389,2289
+2026-08-30,Satellite & Space,Primary leg,1524,1493
+2026-08-30,Paging,Primary leg,1121,175
+2026-08-30,Maritime,Primary leg,817,287
+2026-08-30,Aeronautical,Primary leg,788,533
+2026-08-30,General User Licence,Primary leg,553,23
+2026-08-30,Amateur,Primary leg,466,420
+2026-08-30,Radiodetermination,Primary leg,283,270
+2026-08-30,Telemetry & Telecommand,Primary leg,269,253
+2026-08-30,Amateur,Return leg (#),187,170
+2026-08-30,Maritime,Return leg (#),140,129
+2026-08-30,Outside Broadcast,Primary leg,50,9
+2026-08-30,Outside Broadcast,Return leg (#),48,9
+2026-08-30,Meteorological,Primary leg,38,31
+2026-08-30,General User Licence,Return leg (#),23,2
+2026-08-30,Radiodetermination,Return leg (#),16,16
+2026-08-30,Aeronautical,Return leg (#),1,1
+2026-08-31,Spectrum Licence,Primary leg,30313,30244
+2026-08-31,Land Mobile,Primary leg,24072,9627
+2026-08-31,Fixed Link,Primary leg,8900,8528
+2026-08-31,Fixed Link,Return leg (#),7653,7653
+2026-08-31,Land Mobile,Return leg (#),6248,6247
+2026-08-31,Broadcasting,Primary leg,2389,2289
+2026-08-31,Satellite & Space,Primary leg,1514,1483
+2026-08-31,Paging,Primary leg,1121,175
+2026-08-31,Maritime,Primary leg,817,287
+2026-08-31,Aeronautical,Primary leg,788,533
+2026-08-31,General User Licence,Primary leg,553,23
+2026-08-31,Amateur,Primary leg,466,420
+2026-08-31,Radiodetermination,Primary leg,283,270
+2026-08-31,Telemetry & Telecommand,Primary leg,269,253
+2026-08-31,Amateur,Return leg (#),187,170
+2026-08-31,Maritime,Return leg (#),140,129
+2026-08-31,Outside Broadcast,Primary leg,50,9
+2026-08-31,Outside Broadcast,Return leg (#),48,9
+2026-08-31,Meteorological,Primary leg,38,31
+2026-08-31,General User Licence,Return leg (#),23,2
+2026-08-31,Radiodetermination,Return leg (#),16,16
+2026-08-31,Aeronautical,Return leg (#),1,1
+2026-09-01,Spectrum Licence,Primary leg,30366,30297
+2026-09-01,Land Mobile,Primary leg,24072,9627
+2026-09-01,Fixed Link,Primary leg,8910,8538
+2026-09-01,Fixed Link,Return leg (#),7663,7663
+2026-09-01,Land Mobile,Return leg (#),6248,6247
+2026-09-01,Broadcasting,Primary leg,2389,2289
+2026-09-01,Satellite & Space,Primary leg,1520,1489
+2026-09-01,Paging,Primary leg,1121,175
+2026-09-01,Maritime,Primary leg,817,287
+2026-09-01,Aeronautical,Primary leg,788,533
+2026-09-01,General User Licence,Primary leg,553,23
+2026-09-01,Amateur,Primary leg,466,420
+2026-09-01,Radiodetermination,Primary leg,283,270
+2026-09-01,Telemetry & Telecommand,Primary leg,269,253
+2026-09-01,Amateur,Return leg (#),187,170
+2026-09-01,Maritime,Return leg (#),140,129
+2026-09-01,Outside Broadcast,Primary leg,50,9
+2026-09-01,Outside Broadcast,Return leg (#),48,9
+2026-09-01,Meteorological,Primary leg,38,31
+2026-09-01,General User Licence,Return leg (#),23,2
+2026-09-01,Radiodetermination,Return leg (#),16,16
+2026-09-01,Aeronautical,Return leg (#),1,1
+2026-09-02,Spectrum Licence,Primary leg,30366,30297
+2026-09-02,Land Mobile,Primary leg,24076,9628
+2026-09-02,Fixed Link,Primary leg,8911,8539
+2026-09-02,Fixed Link,Return leg (#),7664,7664
+2026-09-02,Land Mobile,Return leg (#),6248,6247
+2026-09-02,Broadcasting,Primary leg,2389,2289
+2026-09-02,Satellite & Space,Primary leg,1520,1489
+2026-09-02,Paging,Primary leg,1121,175
+2026-09-02,Maritime,Primary leg,817,287
+2026-09-02,Aeronautical,Primary leg,788,533
+2026-09-02,General User Licence,Primary leg,553,23
+2026-09-02,Amateur,Primary leg,466,420
+2026-09-02,Radiodetermination,Primary leg,283,270
+2026-09-02,Telemetry & Telecommand,Primary leg,269,253
+2026-09-02,Amateur,Return leg (#),187,170
+2026-09-02,Maritime,Return leg (#),140,129
+2026-09-02,Outside Broadcast,Primary leg,50,9
+2026-09-02,Outside Broadcast,Return leg (#),48,9
+2026-09-02,Meteorological,Primary leg,38,31
+2026-09-02,General User Licence,Return leg (#),23,2
+2026-09-02,Radiodetermination,Return leg (#),16,16
+2026-09-02,Aeronautical,Return leg (#),1,1
+2026-09-03,Spectrum Licence,Primary leg,30366,30297
+2026-09-03,Land Mobile,Primary leg,24080,9629
+2026-09-03,Fixed Link,Primary leg,8911,8539
+2026-09-03,Fixed Link,Return leg (#),7664,7664
+2026-09-03,Land Mobile,Return leg (#),6249,6248
+2026-09-03,Broadcasting,Primary leg,2389,2289
+2026-09-03,Satellite & Space,Primary leg,1520,1489
+2026-09-03,Paging,Primary leg,1121,175
+2026-09-03,Maritime,Primary leg,817,287
+2026-09-03,Aeronautical,Primary leg,788,533
+2026-09-03,General User Licence,Primary leg,553,23
+2026-09-03,Amateur,Primary leg,466,420
+2026-09-03,Radiodetermination,Primary leg,283,270
+2026-09-03,Telemetry & Telecommand,Primary leg,259,243
+2026-09-03,Amateur,Return leg (#),187,170
+2026-09-03,Maritime,Return leg (#),140,129
+2026-09-03,Outside Broadcast,Primary leg,50,9
+2026-09-03,Outside Broadcast,Return leg (#),48,9
+2026-09-03,Meteorological,Primary leg,38,31
+2026-09-03,General User Licence,Return leg (#),23,2
+2026-09-03,Radiodetermination,Return leg (#),16,16
+2026-09-03,Aeronautical,Return leg (#),1,1
+2026-09-04,Spectrum Licence,Primary leg,30366,30297
+2026-09-04,Land Mobile,Primary leg,24076,9624
+2026-09-04,Fixed Link,Primary leg,8911,8539
+2026-09-04,Fixed Link,Return leg (#),7664,7664
+2026-09-04,Land Mobile,Return leg (#),6246,6245
+2026-09-04,Broadcasting,Primary leg,2389,2289
+2026-09-04,Satellite & Space,Primary leg,1520,1489
+2026-09-04,Paging,Primary leg,1121,175
+2026-09-04,Maritime,Primary leg,817,287
+2026-09-04,Aeronautical,Primary leg,788,533
+2026-09-04,General User Licence,Primary leg,553,23
+2026-09-04,Amateur,Primary leg,466,420
+2026-09-04,Radiodetermination,Primary leg,283,270
+2026-09-04,Telemetry & Telecommand,Primary leg,259,243
+2026-09-04,Amateur,Return leg (#),187,170
+2026-09-04,Maritime,Return leg (#),140,129
+2026-09-04,Outside Broadcast,Primary leg,50,9
+2026-09-04,Outside Broadcast,Return leg (#),48,9
+2026-09-04,Meteorological,Primary leg,38,31
+2026-09-04,General User Licence,Return leg (#),23,2
+2026-09-04,Radiodetermination,Return leg (#),16,16
+2026-09-04,Aeronautical,Return leg (#),1,1
+2026-09-05,Spectrum Licence,Primary leg,30366,30297
+2026-09-05,Land Mobile,Primary leg,24076,9624
+2026-09-05,Fixed Link,Primary leg,8911,8539
+2026-09-05,Fixed Link,Return leg (#),7664,7664
+2026-09-05,Land Mobile,Return leg (#),6246,6245
+2026-09-05,Broadcasting,Primary leg,2389,2289
+2026-09-05,Satellite & Space,Primary leg,1520,1489
+2026-09-05,Paging,Primary leg,1121,175
+2026-09-05,Maritime,Primary leg,817,287
+2026-09-05,Aeronautical,Primary leg,788,533
+2026-09-05,General User Licence,Primary leg,553,23
+2026-09-05,Amateur,Primary leg,466,420
+2026-09-05,Radiodetermination,Primary leg,283,270
+2026-09-05,Telemetry & Telecommand,Primary leg,259,243
+2026-09-05,Amateur,Return leg (#),187,170
+2026-09-05,Maritime,Return leg (#),140,129
+2026-09-05,Outside Broadcast,Primary leg,50,9
+2026-09-05,Outside Broadcast,Return leg (#),48,9
+2026-09-05,Meteorological,Primary leg,38,31
+2026-09-05,General User Licence,Return leg (#),23,2
+2026-09-05,Radiodetermination,Return leg (#),16,16
+2026-09-05,Aeronautical,Return leg (#),1,1
+2026-09-06,Spectrum Licence,Primary leg,30366,30297
+2026-09-06,Land Mobile,Primary leg,24077,9625
+2026-09-06,Fixed Link,Primary leg,8913,8541
+2026-09-06,Fixed Link,Return leg (#),7666,7666
+2026-09-06,Land Mobile,Return leg (#),6247,6246
+2026-09-06,Broadcasting,Primary leg,2389,2289
+2026-09-06,Satellite & Space,Primary leg,1520,1489
+2026-09-06,Paging,Primary leg,1121,175
+2026-09-06,Maritime,Primary leg,817,287
+2026-09-06,Aeronautical,Primary leg,788,533
+2026-09-06,General User Licence,Primary leg,553,23
+2026-09-06,Amateur,Primary leg,466,420
+2026-09-06,Radiodetermination,Primary leg,283,270
+2026-09-06,Telemetry & Telecommand,Primary leg,259,243
+2026-09-06,Amateur,Return leg (#),187,170
+2026-09-06,Maritime,Return leg (#),140,129
+2026-09-06,Outside Broadcast,Primary leg,50,9
+2026-09-06,Outside Broadcast,Return leg (#),48,9
+2026-09-06,Meteorological,Primary leg,38,31
+2026-09-06,General User Licence,Return leg (#),23,2
+2026-09-06,Radiodetermination,Return leg (#),16,16
+2026-09-06,Aeronautical,Return leg (#),1,1
+2026-09-07,Spectrum Licence,Primary leg,30394,30325
+2026-09-07,Land Mobile,Primary leg,24077,9625
+2026-09-07,Fixed Link,Primary leg,8913,8541
+2026-09-07,Fixed Link,Return leg (#),7666,7666
+2026-09-07,Land Mobile,Return leg (#),6247,6246
+2026-09-07,Broadcasting,Primary leg,2389,2289
+2026-09-07,Satellite & Space,Primary leg,1520,1489
+2026-09-07,Paging,Primary leg,1121,175
+2026-09-07,Maritime,Primary leg,817,287
+2026-09-07,Aeronautical,Primary leg,788,533
+2026-09-07,General User Licence,Primary leg,553,23
+2026-09-07,Amateur,Primary leg,466,420
+2026-09-07,Radiodetermination,Primary leg,283,270
+2026-09-07,Telemetry & Telecommand,Primary leg,259,243
+2026-09-07,Amateur,Return leg (#),187,170
+2026-09-07,Maritime,Return leg (#),140,129
+2026-09-07,Outside Broadcast,Primary leg,50,9
+2026-09-07,Outside Broadcast,Return leg (#),48,9
+2026-09-07,Meteorological,Primary leg,38,31
+2026-09-07,General User Licence,Return leg (#),23,2
+2026-09-07,Radiodetermination,Return leg (#),16,16
+2026-09-07,Aeronautical,Return leg (#),1,1

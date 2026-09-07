@@ -1,0 +1,1243 @@
+observed_date,licence_type,assignment_count,distinct_licensees
+2026-08-12,Other (Spectrum),29522,6
+2026-08-12,Land Simplex,13574,2362
+2026-08-12,Fixed >=1 GHz (Bi-directional),10740,147
+2026-08-12,Land Repeater,10152,871
+2026-08-12,Land Mobile - Mobile Transmit,6219,878
+2026-08-12,Fixed <1 GHz; BW <=50 kHz (Bi-directional),2740,163
+2026-08-12,VHF FM,1794,111
+2026-08-12,Fixed Bi-directional Point-to-Multipoint,1644,70
+2026-08-12,Satellite,1341,21
+2026-08-12,Paging,1121,99
+2026-08-12,Maritime Coast Station,718,51
+2026-08-12,Managed Spectrum Park,645,20
+2026-08-12,Fixed < 1GHz; BW >50kHz (Uni-directional),618,87
+2026-08-12,General user licence (Radio),568,1
+2026-08-12,Fixed <1 GHz; BW <=50 kHz (Uni-directional),561,45
+2026-08-12,Aero Base (Off Route),449,71
+2026-08-12,Aero Base (Route),319,25
+2026-08-12,MF AM,307,31
+2026-08-12,Amateur Repeater - Mobile Transmit,290,74
+2026-08-12,Amateur Repeater,281,74
+2026-08-12,Telemetry/Telecommand (Uni-directional),245,75
+2026-08-12,Land Simplex Govt. use only,235,22
+2026-08-12,Fixed < 1GHz; BW >50kHz (Bi-directional),213,15
+2026-08-12,UHF TV,187,9
+2026-08-12,Satellite - Satellite Transmit,163,15
+2026-08-12,Maritime Mobile - Mobile Transmit,119,46
+2026-08-12,Maritime Repeater,119,46
+2026-08-12,HF AM (Radio),103,2
+2026-08-12,"Radiodet - Radio Beacons (VOR, NDB, ILS)",87,4
+2026-08-12,Radiodetermination - Mobile Transmit,84,3
+2026-08-12,Land Simplex - General Channels,78,16
+2026-08-12,"Two Frequency (SSR, DME)",77,3
+2026-08-12,Fixed Television Outside Broadcast 2G8 Band,50,3
+2026-08-12,Fixed Television Outside Broadcast 7G Band,48,5
+2026-08-12,Radar (Other),48,9
+2026-08-12,PRS Repeater,39,37
+2026-08-12,Fixed Uni-directional Point-to-Multipoint,36,10
+2026-08-12,PRS - Mobile Transmit,35,33
+2026-08-12,Amateur Digipeater,31,19
+2026-08-12,Amateur Fixed,25,3
+2026-08-12,Telemetry/Telecommand (Bi-directional),24,6
+2026-08-12,Amateur Beacon,22,8
+2026-08-12,Meteorological Radar,20,4
+2026-08-12,Meteorological Aid (Radiosonde),18,4
+2026-08-12,Aero Mobile (Off Route),9,6
+2026-08-12,General user licence (Spectrum),8,1
+2026-08-12,Fixed >=1 GHz (Uni-directional),6,2
+2026-08-12,Space operations earth stations,5,2
+2026-08-12,Space operations spacecraft,5,2
+2026-08-12,Aero Repeater,4,2
+2026-08-12,Aero Repeater - Mobile Transmit,4,2
+2026-08-12,Amateur TV Repeater,4,1
+2026-08-12,Aero Mobile (Route),2,2
+2026-08-12,Radar,2,1
+2026-08-17,Other (Spectrum),29651,6
+2026-08-17,Land Simplex,13573,2360
+2026-08-17,Fixed >=1 GHz (Bi-directional),10722,146
+2026-08-17,Land Repeater,10155,871
+2026-08-17,Land Mobile - Mobile Transmit,6222,878
+2026-08-17,Fixed <1 GHz; BW <=50 kHz (Bi-directional),2740,162
+2026-08-17,VHF FM,1793,111
+2026-08-17,Fixed Bi-directional Point-to-Multipoint,1644,70
+2026-08-17,Satellite,1346,21
+2026-08-17,Paging,1121,99
+2026-08-17,Maritime Coast Station,719,51
+2026-08-17,Managed Spectrum Park,645,20
+2026-08-17,Fixed < 1GHz; BW >50kHz (Uni-directional),618,87
+2026-08-17,General user licence (Radio),568,1
+2026-08-17,Fixed <1 GHz; BW <=50 kHz (Uni-directional),561,45
+2026-08-17,Aero Base (Off Route),445,70
+2026-08-17,Aero Base (Route),324,25
+2026-08-17,MF AM,306,31
+2026-08-17,Amateur Repeater - Mobile Transmit,290,74
+2026-08-17,Amateur Repeater,281,74
+2026-08-17,Telemetry/Telecommand (Uni-directional),245,75
+2026-08-17,Land Simplex Govt. use only,235,22
+2026-08-17,Fixed < 1GHz; BW >50kHz (Bi-directional),213,14
+2026-08-17,UHF TV,187,9
+2026-08-17,Satellite - Satellite Transmit,168,15
+2026-08-17,Maritime Mobile - Mobile Transmit,119,46
+2026-08-17,Maritime Repeater,119,46
+2026-08-17,HF AM (Radio),103,2
+2026-08-17,"Radiodet - Radio Beacons (VOR, NDB, ILS)",87,4
+2026-08-17,Radiodetermination - Mobile Transmit,84,3
+2026-08-17,Land Simplex - General Channels,78,16
+2026-08-17,"Two Frequency (SSR, DME)",77,3
+2026-08-17,Fixed Television Outside Broadcast 2G8 Band,50,3
+2026-08-17,Fixed Television Outside Broadcast 7G Band,48,5
+2026-08-17,Radar (Other),48,9
+2026-08-17,PRS Repeater,39,37
+2026-08-17,Fixed Uni-directional Point-to-Multipoint,36,10
+2026-08-17,PRS - Mobile Transmit,35,33
+2026-08-17,Amateur Digipeater,31,19
+2026-08-17,Amateur Fixed,25,3
+2026-08-17,Telemetry/Telecommand (Bi-directional),24,6
+2026-08-17,Amateur Beacon,22,8
+2026-08-17,Meteorological Radar,20,4
+2026-08-17,Meteorological Aid (Radiosonde),18,4
+2026-08-17,General user licence (Spectrum),8,1
+2026-08-17,Fixed >=1 GHz (Uni-directional),6,2
+2026-08-17,Aero Mobile (Off Route),5,5
+2026-08-17,Space operations earth stations,5,2
+2026-08-17,Space operations spacecraft,5,2
+2026-08-17,Aero Repeater,4,2
+2026-08-17,Aero Repeater - Mobile Transmit,4,2
+2026-08-17,Amateur TV Repeater,4,1
+2026-08-17,Aero Mobile (Route),2,2
+2026-08-17,Radar,2,1
+2026-08-18,Other (Spectrum),29651,6
+2026-08-18,Land Simplex,13572,2360
+2026-08-18,Fixed >=1 GHz (Bi-directional),10722,146
+2026-08-18,Land Repeater,10156,871
+2026-08-18,Land Mobile - Mobile Transmit,6223,878
+2026-08-18,Fixed <1 GHz; BW <=50 kHz (Bi-directional),2740,162
+2026-08-18,VHF FM,1793,111
+2026-08-18,Fixed Bi-directional Point-to-Multipoint,1644,70
+2026-08-18,Satellite,1346,21
+2026-08-18,Paging,1121,99
+2026-08-18,Maritime Coast Station,719,51
+2026-08-18,Managed Spectrum Park,645,20
+2026-08-18,Fixed < 1GHz; BW >50kHz (Uni-directional),618,87
+2026-08-18,General user licence (Radio),568,1
+2026-08-18,Fixed <1 GHz; BW <=50 kHz (Uni-directional),561,45
+2026-08-18,Aero Base (Off Route),449,71
+2026-08-18,Aero Base (Route),324,25
+2026-08-18,MF AM,306,31
+2026-08-18,Amateur Repeater - Mobile Transmit,290,74
+2026-08-18,Amateur Repeater,281,74
+2026-08-18,Telemetry/Telecommand (Uni-directional),245,75
+2026-08-18,Land Simplex Govt. use only,235,22
+2026-08-18,Fixed < 1GHz; BW >50kHz (Bi-directional),213,14
+2026-08-18,UHF TV,187,9
+2026-08-18,Satellite - Satellite Transmit,168,15
+2026-08-18,Maritime Mobile - Mobile Transmit,119,46
+2026-08-18,Maritime Repeater,119,46
+2026-08-18,HF AM (Radio),103,2
+2026-08-18,"Radiodet - Radio Beacons (VOR, NDB, ILS)",87,4
+2026-08-18,Radiodetermination - Mobile Transmit,84,3
+2026-08-18,Land Simplex - General Channels,78,16
+2026-08-18,"Two Frequency (SSR, DME)",77,3
+2026-08-18,Fixed Television Outside Broadcast 2G8 Band,50,3
+2026-08-18,Fixed Television Outside Broadcast 7G Band,48,5
+2026-08-18,Radar (Other),48,9
+2026-08-18,PRS Repeater,39,37
+2026-08-18,Fixed Uni-directional Point-to-Multipoint,36,10
+2026-08-18,PRS - Mobile Transmit,35,33
+2026-08-18,Amateur Digipeater,31,19
+2026-08-18,Amateur Fixed,25,3
+2026-08-18,Telemetry/Telecommand (Bi-directional),24,6
+2026-08-18,Amateur Beacon,22,8
+2026-08-18,Meteorological Radar,20,4
+2026-08-18,Meteorological Aid (Radiosonde),18,4
+2026-08-18,General user licence (Spectrum),8,1
+2026-08-18,Aero Mobile (Off Route),7,6
+2026-08-18,Fixed >=1 GHz (Uni-directional),6,2
+2026-08-18,Space operations earth stations,5,2
+2026-08-18,Space operations spacecraft,5,2
+2026-08-18,Aero Repeater,4,2
+2026-08-18,Aero Repeater - Mobile Transmit,4,2
+2026-08-18,Amateur TV Repeater,4,1
+2026-08-18,Aero Mobile (Route),2,2
+2026-08-18,Radar,2,1
+2026-08-19,Other (Spectrum),29653,6
+2026-08-19,Land Simplex,13577,2360
+2026-08-19,Fixed >=1 GHz (Bi-directional),10724,146
+2026-08-19,Land Repeater,10156,871
+2026-08-19,Land Mobile - Mobile Transmit,6223,878
+2026-08-19,Fixed <1 GHz; BW <=50 kHz (Bi-directional),2740,162
+2026-08-19,VHF FM,1793,111
+2026-08-19,Fixed Bi-directional Point-to-Multipoint,1644,70
+2026-08-19,Satellite,1346,21
+2026-08-19,Paging,1121,99
+2026-08-19,Maritime Coast Station,719,51
+2026-08-19,Managed Spectrum Park,645,20
+2026-08-19,Fixed < 1GHz; BW >50kHz (Uni-directional),618,87
+2026-08-19,General user licence (Radio),568,1
+2026-08-19,Fixed <1 GHz; BW <=50 kHz (Uni-directional),561,45
+2026-08-19,Aero Base (Off Route),448,71
+2026-08-19,Aero Base (Route),324,25
+2026-08-19,MF AM,306,31
+2026-08-19,Amateur Repeater - Mobile Transmit,290,74
+2026-08-19,Amateur Repeater,281,74
+2026-08-19,Telemetry/Telecommand (Uni-directional),245,75
+2026-08-19,Land Simplex Govt. use only,235,22
+2026-08-19,Fixed < 1GHz; BW >50kHz (Bi-directional),213,14
+2026-08-19,UHF TV,187,9
+2026-08-19,Satellite - Satellite Transmit,168,15
+2026-08-19,Maritime Mobile - Mobile Transmit,119,46
+2026-08-19,Maritime Repeater,119,46
+2026-08-19,HF AM (Radio),103,2
+2026-08-19,"Radiodet - Radio Beacons (VOR, NDB, ILS)",87,4
+2026-08-19,Radiodetermination - Mobile Transmit,84,3
+2026-08-19,Land Simplex - General Channels,78,16
+2026-08-19,"Two Frequency (SSR, DME)",77,3
+2026-08-19,Fixed Television Outside Broadcast 2G8 Band,50,3
+2026-08-19,Fixed Television Outside Broadcast 7G Band,48,5
+2026-08-19,Radar (Other),48,9
+2026-08-19,PRS Repeater,39,37
+2026-08-19,Fixed Uni-directional Point-to-Multipoint,36,10
+2026-08-19,PRS - Mobile Transmit,35,33
+2026-08-19,Amateur Digipeater,31,19
+2026-08-19,Amateur Fixed,25,3
+2026-08-19,Telemetry/Telecommand (Bi-directional),24,6
+2026-08-19,Amateur Beacon,22,8
+2026-08-19,Meteorological Radar,20,4
+2026-08-19,Meteorological Aid (Radiosonde),18,4
+2026-08-19,General user licence (Spectrum),8,1
+2026-08-19,Aero Mobile (Off Route),7,6
+2026-08-19,Fixed >=1 GHz (Uni-directional),6,2
+2026-08-19,Space operations earth stations,5,2
+2026-08-19,Space operations spacecraft,5,2
+2026-08-19,Aero Repeater,4,2
+2026-08-19,Aero Repeater - Mobile Transmit,4,2
+2026-08-19,Amateur TV Repeater,4,1
+2026-08-19,Aero Mobile (Route),2,2
+2026-08-19,Radar,2,1
+2026-08-20,Other (Spectrum),29653,6
+2026-08-20,Land Simplex,13575,2359
+2026-08-20,Fixed >=1 GHz (Bi-directional),10724,146
+2026-08-20,Land Repeater,10155,871
+2026-08-20,Land Mobile - Mobile Transmit,6222,878
+2026-08-20,Fixed <1 GHz; BW <=50 kHz (Bi-directional),2740,162
+2026-08-20,VHF FM,1793,111
+2026-08-20,Fixed Bi-directional Point-to-Multipoint,1644,70
+2026-08-20,Satellite,1346,21
+2026-08-20,Paging,1121,99
+2026-08-20,Maritime Coast Station,719,51
+2026-08-20,Managed Spectrum Park,645,20
+2026-08-20,Fixed < 1GHz; BW >50kHz (Uni-directional),618,87
+2026-08-20,General user licence (Radio),568,1
+2026-08-20,Fixed <1 GHz; BW <=50 kHz (Uni-directional),561,45
+2026-08-20,Aero Base (Off Route),448,71
+2026-08-20,Aero Base (Route),324,25
+2026-08-20,MF AM,306,31
+2026-08-20,Amateur Repeater - Mobile Transmit,290,74
+2026-08-20,Amateur Repeater,281,74
+2026-08-20,Telemetry/Telecommand (Uni-directional),245,75
+2026-08-20,Land Simplex Govt. use only,235,22
+2026-08-20,Fixed < 1GHz; BW >50kHz (Bi-directional),213,14
+2026-08-20,UHF TV,187,9
+2026-08-20,Satellite - Satellite Transmit,168,15
+2026-08-20,Maritime Mobile - Mobile Transmit,119,46
+2026-08-20,Maritime Repeater,119,46
+2026-08-20,HF AM (Radio),103,2
+2026-08-20,"Radiodet - Radio Beacons (VOR, NDB, ILS)",87,4
+2026-08-20,Radiodetermination - Mobile Transmit,84,3
+2026-08-20,Land Simplex - General Channels,78,16
+2026-08-20,"Two Frequency (SSR, DME)",77,3
+2026-08-20,Fixed Television Outside Broadcast 2G8 Band,50,3
+2026-08-20,Fixed Television Outside Broadcast 7G Band,48,5
+2026-08-20,Radar (Other),48,9
+2026-08-20,PRS Repeater,39,37
+2026-08-20,Fixed Uni-directional Point-to-Multipoint,36,10
+2026-08-20,PRS - Mobile Transmit,35,33
+2026-08-20,Amateur Digipeater,31,19
+2026-08-20,Amateur Fixed,25,3
+2026-08-20,Telemetry/Telecommand (Bi-directional),24,6
+2026-08-20,Amateur Beacon,22,8
+2026-08-20,Meteorological Radar,20,4
+2026-08-20,Meteorological Aid (Radiosonde),18,4
+2026-08-20,General user licence (Spectrum),8,1
+2026-08-20,Aero Mobile (Off Route),7,6
+2026-08-20,Fixed >=1 GHz (Uni-directional),6,2
+2026-08-20,Space operations earth stations,5,2
+2026-08-20,Space operations spacecraft,5,2
+2026-08-20,Aero Repeater,4,2
+2026-08-20,Aero Repeater - Mobile Transmit,4,2
+2026-08-20,Amateur TV Repeater,4,1
+2026-08-20,Aero Mobile (Route),2,2
+2026-08-20,Radar,2,1
+2026-08-21,Other (Spectrum),29653,6
+2026-08-21,Land Simplex,13577,2359
+2026-08-21,Fixed >=1 GHz (Bi-directional),10724,146
+2026-08-21,Land Repeater,10155,871
+2026-08-21,Land Mobile - Mobile Transmit,6222,878
+2026-08-21,Fixed <1 GHz; BW <=50 kHz (Bi-directional),2740,162
+2026-08-21,VHF FM,1793,111
+2026-08-21,Fixed Bi-directional Point-to-Multipoint,1644,70
+2026-08-21,Satellite,1346,21
+2026-08-21,Paging,1121,99
+2026-08-21,Maritime Coast Station,719,51
+2026-08-21,Managed Spectrum Park,645,20
+2026-08-21,Fixed < 1GHz; BW >50kHz (Uni-directional),618,87
+2026-08-21,General user licence (Radio),568,1
+2026-08-21,Fixed <1 GHz; BW <=50 kHz (Uni-directional),561,45
+2026-08-21,Aero Base (Off Route),448,71
+2026-08-21,Aero Base (Route),324,25
+2026-08-21,MF AM,306,31
+2026-08-21,Amateur Repeater - Mobile Transmit,290,74
+2026-08-21,Amateur Repeater,281,74
+2026-08-21,Telemetry/Telecommand (Uni-directional),245,75
+2026-08-21,Land Simplex Govt. use only,235,22
+2026-08-21,Fixed < 1GHz; BW >50kHz (Bi-directional),213,14
+2026-08-21,UHF TV,187,9
+2026-08-21,Satellite - Satellite Transmit,168,15
+2026-08-21,Maritime Mobile - Mobile Transmit,119,46
+2026-08-21,Maritime Repeater,119,46
+2026-08-21,HF AM (Radio),103,2
+2026-08-21,"Radiodet - Radio Beacons (VOR, NDB, ILS)",87,4
+2026-08-21,Radiodetermination - Mobile Transmit,84,3
+2026-08-21,Land Simplex - General Channels,78,16
+2026-08-21,"Two Frequency (SSR, DME)",77,3
+2026-08-21,Fixed Television Outside Broadcast 2G8 Band,50,3
+2026-08-21,Fixed Television Outside Broadcast 7G Band,48,5
+2026-08-21,Radar (Other),48,9
+2026-08-21,PRS Repeater,39,37
+2026-08-21,Fixed Uni-directional Point-to-Multipoint,36,10
+2026-08-21,PRS - Mobile Transmit,35,33
+2026-08-21,Amateur Digipeater,31,19
+2026-08-21,Amateur Fixed,25,3
+2026-08-21,Telemetry/Telecommand (Bi-directional),24,6
+2026-08-21,Amateur Beacon,22,8
+2026-08-21,Meteorological Radar,20,4
+2026-08-21,Meteorological Aid (Radiosonde),18,4
+2026-08-21,General user licence (Spectrum),8,1
+2026-08-21,Aero Mobile (Off Route),7,6
+2026-08-21,Fixed >=1 GHz (Uni-directional),6,2
+2026-08-21,Space operations earth stations,5,2
+2026-08-21,Space operations spacecraft,5,2
+2026-08-21,Aero Repeater,4,2
+2026-08-21,Aero Repeater - Mobile Transmit,4,2
+2026-08-21,Amateur TV Repeater,4,1
+2026-08-21,Aero Mobile (Route),2,2
+2026-08-21,Radar,2,1
+2026-08-22,Other (Spectrum),29653,6
+2026-08-22,Land Simplex,13577,2359
+2026-08-22,Fixed >=1 GHz (Bi-directional),10724,146
+2026-08-22,Land Repeater,10155,871
+2026-08-22,Land Mobile - Mobile Transmit,6222,878
+2026-08-22,Fixed <1 GHz; BW <=50 kHz (Bi-directional),2740,162
+2026-08-22,VHF FM,1793,111
+2026-08-22,Fixed Bi-directional Point-to-Multipoint,1644,70
+2026-08-22,Satellite,1346,21
+2026-08-22,Paging,1121,99
+2026-08-22,Maritime Coast Station,719,51
+2026-08-22,Managed Spectrum Park,645,20
+2026-08-22,Fixed < 1GHz; BW >50kHz (Uni-directional),618,87
+2026-08-22,General user licence (Radio),568,1
+2026-08-22,Fixed <1 GHz; BW <=50 kHz (Uni-directional),561,45
+2026-08-22,Aero Base (Off Route),448,71
+2026-08-22,Aero Base (Route),324,25
+2026-08-22,MF AM,306,31
+2026-08-22,Amateur Repeater - Mobile Transmit,290,74
+2026-08-22,Amateur Repeater,281,74
+2026-08-22,Telemetry/Telecommand (Uni-directional),245,75
+2026-08-22,Land Simplex Govt. use only,235,22
+2026-08-22,Fixed < 1GHz; BW >50kHz (Bi-directional),213,14
+2026-08-22,UHF TV,187,9
+2026-08-22,Satellite - Satellite Transmit,168,15
+2026-08-22,Maritime Mobile - Mobile Transmit,119,46
+2026-08-22,Maritime Repeater,119,46
+2026-08-22,HF AM (Radio),103,2
+2026-08-22,"Radiodet - Radio Beacons (VOR, NDB, ILS)",87,4
+2026-08-22,Radiodetermination - Mobile Transmit,84,3
+2026-08-22,Land Simplex - General Channels,78,16
+2026-08-22,"Two Frequency (SSR, DME)",77,3
+2026-08-22,Fixed Television Outside Broadcast 2G8 Band,50,3
+2026-08-22,Fixed Television Outside Broadcast 7G Band,48,5
+2026-08-22,Radar (Other),48,9
+2026-08-22,PRS Repeater,39,37
+2026-08-22,Fixed Uni-directional Point-to-Multipoint,36,10
+2026-08-22,PRS - Mobile Transmit,35,33
+2026-08-22,Amateur Digipeater,31,19
+2026-08-22,Amateur Fixed,25,3
+2026-08-22,Telemetry/Telecommand (Bi-directional),24,6
+2026-08-22,Amateur Beacon,22,8
+2026-08-22,Meteorological Radar,20,4
+2026-08-22,Meteorological Aid (Radiosonde),18,4
+2026-08-22,General user licence (Spectrum),8,1
+2026-08-22,Aero Mobile (Off Route),7,6
+2026-08-22,Fixed >=1 GHz (Uni-directional),6,2
+2026-08-22,Space operations earth stations,5,2
+2026-08-22,Space operations spacecraft,5,2
+2026-08-22,Aero Repeater,4,2
+2026-08-22,Aero Repeater - Mobile Transmit,4,2
+2026-08-22,Amateur TV Repeater,4,1
+2026-08-22,Aero Mobile (Route),2,2
+2026-08-22,Radar,2,1
+2026-08-23,Other (Spectrum),29653,6
+2026-08-23,Land Simplex,13576,2358
+2026-08-23,Fixed >=1 GHz (Bi-directional),10704,146
+2026-08-23,Land Repeater,10155,871
+2026-08-23,Land Mobile - Mobile Transmit,6222,878
+2026-08-23,Fixed <1 GHz; BW <=50 kHz (Bi-directional),2740,162
+2026-08-23,VHF FM,1793,111
+2026-08-23,Fixed Bi-directional Point-to-Multipoint,1644,70
+2026-08-23,Satellite,1346,21
+2026-08-23,Paging,1121,99
+2026-08-23,Maritime Coast Station,719,51
+2026-08-23,Managed Spectrum Park,645,20
+2026-08-23,Fixed < 1GHz; BW >50kHz (Uni-directional),618,87
+2026-08-23,General user licence (Radio),568,1
+2026-08-23,Fixed <1 GHz; BW <=50 kHz (Uni-directional),561,45
+2026-08-23,Aero Base (Off Route),448,71
+2026-08-23,Aero Base (Route),324,25
+2026-08-23,MF AM,306,31
+2026-08-23,Amateur Repeater - Mobile Transmit,290,74
+2026-08-23,Amateur Repeater,281,74
+2026-08-23,Telemetry/Telecommand (Uni-directional),245,75
+2026-08-23,Land Simplex Govt. use only,235,22
+2026-08-23,Fixed < 1GHz; BW >50kHz (Bi-directional),213,14
+2026-08-23,UHF TV,187,9
+2026-08-23,Satellite - Satellite Transmit,168,15
+2026-08-23,Maritime Mobile - Mobile Transmit,119,46
+2026-08-23,Maritime Repeater,119,46
+2026-08-23,HF AM (Radio),103,2
+2026-08-23,"Radiodet - Radio Beacons (VOR, NDB, ILS)",87,4
+2026-08-23,Radiodetermination - Mobile Transmit,84,3
+2026-08-23,Land Simplex - General Channels,78,16
+2026-08-23,"Two Frequency (SSR, DME)",77,3
+2026-08-23,Fixed Television Outside Broadcast 2G8 Band,50,3
+2026-08-23,Radar (Other),49,10
+2026-08-23,Fixed Television Outside Broadcast 7G Band,48,5
+2026-08-23,PRS Repeater,39,37
+2026-08-23,Fixed Uni-directional Point-to-Multipoint,36,10
+2026-08-23,PRS - Mobile Transmit,35,33
+2026-08-23,Amateur Digipeater,31,19
+2026-08-23,Amateur Fixed,25,3
+2026-08-23,Telemetry/Telecommand (Bi-directional),24,6
+2026-08-23,Amateur Beacon,22,8
+2026-08-23,Meteorological Radar,20,4
+2026-08-23,Meteorological Aid (Radiosonde),18,4
+2026-08-23,General user licence (Spectrum),8,1
+2026-08-23,Aero Mobile (Off Route),7,6
+2026-08-23,Fixed >=1 GHz (Uni-directional),6,2
+2026-08-23,Space operations earth stations,5,2
+2026-08-23,Space operations spacecraft,5,2
+2026-08-23,Aero Repeater,4,2
+2026-08-23,Aero Repeater - Mobile Transmit,4,2
+2026-08-23,Amateur TV Repeater,4,1
+2026-08-23,Aero Mobile (Route),2,2
+2026-08-23,Radar,2,1
+2026-08-24,Other (Spectrum),29674,6
+2026-08-24,Land Simplex,13576,2358
+2026-08-24,Fixed >=1 GHz (Bi-directional),10724,146
+2026-08-24,Land Repeater,10154,870
+2026-08-24,Land Mobile - Mobile Transmit,6221,877
+2026-08-24,Fixed <1 GHz; BW <=50 kHz (Bi-directional),2740,162
+2026-08-24,VHF FM,1793,111
+2026-08-24,Fixed Bi-directional Point-to-Multipoint,1644,70
+2026-08-24,Satellite,1346,21
+2026-08-24,Paging,1121,99
+2026-08-24,Maritime Coast Station,719,51
+2026-08-24,Managed Spectrum Park,645,20
+2026-08-24,Fixed < 1GHz; BW >50kHz (Uni-directional),618,87
+2026-08-24,General user licence (Radio),568,1
+2026-08-24,Fixed <1 GHz; BW <=50 kHz (Uni-directional),561,45
+2026-08-24,Aero Base (Off Route),448,71
+2026-08-24,Aero Base (Route),324,25
+2026-08-24,MF AM,306,31
+2026-08-24,Amateur Repeater - Mobile Transmit,290,74
+2026-08-24,Amateur Repeater,281,74
+2026-08-24,Telemetry/Telecommand (Uni-directional),245,75
+2026-08-24,Land Simplex Govt. use only,235,22
+2026-08-24,Fixed < 1GHz; BW >50kHz (Bi-directional),213,14
+2026-08-24,UHF TV,187,9
+2026-08-24,Satellite - Satellite Transmit,168,15
+2026-08-24,Maritime Mobile - Mobile Transmit,119,46
+2026-08-24,Maritime Repeater,119,46
+2026-08-24,HF AM (Radio),103,2
+2026-08-24,"Radiodet - Radio Beacons (VOR, NDB, ILS)",87,4
+2026-08-24,Radiodetermination - Mobile Transmit,84,3
+2026-08-24,Land Simplex - General Channels,78,16
+2026-08-24,"Two Frequency (SSR, DME)",77,3
+2026-08-24,Fixed Television Outside Broadcast 2G8 Band,50,3
+2026-08-24,Radar (Other),49,10
+2026-08-24,Fixed Television Outside Broadcast 7G Band,48,5
+2026-08-24,PRS Repeater,39,37
+2026-08-24,Fixed Uni-directional Point-to-Multipoint,36,10
+2026-08-24,PRS - Mobile Transmit,35,33
+2026-08-24,Amateur Digipeater,31,19
+2026-08-24,Amateur Fixed,25,3
+2026-08-24,Telemetry/Telecommand (Bi-directional),24,6
+2026-08-24,Amateur Beacon,22,8
+2026-08-24,Meteorological Radar,20,4
+2026-08-24,Meteorological Aid (Radiosonde),18,4
+2026-08-24,General user licence (Spectrum),8,1
+2026-08-24,Aero Mobile (Off Route),7,6
+2026-08-24,Fixed >=1 GHz (Uni-directional),6,2
+2026-08-24,Space operations earth stations,5,2
+2026-08-24,Space operations spacecraft,5,2
+2026-08-24,Aero Repeater,4,2
+2026-08-24,Aero Repeater - Mobile Transmit,4,2
+2026-08-24,Amateur TV Repeater,4,1
+2026-08-24,Aero Mobile (Route),2,2
+2026-08-24,Radar,2,1
+2026-08-25,Other (Spectrum),29674,6
+2026-08-25,Land Simplex,13574,2358
+2026-08-25,Fixed >=1 GHz (Bi-directional),10728,146
+2026-08-25,Land Repeater,10147,870
+2026-08-25,Land Mobile - Mobile Transmit,6214,877
+2026-08-25,Fixed <1 GHz; BW <=50 kHz (Bi-directional),2742,162
+2026-08-25,VHF FM,1793,111
+2026-08-25,Fixed Bi-directional Point-to-Multipoint,1644,70
+2026-08-25,Satellite,1346,21
+2026-08-25,Paging,1121,99
+2026-08-25,Maritime Coast Station,719,51
+2026-08-25,Managed Spectrum Park,639,20
+2026-08-25,Fixed < 1GHz; BW >50kHz (Uni-directional),618,87
+2026-08-25,General user licence (Radio),568,1
+2026-08-25,Fixed <1 GHz; BW <=50 kHz (Uni-directional),561,45
+2026-08-25,Aero Base (Off Route),448,71
+2026-08-25,Aero Base (Route),324,25
+2026-08-25,MF AM,306,31
+2026-08-25,Amateur Repeater - Mobile Transmit,290,74
+2026-08-25,Amateur Repeater,281,74
+2026-08-25,Telemetry/Telecommand (Uni-directional),245,75
+2026-08-25,Land Simplex Govt. use only,235,22
+2026-08-25,Fixed < 1GHz; BW >50kHz (Bi-directional),213,14
+2026-08-25,UHF TV,187,9
+2026-08-25,Satellite - Satellite Transmit,168,15
+2026-08-25,Maritime Mobile - Mobile Transmit,119,46
+2026-08-25,Maritime Repeater,119,46
+2026-08-25,HF AM (Radio),103,2
+2026-08-25,"Radiodet - Radio Beacons (VOR, NDB, ILS)",87,4
+2026-08-25,Radiodetermination - Mobile Transmit,84,3
+2026-08-25,Land Simplex - General Channels,78,16
+2026-08-25,"Two Frequency (SSR, DME)",77,3
+2026-08-25,Fixed Television Outside Broadcast 2G8 Band,50,3
+2026-08-25,Radar (Other),49,10
+2026-08-25,Fixed Television Outside Broadcast 7G Band,48,5
+2026-08-25,PRS Repeater,39,37
+2026-08-25,Fixed Uni-directional Point-to-Multipoint,36,10
+2026-08-25,PRS - Mobile Transmit,35,33
+2026-08-25,Amateur Digipeater,31,19
+2026-08-25,Amateur Fixed,25,3
+2026-08-25,Telemetry/Telecommand (Bi-directional),24,6
+2026-08-25,Amateur Beacon,22,8
+2026-08-25,Meteorological Radar,20,4
+2026-08-25,Meteorological Aid (Radiosonde),18,4
+2026-08-25,General user licence (Spectrum),8,1
+2026-08-25,Aero Mobile (Off Route),7,6
+2026-08-25,Fixed >=1 GHz (Uni-directional),6,2
+2026-08-25,Space operations earth stations,5,2
+2026-08-25,Space operations spacecraft,5,2
+2026-08-25,Aero Repeater,4,2
+2026-08-25,Aero Repeater - Mobile Transmit,4,2
+2026-08-25,Amateur TV Repeater,4,1
+2026-08-25,Aero Mobile (Route),2,2
+2026-08-25,Radar,2,1
+2026-08-26,Other (Spectrum),29674,6
+2026-08-26,Land Simplex,13584,2359
+2026-08-26,Fixed >=1 GHz (Bi-directional),10728,146
+2026-08-26,Land Repeater,10151,871
+2026-08-26,Land Mobile - Mobile Transmit,6218,878
+2026-08-26,Fixed <1 GHz; BW <=50 kHz (Bi-directional),2744,163
+2026-08-26,VHF FM,1793,111
+2026-08-26,Fixed Bi-directional Point-to-Multipoint,1644,70
+2026-08-26,Satellite,1346,21
+2026-08-26,Paging,1121,99
+2026-08-26,Maritime Coast Station,719,51
+2026-08-26,Managed Spectrum Park,639,20
+2026-08-26,Fixed < 1GHz; BW >50kHz (Uni-directional),618,87
+2026-08-26,General user licence (Radio),568,1
+2026-08-26,Fixed <1 GHz; BW <=50 kHz (Uni-directional),561,45
+2026-08-26,Aero Base (Off Route),448,71
+2026-08-26,Aero Base (Route),324,25
+2026-08-26,MF AM,306,31
+2026-08-26,Amateur Repeater - Mobile Transmit,290,74
+2026-08-26,Amateur Repeater,281,74
+2026-08-26,Telemetry/Telecommand (Uni-directional),245,75
+2026-08-26,Land Simplex Govt. use only,235,22
+2026-08-26,Fixed < 1GHz; BW >50kHz (Bi-directional),213,14
+2026-08-26,UHF TV,187,9
+2026-08-26,Satellite - Satellite Transmit,168,15
+2026-08-26,Maritime Mobile - Mobile Transmit,119,46
+2026-08-26,Maritime Repeater,119,46
+2026-08-26,HF AM (Radio),103,2
+2026-08-26,"Radiodet - Radio Beacons (VOR, NDB, ILS)",87,4
+2026-08-26,Radiodetermination - Mobile Transmit,84,3
+2026-08-26,Land Simplex - General Channels,78,16
+2026-08-26,"Two Frequency (SSR, DME)",77,3
+2026-08-26,Fixed Television Outside Broadcast 2G8 Band,50,3
+2026-08-26,Radar (Other),49,10
+2026-08-26,Fixed Television Outside Broadcast 7G Band,48,5
+2026-08-26,PRS Repeater,39,37
+2026-08-26,Fixed Uni-directional Point-to-Multipoint,36,10
+2026-08-26,PRS - Mobile Transmit,35,33
+2026-08-26,Amateur Digipeater,31,19
+2026-08-26,Amateur Fixed,25,3
+2026-08-26,Telemetry/Telecommand (Bi-directional),24,6
+2026-08-26,Amateur Beacon,22,8
+2026-08-26,Meteorological Radar,20,4
+2026-08-26,Meteorological Aid (Radiosonde),18,4
+2026-08-26,General user licence (Spectrum),8,1
+2026-08-26,Aero Mobile (Off Route),7,6
+2026-08-26,Fixed >=1 GHz (Uni-directional),6,2
+2026-08-26,Space operations earth stations,5,2
+2026-08-26,Space operations spacecraft,5,2
+2026-08-26,Aero Repeater,4,2
+2026-08-26,Aero Repeater - Mobile Transmit,4,2
+2026-08-26,Amateur TV Repeater,4,1
+2026-08-26,Aero Mobile (Route),2,2
+2026-08-26,Radar,2,1
+2026-08-27,Other (Spectrum),29674,6
+2026-08-27,Land Simplex,13583,2358
+2026-08-27,Fixed >=1 GHz (Bi-directional),10728,146
+2026-08-27,Land Repeater,10151,871
+2026-08-27,Land Mobile - Mobile Transmit,6218,878
+2026-08-27,Fixed <1 GHz; BW <=50 kHz (Bi-directional),2744,163
+2026-08-27,VHF FM,1793,111
+2026-08-27,Fixed Bi-directional Point-to-Multipoint,1644,70
+2026-08-27,Satellite,1346,21
+2026-08-27,Paging,1121,99
+2026-08-27,Maritime Coast Station,719,51
+2026-08-27,Managed Spectrum Park,639,20
+2026-08-27,Fixed < 1GHz; BW >50kHz (Uni-directional),618,87
+2026-08-27,General user licence (Radio),568,1
+2026-08-27,Fixed <1 GHz; BW <=50 kHz (Uni-directional),561,45
+2026-08-27,Aero Base (Off Route),448,71
+2026-08-27,Aero Base (Route),324,25
+2026-08-27,MF AM,306,31
+2026-08-27,Amateur Repeater - Mobile Transmit,290,74
+2026-08-27,Amateur Repeater,281,74
+2026-08-27,Telemetry/Telecommand (Uni-directional),245,75
+2026-08-27,Land Simplex Govt. use only,235,22
+2026-08-27,Fixed < 1GHz; BW >50kHz (Bi-directional),213,14
+2026-08-27,UHF TV,187,9
+2026-08-27,Satellite - Satellite Transmit,168,15
+2026-08-27,Maritime Mobile - Mobile Transmit,119,46
+2026-08-27,Maritime Repeater,119,46
+2026-08-27,HF AM (Radio),103,2
+2026-08-27,"Radiodet - Radio Beacons (VOR, NDB, ILS)",87,4
+2026-08-27,Radiodetermination - Mobile Transmit,84,3
+2026-08-27,Land Simplex - General Channels,78,16
+2026-08-27,"Two Frequency (SSR, DME)",77,3
+2026-08-27,Fixed Television Outside Broadcast 2G8 Band,50,3
+2026-08-27,Radar (Other),49,10
+2026-08-27,Fixed Television Outside Broadcast 7G Band,48,5
+2026-08-27,PRS Repeater,39,37
+2026-08-27,Fixed Uni-directional Point-to-Multipoint,36,10
+2026-08-27,PRS - Mobile Transmit,35,33
+2026-08-27,Amateur Digipeater,31,19
+2026-08-27,Amateur Fixed,25,3
+2026-08-27,Telemetry/Telecommand (Bi-directional),24,6
+2026-08-27,Amateur Beacon,22,8
+2026-08-27,Meteorological Radar,20,4
+2026-08-27,Meteorological Aid (Radiosonde),18,4
+2026-08-27,General user licence (Spectrum),8,1
+2026-08-27,Aero Mobile (Off Route),7,6
+2026-08-27,Fixed >=1 GHz (Uni-directional),6,2
+2026-08-27,Space operations earth stations,5,2
+2026-08-27,Space operations spacecraft,5,2
+2026-08-27,Aero Repeater,4,2
+2026-08-27,Aero Repeater - Mobile Transmit,4,2
+2026-08-27,Amateur TV Repeater,4,1
+2026-08-27,Aero Mobile (Route),2,2
+2026-08-27,Radar,2,1
+2026-08-28,Other (Spectrum),29674,6
+2026-08-28,Land Simplex,13583,2358
+2026-08-28,Fixed >=1 GHz (Bi-directional),10730,146
+2026-08-28,Land Repeater,10152,871
+2026-08-28,Land Mobile - Mobile Transmit,6219,878
+2026-08-28,Fixed <1 GHz; BW <=50 kHz (Bi-directional),2744,163
+2026-08-28,VHF FM,1793,111
+2026-08-28,Fixed Bi-directional Point-to-Multipoint,1644,70
+2026-08-28,Satellite,1346,21
+2026-08-28,Paging,1121,99
+2026-08-28,Maritime Coast Station,719,51
+2026-08-28,Managed Spectrum Park,639,20
+2026-08-28,Fixed < 1GHz; BW >50kHz (Uni-directional),618,87
+2026-08-28,General user licence (Radio),568,1
+2026-08-28,Fixed <1 GHz; BW <=50 kHz (Uni-directional),561,45
+2026-08-28,Aero Base (Off Route),448,71
+2026-08-28,Aero Base (Route),324,25
+2026-08-28,MF AM,306,31
+2026-08-28,Amateur Repeater - Mobile Transmit,290,74
+2026-08-28,Amateur Repeater,281,74
+2026-08-28,Telemetry/Telecommand (Uni-directional),245,75
+2026-08-28,Land Simplex Govt. use only,235,22
+2026-08-28,Fixed < 1GHz; BW >50kHz (Bi-directional),213,14
+2026-08-28,UHF TV,187,9
+2026-08-28,Satellite - Satellite Transmit,168,15
+2026-08-28,Maritime Mobile - Mobile Transmit,119,46
+2026-08-28,Maritime Repeater,119,46
+2026-08-28,HF AM (Radio),103,2
+2026-08-28,"Radiodet - Radio Beacons (VOR, NDB, ILS)",87,4
+2026-08-28,Radiodetermination - Mobile Transmit,84,3
+2026-08-28,Land Simplex - General Channels,78,16
+2026-08-28,"Two Frequency (SSR, DME)",77,3
+2026-08-28,Fixed Television Outside Broadcast 2G8 Band,50,3
+2026-08-28,Radar (Other),49,10
+2026-08-28,Fixed Television Outside Broadcast 7G Band,48,5
+2026-08-28,PRS Repeater,39,37
+2026-08-28,Fixed Uni-directional Point-to-Multipoint,36,10
+2026-08-28,PRS - Mobile Transmit,35,33
+2026-08-28,Amateur Digipeater,31,19
+2026-08-28,Amateur Fixed,25,3
+2026-08-28,Telemetry/Telecommand (Bi-directional),24,6
+2026-08-28,Amateur Beacon,22,8
+2026-08-28,Meteorological Radar,20,4
+2026-08-28,Meteorological Aid (Radiosonde),18,4
+2026-08-28,General user licence (Spectrum),8,1
+2026-08-28,Aero Mobile (Off Route),7,6
+2026-08-28,Fixed >=1 GHz (Uni-directional),6,2
+2026-08-28,Space operations earth stations,5,2
+2026-08-28,Space operations spacecraft,5,2
+2026-08-28,Aero Repeater,4,2
+2026-08-28,Aero Repeater - Mobile Transmit,4,2
+2026-08-28,Amateur TV Repeater,4,1
+2026-08-28,Aero Mobile (Route),2,2
+2026-08-28,Radar,2,1
+2026-08-29,Other (Spectrum),29674,6
+2026-08-29,Land Simplex,13583,2358
+2026-08-29,Fixed >=1 GHz (Bi-directional),10730,146
+2026-08-29,Land Repeater,10152,871
+2026-08-29,Land Mobile - Mobile Transmit,6219,878
+2026-08-29,Fixed <1 GHz; BW <=50 kHz (Bi-directional),2744,163
+2026-08-29,VHF FM,1793,111
+2026-08-29,Fixed Bi-directional Point-to-Multipoint,1644,70
+2026-08-29,Satellite,1346,21
+2026-08-29,Paging,1121,99
+2026-08-29,Maritime Coast Station,719,51
+2026-08-29,Managed Spectrum Park,639,20
+2026-08-29,Fixed < 1GHz; BW >50kHz (Uni-directional),618,87
+2026-08-29,General user licence (Radio),568,1
+2026-08-29,Fixed <1 GHz; BW <=50 kHz (Uni-directional),561,45
+2026-08-29,Aero Base (Off Route),448,71
+2026-08-29,Aero Base (Route),324,25
+2026-08-29,MF AM,306,31
+2026-08-29,Amateur Repeater - Mobile Transmit,290,74
+2026-08-29,Amateur Repeater,281,74
+2026-08-29,Telemetry/Telecommand (Uni-directional),245,75
+2026-08-29,Land Simplex Govt. use only,235,22
+2026-08-29,Fixed < 1GHz; BW >50kHz (Bi-directional),213,14
+2026-08-29,UHF TV,187,9
+2026-08-29,Satellite - Satellite Transmit,168,15
+2026-08-29,Maritime Mobile - Mobile Transmit,119,46
+2026-08-29,Maritime Repeater,119,46
+2026-08-29,HF AM (Radio),103,2
+2026-08-29,"Radiodet - Radio Beacons (VOR, NDB, ILS)",87,4
+2026-08-29,Radiodetermination - Mobile Transmit,84,3
+2026-08-29,"Two Frequency (SSR, DME)",77,3
+2026-08-29,Land Simplex - General Channels,74,15
+2026-08-29,Fixed Television Outside Broadcast 2G8 Band,50,3
+2026-08-29,Radar (Other),49,10
+2026-08-29,Fixed Television Outside Broadcast 7G Band,48,5
+2026-08-29,PRS Repeater,39,37
+2026-08-29,Fixed Uni-directional Point-to-Multipoint,36,10
+2026-08-29,PRS - Mobile Transmit,35,33
+2026-08-29,Amateur Digipeater,31,19
+2026-08-29,Amateur Fixed,25,3
+2026-08-29,Telemetry/Telecommand (Bi-directional),24,6
+2026-08-29,Amateur Beacon,22,8
+2026-08-29,Meteorological Radar,20,4
+2026-08-29,Meteorological Aid (Radiosonde),18,4
+2026-08-29,General user licence (Spectrum),8,1
+2026-08-29,Aero Mobile (Off Route),7,6
+2026-08-29,Fixed >=1 GHz (Uni-directional),6,2
+2026-08-29,Space operations earth stations,5,2
+2026-08-29,Space operations spacecraft,5,2
+2026-08-29,Aero Repeater,4,2
+2026-08-29,Aero Repeater - Mobile Transmit,4,2
+2026-08-29,Amateur TV Repeater,4,1
+2026-08-29,Aero Mobile (Route),2,2
+2026-08-29,Radar,2,1
+2026-08-30,Other (Spectrum),29674,6
+2026-08-30,Land Simplex,13576,2356
+2026-08-30,Fixed >=1 GHz (Bi-directional),10730,146
+2026-08-30,Land Repeater,10149,871
+2026-08-30,Land Mobile - Mobile Transmit,6216,878
+2026-08-30,Fixed <1 GHz; BW <=50 kHz (Bi-directional),2744,163
+2026-08-30,VHF FM,1793,111
+2026-08-30,Fixed Bi-directional Point-to-Multipoint,1644,70
+2026-08-30,Satellite,1346,21
+2026-08-30,Paging,1121,99
+2026-08-30,Maritime Coast Station,719,51
+2026-08-30,Managed Spectrum Park,639,20
+2026-08-30,Fixed < 1GHz; BW >50kHz (Uni-directional),617,86
+2026-08-30,General user licence (Radio),568,1
+2026-08-30,Fixed <1 GHz; BW <=50 kHz (Uni-directional),561,45
+2026-08-30,Aero Base (Off Route),448,71
+2026-08-30,Aero Base (Route),324,25
+2026-08-30,MF AM,306,31
+2026-08-30,Amateur Repeater - Mobile Transmit,290,74
+2026-08-30,Amateur Repeater,281,74
+2026-08-30,Telemetry/Telecommand (Uni-directional),245,75
+2026-08-30,Land Simplex Govt. use only,235,22
+2026-08-30,Fixed < 1GHz; BW >50kHz (Bi-directional),213,14
+2026-08-30,UHF TV,187,9
+2026-08-30,Satellite - Satellite Transmit,168,15
+2026-08-30,Maritime Mobile - Mobile Transmit,119,46
+2026-08-30,Maritime Repeater,119,46
+2026-08-30,HF AM (Radio),103,2
+2026-08-30,"Radiodet - Radio Beacons (VOR, NDB, ILS)",87,4
+2026-08-30,Radiodetermination - Mobile Transmit,84,3
+2026-08-30,"Two Frequency (SSR, DME)",77,3
+2026-08-30,Land Simplex - General Channels,74,15
+2026-08-30,Fixed Television Outside Broadcast 2G8 Band,50,3
+2026-08-30,Radar (Other),49,10
+2026-08-30,Fixed Television Outside Broadcast 7G Band,48,5
+2026-08-30,PRS Repeater,39,37
+2026-08-30,Fixed Uni-directional Point-to-Multipoint,36,10
+2026-08-30,PRS - Mobile Transmit,35,33
+2026-08-30,Amateur Digipeater,31,19
+2026-08-30,Amateur Fixed,25,3
+2026-08-30,Telemetry/Telecommand (Bi-directional),24,6
+2026-08-30,Amateur Beacon,22,8
+2026-08-30,Meteorological Radar,20,4
+2026-08-30,Meteorological Aid (Radiosonde),18,4
+2026-08-30,General user licence (Spectrum),8,1
+2026-08-30,Aero Mobile (Off Route),7,6
+2026-08-30,Fixed >=1 GHz (Uni-directional),6,2
+2026-08-30,Space operations earth stations,5,2
+2026-08-30,Space operations spacecraft,5,2
+2026-08-30,Aero Repeater,4,2
+2026-08-30,Aero Repeater - Mobile Transmit,4,2
+2026-08-30,Amateur TV Repeater,4,1
+2026-08-30,Aero Mobile (Route),2,2
+2026-08-30,Radar,2,1
+2026-08-31,Other (Spectrum),29674,6
+2026-08-31,Land Simplex,13576,2356
+2026-08-31,Fixed >=1 GHz (Bi-directional),10732,146
+2026-08-31,Land Repeater,10146,871
+2026-08-31,Land Mobile - Mobile Transmit,6215,878
+2026-08-31,Fixed <1 GHz; BW <=50 kHz (Bi-directional),2744,163
+2026-08-31,VHF FM,1793,111
+2026-08-31,Fixed Bi-directional Point-to-Multipoint,1644,70
+2026-08-31,Satellite,1341,21
+2026-08-31,Paging,1121,99
+2026-08-31,Maritime Coast Station,719,51
+2026-08-31,Managed Spectrum Park,639,20
+2026-08-31,Fixed < 1GHz; BW >50kHz (Uni-directional),617,86
+2026-08-31,General user licence (Radio),568,1
+2026-08-31,Fixed <1 GHz; BW <=50 kHz (Uni-directional),561,45
+2026-08-31,Aero Base (Off Route),448,71
+2026-08-31,Aero Base (Route),324,25
+2026-08-31,MF AM,306,31
+2026-08-31,Amateur Repeater - Mobile Transmit,290,74
+2026-08-31,Amateur Repeater,281,74
+2026-08-31,Telemetry/Telecommand (Uni-directional),245,75
+2026-08-31,Land Simplex Govt. use only,235,22
+2026-08-31,Fixed < 1GHz; BW >50kHz (Bi-directional),213,14
+2026-08-31,UHF TV,187,9
+2026-08-31,Satellite - Satellite Transmit,163,15
+2026-08-31,Maritime Mobile - Mobile Transmit,119,46
+2026-08-31,Maritime Repeater,119,46
+2026-08-31,HF AM (Radio),103,2
+2026-08-31,"Radiodet - Radio Beacons (VOR, NDB, ILS)",87,4
+2026-08-31,Radiodetermination - Mobile Transmit,84,3
+2026-08-31,"Two Frequency (SSR, DME)",77,3
+2026-08-31,Land Simplex - General Channels,74,15
+2026-08-31,Fixed Television Outside Broadcast 2G8 Band,50,3
+2026-08-31,Radar (Other),49,10
+2026-08-31,Fixed Television Outside Broadcast 7G Band,48,5
+2026-08-31,PRS Repeater,39,37
+2026-08-31,Fixed Uni-directional Point-to-Multipoint,36,10
+2026-08-31,PRS - Mobile Transmit,35,33
+2026-08-31,Amateur Digipeater,31,19
+2026-08-31,Amateur Fixed,25,3
+2026-08-31,Telemetry/Telecommand (Bi-directional),24,6
+2026-08-31,Amateur Beacon,22,8
+2026-08-31,Meteorological Radar,20,4
+2026-08-31,Meteorological Aid (Radiosonde),18,4
+2026-08-31,General user licence (Spectrum),8,1
+2026-08-31,Aero Mobile (Off Route),7,6
+2026-08-31,Fixed >=1 GHz (Uni-directional),6,2
+2026-08-31,Space operations earth stations,5,2
+2026-08-31,Space operations spacecraft,5,2
+2026-08-31,Aero Repeater,4,2
+2026-08-31,Aero Repeater - Mobile Transmit,4,2
+2026-08-31,Amateur TV Repeater,4,1
+2026-08-31,Aero Mobile (Route),2,2
+2026-08-31,Radar,2,1
+2026-09-01,Other (Spectrum),29727,6
+2026-09-01,Land Simplex,13576,2356
+2026-09-01,Fixed >=1 GHz (Bi-directional),10750,146
+2026-09-01,Land Repeater,10146,871
+2026-09-01,Land Mobile - Mobile Transmit,6215,878
+2026-09-01,Fixed <1 GHz; BW <=50 kHz (Bi-directional),2746,164
+2026-09-01,VHF FM,1793,111
+2026-09-01,Fixed Bi-directional Point-to-Multipoint,1644,70
+2026-09-01,Satellite,1347,21
+2026-09-01,Paging,1121,99
+2026-09-01,Maritime Coast Station,719,51
+2026-09-01,Managed Spectrum Park,639,20
+2026-09-01,Fixed < 1GHz; BW >50kHz (Uni-directional),617,86
+2026-09-01,General user licence (Radio),568,1
+2026-09-01,Fixed <1 GHz; BW <=50 kHz (Uni-directional),561,45
+2026-09-01,Aero Base (Off Route),448,71
+2026-09-01,Aero Base (Route),324,25
+2026-09-01,MF AM,306,31
+2026-09-01,Amateur Repeater - Mobile Transmit,290,74
+2026-09-01,Amateur Repeater,281,74
+2026-09-01,Telemetry/Telecommand (Uni-directional),245,75
+2026-09-01,Land Simplex Govt. use only,235,22
+2026-09-01,Fixed < 1GHz; BW >50kHz (Bi-directional),213,14
+2026-09-01,UHF TV,187,9
+2026-09-01,Satellite - Satellite Transmit,163,15
+2026-09-01,Maritime Mobile - Mobile Transmit,119,46
+2026-09-01,Maritime Repeater,119,46
+2026-09-01,HF AM (Radio),103,2
+2026-09-01,"Radiodet - Radio Beacons (VOR, NDB, ILS)",87,4
+2026-09-01,Radiodetermination - Mobile Transmit,84,3
+2026-09-01,"Two Frequency (SSR, DME)",77,3
+2026-09-01,Land Simplex - General Channels,74,15
+2026-09-01,Fixed Television Outside Broadcast 2G8 Band,50,3
+2026-09-01,Radar (Other),49,10
+2026-09-01,Fixed Television Outside Broadcast 7G Band,48,5
+2026-09-01,PRS Repeater,39,37
+2026-09-01,Fixed Uni-directional Point-to-Multipoint,36,10
+2026-09-01,PRS - Mobile Transmit,35,33
+2026-09-01,Amateur Digipeater,31,19
+2026-09-01,Amateur Fixed,25,3
+2026-09-01,Telemetry/Telecommand (Bi-directional),24,6
+2026-09-01,Amateur Beacon,22,8
+2026-09-01,Meteorological Radar,20,4
+2026-09-01,Meteorological Aid (Radiosonde),18,4
+2026-09-01,General user licence (Spectrum),8,1
+2026-09-01,Aero Mobile (Off Route),7,6
+2026-09-01,Fixed >=1 GHz (Uni-directional),6,2
+2026-09-01,Space operations earth stations,5,2
+2026-09-01,Space operations spacecraft,5,2
+2026-09-01,Aero Repeater,4,2
+2026-09-01,Aero Repeater - Mobile Transmit,4,2
+2026-09-01,Amateur TV Repeater,4,1
+2026-09-01,Aero Mobile (Route),2,2
+2026-09-01,Radar,2,1
+2026-09-02,Other (Spectrum),29727,6
+2026-09-02,Land Simplex,13580,2356
+2026-09-02,Fixed >=1 GHz (Bi-directional),10752,146
+2026-09-02,Land Repeater,10146,871
+2026-09-02,Land Mobile - Mobile Transmit,6215,878
+2026-09-02,Fixed <1 GHz; BW <=50 kHz (Bi-directional),2746,164
+2026-09-02,VHF FM,1793,111
+2026-09-02,Fixed Bi-directional Point-to-Multipoint,1644,70
+2026-09-02,Satellite,1347,21
+2026-09-02,Paging,1121,99
+2026-09-02,Maritime Coast Station,719,51
+2026-09-02,Managed Spectrum Park,639,20
+2026-09-02,Fixed < 1GHz; BW >50kHz (Uni-directional),617,86
+2026-09-02,General user licence (Radio),568,1
+2026-09-02,Fixed <1 GHz; BW <=50 kHz (Uni-directional),561,45
+2026-09-02,Aero Base (Off Route),448,71
+2026-09-02,Aero Base (Route),324,25
+2026-09-02,MF AM,306,31
+2026-09-02,Amateur Repeater - Mobile Transmit,290,74
+2026-09-02,Amateur Repeater,281,74
+2026-09-02,Telemetry/Telecommand (Uni-directional),245,75
+2026-09-02,Land Simplex Govt. use only,235,22
+2026-09-02,Fixed < 1GHz; BW >50kHz (Bi-directional),213,14
+2026-09-02,UHF TV,187,9
+2026-09-02,Satellite - Satellite Transmit,163,15
+2026-09-02,Maritime Mobile - Mobile Transmit,119,46
+2026-09-02,Maritime Repeater,119,46
+2026-09-02,HF AM (Radio),103,2
+2026-09-02,"Radiodet - Radio Beacons (VOR, NDB, ILS)",87,4
+2026-09-02,Radiodetermination - Mobile Transmit,84,3
+2026-09-02,"Two Frequency (SSR, DME)",77,3
+2026-09-02,Land Simplex - General Channels,74,15
+2026-09-02,Fixed Television Outside Broadcast 2G8 Band,50,3
+2026-09-02,Radar (Other),49,10
+2026-09-02,Fixed Television Outside Broadcast 7G Band,48,5
+2026-09-02,PRS Repeater,39,37
+2026-09-02,Fixed Uni-directional Point-to-Multipoint,36,10
+2026-09-02,PRS - Mobile Transmit,35,33
+2026-09-02,Amateur Digipeater,31,19
+2026-09-02,Amateur Fixed,25,3
+2026-09-02,Telemetry/Telecommand (Bi-directional),24,6
+2026-09-02,Amateur Beacon,22,8
+2026-09-02,Meteorological Radar,20,4
+2026-09-02,Meteorological Aid (Radiosonde),18,4
+2026-09-02,General user licence (Spectrum),8,1
+2026-09-02,Aero Mobile (Off Route),7,6
+2026-09-02,Fixed >=1 GHz (Uni-directional),6,2
+2026-09-02,Space operations earth stations,5,2
+2026-09-02,Space operations spacecraft,5,2
+2026-09-02,Aero Repeater,4,2
+2026-09-02,Aero Repeater - Mobile Transmit,4,2
+2026-09-02,Amateur TV Repeater,4,1
+2026-09-02,Aero Mobile (Route),2,2
+2026-09-02,Radar,2,1
+2026-09-03,Other (Spectrum),29727,6
+2026-09-03,Land Simplex,13583,2358
+2026-09-03,Fixed >=1 GHz (Bi-directional),10754,146
+2026-09-03,Land Repeater,10147,870
+2026-09-03,Land Mobile - Mobile Transmit,6216,877
+2026-09-03,Fixed <1 GHz; BW <=50 kHz (Bi-directional),2744,163
+2026-09-03,VHF FM,1793,111
+2026-09-03,Fixed Bi-directional Point-to-Multipoint,1644,70
+2026-09-03,Satellite,1347,21
+2026-09-03,Paging,1121,99
+2026-09-03,Maritime Coast Station,719,51
+2026-09-03,Managed Spectrum Park,639,20
+2026-09-03,Fixed < 1GHz; BW >50kHz (Uni-directional),617,86
+2026-09-03,General user licence (Radio),568,1
+2026-09-03,Fixed <1 GHz; BW <=50 kHz (Uni-directional),561,45
+2026-09-03,Aero Base (Off Route),448,71
+2026-09-03,Aero Base (Route),324,25
+2026-09-03,MF AM,306,31
+2026-09-03,Amateur Repeater - Mobile Transmit,290,74
+2026-09-03,Amateur Repeater,281,74
+2026-09-03,Land Simplex Govt. use only,235,22
+2026-09-03,Telemetry/Telecommand (Uni-directional),235,74
+2026-09-03,Fixed < 1GHz; BW >50kHz (Bi-directional),213,14
+2026-09-03,UHF TV,187,9
+2026-09-03,Satellite - Satellite Transmit,163,15
+2026-09-03,Maritime Mobile - Mobile Transmit,119,46
+2026-09-03,Maritime Repeater,119,46
+2026-09-03,HF AM (Radio),103,2
+2026-09-03,"Radiodet - Radio Beacons (VOR, NDB, ILS)",87,4
+2026-09-03,Radiodetermination - Mobile Transmit,84,3
+2026-09-03,"Two Frequency (SSR, DME)",77,3
+2026-09-03,Land Simplex - General Channels,74,15
+2026-09-03,Fixed Television Outside Broadcast 2G8 Band,50,3
+2026-09-03,Radar (Other),49,10
+2026-09-03,Fixed Television Outside Broadcast 7G Band,48,5
+2026-09-03,PRS Repeater,39,37
+2026-09-03,Fixed Uni-directional Point-to-Multipoint,36,10
+2026-09-03,PRS - Mobile Transmit,35,33
+2026-09-03,Amateur Digipeater,31,19
+2026-09-03,Amateur Fixed,25,3
+2026-09-03,Telemetry/Telecommand (Bi-directional),24,6
+2026-09-03,Amateur Beacon,22,8
+2026-09-03,Meteorological Radar,20,4
+2026-09-03,Meteorological Aid (Radiosonde),18,4
+2026-09-03,General user licence (Spectrum),8,1
+2026-09-03,Aero Mobile (Off Route),7,6
+2026-09-03,Fixed >=1 GHz (Uni-directional),6,2
+2026-09-03,Space operations earth stations,5,2
+2026-09-03,Space operations spacecraft,5,2
+2026-09-03,Aero Repeater,4,2
+2026-09-03,Aero Repeater - Mobile Transmit,4,2
+2026-09-03,Amateur TV Repeater,4,1
+2026-09-03,Aero Mobile (Route),2,2
+2026-09-03,Radar,2,1
+2026-09-04,Other (Spectrum),29727,6
+2026-09-04,Land Simplex,13585,2358
+2026-09-04,Fixed >=1 GHz (Bi-directional),10754,146
+2026-09-04,Land Repeater,10142,869
+2026-09-04,Land Mobile - Mobile Transmit,6213,876
+2026-09-04,Fixed <1 GHz; BW <=50 kHz (Bi-directional),2744,163
+2026-09-04,VHF FM,1793,111
+2026-09-04,Fixed Bi-directional Point-to-Multipoint,1644,70
+2026-09-04,Satellite,1347,21
+2026-09-04,Paging,1121,99
+2026-09-04,Maritime Coast Station,719,51
+2026-09-04,Managed Spectrum Park,639,20
+2026-09-04,Fixed < 1GHz; BW >50kHz (Uni-directional),617,86
+2026-09-04,General user licence (Radio),568,1
+2026-09-04,Fixed <1 GHz; BW <=50 kHz (Uni-directional),561,45
+2026-09-04,Aero Base (Off Route),448,71
+2026-09-04,Aero Base (Route),324,25
+2026-09-04,MF AM,306,31
+2026-09-04,Amateur Repeater - Mobile Transmit,290,74
+2026-09-04,Amateur Repeater,281,74
+2026-09-04,Telemetry/Telecommand (Uni-directional),235,74
+2026-09-04,Land Simplex Govt. use only,234,21
+2026-09-04,Fixed < 1GHz; BW >50kHz (Bi-directional),213,14
+2026-09-04,UHF TV,187,9
+2026-09-04,Satellite - Satellite Transmit,163,15
+2026-09-04,Maritime Mobile - Mobile Transmit,119,46
+2026-09-04,Maritime Repeater,119,46
+2026-09-04,HF AM (Radio),103,2
+2026-09-04,"Radiodet - Radio Beacons (VOR, NDB, ILS)",87,4
+2026-09-04,Radiodetermination - Mobile Transmit,84,3
+2026-09-04,"Two Frequency (SSR, DME)",77,3
+2026-09-04,Land Simplex - General Channels,74,15
+2026-09-04,Fixed Television Outside Broadcast 2G8 Band,50,3
+2026-09-04,Radar (Other),49,10
+2026-09-04,Fixed Television Outside Broadcast 7G Band,48,5
+2026-09-04,PRS Repeater,39,37
+2026-09-04,Fixed Uni-directional Point-to-Multipoint,36,10
+2026-09-04,PRS - Mobile Transmit,35,33
+2026-09-04,Amateur Digipeater,31,19
+2026-09-04,Amateur Fixed,25,3
+2026-09-04,Telemetry/Telecommand (Bi-directional),24,6
+2026-09-04,Amateur Beacon,22,8
+2026-09-04,Meteorological Radar,20,4
+2026-09-04,Meteorological Aid (Radiosonde),18,4
+2026-09-04,General user licence (Spectrum),8,1
+2026-09-04,Aero Mobile (Off Route),7,6
+2026-09-04,Fixed >=1 GHz (Uni-directional),6,2
+2026-09-04,Space operations earth stations,5,2
+2026-09-04,Space operations spacecraft,5,2
+2026-09-04,Aero Repeater,4,2
+2026-09-04,Aero Repeater - Mobile Transmit,4,2
+2026-09-04,Amateur TV Repeater,4,1
+2026-09-04,Aero Mobile (Route),2,2
+2026-09-04,Radar,2,1
+2026-09-05,Other (Spectrum),29727,6
+2026-09-05,Land Simplex,13585,2358
+2026-09-05,Fixed >=1 GHz (Bi-directional),10754,146
+2026-09-05,Land Repeater,10142,869
+2026-09-05,Land Mobile - Mobile Transmit,6213,876
+2026-09-05,Fixed <1 GHz; BW <=50 kHz (Bi-directional),2744,163
+2026-09-05,VHF FM,1793,111
+2026-09-05,Fixed Bi-directional Point-to-Multipoint,1644,70
+2026-09-05,Satellite,1347,21
+2026-09-05,Paging,1121,99
+2026-09-05,Maritime Coast Station,719,51
+2026-09-05,Managed Spectrum Park,639,20
+2026-09-05,Fixed < 1GHz; BW >50kHz (Uni-directional),617,86
+2026-09-05,General user licence (Radio),568,1
+2026-09-05,Fixed <1 GHz; BW <=50 kHz (Uni-directional),561,45
+2026-09-05,Aero Base (Off Route),448,71
+2026-09-05,Aero Base (Route),324,25
+2026-09-05,MF AM,306,31
+2026-09-05,Amateur Repeater - Mobile Transmit,290,74
+2026-09-05,Amateur Repeater,281,74
+2026-09-05,Telemetry/Telecommand (Uni-directional),235,74
+2026-09-05,Land Simplex Govt. use only,234,21
+2026-09-05,Fixed < 1GHz; BW >50kHz (Bi-directional),213,14
+2026-09-05,UHF TV,187,9
+2026-09-05,Satellite - Satellite Transmit,163,15
+2026-09-05,Maritime Mobile - Mobile Transmit,119,46
+2026-09-05,Maritime Repeater,119,46
+2026-09-05,HF AM (Radio),103,2
+2026-09-05,"Radiodet - Radio Beacons (VOR, NDB, ILS)",87,4
+2026-09-05,Radiodetermination - Mobile Transmit,84,3
+2026-09-05,"Two Frequency (SSR, DME)",77,3
+2026-09-05,Land Simplex - General Channels,74,15
+2026-09-05,Fixed Television Outside Broadcast 2G8 Band,50,3
+2026-09-05,Radar (Other),49,10
+2026-09-05,Fixed Television Outside Broadcast 7G Band,48,5
+2026-09-05,PRS Repeater,39,37
+2026-09-05,Fixed Uni-directional Point-to-Multipoint,36,10
+2026-09-05,PRS - Mobile Transmit,35,33
+2026-09-05,Amateur Digipeater,31,19
+2026-09-05,Amateur Fixed,25,3
+2026-09-05,Telemetry/Telecommand (Bi-directional),24,6
+2026-09-05,Amateur Beacon,22,8
+2026-09-05,Meteorological Radar,20,4
+2026-09-05,Meteorological Aid (Radiosonde),18,4
+2026-09-05,General user licence (Spectrum),8,1
+2026-09-05,Aero Mobile (Off Route),7,6
+2026-09-05,Fixed >=1 GHz (Uni-directional),6,2
+2026-09-05,Space operations earth stations,5,2
+2026-09-05,Space operations spacecraft,5,2
+2026-09-05,Aero Repeater,4,2
+2026-09-05,Aero Repeater - Mobile Transmit,4,2
+2026-09-05,Amateur TV Repeater,4,1
+2026-09-05,Aero Mobile (Route),2,2
+2026-09-05,Radar,2,1
+2026-09-06,Other (Spectrum),29727,6
+2026-09-06,Land Simplex,13585,2358
+2026-09-06,Fixed >=1 GHz (Bi-directional),10758,146
+2026-09-06,Land Repeater,10142,869
+2026-09-06,Land Mobile - Mobile Transmit,6213,876
+2026-09-06,Fixed <1 GHz; BW <=50 kHz (Bi-directional),2744,163
+2026-09-06,VHF FM,1793,111
+2026-09-06,Fixed Bi-directional Point-to-Multipoint,1644,70
+2026-09-06,Satellite,1347,21
+2026-09-06,Paging,1121,99
+2026-09-06,Maritime Coast Station,719,51
+2026-09-06,Managed Spectrum Park,639,20
+2026-09-06,Fixed < 1GHz; BW >50kHz (Uni-directional),617,86
+2026-09-06,General user licence (Radio),568,1
+2026-09-06,Fixed <1 GHz; BW <=50 kHz (Uni-directional),561,45
+2026-09-06,Aero Base (Off Route),448,71
+2026-09-06,Aero Base (Route),324,25
+2026-09-06,MF AM,306,31
+2026-09-06,Amateur Repeater - Mobile Transmit,290,74
+2026-09-06,Amateur Repeater,281,74
+2026-09-06,Telemetry/Telecommand (Uni-directional),235,74
+2026-09-06,Land Simplex Govt. use only,234,21
+2026-09-06,Fixed < 1GHz; BW >50kHz (Bi-directional),213,14
+2026-09-06,UHF TV,187,9
+2026-09-06,Satellite - Satellite Transmit,163,15
+2026-09-06,Maritime Mobile - Mobile Transmit,119,46
+2026-09-06,Maritime Repeater,119,46
+2026-09-06,HF AM (Radio),103,2
+2026-09-06,"Radiodet - Radio Beacons (VOR, NDB, ILS)",87,4
+2026-09-06,Radiodetermination - Mobile Transmit,84,3
+2026-09-06,"Two Frequency (SSR, DME)",77,3
+2026-09-06,Land Simplex - General Channels,74,15
+2026-09-06,Fixed Television Outside Broadcast 2G8 Band,50,3
+2026-09-06,Radar (Other),49,10
+2026-09-06,Fixed Television Outside Broadcast 7G Band,48,5
+2026-09-06,PRS Repeater,40,38
+2026-09-06,Fixed Uni-directional Point-to-Multipoint,36,10
+2026-09-06,PRS - Mobile Transmit,36,34
+2026-09-06,Amateur Digipeater,31,19
+2026-09-06,Amateur Fixed,25,3
+2026-09-06,Telemetry/Telecommand (Bi-directional),24,6
+2026-09-06,Amateur Beacon,22,8
+2026-09-06,Meteorological Radar,20,4
+2026-09-06,Meteorological Aid (Radiosonde),18,4
+2026-09-06,General user licence (Spectrum),8,1
+2026-09-06,Aero Mobile (Off Route),7,6
+2026-09-06,Fixed >=1 GHz (Uni-directional),6,2
+2026-09-06,Space operations earth stations,5,2
+2026-09-06,Space operations spacecraft,5,2
+2026-09-06,Aero Repeater,4,2
+2026-09-06,Aero Repeater - Mobile Transmit,4,2
+2026-09-06,Amateur TV Repeater,4,1
+2026-09-06,Aero Mobile (Route),2,2
+2026-09-06,Radar,2,1
+2026-09-07,Other (Spectrum),29755,6
+2026-09-07,Land Simplex,13585,2358
+2026-09-07,Fixed >=1 GHz (Bi-directional),10758,146
+2026-09-07,Land Repeater,10142,869
+2026-09-07,Land Mobile - Mobile Transmit,6213,876
+2026-09-07,Fixed <1 GHz; BW <=50 kHz (Bi-directional),2744,163
+2026-09-07,VHF FM,1793,111
+2026-09-07,Fixed Bi-directional Point-to-Multipoint,1644,70
+2026-09-07,Satellite,1347,21
+2026-09-07,Paging,1121,99
+2026-09-07,Maritime Coast Station,719,51
+2026-09-07,Managed Spectrum Park,639,20
+2026-09-07,Fixed < 1GHz; BW >50kHz (Uni-directional),617,86
+2026-09-07,General user licence (Radio),568,1
+2026-09-07,Fixed <1 GHz; BW <=50 kHz (Uni-directional),561,45
+2026-09-07,Aero Base (Off Route),448,71
+2026-09-07,Aero Base (Route),324,25
+2026-09-07,MF AM,306,31
+2026-09-07,Amateur Repeater - Mobile Transmit,290,74
+2026-09-07,Amateur Repeater,281,74
+2026-09-07,Telemetry/Telecommand (Uni-directional),235,74
+2026-09-07,Land Simplex Govt. use only,234,21
+2026-09-07,Fixed < 1GHz; BW >50kHz (Bi-directional),213,14
+2026-09-07,UHF TV,187,9
+2026-09-07,Satellite - Satellite Transmit,163,15
+2026-09-07,Maritime Mobile - Mobile Transmit,119,46
+2026-09-07,Maritime Repeater,119,46
+2026-09-07,HF AM (Radio),103,2
+2026-09-07,"Radiodet - Radio Beacons (VOR, NDB, ILS)",87,4
+2026-09-07,Radiodetermination - Mobile Transmit,84,3
+2026-09-07,"Two Frequency (SSR, DME)",77,3
+2026-09-07,Land Simplex - General Channels,74,15
+2026-09-07,Fixed Television Outside Broadcast 2G8 Band,50,3
+2026-09-07,Radar (Other),49,10
+2026-09-07,Fixed Television Outside Broadcast 7G Band,48,5
+2026-09-07,PRS Repeater,40,38
+2026-09-07,Fixed Uni-directional Point-to-Multipoint,36,10
+2026-09-07,PRS - Mobile Transmit,36,34
+2026-09-07,Amateur Digipeater,31,19
+2026-09-07,Amateur Fixed,25,3
+2026-09-07,Telemetry/Telecommand (Bi-directional),24,6
+2026-09-07,Amateur Beacon,22,8
+2026-09-07,Meteorological Radar,20,4
+2026-09-07,Meteorological Aid (Radiosonde),18,4
+2026-09-07,General user licence (Spectrum),8,1
+2026-09-07,Aero Mobile (Off Route),7,6
+2026-09-07,Fixed >=1 GHz (Uni-directional),6,2
+2026-09-07,Space operations earth stations,5,2
+2026-09-07,Space operations spacecraft,5,2
+2026-09-07,Aero Repeater,4,2
+2026-09-07,Aero Repeater - Mobile Transmit,4,2
+2026-09-07,Amateur TV Repeater,4,1
+2026-09-07,Aero Mobile (Route),2,2
+2026-09-07,Radar,2,1

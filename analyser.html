@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="RSM Spectrum Assignment Analyser — the current New Zealand Register of Radio Frequencies in a Y2K government terminal.">
+<meta name="theme-color" content="#0d0d0d">
+<title>Register of Radio Frequencies — Spectrum Assignment Analyser</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230066cc'/><rect x='6' y='8' width='20' height='16' fill='%23000'/><path d='M8 20h4v-6h3v9h3v-4h4' stroke='%2300ff00' stroke-width='2' fill='none'/></svg>">
+<style>
+  /* ------------------------------------------------------------------------
+     RSM Spectrum Assignment Analyser — a faithful build of the Claude Design
+     "Y2K Government Spectrum Theme" mockup, wired to the live register.
+
+     The design is a fixed 1280x720 desktop window. That size is preserved
+     exactly and the whole window is scaled to fit whatever viewport it lands
+     in, so the layout is identical on a 27" monitor, a laptop and a phone.
+
+     The page reads the register LIVE on every load, and again on REFRESH and
+     on a timer, so it tracks the hourly pipeline like the rest of the site. A
+     copy of the same files is embedded only as a fallback, for when there is
+     nothing to fetch from — a saved copy opened off disk, or an outage. The
+     status bar always says which of the two you are looking at.
+     ------------------------------------------------------------------------ */
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: #0d0d0d; }
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, 'Trebuchet MS', sans-serif;
+  }
+  a { color: #00ff00; text-decoration: none; }
+  a:hover { color: #ffff00; text-decoration: underline; }
+  a:focus-visible { outline: 2px solid #ffff00; outline-offset: 1px; }
+
+  /* The window keeps its design dimensions; only the scale factor changes. */
+  #stage { width: 1280px; height: 720px; transform-origin: 50% 50%; flex: none; }
+
+  .win {
+    position: relative;
+    width: 1280px; height: 720px;
+    background: #1a1a1a;
+    font-size: 11px;
+    color: #ffffff;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid;
+    border-color: #e8e8e8 #303030 #303030 #e8e8e8;
+  }
+
+  /* ---- title bar ---- */
+  .titlebar { display: flex; align-items: center; gap: 6px; height: 22px; flex: 0 0 22px; background: #0066cc; padding: 0 3px 0 5px; }
+  .titlebar .ico { width: 12px; height: 12px; background: #c0c0c0; border: 1px solid; border-color: #ffffff #404040 #404040 #ffffff; }
+  .titlebar .t { font-weight: 700; font-size: 11px; letter-spacing: .02em; }
+  .titlebar .boxes { display: flex; gap: 2px; }
+  .titlebar .boxes i { width: 16px; height: 14px; background: #c0c0c0; border: 1px solid; border-color: #ffffff #404040 #404040 #ffffff; color: #000; font: 700 9px/12px 'Segoe UI', sans-serif; text-align: center; font-style: normal; }
+
+  /* ---- menu + toolbar ---- */
+  .menubar { display: flex; gap: 14px; height: 19px; flex: 0 0 19px; align-items: center; background: #c0c0c0; color: #000; padding: 0 8px; border-bottom: 1px solid #808080; font-size: 11px; }
+  .toolbar { display: flex; gap: 3px; align-items: center; height: 26px; flex: 0 0 26px; background: #c0c0c0; padding: 0 5px; border-bottom: 2px solid #808080; }
+  .tbtn { padding: 2px 8px; background: #c0c0c0; border: 2px solid; border-color: #ffffff #808080 #808080 #ffffff; color: #000; font-size: 10px; }
+  .tbtn.strong { font-weight: 700; }
+  .tbtn.pressed { border-color: #808080 #ffffff #ffffff #808080; }
+  .tsep { width: 2px; height: 18px; background: #808080; border-right: 1px solid #ffffff; margin: 0 4px; }
+  .tlabel { color: #000; font-size: 10px; font-weight: 700; }
+  .tfield { padding: 2px 6px; background: #ffffff; border: 2px solid; border-color: #808080 #ffffff #ffffff #808080; color: #000; font-family: Consolas, 'Courier New', monospace; font-size: 10px; }
+  .tsrc { color: #000; font-family: Consolas, 'Courier New', monospace; font-size: 10px; }
+  .grow { flex: 1; }
+
+  /* ---- panels ---- */
+  .body { flex: 1; min-height: 0; display: flex; gap: 4px; padding: 4px; background: #1a1a1a; }
+  .col { display: flex; flex-direction: column; gap: 4px; min-height: 0; }
+  .panel { background: #2d2d2d; border: 2px solid; border-color: #5a5a5a #0e0e0e #0e0e0e #5a5a5a; display: flex; flex-direction: column; min-height: 0; }
+  .cap { display: flex; align-items: center; background: #0066cc; padding: 3px 6px; }
+  .cap h2 { margin: 0; font-weight: 700; font-size: 10px; letter-spacing: .08em; }
+  .cap .note { font-family: Consolas, monospace; font-size: 9px; color: #c8dcf5; }
+
+  .readout { background: #000; border: 2px solid; border-color: #0e0e0e #5a5a5a #5a5a5a #0e0e0e; padding: 2px 5px; font-family: Consolas, 'Courier New', monospace; font-size: 12px; color: #00ff00; text-align: right; }
+  .lbl { font-size: 10px; color: #c0c0c0; }
+  .sel { background: #ffffff; border: 2px solid; border-color: #808080 #ffffff #ffffff #808080; color: #000; padding: 1px 4px; font-size: 10px; }
+  .push { flex: 1; text-align: center; padding: 3px; background: #c0c0c0; border: 2px solid; border-color: #ffffff #808080 #808080 #ffffff; color: #000; font-size: 10px; }
+  .push.strong { font-weight: 700; }
+
+  /* ---- band allocation ---- */
+  .bandhead, .bandrow { display: grid; grid-template-columns: 38px 1fr 46px; gap: 0 4px; align-items: center; }
+  .bandhead { font-size: 9px; color: #c0c0c0; border-bottom: 1px solid #5a5a5a; padding-bottom: 2px; margin-bottom: 2px; letter-spacing: .05em; }
+  .bandrow { font-family: Consolas, 'Courier New', monospace; font-size: 10px; margin-bottom: 3px; }
+  .bar { height: 8px; background: #1e1e1e; border: 1px solid #444; }
+  .bar i { display: block; height: 100%; }
+  .stats { margin-top: 8px; border-top: 1px solid #5a5a5a; padding-top: 5px; display: grid; grid-template-columns: 1fr auto; gap: 2px 6px; font-size: 10px; }
+  .stats b { font-family: Consolas, monospace; font-weight: 400; color: #00ff00; }
+
+  /* ---- occupancy matrix ---- */
+  .mx { display: grid; gap: 1px; background: #3a3a3a; border: 1px solid #3a3a3a; }
+  .mx .rl { background: #242424; padding: 2px 4px; font-family: Consolas, monospace; font-size: 9px; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mx i { display: block; min-height: 17px; }
+  .mxhead { display: grid; font-size: 9px; font-family: Consolas, 'Courier New', monospace; color: #c0c0c0; margin-bottom: 2px; gap: 1px; }
+  .mxhead div { text-align: center; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .legend { display: flex; gap: 14px; margin-top: 5px; font-size: 9px; color: #c0c0c0; align-items: center; flex-wrap: wrap; }
+  .legend span { display: flex; align-items: center; gap: 4px; }
+  .legend i { width: 10px; height: 10px; display: block; }
+
+  /* ---- result grid ---- */
+  .gridhead, .gridrow { display: grid; grid-template-columns: 56px 56px 1.5fr 56px 78px 1.6fr 62px; }
+  .gridhead { background: #c0c0c0; color: #000; font-weight: 700; font-size: 9px; letter-spacing: .04em; border-bottom: 2px solid #808080; }
+  .gridhead div { padding: 3px 4px; border-right: 1px solid #808080; }
+  .gridhead div:last-child { border-right: 0; }
+  .gridbody { font-size: 10px; font-family: Consolas, 'Courier New', monospace; }
+  .gridrow div { padding: 2px 4px; border-bottom: 1px solid #1a1a1a; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .gridrow.alt div { background: #242424; }
+  .gridrow.on div { background: #0066cc; }
+  .gridrow .prose { font-family: 'Segoe UI', sans-serif; }
+  .gridrow .num { text-align: right; }
+
+  /* ---- map ---- */
+  .map { flex: 1; min-height: 0; position: relative; background: #0f1a0f; border: 2px solid; border-color: #0e0e0e #5a5a5a #5a5a5a #0e0e0e; margin: 4px; overflow: hidden; }
+  .cursor { position: absolute; left: 4px; bottom: 4px; background: rgba(0,0,0,.72); border: 1px solid #2f6b3a; padding: 2px 5px; font-family: Consolas, monospace; font-size: 9px; color: #00ff00; }
+
+  /* ---- holdings ---- */
+  .holdhead, .holdrow { display: grid; grid-template-columns: 1fr 44px 52px; align-items: center; }
+  .holdhead { font-size: 9px; color: #c0c0c0; letter-spacing: .04em; border-bottom: 1px solid #5a5a5a; padding-bottom: 2px; margin-bottom: 3px; }
+  .holdrow { font-size: 10px; margin-bottom: 2px; }
+  .holdrow .nm { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .holdrow .n { text-align: right; font-family: Consolas, monospace; color: #00ff00; }
+  .holdrow .bar { margin-left: 6px; }
+
+  /* ---- status bar ---- */
+  .status { flex: 0 0 22px; height: 22px; display: flex; align-items: stretch; background: #c0c0c0; color: #000; font-size: 10px; border-top: 2px solid #ffffff; }
+  .status div { padding: 3px 8px; border-right: 1px solid #808080; font-family: Consolas, 'Courier New', monospace; display: flex; align-items: center; }
+  .status .first { border-left: 1px solid #ffffff; gap: 6px; font-weight: 700; font-family: 'Segoe UI', sans-serif; }
+  .status .led { width: 8px; height: 8px; background: #008000; border: 1px solid #004000; animation: blink 1.4s steps(1) infinite; }
+  @keyframes blink { 0%,49% { opacity: 1 } 50%,100% { opacity: .15 } }
+
+  .scan { position: absolute; inset: 0; pointer-events: none; background: repeating-linear-gradient(to bottom, rgba(0,0,0,.13) 0px, rgba(0,0,0,.13) 1px, transparent 1px, transparent 3px); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .status .led { animation: none; }
+  }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="win">
+
+    <div class="titlebar">
+      <span class="ico"></span>
+      <span class="t">Register of Radio Frequencies — Spectrum Assignment Analyser&nbsp; [RSM-RRF v4.2]</span>
+      <span class="grow"></span>
+      <span class="boxes"><i>_</i><i>□</i><i>×</i></span>
+    </div>
+
+    <div class="menubar">
+      <span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>Q</u>uery</span><span><u>L</u>icence</span><span><u>B</u>ands</span><span><u>R</u>ights</span><span><u>T</u>ools</span><span><u>W</u>indow</span><span><u>H</u>elp</span>
+    </div>
+
+    <div class="toolbar">
+      <div style="display:flex;gap:2px">
+        <span class="tbtn strong">NEW QUERY</span>
+        <button type="button" class="tbtn" id="btnRefresh">REFRESH</button>
+        <a class="tbtn" href="silver/combined_licences.csv" download>EXPORT CSV</a>
+        <span class="tbtn pressed">GRID VIEW</span>
+        <span class="tbtn">MAP VIEW</span>
+      </div>
+      <span class="tsep"></span>
+      <span class="tlabel">DATASET:</span>
+      <span class="tfield">SEL-CURRENT / silver / combined_licences.csv&nbsp; ▼</span>
+      <span class="grow"></span>
+      <span class="tsrc">SRC: RSM API (txRx=TRN)</span>
+    </div>
+
+    <div class="body">
+
+      <!-- ================= left column ================= -->
+      <div class="col" style="width:236px;flex:0 0 236px">
+
+        <div class="panel">
+          <div class="cap"><h2>FREQUENCY TUNING / SEARCH</h2></div>
+          <div style="padding:6px;display:flex;flex-direction:column;gap:6px">
+            <div style="display:grid;grid-template-columns:52px 1fr;gap:4px;align-items:center">
+              <span class="lbl">LOW MHz</span><span class="readout" id="fLow">—</span>
+              <span class="lbl">HIGH MHz</span><span class="readout" id="fHigh">—</span>
+              <span class="lbl">BANDS</span><span class="readout" id="fBands">—</span>
+            </div>
+            <div style="height:26px;position:relative;background:#000;border:2px solid;border-color:#0e0e0e #5a5a5a #5a5a5a #0e0e0e;overflow:hidden">
+              <div style="position:absolute;inset:0;display:grid;grid-template-columns:repeat(24,1fr)" id="tuneTicks"></div>
+              <div id="tuneMark" style="position:absolute;top:0;bottom:0;width:2px;background:#ffff00"></div>
+              <div id="tuneSpan" style="position:absolute;top:0;bottom:0;background:rgba(0,255,0,.18);border-left:1px solid #00ff00;border-right:1px solid #00ff00"></div>
+              <div id="tuneMgmt" style="position:absolute;top:0;bottom:0;background:rgba(255,0,0,.35)"></div>
+            </div>
+            <div style="display:grid;grid-template-columns:56px 1fr;gap:4px;align-items:center">
+              <span class="lbl">SERVICE</span><span class="sel" id="selService">— ▼</span>
+              <span class="lbl">LINK MODE</span><span class="sel">Repeater ▼</span>
+              <span class="lbl">STATUS</span><span class="sel">Current ▼</span>
+            </div>
+            <div style="display:flex;gap:12px;font-size:10px;color:#c0c0c0">
+              <span style="display:flex;align-items:center;gap:4px"><i style="width:9px;height:9px;background:#00ff00;border:1px solid #000;display:block"></i>TX only</span>
+              <span style="display:flex;align-items:center;gap:4px"><i style="width:9px;height:9px;background:#2d2d2d;border:1px solid #808080;display:block"></i>Suppressed</span>
+            </div>
+            <div style="display:flex;gap:4px">
+              <span class="push strong">EXECUTE</span>
+              <span class="push">CLEAR</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" style="flex:1">
+          <div class="cap"><h2>BAND ALLOCATION — ITU</h2></div>
+          <div style="flex:1;min-height:0;overflow:hidden;padding:4px">
+            <div class="bandhead"><div>BAND</div><div>OCCUPANCY</div><div style="text-align:right">RECS</div></div>
+            <div id="bandRows"></div>
+            <div class="stats">
+              <span style="color:#c0c0c0">Assignment records</span><b id="sRecords">—</b>
+              <span style="color:#c0c0c0">Distinct licences</span><b id="sLicences">—</b>
+              <span style="color:#c0c0c0">Unique licensees</span><b id="sHolders">—</b>
+              <span style="color:#c0c0c0">Paired return legs</span><b id="sLegs" style="color:#ffff00">—</b>
+              <span style="color:#c0c0c0">Unclassified</span><b id="sUnclass" style="color:#ffa500">0</b>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= centre column ================= -->
+      <div class="col" style="flex:1;min-width:0">
+
+        <div class="panel" style="flex:0 0 auto">
+          <div class="cap">
+            <h2>SPECTRUM OCCUPANCY MATRIX — FREQUENCY × SERVICE</h2>
+            <span class="grow"></span>
+            <span class="note">CELL = ASSIGNMENT DENSITY</span>
+          </div>
+          <div style="padding:5px 6px 6px">
+            <div class="mxhead" id="mxHead"></div>
+            <div class="mx" id="mxGrid"></div>
+            <div class="legend">
+              <span><i style="background:#00ff00"></i>HIGH DENSITY</span>
+              <span><i style="background:#32cd32"></i>MODERATE</span>
+              <span><i style="background:#1d7a2e"></i>LOW</span>
+              <span><i style="background:#ffff00"></i>SPECTRUM LICENCE</span>
+              <span><i style="background:#ffa500"></i>SPARSE</span>
+              <span><i style="background:#0a2a0a"></i>UNASSIGNED</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" style="flex:1">
+          <div class="cap">
+            <h2>LICENCE QUERY RESULT SET</h2>
+            <span class="grow"></span>
+            <span class="note" id="rowsNote">ROWS —</span>
+          </div>
+          <div style="flex:1;min-height:0;overflow:hidden">
+            <div class="gridhead">
+              <div>LIC ID</div><div>NUMBER</div><div>LICENSEE</div><div>CHANNEL</div>
+              <div style="text-align:right">FREQ (MHz)</div><div>LOCATION</div><div>STATUS</div>
+            </div>
+            <div class="gridbody" id="gridBody"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= right column ================= -->
+      <div class="col" style="width:322px;flex:0 0 322px">
+
+        <div class="panel" style="flex:1">
+          <div class="cap">
+            <h2>TRANSMIT SITE PLOT — NZGD2000</h2>
+            <span class="grow"></span>
+            <span class="note" id="mapScale">—</span>
+          </div>
+          <div class="map"><canvas id="plot"></canvas>
+            <div class="cursor" id="cursor">CURSOR  —</div>
+          </div>
+        </div>
+
+        <div class="panel" style="flex:0 0 auto">
+          <div class="cap"><h2>MANAGEMENT RIGHTS &amp; HOLDINGS</h2></div>
+          <div style="padding:5px 6px">
+            <div class="holdhead"><div>LICENSEE</div><div style="text-align:right">RECS</div><div style="text-align:right">SHARE</div></div>
+            <div id="holdRows"></div>
+            <div style="margin-top:5px;border-top:1px solid #5a5a5a;padding-top:4px;display:flex;justify-content:space-between;font-size:9px;color:#c0c0c0">
+              <span id="spectrumNote">—</span>
+              <span style="color:#ff0000;font-weight:700">MGMT RIGHT</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="status">
+      <div class="first"><span class="led" id="led"></span><span id="stSource">CONNECTING</span></div>
+      <div id="stRecords">RECORDS: —</div>
+      <div id="stLicences">LICENCES: —</div>
+      <div id="stHolders">HOLDERS: —</div>
+      <div id="stSites">SITES: —</div>
+      <div class="grow" style="border-right:0"></div>
+      <div id="stUpdate" style="border-left:1px solid #808080;border-right:0">LAST UPDATE —</div>
+      <div style="border-left:1px solid #808080;border-right:0">NUM&nbsp; CAPS&nbsp; SCRL</div>
+    </div>
+
+    <div class="scan"></div>
+  </div>
+</div>
+
+<script>
+/* Data layer.
+
+   Live-first: every file is fetched on load, on REFRESH, and on a timer, so
+   the page tracks the hourly pipeline. EMBEDDED holds the same files as text,
+   baked in at build time, and is used only when a fetch cannot succeed — a
+   copy saved to disk and opened over file://, or the site being unreachable.
+
+   Both sources are raw file text and go through the same parse and the same
+   render, so the fallback view cannot drift from the live one. */
+const EMBEDDED = {"silver/stats.json":"{\n  \"totalLicenses\": 85996,\n  \"activeAssignments\": 85996,\n  \"assignmentRecords\": 85996,\n  \"distinctLicences\": 68484,\n  \"uniqueHolders\": 3199,\n  \"lastUpdateUTC\": \"2026-09-07T00:34:15+00:00\"\n}\n","silver/band_summary.csv":"band,band_order,assignment_count,distinct_licences,distinct_licensees,min_frequency_mhz,max_frequency_mhz\nLF (30-300 kHz),2,10,8,3,0.0495,0.278\nMF (300 kHz-3 MHz),3,595,402,78,0.31,2.9375\nHF (3-30 MHz),4,1674,159,80,3.0084,29.925\nVHF (30-300 MHz),5,16951,10662,1748,30.425,297.5\nUHF (300 MHz-3 GHz),6,51440,42337,1892,302.5,2960.0\nSHF (3-30 GHz),7,14849,14740,169,3000.0,29860.0\nEHF (>30 GHz),8,456,440,28,30025.0,637500.0\nUnknown,99,21,21,19,,\n","silver/service_summary.csv":"service,assignment_count,distinct_licensees\nSpectrum Licence,30394,25\nLand Mobile,30324,2766\nFixed Link,16579,369\nBroadcasting,2389,130\nSatellite & Space,1520,22\nPaging,1121,99\nMaritime,957,87\nAeronautical,789,88\nAmateur,653,81\nGeneral User Licence,576,1\nRadiodetermination,299,11\nTelemetry & Telecommand,259,77\nOutside Broadcast,98,5\nMeteorological,38,7\n","silver/band_service_matrix.csv":"band,band_order,service,assignment_count\nLF (30-300 kHz),2,Radiodetermination,6\nLF (30-300 kHz),2,General User Licence,4\nMF (300 kHz-3 MHz),3,Broadcasting,306\nMF (300 kHz-3 MHz),3,Maritime,121\nMF (300 kHz-3 MHz),3,Land Mobile,62\nMF (300 kHz-3 MHz),3,Fixed Link,45\nMF (300 kHz-3 MHz),3,General User Licence,35\nMF (300 kHz-3 MHz),3,Radiodetermination,24\nMF (300 kHz-3 MHz),3,Amateur,1\nMF (300 kHz-3 MHz),3,Telemetry & Telecommand,1\nHF (3-30 MHz),4,Land Mobile,561\nHF (3-30 MHz),4,Fixed Link,344\nHF (3-30 MHz),4,Maritime,295\nHF (3-30 MHz),4,General User Licence,186\nHF (3-30 MHz),4,Aeronautical,148\nHF (3-30 MHz),4,Broadcasting,103\nHF (3-30 MHz),4,Amateur,27\nHF (3-30 MHz),4,Paging,9\nHF (3-30 MHz),4,Telemetry & Telecommand,1\nVHF (30-300 MHz),5,Land Mobile,11949\nVHF (30-300 MHz),5,Broadcasting,1793\nVHF (30-300 MHz),5,Paging,1084\nVHF (30-300 MHz),5,Aeronautical,632\nVHF (30-300 MHz),5,Maritime,541\nVHF (30-300 MHz),5,Fixed Link,432\nVHF (30-300 MHz),5,Amateur,281\nVHF (30-300 MHz),5,General User Licence,105\nVHF (30-300 MHz),5,Telemetry & Telecommand,89\nVHF (30-300 MHz),5,Radiodetermination,45\nUHF (300 MHz-3 GHz),6,Spectrum Licence,26420\nUHF (300 MHz-3 GHz),6,Land Mobile,17750\nUHF (300 MHz-3 GHz),6,Fixed Link,5393\nUHF (300 MHz-3 GHz),6,Satellite & Space,708\nUHF (300 MHz-3 GHz),6,Amateur,330\nUHF (300 MHz-3 GHz),6,Radiodetermination,204\nUHF (300 MHz-3 GHz),6,Broadcasting,187\nUHF (300 MHz-3 GHz),6,General User Licence,181\nUHF (300 MHz-3 GHz),6,Telemetry & Telecommand,168\nUHF (300 MHz-3 GHz),6,Outside Broadcast,50\nUHF (300 MHz-3 GHz),6,Paging,28\nUHF (300 MHz-3 GHz),6,Meteorological,18\nUHF (300 MHz-3 GHz),6,Aeronautical,3\nSHF (3-30 GHz),7,Fixed Link,9988\nSHF (3-30 GHz),7,Spectrum Licence,3974\nSHF (3-30 GHz),7,Satellite & Space,751\nSHF (3-30 GHz),7,Outside Broadcast,48\nSHF (3-30 GHz),7,General User Licence,45\nSHF (3-30 GHz),7,Radiodetermination,19\nSHF (3-30 GHz),7,Meteorological,15\nSHF (3-30 GHz),7,Aeronautical,6\nSHF (3-30 GHz),7,Amateur,2\nSHF (3-30 GHz),7,Land Mobile,1\nEHF (>30 GHz),8,Fixed Link,377\nEHF (>30 GHz),8,Satellite & Space,54\nEHF (>30 GHz),8,General User Licence,20\nEHF (>30 GHz),8,Meteorological,5\nUnknown,99,Amateur,12\nUnknown,99,Satellite & Space,7\nUnknown,99,Land Mobile,1\nUnknown,99,Radiodetermination,1\n","silver/sample_assignments.csv":"licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppressed\n442398,434066,\"SPARK NEW ZEALAND TRADING LIMITED\",,1845.0,\"OTAKI SEASIDE ~NNG6~\",\"Current\",\"TX\",false\n442397,434059,\"SPARK NEW ZEALAND TRADING LIMITED\",,2665.0,\"OTAKI SEASIDE ~NNG6~\",\"Current\",\"TX\",false\n442396,434069,\"SPARK NEW ZEALAND TRADING LIMITED\",,768.0,\"OTAKI SEASIDE ~NNG6~\",\"Current\",\"TX\",false\n442395,434068,\"SPARK NEW ZEALAND TRADING LIMITED\",,877.5,\"OTAKI SEASIDE ~NNG6~\",\"Current\",\"TX\",false\n442380,434037,\"TWO DEGREES NETWORKS LIMITED\",,3760.0,\"(AKL-008-021-A)[TOTW]_TOTARA HEIGHTS\",\"Current\",\"TX\",false\n442379,434040,\"TWO DEGREES NETWORKS LIMITED\",,798.0,\"(WKT-016-048-A)[HAAU]_HAMILTON CBD NORTH\",\"Current\",\"TX\",false\n442377,434041,\"TWO DEGREES NETWORKS LIMITED\",,3760.0,\"(CHC-060-072-E)[BRWD]_BURWOOD\",\"Current\",\"TX\",false\n442376,434036,\"TWO DEGREES NETWORKS LIMITED\",,939.9,\"(WKT-016-048-A)[HAAU]_HAMILTON CBD NORTH\",\"Current\",\"TX\",false\n442373,434039,\"TWO DEGREES NETWORKS LIMITED\",,798.0,\"(HKB-030-009-D)[HLKN]_HAVELOCK NORTH\",\"Current\",\"TX\",false\n442372,434038,\"TWO DEGREES NETWORKS LIMITED\",,3760.0,\"(CHC-060-128-B)[DHBR]_DIAMOND HARBOUR\",\"Current\",\"TX\",false\n","silver/licensee_analytics.csv":"licensee,assignment_count\nONE NEW ZEALAND GROUP LIMITED,11185\nSPARK NEW ZEALAND TRADING LIMITED,10589\nTWO DEGREES NETWORKS LIMITED,8833\nCHORUS NEW ZEALAND LIMITED,3107\nEONFIBRE LIMITED,2072\nVITAL LIMITED,1978\nKIWIRAIL,1911\nKORDIA LIMITED,1467\nRURAL CONNECTIVITY GROUP LIMITED,1257\n\"The Crown acting by and through the Chief Executive of the Ministry of Business, Innovation, and Employment\",1079\nNZ DEFENCE FORCE HEADQUARTERS,814\nSPACE OPERATIONS NEW ZEALAND LIMITED,693\nPOWERCO LIMITED,674\nENTAIN NEW ZEALAND LIMITED,657\nAIRWAYS CORPORATION OF NEW ZEALAND LIMITED,612\nLIGHTWIRE LIMITED,607\nNZME RADIO LIMITED,593\nEVERY PERSON,576\nISO LIMITED,552\nNEP BROADCAST SERVICES NEW ZEALAND LIMITED,549\nKIWIRAIL LTD,533\nMEDIAWORKS RADIO LIMITED,490\nFire and Emergency New Zealand,476\nDEPARTMENT OF CONSERVATION,465\nTAIT SYSTEMS NZ LIMITED,433\n","silver/site_plot.csv":"location,lat,lon,assignment_count,licensees,service\nAWARUA EARTH STATION,-46.52864,168.37913,316,1,Satellite & Space\nSKYTOWER AUCKLAND,-36.84835,174.76167,142,13,Land Mobile\nALL SOUTH ISLAND,-45.48396,168.14511,134,38,Land Mobile\nKOPUKAIRUA,-37.73059,176.23808,112,23,Broadcasting\nSUGARLOAF,-43.60361,172.64935,105,19,Fixed Link\nRANGITAIKI,-38.84422,176.42837,103,2,Broadcasting\nKAUKAU,-41.23351,174.77935,101,20,Broadcasting\nAwarua Earth Station-Leaf_1,-46.52808,168.37914,98,1,Satellite & Space\nCENTRAL NORTH ISLAND AREA,-37.81192,175.77041,94,12,Land Mobile\nALBANY SES,-36.74823,174.69586,89,1,Satellite & Space\nSKYTOWER,-36.84835,174.76171,88,23,Broadcasting\nMT CARGILL,-45.81279,170.55562,81,19,Broadcasting\nMT ERIN,-39.74013,176.84086,78,13,Broadcasting\nMT CAMPBELL,-41.12375,172.85273,73,22,Land Mobile\nPARAHAKI,-35.71267,174.337,73,16,Broadcasting\nCAPE WANBROW,-45.11661,170.96797,71,18,Broadcasting\nMT ROCHFORT,-41.77864,171.74057,68,15,Land Mobile\nWHARITE,-40.25468,175.85722,67,15,Fixed Link\nHIGH PEAK,-46.04188,168.85219,66,14,Fixed Link\nPUKEPOTO,-38.5069,175.67041,65,11,Fixed Link\nGLENBROOK MILL SITE AREA,-37.20669,174.72914,64,2,Land Mobile\nPENINSULA HILL,-45.04034,168.72375,64,16,Broadcasting\nNORTH ISLAND,-37.76058,175.24833,63,14,Land Mobile\nHEDGEHOPE,-46.09359,168.71092,62,14,Broadcasting\nBASTIA HILL,-39.92683,175.06944,62,11,Broadcasting\nMT PROSPECT,-45.41266,167.94936,61,17,Fixed Link\nMATEA,-38.86832,176.43647,58,2,Maritime\nWAIATARUA,-36.9255,174.56824,57,13,Fixed Link\nRURU,-37.79059,175.56146,56,13,Broadcasting\nGRAMPIANS,-41.29824,173.27956,56,8,Broadcasting\nSULPHUR POINT,-37.6633,176.17064,56,3,Land Mobile\nWANAKA,-44.70252,169.13631,55,7,Land Mobile\nMAUNGATANIWHA,-35.23538,173.58502,55,13,Broadcasting\nMT PLEASANT,-43.35535,172.88627,55,8,Land Mobile\nWHANGAREI,-35.73069,174.32425,54,8,Land Mobile\nPAEROA RANGE,-38.38086,176.25743,53,13,Fixed Link\nMT EGMONT,-39.28925,174.08457,53,15,Broadcasting\nMT NGONGOTAHA,-38.11883,176.19794,52,10,Land Mobile\nKAHURANAKI,-39.79555,176.87307,52,9,Land Mobile\nBRYNDERWYN,-36.07306,174.42474,52,8,Fixed Link\nMT VICTORIA,-41.29572,174.79694,51,12,Land Mobile\nWHEATSTONE RD,-38.67785,178.06893,51,13,Broadcasting\nHOROKAKA,-35.8706,174.13517,51,9,Broadcasting\nTE UKU,-37.86904,174.96974,51,9,Fixed Link\nAUCKLAND AIRPORT,-37.00638,174.78748,51,13,Land Mobile\nWARKWORTH SES,-36.43145,174.66858,51,1,Satellite & Space\nMARLEYS HILL (CCL) NORTHERN WOODEN POLE,-43.60967,172.63356,50,5,Land Mobile\nBALD HILL,-44.9268,168.86301,50,18,Fixed Link\nPAPAROA,-42.13861,171.46513,49,12,Broadcasting\nMANUREWA RADIO,-36.99854,174.93856,48,4,Land Mobile\nMT MURCHISON,-41.72949,172.49881,48,18,Land Mobile\nHIKURANGI,-35.54428,173.94478,48,11,Broadcasting\nMT BURNETT,-40.64221,172.63771,47,16,Land Mobile\nNORTH RANGE ROAD,-40.33342,175.79072,47,7,Land Mobile\nMT ALEXANDER,-42.9075,172.81222,47,15,Land Mobile\nWIROA ISLAND,-37.01521,174.8113,46,2,Aeronautical\nWHAKAPUNAKE,-38.8329,177.59832,45,13,Fixed Link\nMT FREETH,-41.29371,173.98029,45,11,Broadcasting\nTUHINGAMATA,-38.70939,175.99625,45,10,Land Mobile\nKAIKOURA RESERVOIR,-42.41922,173.69271,45,7,Land Mobile\nTIWAI POINT(CRANE CONTROL),-46.58604,168.38669,45,1,Land Mobile\nTOKATEA,-36.72551,175.51998,44,11,Fixed Link\nBAY OF PLENTY AREA,-37.79342,176.41811,44,12,Land Mobile\nHIKURANGI SPUR,-37.94317,178.13416,44,10,Fixed Link\nTE AROHA,-37.53595,175.73592,44,13,Broadcasting\nPORT OF LYTTELTON OPERATIONAL AREA,-43.58756,172.80801,44,2,Land Mobile\nFOREST HEIGHTS,-40.84494,175.10324,43,11,Broadcasting\nAUCKLAND AREA,-36.85142,174.77284,43,15,Land Mobile\nTARAPONUI,-39.13288,176.74013,43,11,Land Mobile\nPORT OF TAURANGA OPERATIONAL AREA,-37.62354,176.17514,43,2,Land Mobile\nMARLEYS HILL,-43.61159,172.63431,43,10,Land Mobile\nMT STUDHOLME,-44.64841,170.91627,42,14,Land Mobile\nSEWELL PEAK,-42.40822,171.34272,42,7,Fixed Link\nMAUNGAKAWA,-37.41405,175.39543,41,9,Land Mobile\nSTATION PEAK,-44.75069,170.56305,41,14,Fixed Link\nCOLONIAL KNOB,-41.1485,174.80842,41,8,Land Mobile\nGLENORCHY,-44.84947,168.3907,41,5,Land Mobile\nTE PAKI,-38.05282,174.35052,41,14,Land Mobile\nTAIT 245 WOOLDRIDGE RD WEST WING,-43.48715,172.56387,41,1,Land Mobile\nHANMER SPRINGS,-42.51789,172.83357,41,4,Land Mobile\nTINAKORI HILL,-41.27382,174.76463,40,4,Land Mobile\nREEFTON,-42.12318,171.87763,40,11,Fixed Link\nPORT OF NELSON OPERATIONAL AREA,-41.26334,173.25578,40,3,Land Mobile\nMT THREAVE,-39.75101,176.78308,40,18,Broadcasting\nRANGITUMAU,-40.84941,175.73613,40,12,Fixed Link\nBUTE,-40.88367,175.98136,40,7,Fixed Link\nPORT OF MARLBOROUGH OPERATIONAL AREA,-41.28324,173.98219,40,3,Land Mobile\nBLAGDON HILL,-39.06989,174.04042,39,4,Land Mobile\nKAHIKATEA,-41.26555,174.11733,39,6,Fixed Link\nJACKSONS LOOKOUT,-39.31078,174.10232,39,5,Land Mobile\nWHAKAMARU,-38.40244,175.86631,39,10,Land Mobile\nRANGINUI,-38.36522,175.47341,39,5,Land Mobile\nMT PEARCE,-43.71033,172.93545,39,11,Fixed Link\nHURLEYVILLE,-39.63088,174.52212,39,11,Land Mobile\nMARLEYS HILL (ASHPARK),-43.61004,172.63221,38,4,Land Mobile\nKINLEITH MILL AREA,-38.27784,175.88493,38,2,Land Mobile\nRAZORBACK,-45.37106,170.716,38,7,Fixed Link\nMT TE AROHA,-37.53435,175.74216,38,7,Fixed Link\nCHRISTCHURCH AIRPORT,-43.48661,172.5402,38,13,Aeronautical\nWAIHI,-37.44499,175.87131,38,11,Spectrum Licence\nMACRAES FLAT,-45.37756,170.45116,38,1,Land Mobile\nRAHOTIA,-41.27426,174.16624,37,7,Fixed Link\nKAITI HILL,-38.67778,178.03121,37,4,Fixed Link\nHIGHLANDS MOTOR SPORT PARK VICINITY,-45.05,169.18,37,1,Land Mobile\nPUTAUAKI,-38.10506,176.73697,37,16,Spectrum Licence\nPARAKIORE,-35.65872,174.28155,37,10,Fixed Link\nHAMPTON DOWNS MOTOR RACE PARK,-37.35004,175.06742,37,1,Land Mobile\nOBELISK,-45.3219,169.20703,36,11,Broadcasting\nPAHIATUA TRACK,-40.40299,175.72593,36,13,Land Mobile\nMT PUKETUTU RADIO,-37.1944,175.02289,36,7,Land Mobile\nRANGITOTO,-38.94167,175.71758,36,8,Land Mobile\n164-166 GLOUCESTER STREET CHRISTCHURCH,-43.5302,172.63902,36,5,Land Mobile\nINVERCARGILL,-46.40235,168.35437,36,9,Land Mobile\nTAPANUI,-45.93573,169.28403,35,2,Land Mobile\nWHAKAROA,-38.66728,175.95511,34,15,Broadcasting\nMAKARETU(TELECOM),-38.47702,177.58978,34,3,Fixed Link\nNORTHLAND AREA,-36.19249,174.3815,34,6,Land Mobile\nKRAACKS HILL,-36.374,174.60811,34,8,Fixed Link\nPORT OF TIMARU OPERATIONAL AREA,-44.37551,171.25261,34,4,Land Mobile\nBIG HILL,-44.82369,171.08867,34,8,Fixed Link\nMT BUTTERS,-40.55969,176.03777,34,6,Fixed Link\nPORT OF BLUFF OPERATIONAL AREA,-46.61205,168.36003,34,4,Land Mobile\nMOIRS HILL,-36.46983,174.59953,33,8,Land Mobile\nKURANUI,-39.78038,174.84566,33,6,Fixed Link\nROUNDTOP,-43.48987,171.70915,33,9,Fixed Link\nPUKEMORE,-37.53098,175.22186,33,7,Land Mobile\nFITZHERBERT,-41.21843,174.95923,32,11,Broadcasting\n\u014ctaki to North of Levin Highway Project,-40.77469,175.12868,32,1,Land Mobile\nMT MAUNGANUI,-37.65226,176.18831,32,13,Spectrum Licence\nKAITAIA,-35.10812,173.26995,32,7,Spectrum Licence\nTE ANAU RADIO SITE,-45.41089,167.74835,32,1,Land Mobile\nSANATORIUM HILL,-37.86251,175.53815,32,5,Land Mobile\nQUINNS ROAD MW,-36.94607,174.58278,32,3,Land Mobile\nWHENUAPAI,-36.7858,174.6331,32,4,Radiodetermination\nMT MARY(HIGH),-44.13831,170.27755,32,7,Fixed Link\nMT CASS,-43.07836,172.82427,31,5,Land Mobile\nMT ERINGA,-41.16884,175.6574,31,6,Land Mobile\n1266 WEEDONS ROSS ROAD WEST MELTON,-43.47645,172.38765,31,1,Maritime\nKAHUI TRIG,-39.31891,173.93593,31,10,Land Mobile\nTE ANAU DOC WORKSHOP,-45.41205,167.73416,31,1,Land Mobile\nPOPOITI,-41.16413,175.56862,31,10,Broadcasting\nAWANUI RADIO,-35.08234,173.24182,30,1,Maritime\nHAYWARDS,-41.14013,174.98993,30,10,Broadcasting\nTAUAKIRA,-39.69222,175.21267,30,12,Fixed Link\nEDEN PARK,-36.87397,174.74414,30,6,Land Mobile\nFRINGED HILL,-41.30999,173.31758,30,6,Land Mobile\nOTAHOUA,-40.97573,175.75463,30,7,Fixed Link\nCORONET PEAK KORDIA,-44.91611,168.73983,30,4,Fixed Link\nNELSON,-41.25685,173.28733,30,9,Maritime\nBELTANA,-42.70923,173.35151,29,6,Fixed Link\nSWAMPY SUMMIT,-45.80106,170.48532,29,5,Land Mobile\nTAPUAE,-39.99348,175.72432,29,4,Fixed Link\nMT CLIMIE(BCL),-41.14115,175.14857,29,6,Fixed Link\nWHAKATAU,-38.88281,176.49371,28,5,Fixed Link\nMAROANUI,-38.51812,176.02116,28,9,Land Mobile\nMT ROBERTSON,-41.34765,174.02186,28,3,Fixed Link\nTOURERE,-40.1232,176.37338,28,6,Land Mobile\nPORT TARANAKI,-39.05771,174.03374,28,5,Land Mobile\nRUAOTUWHENUA,-36.92412,174.55256,28,5,Land Mobile\nTE PUROA,-37.70723,175.09377,28,1,Fixed Link\nMOERANGI,-38.16665,176.21661,28,9,Land Mobile\nMID DOME,-45.58451,168.53728,28,12,Land Mobile\nWARD,-41.85205,174.15095,27,5,Fixed Link\nHELENSVILLE,-36.69708,174.46249,27,4,Land Mobile\nPORT OF NAPIER OPERATIONAL AREA,-39.47075,176.91554,27,3,Land Mobile\nCENTRAL NORTH ISLAND,-38.30857,176.17892,27,9,Land Mobile\nTE AWAPUTAHI,-40.3849,176.45305,27,9,Fixed Link\nHENDERSON,-36.86128,174.62814,27,12,Broadcasting\nPUTARURU,-38.08401,175.74202,27,4,Fixed Link\nMANGAWHAI,-36.06789,174.56422,27,8,Spectrum Licence\nMINDEN PEAK (POWERCO),-37.71239,176.05231,27,2,Fixed Link\nWESTPORT,-41.75683,171.62779,27,6,Spectrum Licence\nWHAREKOPAE,-38.47916,177.59038,27,11,Fixed Link\nWHITE HILL,-45.7647,168.29822,27,7,Fixed Link\nMT MAIRE,-39.69151,175.72744,27,5,Fixed Link\nNZME DUNEDIN STUDIO,-45.87106,170.51056,27,2,Fixed Link\nMCLEAN PARK,-39.50185,176.9132,26,7,Land Mobile\nMAKARA HIGH,-41.28918,174.70708,26,2,Fixed Link\nNEW PLYMOUTH AIRPORT,-39.00968,174.1803,26,6,Land Mobile\nBLUE DUCK,-42.20346,173.78958,26,6,Fixed Link\nTATARAAKINA,-39.04997,176.63043,26,4,Fixed Link\nPORT OF TARANAKI OPERATIONAL AREA,-39.05057,174.04215,26,2,Land Mobile\nTAUMATAMAIRE,-38.62631,174.71935,25,6,Land Mobile\nTAKORIKA,-41.29998,173.74267,25,9,Land Mobile\nMT CLIMIE(TELECOM),-41.15264,175.14372,25,6,Land Mobile\nMT HUTT (CANTERBURY COMMUNICATIONS LTD),-43.50502,171.54953,25,2,Land Mobile\nPUKEHOKO,-38.0211,177.02223,25,5,Fixed Link\nCAVE HILL,-44.37606,171.0088,25,11,Land Mobile\nPIHANGA,-39.04073,175.76897,25,11,Fixed Link\nOTAHUHU,-36.95612,174.84627,25,4,Land Mobile\nMOUTERE HILL,-40.5878,175.24023,24,3,Land Mobile\nDUNEDIN AIRPORT,-45.9286,170.20711,24,6,Spectrum Licence\nHUKAROA,-39.4621,175.25857,24,9,Fixed Link\nHIGHCLIFF (ASHCOMS),-45.8833,170.59605,24,3,Land Mobile\nWAIKATO HOSPITAL,-37.80427,175.28225,24,5,Land Mobile\nPORT OF WHANGAREI OPERATIONAL AREA,-35.80525,174.31017,24,1,Land Mobile\nPORT OF AKAROA OPERATIONAL AREA,-43.88998,172.97891,24,1,Land Mobile\nPORT CHALMERS OPERATIONAL AREA,-45.77064,170.71975,24,1,Land Mobile\nWHITIANGA MARINA,-36.83531,175.7067,24,1,Maritime\nMATAROA,-39.65026,175.71696,24,6,Land Mobile\nBLENHEIM,-41.52703,173.96702,24,6,Spectrum Licence\nMT MARY,-44.13877,170.2776,24,7,Spectrum Licence\nREDOUBT RD RESERVOIR,-36.99838,174.9391,24,2,Fixed Link\nPORT OF DUNEDIN OPERATIONAL AREA,-45.84705,170.55831,24,1,Land Mobile\nWAIHEKE ISLAND,-36.78857,175.02672,24,5,Land Mobile\nMT MAUDE KORDIA,-44.6193,169.21973,24,7,Broadcasting\nTARANAKI AREA,-39.15398,174.18481,24,7,Land Mobile\nPORT OF WANGANUI OPERATIONAL AREA,-39.94848,174.97971,24,1,Land Mobile\nPORT OF TARAKOHE OPERATIONAL AREA,-40.82045,172.89408,24,1,Land Mobile\nPORT OF TAHAROA OPERATIONAL AREA,-38.16715,174.65524,24,1,Land Mobile\nPORT OF ONEHUNGA OPERATIONAL AREA,-36.92723,174.77863,24,1,Land Mobile\nPORT OF MARSDEN POINT OPERATIONAL AREA,-35.82016,174.49249,24,1,Land Mobile\nPORT OF GREYMOUTH OPERATIONAL AREA,-42.43858,171.19178,24,1,Land Mobile\nPORT OF GISBORNE OPERATIONAL AREA,-38.66824,178.0284,24,1,Land Mobile\nPORT OF AUCKLAND OPERATIONAL AREA,-36.82752,174.81227,24,1,Land Mobile\nMT CAVENDISH,-43.5894,172.71629,24,9,Land Mobile\nCARDRONA,-44.86985,168.95024,24,6,Fixed Link\nMT HORRIBLE,-44.40018,171.07306,24,4,Broadcasting\nMT STUART (KORDIA),-46.07576,169.77015,24,1,Fixed Link\nPORT OF WESTPORT OPERATIONAL AREA,-41.72699,171.58936,24,1,Land Mobile\nPORT OF WELLINGTON OPERATIONAL AREA,-41.2618,174.78096,24,1,Land Mobile\nRAETIHI,-39.43724,175.27436,23,4,Land Mobile\nWINTON,-46.11698,168.39372,23,4,Fixed Link\nWAIPUNA,-39.43782,175.31329,23,10,Broadcasting\nTIKOKOPU,-36.69869,174.48007,23,6,Land Mobile\nRICHMOND,-43.40967,171.73962,23,7,Spectrum Licence\nNGONGOTAHA,-38.10329,176.20281,23,6,Fixed Link\nSTRATFORD,-39.34814,174.29468,23,3,Spectrum Licence\nPALMERSTON NORTH,-40.36025,175.61351,23,13,Spectrum Licence\nWHAKAPUNAKE (EASTLAND NETWORK),-38.82942,177.59665,23,4,Fixed Link\nWAIOURU,-39.48696,175.65937,23,8,Fixed Link\nTIWAI POINT,-46.58786,168.38361,23,3,Land Mobile\nBROWNS HILL,-35.36195,173.85185,23,5,Land Mobile\nWAIKERIKERI,-45.1179,169.34944,23,4,Fixed Link\nALEXANDRA,-45.18213,169.37309,23,9,Broadcasting\nWALLACE PEAK,-42.59487,172.8056,22,12,Land Mobile\nQUEENSTOWN AIRPORT,-45.02277,168.73844,22,6,Spectrum Licence\nKLONDYKE ROAD,-37.35483,174.80851,22,8,Land Mobile\nWAIMAUKU,-36.77836,174.49013,22,4,Maritime\nSTATE INSURANCE BUILDING INVERCARGILL,-46.41156,168.34875,22,6,Fixed Link\nMIDAS PLACE RAIL OFFICE,-43.54145,172.58324,22,2,Land Mobile\nWRIGHT HILL(TX),-41.29631,174.73995,22,3,Land Mobile\nPORTS OF AUCKLAND,-36.84533,174.7769,22,2,Land Mobile\nTAUPIRI RADIO,-37.58495,175.17393,22,1,Fixed Link\nPANORAMA ROAD (SKY TV SAT),-36.90613,174.826,22,1,Satellite & Space\nWELLINGTON AIRPORT,-41.32943,174.81042,22,7,Land Mobile\nWELLINGTON DIST AREA,-41.25923,174.87595,22,4,Land Mobile\nKURIWAO,-46.23855,169.37192,22,7,Land Mobile\nTORBAY RADIO,-36.69993,174.72332,22,4,Land Mobile\nCROMWELL,-45.04629,169.19511,22,8,Broadcasting\nTUKINO,-39.26877,175.64906,22,8,Fixed Link\nHILLEND,-44.73019,169.11581,22,9,Broadcasting\nTOWAI,-40.44554,174.81691,22,6,Broadcasting\nMT GREY (LOOKOUT),-43.13042,172.5471,22,4,Land Mobile\nFERRY TERMINAL (TRANZRAIL),-41.26498,174.78687,22,2,Land Mobile\nMIDDLEMORE HOSPITAL,-36.96372,174.84049,21,5,Spectrum Licence\nWHAKATANE HEADS,-37.94402,177.01362,21,3,Maritime\nMT SMART STADIUM,-36.9181,174.81257,21,7,Land Mobile\nMT ALFORD,-43.58912,171.48273,21,5,Land Mobile\nWHARITE SOUTH,-40.25612,175.85604,21,5,Broadcasting\nPUKEPOTO NO.3,-38.13896,176.3493,21,3,Broadcasting\nMT TUHUA,-38.78187,175.42926,21,7,Fixed Link\nKAIKOURA,-42.41165,173.68916,21,5,Spectrum Licence\nTORBAY,-36.70008,174.72316,21,5,Spectrum Licence\nHUNUA,-37.1006,175.10253,21,3,Fixed Link\nMT SHRIVES (ASHLEY),-44.67315,170.92823,21,3,Land Mobile\nBLUE MOUNTAINS (CHORUS),-45.86595,169.41331,21,5,Fixed Link\nPUKEORAPA,-38.93721,177.70512,21,4,Fixed Link\nFRINGED HILL (NORTH),-41.30793,173.31784,20,6,Land Mobile\nMAUNU,-35.73852,174.23097,20,3,Spectrum Licence\nTE KAWA,-38.09719,175.29143,20,4,Land Mobile\nHUNTERVILLE,-39.93966,175.60172,20,3,Land Mobile\n95 MT STUDHOLME,-44.64135,170.91083,20,4,Fixed Link\nNELSON AIRPORT,-41.29825,173.22276,20,7,Spectrum Licence\nMT STOKES,-41.09066,174.10156,20,8,Land Mobile\nMT GREY (MAINPOWER),-43.12143,172.54864,20,7,Land Mobile\nClevedon Starlink XL Array centre,-36.98988,175.05563,20,1,Satellite & Space\nAwarua Earth Station - Atlas Space,-46.52846,168.38035,20,1,Satellite & Space\nWELD CONE,-41.84751,174.1705,20,6,Land Mobile\n91 GAWLER DOWNS,-43.74704,171.36067,20,2,Fixed Link\nTITIRANGI,-38.03179,177.40698,20,12,Fixed Link\nWoodville Starlink XL Array #1,-40.3522,175.86679,20,1,Satellite & Space\nTe Hana Starlink Array #2,-36.23684,174.51269,20,1,Satellite & Space\nMT EGMONT(BCNZ),-39.29021,174.08458,20,3,Fixed Link\nTIHIOTONGA,-38.17579,176.2349,20,9,Broadcasting\nAXIS ENGINEERING AUCKLAND PORTS,-36.84461,174.77571,20,2,Land Mobile\nRATAROA,-37.23787,175.29962,20,7,Fixed Link\nMANGAKINO,-38.38762,175.7921,20,8,Spectrum Licence\nHORORATA STARLINK ARRAY#1,-43.5558,171.81332,20,1,Satellite & Space\nWAIROA,-39.0208,177.38806,20,7,Fixed Link\nPAPAROA(TRANZ RAIL),-42.40556,171.34295,19,6,Land Mobile\nMT HIKURANGI (KING COUNTRY),-38.79189,175.30125,19,4,Land Mobile\nGAWLER DOWNS,-43.77455,171.35598,19,9,Land Mobile\nKURIWAO KORDIA,-46.23854,169.37192,19,3,Fixed Link\nBLACK BIRCH,-41.75059,173.78191,19,6,Land Mobile\nWITHER HILLS,-41.54654,173.97967,19,6,Broadcasting\nCONSOLATION PEAK,-44.84597,168.07804,19,4,Fixed Link\nPUKEKOHE,-37.20237,174.89377,19,5,Spectrum Licence\nTUTARA,-37.80636,178.35878,19,6,Fixed Link\nKAPUNI UREA PLANT,-39.47699,174.16691,19,1,Land Mobile\nMT MAUNGANUI WHARF,-37.65324,176.18592,19,4,Land Mobile\nMT DIFFICULTY,-45.04013,169.08641,19,5,Fixed Link\nMT NICHOLAS,-45.12776,168.40184,19,9,Fixed Link\nRED HILL,-37.193,175.49857,19,4,Spectrum Licence\nWITHER HILLS RADIOWORKS (COBB RIDGE),-41.54821,173.98512,19,3,Broadcasting\nASHBURTON,-43.89845,171.75566,19,8,Land Mobile\nUPPER PAPAMOA,-37.7677,176.26123,19,2,Land Mobile\nTARADALE,-39.53738,176.8293,19,4,Fixed Link\nGREYMOUTH,-42.45042,171.20864,19,9,Spectrum Licence\nPOKENO,-37.25855,175.01989,19,5,Spectrum Licence\nOHAKEA,-40.20502,175.37912,19,2,Radiodetermination\nMASTERTON,-40.95338,175.64876,19,4,Spectrum Licence\nDUNEDIN,-45.88394,170.43846,19,3,Land Mobile\nMT ALBERT,-38.02679,174.42824,18,3,Spectrum Licence\nBAYPARK RACEWAY MT MAUNGANUI,-37.68343,176.22595,18,1,Land Mobile\nCAVE HILL JDA,-44.37935,171.01038,18,8,Fixed Link\nTAUMATAKARAMU,-39.06591,177.18263,18,2,Fixed Link\nKAIAPOI,-43.38589,172.65443,18,4,Spectrum Licence\nNORMANDALE,-41.18366,174.89922,18,4,Fixed Link\nBOMBAY,-37.18874,174.99696,18,6,Fixed Link\nSOUTHSHORE,-43.5377,172.73783,18,5,Spectrum Licence\nMT EDEN,-36.88187,174.76277,18,5,Spectrum Licence\nMT ASHCROFT,-39.95233,175.49129,18,5,Fixed Link\nTWO PEAKS,-40.03334,176.65023,18,4,Fixed Link\nPALMERSTON NORTH RAILYARD,-40.3443,175.59481,18,2,Fixed Link\nROTARY PARK,-45.88426,170.5463,18,5,Fixed Link\nTAUMARUNUI KURURAU RD,-38.8855,175.20567,18,7,Broadcasting\nTE WERAITI (POWERCO),-37.82321,175.90685,18,1,Fixed Link\nWESTFIELD RAIL REPEATER,-36.93767,174.83078,18,2,Land Mobile\nTAKAKA,-40.84503,172.81194,18,8,Broadcasting\nPUKEWHARARIKI,-36.03552,173.9387,18,5,Land Mobile\nTE PUKE,-37.78663,176.27858,18,5,Spectrum Licence\nMT ROLLESBY (TELECOM),-44.16107,170.61425,18,6,Fixed Link\nTAUWHAREPARAE,-38.26167,178.09531,18,2,Fixed Link\nGLENBROOK STEEL MILL,-37.20769,174.73038,18,2,Land Mobile\nIRIRANGI,-39.48153,175.65046,18,1,Maritime\nRAINBOW MT,-38.31978,176.38792,18,6,Land Mobile\nTAUPO,-38.69659,176.05507,18,7,Spectrum Licence\nREWA,-41.0575,175.9832,18,4,Fixed Link\nTUAMARINA,-41.40083,173.93791,18,6,Spectrum Licence\nREMARKABLES SKI FIELD,-45.05577,168.80594,18,5,Land Mobile\nHORNBY,-43.54365,172.52558,18,4,Spectrum Licence\nPORT OF WELLINGTON,-41.2749,174.78595,18,3,Land Mobile\nNEW ZEALAND SCHOOL OF FISHERIES,-41.27408,173.28746,18,1,Maritime\nMAUNGATAUREIA,-35.16692,173.4747,17,5,Land Mobile\nDALGETY RANGE,-44.23994,170.61367,17,2,Land Mobile\nFOREST HEIGHTS(TELECOM),-40.84888,175.10546,17,6,Land Mobile\nMT THREAVE NORTH,-39.7484,176.78551,17,1,Fixed Link\nLITTLE MT IDA,-44.95712,170.06601,17,7,Fixed Link\nKAIKORAI VALLEY,-45.8779,170.46482,17,3,Spectrum Licence\nWAIKATO UNIVERSITY,-37.78861,175.31825,17,4,Spectrum Licence\n\"PORTS OF LYTTELTON CITY CONTAINER DEPOT, 686 JONES RD, ROLLESTON\",-43.58086,172.3932,17,1,Land Mobile\nERICSSON STADIUM,-36.91784,174.81059,17,2,Land Mobile\nCLEVEDON,-36.99281,175.04891,17,5,Spectrum Licence\nWHAKATANE,-37.94935,176.96533,17,7,Spectrum Licence\nMT GREY(BCL),-43.12169,172.54765,17,3,Fixed Link\nREMARKABLES,-45.06341,168.80113,17,9,Land Mobile\nCASHMERE,-43.57746,172.64206,17,4,Fixed Link\nNZME STUDIO 200 ARMAGH STREET,-43.52896,172.64058,17,1,Fixed Link\nAUCKLAND,-36.9187,174.75136,17,5,Aeronautical\nTAIRUA LOOKOUT,-36.97147,175.81413,17,6,Land Mobile\nGLEESON AND COX QUARRY,-37.59236,175.14914,17,1,Land Mobile\nNZME VICTORIA STREET STUDIO,-36.847,174.75906,17,1,Fixed Link\nMT STUDHOLME(BCL),-44.64126,170.91147,17,5,Fixed Link\n238 MARINE PARADE BLUFF,-46.60269,168.35134,17,2,Maritime\nMANAWAHE TELECOM,-37.98227,176.68505,17,6,Broadcasting\nTE WERAITI(TELECOM SOUTH),-37.82288,175.90722,17,2,Land Mobile\nEUREKA,-37.70133,175.42056,17,6,Broadcasting\nWAINUI,-39.70752,176.91325,17,7,Broadcasting\nSTOKE,-41.31926,173.2332,17,6,Spectrum Licence\nAUCKLAND WHARVES AREA,-36.84195,174.76712,17,2,Land Mobile\nPARAKIORE (MAGIC MUSIC),-35.65918,174.28166,17,5,Spectrum Licence\nCARTERTON,-41.00001,175.47902,17,5,Spectrum Licence\nKAIPARA HILLS ROAD,-36.44277,174.5294,17,3,Land Mobile\n\"PORTS OF LYTTELTON CONTAINER DEPOT, CHAPMANS RD, CHRISTCHURCH\",-43.56639,172.68351,17,1,Land Mobile\nAOTEA CENTRE,-36.85192,174.76401,17,3,Land Mobile\nAIRPORT SECURITY BUILDING,-37.00568,174.78591,17,1,Land Mobile\nNORTH ROUGH RIDGE,-45.03342,169.93237,17,7,Land Mobile\nTOKOMARU EAST,-39.77801,175.04447,17,1,Land Mobile\nCASS PEAK,-43.63602,172.62408,17,4,Land Mobile\nMORRINSVILLE,-37.66524,175.52489,17,5,Spectrum Licence\nHOKITIKA,-42.71438,170.97634,17,3,Spectrum Licence\nPARIKANAPA,-38.742,177.70818,17,9,Fixed Link\nAIRSTRIP HILL IWITAUA RD,-35.14351,173.5961,17,1,Amateur\nPUKEKURA,-37.95938,175.51704,16,4,Spectrum Licence\nPARAPARAUMU,-40.91759,175.00414,16,5,Spectrum Licence\nDARGAVILLE (VFNZ),-35.95868,173.86314,16,3,Fixed Link\nPENINSULA HILL (VF S5FKT FRANKTON/QUEENSTOWN),-45.04057,168.72367,16,2,Fixed Link\nALEXANDRA PARK,-36.89073,174.77525,16,2,Spectrum Licence\nOHOPE BEACH,-37.97265,177.06616,16,4,Spectrum Licence\nCLAUDELANDS EVENT CENTRE,-37.77974,175.28954,16,4,Land Mobile\nTARANAKI SOUTH BIGHT - FPSO RAROA,-39.97233,173.29377,16,1,Land Mobile\nCromwell Starlink XL Array centre,-45.06106,169.19276,16,1,Satellite & Space\nBLUFF HILL (AMATEUR),-46.61536,168.33906,16,6,Land Mobile\nQUEENSTOWN AIRPORT TOWER,-45.02127,168.73839,16,4,Fixed Link\nUTIKU,-39.72843,175.88056,16,5,Fixed Link\nPASSIVE LEANING PEAK,-45.51498,167.27104,16,4,Fixed Link\nHASTINGS,-39.64247,176.84174,16,3,Spectrum Licence\nTE RERE HAU WIND FARM NORTH RANGE ROAD,-40.38795,175.73914,16,1,Fixed Link\nPAPATOETOE,-36.97165,174.8618,16,4,Spectrum Licence\nMT HUKAROA,-39.46204,175.25841,16,4,Fixed Link\nHAMILTON CAX,-37.78887,175.28142,16,4,Land Mobile\nPuwera Starlink XL Single array centre,-35.79346,174.30074,16,1,Satellite & Space\nHinds Starlink Array #1,-44.00742,171.57174,16,1,Satellite & Space\nTE KUITI STARLINK ARRAY#1,-38.30262,175.14434,16,1,Satellite & Space\nLONG GULLY,-44.55772,169.71275,16,4,Fixed Link\nPINEHILL,-36.7266,174.73499,16,7,Spectrum Licence\nWANAKA AIRPORT (WANAKA FLIGHTSEEING OFFICE),-44.72366,169.24508,16,2,Land Mobile\nREMUERA,-36.87798,174.79489,16,6,Spectrum Licence\nSHEERDOWN HILLS,-44.69492,167.92901,16,3,Land Mobile\nNATIONAL PARK,-39.17793,175.38784,16,8,Fixed Link\nBLUFF HILL,-43.89431,171.33172,16,7,Fixed Link\nMAUNU MT,-35.73839,174.23077,16,3,Land Mobile\nAwarua Starlink XL Array centre,-46.53053,168.38307,16,1,Satellite & Space\nKINLOCH,-41.77229,172.14119,16,6,Spectrum Licence\nMOTUEKA,-41.117,172.96305,16,4,Spectrum Licence\nGATEWAY TELEPORT TRENTHAM,-41.13973,175.053,16,1,Satellite & Space\nWAIKIWI,-46.38629,168.34874,16,2,Spectrum Licence\nWHANGAROA,-35.03445,173.69147,16,4,Spectrum Licence\nRUSSELL,-35.2615,174.13188,16,6,Spectrum Licence\nMT STUART,-46.07722,169.77044,16,7,Broadcasting\nTe Hana Starlink Array #1,-36.23675,174.51217,16,1,Satellite & Space\nMAKAHIWI,-38.99626,175.20507,16,2,Fixed Link\nMAUNU NORTHPOWER TOWER,-35.73897,174.23097,15,2,Fixed Link\nRUAPEKAPEKA,-35.45675,174.14302,15,2,Land Mobile\nWAIMATAITAI,-44.38351,171.23815,15,2,Spectrum Licence\nSTATION PEAK ,-44.75252,170.56871,15,1,Fixed Link\nCAPE WANBROW RESERVOIR,-45.11449,170.97375,15,4,Fixed Link\nGLENBROOK,-37.20019,174.73441,15,3,Spectrum Licence\nTOKATEA (POWERCO),-36.72568,175.51984,15,2,Land Mobile\nTWIZEL,-44.26221,170.09064,15,5,Spectrum Licence\nHAMILTON CENTRAL,-37.78625,175.28023,15,3,Spectrum Licence\nTE WAKA,-39.22934,176.65729,15,3,Fixed Link\nMT CLIMIE (WRC),-41.14985,175.1437,15,4,Land Mobile\nMAKETU RESERVOIR,-37.76287,176.46698,15,4,Land Mobile\nFEATHERSTON,-41.10764,175.31654,15,3,Spectrum Licence\nPUKERUA BAY (KIWIRAIL),-41.03898,174.87944,15,1,Land Mobile\nLEPPERTON,-39.07194,174.21265,15,2,Land Mobile\nREADS QUAY (EVOLUTION WIRELESS),-38.66763,178.02836,15,1,Fixed Link\nTHAMES,-37.13793,175.54238,15,2,Spectrum Licence\nKAWHIA HARBOUR,-38.04054,174.88371,15,4,Fixed Link\nAVALON,-41.19177,174.93558,15,2,Spectrum Licence\nTAURANGA EXCHANGE,-37.69944,176.15915,15,3,Spectrum Licence\nMEREMERE,-37.46947,175.52998,15,4,Spectrum Licence\nCLIVE,-39.59966,176.90899,15,3,Spectrum Licence\nKAIPARA HILLS RD,-36.46036,174.49744,15,4,Fixed Link\nRUAKIWI RESERVOIR,-37.79577,175.27795,15,1,Land Mobile\nMATANGIA,-37.38951,175.91279,15,3,Land Mobile\nMT ALFORD (ASHLEY),-43.5893,171.483,15,3,Land Mobile\nPUKEHOU,-40.74264,175.18904,15,3,Land Mobile\nASHCOTT,-39.94749,176.34307,15,1,Fixed Link\nPYE PEAK,-41.03659,172.85583,15,4,Fixed Link\nTE ANAU,-45.41993,167.74281,15,4,Spectrum Licence\nPLEASANT POINT,-44.2174,171.12128,15,3,Spectrum Licence\nOTEMATATA,-44.61344,170.16823,15,5,Broadcasting\nCHRISTCHURCH AIRPORT CAR PARK BUILDING,-43.48933,172.54019,15,1,Land Mobile\nWHAKAPAPATARINGA,-38.52034,176.15545,15,2,Fixed Link\nTIMARU EXCHANGE,-44.39696,171.25188,15,5,Land Mobile\nPOROOTARAO,-38.55388,175.32811,15,3,Land Mobile\nPUKETUTU,-37.00501,174.79961,15,5,Fixed Link\nTOLAGA BAY,-38.37584,178.30223,15,6,Spectrum Licence\nBETWEEN 1635 AND 1713 STATE HIGHWAY 1 KAIWAKA (VF N2KWA KAIWAKA),-36.18852,174.44325,15,2,Fixed Link\nAWAMATE,-38.99397,177.36754,15,4,Fixed Link\nHAHEI,-36.83893,175.79321,15,4,Spectrum Licence\nHINAHINA HILL,-46.50924,169.62557,15,7,Fixed Link\nTAHUNANUI,-41.29115,173.24039,15,3,Spectrum Licence\nWAIKATO STADIUM,-37.78089,175.26807,15,6,Land Mobile\nTAKAKA HILL (NZART),-41.02261,172.86118,15,6,Land Mobile\nHURUIKI,-35.443,174.31807,15,3,Fixed Link\nBAXTERS KNOB,-41.12694,174.8619,15,7,Land Mobile\nRANGIPO HRSC,-39.15352,175.83461,14,3,Land Mobile\nHOMAI,-37.01402,174.8755,14,2,Spectrum Licence\nHAMILTON (KPMG BUILDING),-37.78964,175.28291,14,8,Land Mobile\nTE ATATU CENTRAL,-36.85289,174.65146,14,2,Spectrum Licence\n86 LATTER HILL,-43.26105,171.96771,14,1,Land Mobile\nPENROSE EAST,-36.91136,174.82425,14,2,Spectrum Licence\nMONOWAI STATION (ALPINE),-44.19936,170.88299,14,2,Fixed Link\nPENDLE HILL,-42.92632,173.11342,14,3,Fixed Link\nTE WERAITI (LIGHTWIRE),-37.82007,175.90666,14,1,Fixed Link\nDANNEVIRKE,-40.20214,176.0865,14,3,Spectrum Licence\nCROWN HILL,-36.76442,174.75734,14,2,Spectrum Licence\nCARRINGTON ROAD,-39.20333,174.00134,14,8,Land Mobile\nRUSSELL HEIGHTS,-35.26275,174.13469,14,3,Land Mobile\nKAUKAPAKAPA,-36.61838,174.47706,14,3,Spectrum Licence\nCOOK STRAIT,-40.84498,173.5931,14,1,Land Mobile\nHARDLEY STREET STUDIO,-37.77804,175.27615,14,1,Fixed Link\nCAVALIER HOUSE,-41.5112,173.95724,14,2,Broadcasting\nPARERA ROAD KAHUTARA,-41.26386,175.21656,14,1,Land Mobile\n5A CRAFT PLACE,-43.54274,172.58473,14,1,Land Mobile\nPUKETE,-37.74387,175.23264,14,3,Spectrum Licence\nWAIKANAE,-40.8591,175.0727,14,2,Spectrum Licence\nMATATA RAILWAY,-37.89414,176.8102,14,1,Land Mobile\nPUKETUTU (NETSMART),-37.19572,175.01852,14,3,Fixed Link\nPOINT ENGLAND,-36.87963,174.86755,14,2,Spectrum Licence\nMT HYDE,-45.79069,170.28646,14,2,Land Mobile\nHEYWARD POINT,-45.77806,170.66908,14,1,Land Mobile\nCRAIGIEBURN,-43.10713,171.85716,14,1,Land Mobile\nAICKENS,-42.76464,171.62796,14,1,Land Mobile\nWANGANUI,-39.92901,175.04625,14,6,Spectrum Licence\nRUAOTUWHENUA SSR,-36.92423,174.55346,14,3,Fixed Link\nAHIWEKA (I-NET),-40.18119,176.33839,14,4,Land Mobile\nWAINONI,-43.51568,172.69185,14,2,Spectrum Licence\nWEST END,-40.36679,175.58417,14,2,Spectrum Licence\nCLOVERLEA,-40.3505,175.58278,14,2,Spectrum Licence\nST HELIERS,-36.86091,174.85037,14,1,Spectrum Licence\nEIGHT MILE JUNCTION,-38.40821,175.11427,14,4,Land Mobile\nTAUPIRI,-38.32552,176.22864,14,5,Land Mobile\nFOREST HILL,-46.22192,168.43571,14,8,Broadcasting\nCROWNE PLAZA HOTEL CHRISTCHURCH (POST EARTHQUAKE SITE),-43.529,172.63698,14,1,Land Mobile\n11A ROBERTS ROAD WHANGAPARAOA,-36.61916,174.77469,14,1,Maritime\nKAITOKE,-40.7474,175.17045,14,5,Spectrum Licence\nQUEENSTOWN,-45.03066,168.65777,14,7,Spectrum Licence\nHAWKES BAY AREA,-39.60183,176.78108,14,4,Land Mobile\nBALLANCE SSR,-40.40059,175.73251,14,3,Aeronautical\nUTIKU (KIWIRAIL),-39.72427,175.88075,14,2,Land Mobile\nKILBIRNIE,-41.31961,174.79599,14,2,Spectrum Licence\nRICHMOND HILL TRIG A6VV,-41.3671,173.1976,14,4,Land Mobile\nKUMEU,-36.76697,174.55238,14,4,Spectrum Licence\nHILL END,-44.73065,169.11635,14,2,Fixed Link\nBROMLEY,-43.53521,172.69634,14,2,Spectrum Licence\nTE AWAMUTU,-38.0093,175.32368,14,4,Spectrum Licence\nONEMANA,-37.15699,175.87818,14,4,Spectrum Licence\nKAWERAU,-38.07193,176.71606,14,4,Spectrum Licence\nTERRACE END,-40.34181,175.63754,14,2,Spectrum Licence\nMILSON,-40.33321,175.6183,14,2,Spectrum Licence\nLOWER HUTT,-41.20948,174.90689,14,3,Spectrum Licence\nFORSYTH BARR STADIUM DUNEDIN,-45.86955,170.52347,14,3,Land Mobile\nPAEROA,-37.55847,175.77467,14,7,Spectrum Licence\nOBELISK KORDIA,-45.3219,169.20703,14,1,Fixed Link\nFAVONA MINE PORTAL,-37.3922,175.86133,14,1,Land Mobile\nWINDY POINT,-40.75321,173.64925,14,2,Fixed Link\nREWAREWA,-38.62548,175.43275,14,1,Fixed Link\n69 MOLESWORTH STREET,-41.27503,174.77736,14,1,Land Mobile\n32 BIRMINGHAM DRIVE,-43.54328,172.58472,14,1,Land Mobile\nMANAWAHE RTUA (HORIZON ENERGY),-37.98204,176.68467,14,3,Land Mobile\nRataroa (RATA) (Lightwire),-37.23725,175.30008,14,1,Fixed Link\nROSEBANK,-45.88567,170.55913,14,1,Land Mobile\nNORTH RANGE ROAD WEST,-40.3327,175.78874,14,1,Land Mobile\nTIRAU,-37.96335,175.72428,14,2,Spectrum Licence\nTUTUKAKA,-35.62006,174.51692,14,4,Spectrum Licence\nTARANAKI BASE HOSPITAL,-39.07216,174.05532,14,4,Spectrum Licence\nRAUKUMARA,-37.76225,178.12574,14,9,Land Mobile\nROYS PEAK,-44.69459,169.04895,14,5,Land Mobile\nSADDLE HILL,-41.04176,173.73868,14,6,Fixed Link\nINVERCARGILL STADIUM (VFNZ),-46.41724,168.36298,14,2,Land Mobile\nMT EGMONT (POWERCO),-39.30585,174.1057,14,1,Land Mobile\nMT VICTORIA(MM),-36.82654,174.79921,14,1,Maritime\nPOROOTARAO TUNNEL,-38.56223,175.32036,13,1,Land Mobile\nOHAKUNE,-39.42917,175.39478,13,4,Spectrum Licence\nCOURTENAY PLACE,-41.2945,174.78273,13,3,Spectrum Licence\nST MARTINS,-43.55937,172.65705,13,2,Spectrum Licence\nDARGAVILLE,-35.92943,173.8555,13,3,Spectrum Licence\nTAUPO CENTRAL,-38.68393,176.07338,13,2,Spectrum Licence\nFLAGSTAFF,-37.73759,175.25798,13,2,Spectrum Licence\nNEWMARKET,-36.86866,174.77581,13,2,Spectrum Licence\nKLONDYKE ROAD (NZART),-37.35554,174.80887,13,4,Amateur\nPAREMOREMO PRISON,-36.75915,174.64739,13,3,Land Mobile\nPORT OF TAURANGA,-37.663,176.17086,13,4,Land Mobile\nFERNDALE,-38.2936,175.0894,13,2,Fixed Link\nRAGLAN,-37.82523,174.85008,13,5,Spectrum Licence\nBILLYS RIDGE,-45.50086,170.28443,13,1,Fixed Link\nCITIBANK CENTRE,-36.84519,174.76765,13,2,Land Mobile\nMAUI STREET KAIKOURA PENINSULA,-42.41841,173.69375,13,8,Broadcasting\nLYTTELTON,-43.60595,172.72435,13,4,Land Mobile\nWAITOTARA,-39.83198,174.7386,13,1,Land Mobile\nPOHOKURA (POWERCO),-39.16515,174.62824,13,2,Land Mobile\nTE ATATU ROAD,-36.86891,174.64572,13,2,Spectrum Licence\nTAUMARUNUI EXCHANGE,-38.88504,175.26347,13,4,Spectrum Licence\nWATTLE DOWNS,-37.03744,174.87619,13,2,Spectrum Licence\nOREWA,-36.59426,174.69242,13,2,Spectrum Licence\nWAIMARINO,-39.18248,175.38235,13,4,Fixed Link\nMT BUTTERS (POWERCO),-40.55969,176.03656,13,1,Land Mobile\nHARGREAVES ST AUCKLAND,-36.84597,174.75007,13,1,Fixed Link\nARAKIHI SOUTH,-38.37194,178.0565,13,4,Fixed Link\nHEDGEHOPE KORDIA,-46.09367,168.71157,13,1,Fixed Link\nBELTANA - DO NOT USE,-42.71162,173.35125,13,3,Land Mobile\nMT DEWAR,-44.94166,168.68733,13,4,Land Mobile\nPUKEKOHE HILL WDC,-37.2289,174.89307,13,1,Fixed Link\nCD EOC 525 MACKAY ST  THAMES,-37.13762,175.54256,13,1,Land Mobile\nOHAKEA CONTROL TOWER,-40.20046,175.37965,13,3,Aeronautical\nNORTH RANGE ROAD EAST,-40.33777,175.79708,13,1,Land Mobile\nWAITOHI HILL (ASHCOMS),-44.09793,171.09563,13,2,Land Mobile\nMT CARGILL KORDIA,-45.81313,170.5551,13,3,Fixed Link\nRUATANGATA WEST (VFNZ),-35.65375,174.19831,13,3,Fixed Link\nWANGANUI EAST,-39.90562,175.06194,13,2,Spectrum Licence\nWARKWORTH,-36.40349,174.65636,13,4,Spectrum Licence\nCOOPERS BEACH,-34.99126,173.50868,13,2,Maritime\nROTORUA INTERNATIONAL STADIUM,-38.15597,176.22361,13,4,Land Mobile\nTRIG K WAIHOPAI,-41.61354,173.56487,13,1,Land Mobile\n2ZA STUDIO,-40.35164,175.62032,13,1,Fixed Link\nBEACON HILL,-41.32969,174.82876,13,2,Maritime\nNEW PLYMOUTH (THE RADIO NETWORK),-39.0593,174.07379,13,1,Fixed Link\nQUAILBURN,-44.41772,169.91467,13,3,Land Mobile\nTITAHI BAY,-41.10705,174.83903,13,3,Spectrum Licence\nGALATEA,-38.29251,176.82922,13,2,Land Mobile\nMURRAYS BAY,-36.73125,174.74806,13,3,Spectrum Licence\nROCKY PEAK (ORION),-43.74209,172.87273,13,3,Fixed Link\nAwarua Earth Station_Planet 4,-46.52986,168.38009,13,1,Satellite & Space\nPONGA RD-SONJA RD,-37.10809,175.00241,13,3,Land Mobile\nPAUANUI SOUTH,-37.0376,175.873,13,4,Broadcasting\n","gold/pair_leg_daily.csv":"observed_date,service,pair_leg,assignment_count,distinct_licences\n2026-08-12,Spectrum Licence,Primary leg,30167,30098\n2026-08-12,Land Mobile,Primary leg,24080,9640\n2026-08-12,Fixed Link,Primary leg,8902,8530\n2026-08-12,Fixed Link,Return leg (#),7656,7656\n2026-08-12,Land Mobile,Return leg (#),6252,6251\n2026-08-12,Broadcasting,Primary leg,2391,2291\n2026-08-12,Satellite & Space,Primary leg,1514,1483\n2026-08-12,Paging,Primary leg,1121,175\n2026-08-12,Maritime,Primary leg,816,286\n2026-08-12,Aeronautical,Primary leg,786,531\n2026-08-12,General User Licence,Primary leg,553,23\n2026-08-12,Amateur,Primary leg,466,420\n2026-08-12,Radiodetermination,Primary leg,282,269\n2026-08-12,Telemetry & Telecommand,Primary leg,269,253\n2026-08-12,Amateur,Return leg (#),187,170\n2026-08-12,Maritime,Return leg (#),140,129\n2026-08-12,Outside Broadcast,Primary leg,50,9\n2026-08-12,Outside Broadcast,Return leg (#),48,9\n2026-08-12,Meteorological,Primary leg,38,31\n2026-08-12,General User Licence,Return leg (#),23,2\n2026-08-12,Radiodetermination,Return leg (#),16,16\n2026-08-12,Aeronautical,Return leg (#),1,1\n2026-08-17,Spectrum Licence,Primary leg,30296,30227\n2026-08-17,Land Mobile,Primary leg,24082,9642\n2026-08-17,Fixed Link,Primary leg,8893,8521\n2026-08-17,Fixed Link,Return leg (#),7647,7647\n2026-08-17,Land Mobile,Return leg (#),6255,6254\n2026-08-17,Broadcasting,Primary leg,2389,2289\n2026-08-17,Satellite & Space,Primary leg,1524,1493\n2026-08-17,Paging,Primary leg,1121,175\n2026-08-17,Maritime,Primary leg,817,287\n2026-08-17,Aeronautical,Primary leg,783,528\n2026-08-17,General User Licence,Primary leg,553,23\n2026-08-17,Amateur,Primary leg,466,420\n2026-08-17,Radiodetermination,Primary leg,282,269\n2026-08-17,Telemetry & Telecommand,Primary leg,269,253\n2026-08-17,Amateur,Return leg (#),187,170\n2026-08-17,Maritime,Return leg (#),140,129\n2026-08-17,Outside Broadcast,Primary leg,50,9\n2026-08-17,Outside Broadcast,Return leg (#),48,9\n2026-08-17,Meteorological,Primary leg,38,31\n2026-08-17,General User Licence,Return leg (#),23,2\n2026-08-17,Radiodetermination,Return leg (#),16,16\n2026-08-17,Aeronautical,Return leg (#),1,1\n2026-08-18,Spectrum Licence,Primary leg,30296,30227\n2026-08-18,Land Mobile,Primary leg,24082,9642\n2026-08-18,Fixed Link,Primary leg,8893,8521\n2026-08-18,Fixed Link,Return leg (#),7647,7647\n2026-08-18,Land Mobile,Return leg (#),6256,6255\n2026-08-18,Broadcasting,Primary leg,2389,2289\n2026-08-18,Satellite & Space,Primary leg,1524,1493\n2026-08-18,Paging,Primary leg,1121,175\n2026-08-18,Maritime,Primary leg,817,287\n2026-08-18,Aeronautical,Primary leg,789,534\n2026-08-18,General User Licence,Primary leg,553,23\n2026-08-18,Amateur,Primary leg,466,420\n2026-08-18,Radiodetermination,Primary leg,282,269\n2026-08-18,Telemetry & Telecommand,Primary leg,269,253\n2026-08-18,Amateur,Return leg (#),187,170\n2026-08-18,Maritime,Return leg (#),140,129\n2026-08-18,Outside Broadcast,Primary leg,50,9\n2026-08-18,Outside Broadcast,Return leg (#),48,9\n2026-08-18,Meteorological,Primary leg,38,31\n2026-08-18,General User Licence,Return leg (#),23,2\n2026-08-18,Radiodetermination,Return leg (#),16,16\n2026-08-18,Aeronautical,Return leg (#),1,1\n2026-08-19,Spectrum Licence,Primary leg,30298,30229\n2026-08-19,Land Mobile,Primary leg,24087,9643\n2026-08-19,Fixed Link,Primary leg,8894,8522\n2026-08-19,Fixed Link,Return leg (#),7648,7648\n2026-08-19,Land Mobile,Return leg (#),6256,6255\n2026-08-19,Broadcasting,Primary leg,2389,2289\n2026-08-19,Satellite & Space,Primary leg,1524,1493\n2026-08-19,Paging,Primary leg,1121,175\n2026-08-19,Maritime,Primary leg,817,287\n2026-08-19,Aeronautical,Primary leg,788,533\n2026-08-19,General User Licence,Primary leg,553,23\n2026-08-19,Amateur,Primary leg,466,420\n2026-08-19,Radiodetermination,Primary leg,282,269\n2026-08-19,Telemetry & Telecommand,Primary leg,269,253\n2026-08-19,Amateur,Return leg (#),187,170\n2026-08-19,Maritime,Return leg (#),140,129\n2026-08-19,Outside Broadcast,Primary leg,50,9\n2026-08-19,Outside Broadcast,Return leg (#),48,9\n2026-08-19,Meteorological,Primary leg,38,31\n2026-08-19,General User Licence,Return leg (#),23,2\n2026-08-19,Radiodetermination,Return leg (#),16,16\n2026-08-19,Aeronautical,Return leg (#),1,1\n2026-08-20,Spectrum Licence,Primary leg,30298,30229\n2026-08-20,Land Mobile,Primary leg,24084,9641\n2026-08-20,Fixed Link,Primary leg,8894,8522\n2026-08-20,Fixed Link,Return leg (#),7648,7648\n2026-08-20,Land Mobile,Return leg (#),6255,6254\n2026-08-20,Broadcasting,Primary leg,2389,2289\n2026-08-20,Satellite & Space,Primary leg,1524,1493\n2026-08-20,Paging,Primary leg,1121,175\n2026-08-20,Maritime,Primary leg,817,287\n2026-08-20,Aeronautical,Primary leg,788,533\n2026-08-20,General User Licence,Primary leg,553,23\n2026-08-20,Amateur,Primary leg,466,420\n2026-08-20,Radiodetermination,Primary leg,282,269\n2026-08-20,Telemetry & Telecommand,Primary leg,269,253\n2026-08-20,Amateur,Return leg (#),187,170\n2026-08-20,Maritime,Return leg (#),140,129\n2026-08-20,Outside Broadcast,Primary leg,50,9\n2026-08-20,Outside Broadcast,Return leg (#),48,9\n2026-08-20,Meteorological,Primary leg,38,31\n2026-08-20,General User Licence,Return leg (#),23,2\n2026-08-20,Radiodetermination,Return leg (#),16,16\n2026-08-20,Aeronautical,Return leg (#),1,1\n2026-08-21,Spectrum Licence,Primary leg,30298,30229\n2026-08-21,Land Mobile,Primary leg,24086,9641\n2026-08-21,Fixed Link,Primary leg,8894,8522\n2026-08-21,Fixed Link,Return leg (#),7648,7648\n2026-08-21,Land Mobile,Return leg (#),6255,6254\n2026-08-21,Broadcasting,Primary leg,2389,2289\n2026-08-21,Satellite & Space,Primary leg,1524,1493\n2026-08-21,Paging,Primary leg,1121,175\n2026-08-21,Maritime,Primary leg,817,287\n2026-08-21,Aeronautical,Primary leg,788,533\n2026-08-21,General User Licence,Primary leg,553,23\n2026-08-21,Amateur,Primary leg,466,420\n2026-08-21,Radiodetermination,Primary leg,282,269\n2026-08-21,Telemetry & Telecommand,Primary leg,269,253\n2026-08-21,Amateur,Return leg (#),187,170\n2026-08-21,Maritime,Return leg (#),140,129\n2026-08-21,Outside Broadcast,Primary leg,50,9\n2026-08-21,Outside Broadcast,Return leg (#),48,9\n2026-08-21,Meteorological,Primary leg,38,31\n2026-08-21,General User Licence,Return leg (#),23,2\n2026-08-21,Radiodetermination,Return leg (#),16,16\n2026-08-21,Aeronautical,Return leg (#),1,1\n2026-08-22,Spectrum Licence,Primary leg,30298,30229\n2026-08-22,Land Mobile,Primary leg,24086,9641\n2026-08-22,Fixed Link,Primary leg,8894,8522\n2026-08-22,Fixed Link,Return leg (#),7648,7648\n2026-08-22,Land Mobile,Return leg (#),6255,6254\n2026-08-22,Broadcasting,Primary leg,2389,2289\n2026-08-22,Satellite & Space,Primary leg,1524,1493\n2026-08-22,Paging,Primary leg,1121,175\n2026-08-22,Maritime,Primary leg,817,287\n2026-08-22,Aeronautical,Primary leg,788,533\n2026-08-22,General User Licence,Primary leg,553,23\n2026-08-22,Amateur,Primary leg,466,420\n2026-08-22,Radiodetermination,Primary leg,282,269\n2026-08-22,Telemetry & Telecommand,Primary leg,269,253\n2026-08-22,Amateur,Return leg (#),187,170\n2026-08-22,Maritime,Return leg (#),140,129\n2026-08-22,Outside Broadcast,Primary leg,50,9\n2026-08-22,Outside Broadcast,Return leg (#),48,9\n2026-08-22,Meteorological,Primary leg,38,31\n2026-08-22,General User Licence,Return leg (#),23,2\n2026-08-22,Radiodetermination,Return leg (#),16,16\n2026-08-22,Aeronautical,Return leg (#),1,1\n2026-08-23,Spectrum Licence,Primary leg,30298,30229\n2026-08-23,Land Mobile,Primary leg,24085,9640\n2026-08-23,Fixed Link,Primary leg,8884,8512\n2026-08-23,Fixed Link,Return leg (#),7638,7638\n2026-08-23,Land Mobile,Return leg (#),6255,6254\n2026-08-23,Broadcasting,Primary leg,2389,2289\n2026-08-23,Satellite & Space,Primary leg,1524,1493\n2026-08-23,Paging,Primary leg,1121,175\n2026-08-23,Maritime,Primary leg,817,287\n2026-08-23,Aeronautical,Primary leg,788,533\n2026-08-23,General User Licence,Primary leg,553,23\n2026-08-23,Amateur,Primary leg,466,420\n2026-08-23,Radiodetermination,Primary leg,283,270\n2026-08-23,Telemetry & Telecommand,Primary leg,269,253\n2026-08-23,Amateur,Return leg (#),187,170\n2026-08-23,Maritime,Return leg (#),140,129\n2026-08-23,Outside Broadcast,Primary leg,50,9\n2026-08-23,Outside Broadcast,Return leg (#),48,9\n2026-08-23,Meteorological,Primary leg,38,31\n2026-08-23,General User Licence,Return leg (#),23,2\n2026-08-23,Radiodetermination,Return leg (#),16,16\n2026-08-23,Aeronautical,Return leg (#),1,1\n2026-08-24,Spectrum Licence,Primary leg,30319,30250\n2026-08-24,Land Mobile,Primary leg,24084,9639\n2026-08-24,Fixed Link,Primary leg,8894,8522\n2026-08-24,Fixed Link,Return leg (#),7648,7648\n2026-08-24,Land Mobile,Return leg (#),6254,6253\n2026-08-24,Broadcasting,Primary leg,2389,2289\n2026-08-24,Satellite & Space,Primary leg,1524,1493\n2026-08-24,Paging,Primary leg,1121,175\n2026-08-24,Maritime,Primary leg,817,287\n2026-08-24,Aeronautical,Primary leg,788,533\n2026-08-24,General User Licence,Primary leg,553,23\n2026-08-24,Amateur,Primary leg,466,420\n2026-08-24,Radiodetermination,Primary leg,283,270\n2026-08-24,Telemetry & Telecommand,Primary leg,269,253\n2026-08-24,Amateur,Return leg (#),187,170\n2026-08-24,Maritime,Return leg (#),140,129\n2026-08-24,Outside Broadcast,Primary leg,50,9\n2026-08-24,Outside Broadcast,Return leg (#),48,9\n2026-08-24,Meteorological,Primary leg,38,31\n2026-08-24,General User Licence,Return leg (#),23,2\n2026-08-24,Radiodetermination,Return leg (#),16,16\n2026-08-24,Aeronautical,Return leg (#),1,1\n2026-08-25,Spectrum Licence,Primary leg,30313,30244\n2026-08-25,Land Mobile,Primary leg,24075,9631\n2026-08-25,Fixed Link,Primary leg,8897,8525\n2026-08-25,Fixed Link,Return leg (#),7651,7651\n2026-08-25,Land Mobile,Return leg (#),6247,6246\n2026-08-25,Broadcasting,Primary leg,2389,2289\n2026-08-25,Satellite & Space,Primary leg,1524,1493\n2026-08-25,Paging,Primary leg,1121,175\n2026-08-25,Maritime,Primary leg,817,287\n2026-08-25,Aeronautical,Primary leg,788,533\n2026-08-25,General User Licence,Primary leg,553,23\n2026-08-25,Amateur,Primary leg,466,420\n2026-08-25,Radiodetermination,Primary leg,283,270\n2026-08-25,Telemetry & Telecommand,Primary leg,269,253\n2026-08-25,Amateur,Return leg (#),187,170\n2026-08-25,Maritime,Return leg (#),140,129\n2026-08-25,Outside Broadcast,Primary leg,50,9\n2026-08-25,Outside Broadcast,Return leg (#),48,9\n2026-08-25,Meteorological,Primary leg,38,31\n2026-08-25,General User Licence,Return leg (#),23,2\n2026-08-25,Radiodetermination,Return leg (#),16,16\n2026-08-25,Aeronautical,Return leg (#),1,1\n2026-08-26,Spectrum Licence,Primary leg,30313,30244\n2026-08-26,Land Mobile,Primary leg,24089,9636\n2026-08-26,Fixed Link,Primary leg,8898,8526\n2026-08-26,Fixed Link,Return leg (#),7652,7652\n2026-08-26,Land Mobile,Return leg (#),6251,6250\n2026-08-26,Broadcasting,Primary leg,2389,2289\n2026-08-26,Satellite & Space,Primary leg,1524,1493\n2026-08-26,Paging,Primary leg,1121,175\n2026-08-26,Maritime,Primary leg,817,287\n2026-08-26,Aeronautical,Primary leg,788,533\n2026-08-26,General User Licence,Primary leg,553,23\n2026-08-26,Amateur,Primary leg,466,420\n2026-08-26,Radiodetermination,Primary leg,283,270\n2026-08-26,Telemetry & Telecommand,Primary leg,269,253\n2026-08-26,Amateur,Return leg (#),187,170\n2026-08-26,Maritime,Return leg (#),140,129\n2026-08-26,Outside Broadcast,Primary leg,50,9\n2026-08-26,Outside Broadcast,Return leg (#),48,9\n2026-08-26,Meteorological,Primary leg,38,31\n2026-08-26,General User Licence,Return leg (#),23,2\n2026-08-26,Radiodetermination,Return leg (#),16,16\n2026-08-26,Aeronautical,Return leg (#),1,1\n2026-08-27,Spectrum Licence,Primary leg,30313,30244\n2026-08-27,Land Mobile,Primary leg,24088,9635\n2026-08-27,Fixed Link,Primary leg,8898,8526\n2026-08-27,Fixed Link,Return leg (#),7652,7652\n2026-08-27,Land Mobile,Return leg (#),6251,6250\n2026-08-27,Broadcasting,Primary leg,2389,2289\n2026-08-27,Satellite & Space,Primary leg,1524,1493\n2026-08-27,Paging,Primary leg,1121,175\n2026-08-27,Maritime,Primary leg,817,287\n2026-08-27,Aeronautical,Primary leg,788,533\n2026-08-27,General User Licence,Primary leg,553,23\n2026-08-27,Amateur,Primary leg,466,420\n2026-08-27,Radiodetermination,Primary leg,283,270\n2026-08-27,Telemetry & Telecommand,Primary leg,269,253\n2026-08-27,Amateur,Return leg (#),187,170\n2026-08-27,Maritime,Return leg (#),140,129\n2026-08-27,Outside Broadcast,Primary leg,50,9\n2026-08-27,Outside Broadcast,Return leg (#),48,9\n2026-08-27,Meteorological,Primary leg,38,31\n2026-08-27,General User Licence,Return leg (#),23,2\n2026-08-27,Radiodetermination,Return leg (#),16,16\n2026-08-27,Aeronautical,Return leg (#),1,1\n2026-08-28,Spectrum Licence,Primary leg,30313,30244\n2026-08-28,Land Mobile,Primary leg,24089,9636\n2026-08-28,Fixed Link,Primary leg,8899,8527\n2026-08-28,Fixed Link,Return leg (#),7653,7653\n2026-08-28,Land Mobile,Return leg (#),6252,6251\n2026-08-28,Broadcasting,Primary leg,2389,2289\n2026-08-28,Satellite & Space,Primary leg,1524,1493\n2026-08-28,Paging,Primary leg,1121,175\n2026-08-28,Maritime,Primary leg,817,287\n2026-08-28,Aeronautical,Primary leg,788,533\n2026-08-28,General User Licence,Primary leg,553,23\n2026-08-28,Amateur,Primary leg,466,420\n2026-08-28,Radiodetermination,Primary leg,283,270\n2026-08-28,Telemetry & Telecommand,Primary leg,269,253\n2026-08-28,Amateur,Return leg (#),187,170\n2026-08-28,Maritime,Return leg (#),140,129\n2026-08-28,Outside Broadcast,Primary leg,50,9\n2026-08-28,Outside Broadcast,Return leg (#),48,9\n2026-08-28,Meteorological,Primary leg,38,31\n2026-08-28,General User Licence,Return leg (#),23,2\n2026-08-28,Radiodetermination,Return leg (#),16,16\n2026-08-28,Aeronautical,Return leg (#),1,1\n2026-08-29,Spectrum Licence,Primary leg,30313,30244\n2026-08-29,Land Mobile,Primary leg,24085,9635\n2026-08-29,Fixed Link,Primary leg,8899,8527\n2026-08-29,Fixed Link,Return leg (#),7653,7653\n2026-08-29,Land Mobile,Return leg (#),6252,6251\n2026-08-29,Broadcasting,Primary leg,2389,2289\n2026-08-29,Satellite & Space,Primary leg,1524,1493\n2026-08-29,Paging,Primary leg,1121,175\n2026-08-29,Maritime,Primary leg,817,287\n2026-08-29,Aeronautical,Primary leg,788,533\n2026-08-29,General User Licence,Primary leg,553,23\n2026-08-29,Amateur,Primary leg,466,420\n2026-08-29,Radiodetermination,Primary leg,283,270\n2026-08-29,Telemetry & Telecommand,Primary leg,269,253\n2026-08-29,Amateur,Return leg (#),187,170\n2026-08-29,Maritime,Return leg (#),140,129\n2026-08-29,Outside Broadcast,Primary leg,50,9\n2026-08-29,Outside Broadcast,Return leg (#),48,9\n2026-08-29,Meteorological,Primary leg,38,31\n2026-08-29,General User Licence,Return leg (#),23,2\n2026-08-29,Radiodetermination,Return leg (#),16,16\n2026-08-29,Aeronautical,Return leg (#),1,1\n2026-08-30,Spectrum Licence,Primary leg,30313,30244\n2026-08-30,Land Mobile,Primary leg,24075,9630\n2026-08-30,Fixed Link,Primary leg,8899,8527\n2026-08-30,Fixed Link,Return leg (#),7652,7652\n2026-08-30,Land Mobile,Return leg (#),6249,6248\n2026-08-30,Broadcasting,Primary leg,2389,2289\n2026-08-30,Satellite & Space,Primary leg,1524,1493\n2026-08-30,Paging,Primary leg,1121,175\n2026-08-30,Maritime,Primary leg,817,287\n2026-08-30,Aeronautical,Primary leg,788,533\n2026-08-30,General User Licence,Primary leg,553,23\n2026-08-30,Amateur,Primary leg,466,420\n2026-08-30,Radiodetermination,Primary leg,283,270\n2026-08-30,Telemetry & Telecommand,Primary leg,269,253\n2026-08-30,Amateur,Return leg (#),187,170\n2026-08-30,Maritime,Return leg (#),140,129\n2026-08-30,Outside Broadcast,Primary leg,50,9\n2026-08-30,Outside Broadcast,Return leg (#),48,9\n2026-08-30,Meteorological,Primary leg,38,31\n2026-08-30,General User Licence,Return leg (#),23,2\n2026-08-30,Radiodetermination,Return leg (#),16,16\n2026-08-30,Aeronautical,Return leg (#),1,1\n2026-08-31,Spectrum Licence,Primary leg,30313,30244\n2026-08-31,Land Mobile,Primary leg,24072,9627\n2026-08-31,Fixed Link,Primary leg,8900,8528\n2026-08-31,Fixed Link,Return leg (#),7653,7653\n2026-08-31,Land Mobile,Return leg (#),6248,6247\n2026-08-31,Broadcasting,Primary leg,2389,2289\n2026-08-31,Satellite & Space,Primary leg,1514,1483\n2026-08-31,Paging,Primary leg,1121,175\n2026-08-31,Maritime,Primary leg,817,287\n2026-08-31,Aeronautical,Primary leg,788,533\n2026-08-31,General User Licence,Primary leg,553,23\n2026-08-31,Amateur,Primary leg,466,420\n2026-08-31,Radiodetermination,Primary leg,283,270\n2026-08-31,Telemetry & Telecommand,Primary leg,269,253\n2026-08-31,Amateur,Return leg (#),187,170\n2026-08-31,Maritime,Return leg (#),140,129\n2026-08-31,Outside Broadcast,Primary leg,50,9\n2026-08-31,Outside Broadcast,Return leg (#),48,9\n2026-08-31,Meteorological,Primary leg,38,31\n2026-08-31,General User Licence,Return leg (#),23,2\n2026-08-31,Radiodetermination,Return leg (#),16,16\n2026-08-31,Aeronautical,Return leg (#),1,1\n2026-09-01,Spectrum Licence,Primary leg,30366,30297\n2026-09-01,Land Mobile,Primary leg,24072,9627\n2026-09-01,Fixed Link,Primary leg,8910,8538\n2026-09-01,Fixed Link,Return leg (#),7663,7663\n2026-09-01,Land Mobile,Return leg (#),6248,6247\n2026-09-01,Broadcasting,Primary leg,2389,2289\n2026-09-01,Satellite & Space,Primary leg,1520,1489\n2026-09-01,Paging,Primary leg,1121,175\n2026-09-01,Maritime,Primary leg,817,287\n2026-09-01,Aeronautical,Primary leg,788,533\n2026-09-01,General User Licence,Primary leg,553,23\n2026-09-01,Amateur,Primary leg,466,420\n2026-09-01,Radiodetermination,Primary leg,283,270\n2026-09-01,Telemetry & Telecommand,Primary leg,269,253\n2026-09-01,Amateur,Return leg (#),187,170\n2026-09-01,Maritime,Return leg (#),140,129\n2026-09-01,Outside Broadcast,Primary leg,50,9\n2026-09-01,Outside Broadcast,Return leg (#),48,9\n2026-09-01,Meteorological,Primary leg,38,31\n2026-09-01,General User Licence,Return leg (#),23,2\n2026-09-01,Radiodetermination,Return leg (#),16,16\n2026-09-01,Aeronautical,Return leg (#),1,1\n2026-09-02,Spectrum Licence,Primary leg,30366,30297\n2026-09-02,Land Mobile,Primary leg,24076,9628\n2026-09-02,Fixed Link,Primary leg,8911,8539\n2026-09-02,Fixed Link,Return leg (#),7664,7664\n2026-09-02,Land Mobile,Return leg (#),6248,6247\n2026-09-02,Broadcasting,Primary leg,2389,2289\n2026-09-02,Satellite & Space,Primary leg,1520,1489\n2026-09-02,Paging,Primary leg,1121,175\n2026-09-02,Maritime,Primary leg,817,287\n2026-09-02,Aeronautical,Primary leg,788,533\n2026-09-02,General User Licence,Primary leg,553,23\n2026-09-02,Amateur,Primary leg,466,420\n2026-09-02,Radiodetermination,Primary leg,283,270\n2026-09-02,Telemetry & Telecommand,Primary leg,269,253\n2026-09-02,Amateur,Return leg (#),187,170\n2026-09-02,Maritime,Return leg (#),140,129\n2026-09-02,Outside Broadcast,Primary leg,50,9\n2026-09-02,Outside Broadcast,Return leg (#),48,9\n2026-09-02,Meteorological,Primary leg,38,31\n2026-09-02,General User Licence,Return leg (#),23,2\n2026-09-02,Radiodetermination,Return leg (#),16,16\n2026-09-02,Aeronautical,Return leg (#),1,1\n2026-09-03,Spectrum Licence,Primary leg,30366,30297\n2026-09-03,Land Mobile,Primary leg,24080,9629\n2026-09-03,Fixed Link,Primary leg,8911,8539\n2026-09-03,Fixed Link,Return leg (#),7664,7664\n2026-09-03,Land Mobile,Return leg (#),6249,6248\n2026-09-03,Broadcasting,Primary leg,2389,2289\n2026-09-03,Satellite & Space,Primary leg,1520,1489\n2026-09-03,Paging,Primary leg,1121,175\n2026-09-03,Maritime,Primary leg,817,287\n2026-09-03,Aeronautical,Primary leg,788,533\n2026-09-03,General User Licence,Primary leg,553,23\n2026-09-03,Amateur,Primary leg,466,420\n2026-09-03,Radiodetermination,Primary leg,283,270\n2026-09-03,Telemetry & Telecommand,Primary leg,259,243\n2026-09-03,Amateur,Return leg (#),187,170\n2026-09-03,Maritime,Return leg (#),140,129\n2026-09-03,Outside Broadcast,Primary leg,50,9\n2026-09-03,Outside Broadcast,Return leg (#),48,9\n2026-09-03,Meteorological,Primary leg,38,31\n2026-09-03,General User Licence,Return leg (#),23,2\n2026-09-03,Radiodetermination,Return leg (#),16,16\n2026-09-03,Aeronautical,Return leg (#),1,1\n2026-09-04,Spectrum Licence,Primary leg,30366,30297\n2026-09-04,Land Mobile,Primary leg,24076,9624\n2026-09-04,Fixed Link,Primary leg,8911,8539\n2026-09-04,Fixed Link,Return leg (#),7664,7664\n2026-09-04,Land Mobile,Return leg (#),6246,6245\n2026-09-04,Broadcasting,Primary leg,2389,2289\n2026-09-04,Satellite & Space,Primary leg,1520,1489\n2026-09-04,Paging,Primary leg,1121,175\n2026-09-04,Maritime,Primary leg,817,287\n2026-09-04,Aeronautical,Primary leg,788,533\n2026-09-04,General User Licence,Primary leg,553,23\n2026-09-04,Amateur,Primary leg,466,420\n2026-09-04,Radiodetermination,Primary leg,283,270\n2026-09-04,Telemetry & Telecommand,Primary leg,259,243\n2026-09-04,Amateur,Return leg (#),187,170\n2026-09-04,Maritime,Return leg (#),140,129\n2026-09-04,Outside Broadcast,Primary leg,50,9\n2026-09-04,Outside Broadcast,Return leg (#),48,9\n2026-09-04,Meteorological,Primary leg,38,31\n2026-09-04,General User Licence,Return leg (#),23,2\n2026-09-04,Radiodetermination,Return leg (#),16,16\n2026-09-04,Aeronautical,Return leg (#),1,1\n2026-09-05,Spectrum Licence,Primary leg,30366,30297\n2026-09-05,Land Mobile,Primary leg,24076,9624\n2026-09-05,Fixed Link,Primary leg,8911,8539\n2026-09-05,Fixed Link,Return leg (#),7664,7664\n2026-09-05,Land Mobile,Return leg (#),6246,6245\n2026-09-05,Broadcasting,Primary leg,2389,2289\n2026-09-05,Satellite & Space,Primary leg,1520,1489\n2026-09-05,Paging,Primary leg,1121,175\n2026-09-05,Maritime,Primary leg,817,287\n2026-09-05,Aeronautical,Primary leg,788,533\n2026-09-05,General User Licence,Primary leg,553,23\n2026-09-05,Amateur,Primary leg,466,420\n2026-09-05,Radiodetermination,Primary leg,283,270\n2026-09-05,Telemetry & Telecommand,Primary leg,259,243\n2026-09-05,Amateur,Return leg (#),187,170\n2026-09-05,Maritime,Return leg (#),140,129\n2026-09-05,Outside Broadcast,Primary leg,50,9\n2026-09-05,Outside Broadcast,Return leg (#),48,9\n2026-09-05,Meteorological,Primary leg,38,31\n2026-09-05,General User Licence,Return leg (#),23,2\n2026-09-05,Radiodetermination,Return leg (#),16,16\n2026-09-05,Aeronautical,Return leg (#),1,1\n2026-09-06,Spectrum Licence,Primary leg,30366,30297\n2026-09-06,Land Mobile,Primary leg,24077,9625\n2026-09-06,Fixed Link,Primary leg,8913,8541\n2026-09-06,Fixed Link,Return leg (#),7666,7666\n2026-09-06,Land Mobile,Return leg (#),6247,6246\n2026-09-06,Broadcasting,Primary leg,2389,2289\n2026-09-06,Satellite & Space,Primary leg,1520,1489\n2026-09-06,Paging,Primary leg,1121,175\n2026-09-06,Maritime,Primary leg,817,287\n2026-09-06,Aeronautical,Primary leg,788,533\n2026-09-06,General User Licence,Primary leg,553,23\n2026-09-06,Amateur,Primary leg,466,420\n2026-09-06,Radiodetermination,Primary leg,283,270\n2026-09-06,Telemetry & Telecommand,Primary leg,259,243\n2026-09-06,Amateur,Return leg (#),187,170\n2026-09-06,Maritime,Return leg (#),140,129\n2026-09-06,Outside Broadcast,Primary leg,50,9\n2026-09-06,Outside Broadcast,Return leg (#),48,9\n2026-09-06,Meteorological,Primary leg,38,31\n2026-09-06,General User Licence,Return leg (#),23,2\n2026-09-06,Radiodetermination,Return leg (#),16,16\n2026-09-06,Aeronautical,Return leg (#),1,1\n2026-09-07,Spectrum Licence,Primary leg,30394,30325\n2026-09-07,Land Mobile,Primary leg,24077,9625\n2026-09-07,Fixed Link,Primary leg,8913,8541\n2026-09-07,Fixed Link,Return leg (#),7666,7666\n2026-09-07,Land Mobile,Return leg (#),6247,6246\n2026-09-07,Broadcasting,Primary leg,2389,2289\n2026-09-07,Satellite & Space,Primary leg,1520,1489\n2026-09-07,Paging,Primary leg,1121,175\n2026-09-07,Maritime,Primary leg,817,287\n2026-09-07,Aeronautical,Primary leg,788,533\n2026-09-07,General User Licence,Primary leg,553,23\n2026-09-07,Amateur,Primary leg,466,420\n2026-09-07,Radiodetermination,Primary leg,283,270\n2026-09-07,Telemetry & Telecommand,Primary leg,259,243\n2026-09-07,Amateur,Return leg (#),187,170\n2026-09-07,Maritime,Return leg (#),140,129\n2026-09-07,Outside Broadcast,Primary leg,50,9\n2026-09-07,Outside Broadcast,Return leg (#),48,9\n2026-09-07,Meteorological,Primary leg,38,31\n2026-09-07,General User Licence,Return leg (#),23,2\n2026-09-07,Radiodetermination,Return leg (#),16,16\n2026-09-07,Aeronautical,Return leg (#),1,1\n"};
+
+const FILES = [
+  'silver/stats.json',
+  'silver/band_summary.csv',
+  'silver/service_summary.csv',
+  'silver/band_service_matrix.csv',
+  'silver/sample_assignments.csv',
+  'silver/licensee_analytics.csv',
+  'silver/site_plot.csv',
+  'gold/pair_leg_daily.csv'
+];
+
+// Short codes for the matrix column heads: the design's columns were region
+// codes, and this API carries no region, so the axis is service abbreviated to
+// keep the 9px heads legible.
+const SERVICE_CODE = {
+  'Land Mobile': 'LMR', 'Spectrum Licence': 'SPC', 'Fixed Link': 'FXD',
+  'Broadcasting': 'BCS', 'Satellite & Space': 'SAT', 'Paging': 'PGE',
+  'Maritime': 'MAR', 'Aeronautical': 'AER', 'Amateur': 'AMR',
+  'General User Licence': 'GUL', 'Radiodetermination': 'RDT',
+  'Telemetry & Telecommand': 'TLM', 'Outside Broadcast': 'OBV',
+  'Meteorological': 'MET'
+};
+
+(function () {
+  'use strict';
+  const el = (id) => document.getElementById(id);
+  const num = (n) => Number(n).toLocaleString('en-NZ').replace(/,/g, ' ');
+  const int = (v) => { const n = parseFloat(v); return Number.isFinite(n) ? Math.round(n) : 0; };
+  const flt = (v) => { const n = parseFloat(v); return Number.isFinite(n) ? n : null; };
+
+  /* ---- fit the fixed 1280x720 window to whatever viewport it lands in ---- */
+  function fit() {
+    el('stage').style.transform =
+      'scale(' + Math.min(window.innerWidth / 1284, window.innerHeight / 724) + ')';
+  }
+  window.addEventListener('resize', fit);
+  fit();
+
+  /* ---------------------------------------------------------------- parsing */
+  function parseCsvLine(line) {
+    const out = []; let cur = '', q = false;
+    for (let i = 0; i < line.length; i++) {
+      const c = line[i];
+      if (c === '"') { if (q && line[i + 1] === '"') { cur += '"'; i++; } else q = !q; }
+      else if (c === ',' && !q) { out.push(cur); cur = ''; }
+      else cur += c;
+    }
+    out.push(cur);
+    return out;
+  }
+  function parseCsv(text) {
+    const lines = (text || '').trim().split(/\r?\n/).filter(Boolean);
+    if (!lines.length) return [];
+    const head = parseCsvLine(lines[0]);
+    return lines.slice(1).map((l) => {
+      const v = parseCsvLine(l);
+      return Object.fromEntries(head.map((h, i) => [h, v[i]]));
+    });
+  }
+
+  /* ------------------------------------------------------------ model build */
+  function buildModel(files) {
+    let stats = {};
+    try { stats = JSON.parse(files['silver/stats.json'] || '{}'); } catch (e) { stats = {}; }
+
+    const bands = parseCsv(files['silver/band_summary.csv']).map((r) => ({
+      band: r.band || '',
+      code: (r.band || '').split(' ')[0],
+      count: int(r.assignment_count),
+      min: flt(r.min_frequency_mhz),
+      max: flt(r.max_frequency_mhz)
+    }));
+
+    const services = parseCsv(files['silver/service_summary.csv']).map((r) => ({
+      service: r.service || '',
+      count: int(r.assignment_count),
+      licensees: int(r.distinct_licensees)
+    }));
+
+    // Matrix: bands as rows, the busiest services as columns.
+    const cells = {}, order = {};
+    parseCsv(files['silver/band_service_matrix.csv']).forEach((r) => {
+      cells[(r.band || '') + ' ' + (r.service || '')] = int(r.assignment_count);
+      order[r.band || ''] = int(r.band_order) || 99;
+    });
+    const cols = services.slice(0, 13).map((s) => ({
+      code: SERVICE_CODE[s.service] || s.service.slice(0, 3).toUpperCase(),
+      name: s.service
+    }));
+    const bandLabel = (b) => (b.includes('(')
+      ? b.split('(')[0].trim() + '  ' + b.split('(')[1].replace(')', '') : b);
+    const matrix = {
+      services: cols,
+      rows: Object.keys(order).sort((a, b) => order[a] - order[b]).map((b) => ({
+        band: b,
+        label: bandLabel(b),
+        cells: cols.map((c) => cells[b + ' ' + c.name] || 0)
+      }))
+    };
+
+    const sample = parseCsv(files['silver/sample_assignments.csv']).slice(0, 10).map((r) => ({
+      licenceId: r.licenceId || '',
+      licenceNumber: r.licenceNumber || '',
+      licensee: r.licensee || '',
+      channel: r.channel || '',
+      frequency: (flt(r.frequency) || 0).toFixed(5),
+      location: r.location || '',
+      status: r.status || ''
+    }));
+
+    const holders = parseCsv(files['silver/licensee_analytics.csv']).slice(0, 8).map((r) => ({
+      licensee: r.licensee || '', count: int(r.assignment_count)
+    }));
+
+    const sites = parseCsv(files['silver/site_plot.csv'])
+      .map((r) => ({ lat: flt(r.lat), lon: flt(r.lon), count: int(r.assignment_count), service: r.service || '' }))
+      .filter((s) => s.lat !== null && s.lon !== null);
+
+    // Return legs, from the latest day in the pair-leg series.
+    const pair = parseCsv(files['gold/pair_leg_daily.csv']);
+    let returnLegs = 0;
+    if (pair.length) {
+      const latest = pair.reduce((m, r) => (r.observed_date > m ? r.observed_date : m), '');
+      returnLegs = pair
+        .filter((r) => r.observed_date === latest && /Return/.test(r.pair_leg || ''))
+        .reduce((t, r) => t + int(r.assignment_count), 0);
+    }
+
+    return { stats, bands, services, matrix, sample, holders, sites, returnLegs };
+  }
+
+  /* ---------------------------------------------------------------- loading */
+  async function fetchFile(path) {
+    // Cache-busted so a refresh actually re-reads the hourly rebuild.
+    const res = await fetch(path + '?t=' + Date.now(), { cache: 'no-store' });
+    if (!res.ok) throw new Error(path + ' HTTP ' + res.status);
+    return res.text();
+  }
+
+  async function load() {
+    const files = {};
+    let live = true;
+    await Promise.all(FILES.map(async (p) => {
+      try {
+        files[p] = await fetchFile(p);
+      } catch (e) {
+        // file:// or an unreachable site: fall back to the baked-in copy.
+        files[p] = (EMBEDDED || {})[p] || '';
+        live = false;
+      }
+    }));
+    return { model: buildModel(files), live };
+  }
+
+  /* ----------------------------------------------------------------- render */
+  const CLASS_COLOUR = {
+    'Spectrum Licence': '#ff0000', 'Fixed Link': '#00ff00', 'Land Mobile': '#32cd32',
+    'Broadcasting': '#ffff00', 'Satellite & Space': '#0066cc',
+    'Maritime': '#ffa500', 'Aeronautical': '#ffa500'
+  };
+  let current = null;
+
+  function render(M, live) {
+    current = M;
+    const st = M.stats || {};
+    const records = st.totalLicenses || 0;
+
+    el('sRecords').textContent = num(records);
+    el('sLicences').textContent = num(st.distinctLicences || 0);
+    el('sHolders').textContent = num(st.uniqueHolders || 0);
+    el('sLegs').textContent = num(M.returnLegs || 0);
+    el('stRecords').textContent = 'RECORDS: ' + num(records);
+    el('stLicences').textContent = 'LICENCES: ' + num(st.distinctLicences || 0);
+    el('stHolders').textContent = 'HOLDERS: ' + num(st.uniqueHolders || 0);
+    el('stSites').textContent = 'SITES: ' + num(M.sites.length);
+    if (st.lastUpdateUTC) {
+      el('stUpdate').textContent = 'LAST UPDATE ' + st.lastUpdateUTC.replace('T', ' ').slice(0, 19) + ' UTC';
+    }
+    el('stSource').textContent = live ? 'LIVE FEED' : 'EMBEDDED SNAPSHOT';
+    el('led').style.background = live ? '#008000' : '#a06000';
+    el('led').style.borderColor = live ? '#004000' : '#503000';
+
+    const withFreq = M.bands.filter((b) => b.min !== null && b.max !== null);
+    if (withFreq.length) {
+      el('fLow').textContent = Math.min.apply(null, withFreq.map((b) => b.min)).toFixed(5);
+      el('fHigh').textContent = Math.max.apply(null, withFreq.map((b) => b.max)).toFixed(0);
+    }
+    el('fBands').textContent = String(M.bands.length);
+
+    if (!el('tuneTicks').childElementCount) {
+      for (let i = 0; i < 24; i++) {
+        const t = document.createElement('i');
+        if (i < 23) t.style.borderRight = '1px solid #1e3a1e';
+        el('tuneTicks').appendChild(t);
+      }
+      el('tuneMark').style.left = '34%';
+      el('tuneSpan').style.left = '34%';
+      el('tuneSpan').style.width = '34%';
+      el('tuneMgmt').style.left = '80%';
+      el('tuneMgmt').style.width = '6%';
+    }
+
+    if (M.services.length) el('selService').textContent = M.services[0].service + ' ▼';
+    const spc = M.services.find((s) => s.service === 'Spectrum Licence');
+    el('spectrumNote').textContent = spc
+      ? 'SPECTRUM LICENCE SERVICE — ' + num(spc.count) + ' RECS / ' + num(spc.licensees) + ' HOLDERS'
+      : '';
+
+    // Band allocation. Logarithmic: UHF outweighs LF by five thousand to one,
+    // and a linear bar renders every low band as an empty box.
+    const maxBand = Math.max(1, ...M.bands.map((b) => b.count));
+    const host = el('bandRows');
+    host.replaceChildren();
+    M.bands.forEach((b) => {
+      const row = document.createElement('div');
+      row.className = 'bandrow';
+      const code = document.createElement('div');
+      code.style.color = '#fff';
+      code.textContent = b.code;
+      const bar = document.createElement('div');
+      bar.className = 'bar';
+      const fill = document.createElement('i');
+      fill.style.width = Math.max(2, (Math.log10(b.count + 1) / Math.log10(maxBand + 1)) * 100) + '%';
+      fill.style.background = b.count > maxBand * 0.5 ? '#00ff00'
+        : b.count > maxBand * 0.05 ? '#32cd32' : b.count > 100 ? '#ffa500' : '#0066cc';
+      bar.appendChild(fill);
+      const n = document.createElement('div');
+      n.style.cssText = 'text-align:right;color:' + (b.count > 500 ? '#00ff00' : '#c0c0c0');
+      n.textContent = num(b.count);
+      row.append(code, bar, n);
+      host.appendChild(row);
+    });
+
+    // Occupancy matrix.
+    const mx = M.matrix;
+    const head = el('mxHead'), grid = el('mxGrid');
+    head.replaceChildren(); grid.replaceChildren();
+    if (mx.services.length) {
+      const template = '96px repeat(' + mx.services.length + ', 1fr)';
+      head.style.gridTemplateColumns = template;
+      grid.style.gridTemplateColumns = template;
+      head.appendChild(document.createElement('div'));
+      mx.services.forEach((s) => {
+        const d = document.createElement('div');
+        d.textContent = s.code; d.title = s.name;
+        head.appendChild(d);
+      });
+      const peak = Math.max(1, ...mx.rows.flatMap((r) => r.cells));
+      const colour = (v) => {
+        if (!v) return '#0a2a0a';
+        const f = Math.log10(v + 1) / Math.log10(peak + 1);
+        return f > 0.75 ? '#00ff00' : f > 0.5 ? '#32cd32' : f > 0.25 ? '#1d7a2e' : '#ffa500';
+      };
+      mx.rows.forEach((r) => {
+        const label = document.createElement('div');
+        label.className = 'rl'; label.textContent = r.label; label.title = r.band;
+        grid.appendChild(label);
+        r.cells.forEach((v, i) => {
+          const c = document.createElement('i');
+          // Spectrum Licence is the auctioned class; the original tool gave
+          // that its own colour, so it keeps one here.
+          c.style.background = v && mx.services[i].code === 'SPC' ? '#ffff00' : colour(v);
+          c.title = r.band + ' × ' + mx.services[i].name + ' — ' + num(v) + ' assignments';
+          grid.appendChild(c);
+        });
+      });
+    }
+
+    // Result set.
+    const body = el('gridBody');
+    body.replaceChildren();
+    M.sample.forEach((r, i) => {
+      const tr = document.createElement('div');
+      tr.className = 'gridrow' + (i === 0 ? ' on' : i % 2 === 0 ? ' alt' : '');
+      [
+        { v: r.licenceId },
+        { v: r.licenceNumber || '—', dim: !r.licenceNumber },
+        { v: r.licensee, prose: true },
+        { v: r.channel || '—', hash: /#$/.test(r.channel), dim: !r.channel },
+        { v: r.frequency, num: true, green: true },
+        { v: r.location, prose: true },
+        { v: r.status, green: true }
+      ].forEach((c) => {
+        const d = document.createElement('div');
+        if (c.prose) d.className = 'prose';
+        if (c.num) d.className = (d.className + ' num').trim();
+        if (i !== 0) {
+          if (c.green) d.style.color = '#00ff00';
+          if (c.hash) d.style.color = '#ffff00';
+          if (c.dim) d.style.color = '#808080';
+        }
+        d.textContent = c.v;
+        tr.appendChild(d);
+      });
+      body.appendChild(tr);
+    });
+    el('rowsNote').textContent = 'ROWS 1–10 OF ' + num(records);
+
+    // Holdings.
+    const top = M.holders.length ? M.holders[0].count : 1;
+    const hh = el('holdRows');
+    hh.replaceChildren();
+    M.holders.forEach((h, i) => {
+      const row = document.createElement('div');
+      row.className = 'holdrow';
+      const nm = document.createElement('div');
+      nm.className = 'nm'; nm.textContent = h.licensee; nm.title = h.licensee;
+      const n = document.createElement('div');
+      n.className = 'n'; n.textContent = num(h.count);
+      const bar = document.createElement('div');
+      bar.className = 'bar';
+      const fill = document.createElement('i');
+      fill.style.width = Math.round((h.count / top) * 100) + '%';
+      // The three national cellular holders are the management-right holders.
+      fill.style.background = i < 3 ? '#ff0000' : '#00ff00';
+      bar.appendChild(fill);
+      row.append(nm, n, bar);
+      hh.appendChild(row);
+    });
+
+    drawPlot();
+  }
+
+  /* ---- transmit site plot: real coordinates, drawn on canvas ---- */
+  function drawPlot() {
+    if (!current || !current.sites.length) return;
+    const sites = current.sites;
+    const canvas = el('plot'), host = canvas.parentElement;
+    const w = host.clientWidth, h = host.clientHeight;
+    if (!w || !h) return;
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+    const g = canvas.getContext('2d');
+    g.setTransform(dpr, 0, 0, dpr, 0, 0);
+    g.fillStyle = '#0b140b';
+    g.fillRect(0, 0, w, h);
+
+    // Mercator. Both axes must be in radians: mercator y is a natural-log
+    // value in radian units, so pairing it with x in degrees squashes the
+    // whole country into a thin horizontal band.
+    const lats = sites.map((s) => s.lat), lons = sites.map((s) => s.lon);
+    const rad = (d) => d * Math.PI / 180;
+    const merc = (lat) => Math.log(Math.tan(Math.PI / 4 + rad(lat) / 2));
+    const y0 = merc(Math.max(...lats)), y1 = merc(Math.min(...lats));
+    const x0 = rad(Math.min(...lons)), x1 = rad(Math.max(...lons));
+    const m = 8;
+    const s = Math.min((w - m * 2) / (x1 - x0), (h - m * 2) / (y1 - y0));
+    const ox = m + ((w - m * 2) - (x1 - x0) * s) / 2;
+    const oy = m + ((h - m * 2) - (y1 - y0) * s) / 2;
+    const px = (lon) => ox + (rad(lon) - x0) * s;
+    const py = (lat) => oy + (merc(lat) - y0) * s;
+
+    g.strokeStyle = '#1c3a1c'; g.lineWidth = 0.5;
+    for (let x = 0; x < w; x += 22) { g.beginPath(); g.moveTo(x, 0); g.lineTo(x, h); g.stroke(); }
+    for (let y = 0; y < h; y += 22) { g.beginPath(); g.moveTo(0, y); g.lineTo(w, y); g.stroke(); }
+
+    g.strokeStyle = '#173017';
+    const lonMin = Math.min(...lons), lonMax = Math.max(...lons);
+    const latMin = Math.min(...lats), latMax = Math.max(...lats);
+    for (let lon = Math.ceil(lonMin / 2) * 2; lon <= lonMax; lon += 2) {
+      g.beginPath(); g.moveTo(px(lon), 0); g.lineTo(px(lon), h); g.stroke();
+    }
+    for (let lat = Math.ceil(latMin / 2) * 2; lat <= latMax; lat += 2) {
+      g.beginPath(); g.moveTo(0, py(lat)); g.lineTo(w, py(lat)); g.stroke();
+    }
+
+    const maxCount = Math.max(...sites.map((x) => x.count));
+    sites.forEach((site) => {
+      g.beginPath();
+      g.arc(px(site.lon), py(site.lat), 1.2 + 2.6 * Math.sqrt(site.count / maxCount), 0, Math.PI * 2);
+      g.fillStyle = CLASS_COLOUR[site.service] || '#32cd32';
+      g.globalAlpha = 0.85; g.fill(); g.globalAlpha = 1;
+    });
+
+    const cx = w - 24, cy = 24;
+    g.strokeStyle = '#00ff00'; g.lineWidth = 0.7;
+    g.beginPath(); g.arc(cx, cy, 10, 0, Math.PI * 2); g.stroke();
+    g.beginPath(); g.moveTo(cx, cy - 12); g.lineTo(cx, cy + 12);
+    g.moveTo(cx - 11, cy); g.lineTo(cx + 11, cy); g.stroke();
+    g.fillStyle = '#00ff00'; g.font = '8px Consolas, monospace';
+    g.fillText('N', cx - 3, cy - 14);
+
+    el('cursor').textContent = 'PLOT  ' + num(sites.length) + ' SITES  ' +
+      Math.abs(latMin).toFixed(1) + '°S–' + Math.abs(latMax).toFixed(1) + '°S';
+    el('mapScale').textContent = '1:4 000 000';
+  }
+  window.addEventListener('resize', drawPlot);
+
+  /* ---------------------------------------------------------------- control */
+  let busy = false;
+  async function refresh() {
+    if (busy) return;
+    busy = true;
+    const btn = el('btnRefresh');
+    btn.classList.add('pressed');
+    try {
+      const loaded = await load();
+      render(loaded.model, loaded.live);
+    } finally {
+      busy = false;
+      setTimeout(() => btn.classList.remove('pressed'), 180);
+    }
+  }
+
+  el('btnRefresh').addEventListener('click', refresh);
+  // Track the hourly pipeline without the reader doing anything.
+  setInterval(function () { if (!document.hidden) refresh(); }, 5 * 60 * 1000);
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) refresh(); });
+  refresh();
+})();
+</script>
+</body>
+</html>
