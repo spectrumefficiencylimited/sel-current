@@ -615,13 +615,13 @@ observed_date,service,link_mode,assignment_count,distinct_licences,distinct_lice
 2026-09-06,Aeronautical,Unspecified,9,9,8
 2026-09-06,Aeronautical,Mobile Transmit,4,4,2
 2026-09-06,Aeronautical,Repeater,4,4,2
-2026-09-07,Spectrum Licence,Unspecified,30394,30325,25
+2026-09-07,Spectrum Licence,Unspecified,30418,30349,25
 2026-09-07,Fixed Link,Bi-directional,15359,15359,278
 2026-09-07,Land Mobile,Simplex,13893,3402,2375
 2026-09-07,Land Mobile,Repeater,10182,6222,902
 2026-09-07,Land Mobile,Mobile Transmit,6249,6247,906
 2026-09-07,Broadcasting,Unspecified,2389,2289,130
-2026-09-07,Satellite & Space,Unspecified,1520,1489,22
+2026-09-07,Satellite & Space,Unspecified,1546,1515,22
 2026-09-07,Fixed Link,Uni-directional,1220,848,127
 2026-09-07,Paging,Unspecified,1121,175,99
 2026-09-07,Aeronautical,Base Station,772,517,84
