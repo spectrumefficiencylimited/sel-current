@@ -700,10 +700,10 @@ observed_date,service,link_mode,assignment_count,distinct_licences,distinct_lice
 2026-09-09,Aeronautical,Mobile Transmit,4,4,2
 2026-09-09,Aeronautical,Repeater,4,4,2
 2026-09-10,Spectrum Licence,Unspecified,30410,30341,25
-2026-09-10,Fixed Link,Bi-directional,15368,15368,278
-2026-09-10,Land Mobile,Simplex,13887,3398,2372
-2026-09-10,Land Mobile,Repeater,10182,6225,902
-2026-09-10,Land Mobile,Mobile Transmit,6252,6250,906
+2026-09-10,Fixed Link,Bi-directional,15370,15370,278
+2026-09-10,Land Mobile,Simplex,13888,3398,2372
+2026-09-10,Land Mobile,Repeater,10182,6225,901
+2026-09-10,Land Mobile,Mobile Transmit,6252,6250,905
 2026-09-10,Broadcasting,Unspecified,2389,2289,130
 2026-09-10,Satellite & Space,Unspecified,1546,1515,22
 2026-09-10,Fixed Link,Uni-directional,1220,848,127
