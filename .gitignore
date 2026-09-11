@@ -8,6 +8,12 @@ silver/combined_licences.csv
 silver/combined_licences.duckdb
 # Full client x service cross-tab: ~530 KB regenerated every run, published only.
 silver/licensee_service_current.csv
+# The payload analyser.html reads: ~105 KB folded out of the snapshot every run.
+# Committing it would add ~900 MB of history a year to save one build step.
+silver/analyser.json
+# The per-assignment index the tuning panel queries: ~3.9 MB regenerated every
+# run (~820 KB gzipped on the wire), fetched only when someone runs a query.
+silver/analyser-index.json
 
 # Staging directory for the GitHub Pages deployment.
 _site/

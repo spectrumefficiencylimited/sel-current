@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RSM Spectrum Analyser — NZ Register of Radio Frequencies</title>
+<meta name="description" content="Spectrum analyser view of the New Zealand Register of Radio Frequencies: occupancy by ITU band and service, transmit site plot, and the largest licence holders. Refreshed hourly from the RSM API.">
+<meta name="theme-color" content="#416180">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230d0d0d'/><circle cx='16' cy='16' r='3' fill='%2300ff00'/><circle cx='16' cy='16' r='8' fill='none' stroke='%2300ff00' stroke-width='2'/><circle cx='16' cy='16' r='14' fill='none' stroke='%2300ff00' stroke-width='2' opacity='0.5'/></svg>">
+<script src="https://unpkg.com/d3@7.9.0/dist/d3.min.js" integrity="sha384-CjloA8y00+1SDAUkjs099PVfnY2KmDC2BZnws9kh8D/lX1s46w6EPhpXdqMfjK6i" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/topojson-client@3.1.0/dist/topojson-client.min.js" integrity="sha384-Ukv1p/xTma6P4/2bY5KzWBw+ydSpXmhCMtyciIQVDJ1RmOxtCYNMF1uXT9T63H67" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;700&family=Barlow+Condensed:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  /* Industry design-system tokens, verbatim from the system's styles.css. The
+     instrument's own colours — green/amber/red — are not part of this ramp and
+     stay as they are: they encode occupancy, not brand. */
+  :root {
+    --color-bg:#f2f2f3; --color-surface:#e9e9ea; --color-text:#1d1f20;
+    --color-accent:#5980a6; --color-accent-2:#728fab;
+    --color-neutral-100:#f5f5f8; --color-neutral-200:#e7e7ea; --color-neutral-300:#d4d4d7;
+    --color-neutral-400:#b7b7ba; --color-neutral-500:#98989b; --color-neutral-600:#7a7a7d;
+    --color-neutral-700:#5d5d60; --color-neutral-800:#424244; --color-neutral-900:#2b2b2d;
+    --color-accent-100:#eef6ff; --color-accent-200:#d6ebff; --color-accent-300:#b5d9fd;
+    --color-accent-400:#94bce3; --color-accent-500:#749dc4; --color-accent-600:#597ea3;
+    --color-accent-700:#416180; --color-accent-800:#2c455d; --color-accent-900:#1d2d3d;
+    --font-heading:"Barlow Condensed", system-ui, sans-serif; --font-heading-weight:600;
+    --font-body:"Barlow", system-ui, sans-serif;
+    --space-1:3.4px; --space-2:6.8px; --space-3:10.2px; --space-4:13.6px;
+    --space-6:20.4px; --space-8:27.2px;
+    --radius-sm:2px; --radius-md:4px; --radius-lg:7px;
+  }
+
+  /* The console's own names, re-pointed at the tokens above. Everything
+     downstream still reads --chrome/--title/--ui, so the skin swaps here and
+     nowhere else. */
+  :root {
+    --bg: #1a1a1a; --panel: #2d2d2d;
+    --chrome: var(--color-surface); --title: var(--color-accent-700);
+    --divider: color-mix(in srgb, #ffffff 22%, transparent);
+    --green: #00ff00; --green-dim: #32cd32; --amber: #ffa500; --yellow: #ffff00;
+    --red: #ff0000; --blue: var(--color-accent-700); --unassigned: #0a2a0a;
+    --mono: Consolas, 'Courier New', monospace;
+    --ui: var(--font-body), 'Segoe UI', Tahoma, sans-serif;
+  }
+  @keyframes blink { 0%,49%{opacity:1} 50%,100%{opacity:.15} }
+  @keyframes sweep { from { transform:translateX(-100%) } to { transform:translateX(400%) } }
+  html, body { margin:0; background:#0d0d0d; }
+  body { display:flex; align-items:flex-start; justify-content:center; padding:16px; overflow-x:hidden; }
+  a { color: var(--green); text-decoration:none; }
+  a:hover { color: var(--yellow); text-decoration:underline; }
+  a:focus-visible, button:focus-visible { outline:2px solid var(--yellow); outline-offset:1px; }
+
+  /* The analyser is a fixed 1280x720 instrument panel — that is the design, and
+     reflowing it into a phone layout would make it something else. Instead the
+     whole console scales down as one object, the way a screenshot would. */
+  .stage {
+    width:1284px; height:724px;
+    transform-origin: top center;
+    transform: scale(var(--stage-scale, 1));
+  }
+
+  .app {
+    position:relative; width:1280px; height:720px; background:var(--bg);
+    font-family:var(--ui); font-size:11px; color:#fff; overflow:hidden;
+    display:flex; flex-direction:column;
+    border:2px solid; border-color:#e8e8e8 #303030 #303030 #e8e8e8;
+  }
+  .titlebar { display:flex; align-items:center; gap:6px; height:22px; flex:0 0 22px; background:var(--title); padding:0 3px 0 5px; }
+  .titlebar .icon { width:12px; height:12px; background:var(--chrome); border:1px solid; border-color:#fff #404040 #404040 #fff; }
+  .titlebar .caption { font-weight:700; font-size:11px; letter-spacing:.02em; }
+  .titlebar .btns { display:flex; gap:2px; }
+  .titlebar .btns i {
+    width:16px; height:14px; background:var(--chrome); border:1px solid;
+    border-color:#fff #404040 #404040 #fff; color:#000;
+    font:700 9px/12px var(--ui); text-align:center; font-style:normal; display:block;
+  }
+  .menubar { display:flex; gap:14px; height:19px; flex:0 0 19px; align-items:center; background:var(--chrome); color:#000; padding:0 8px; border-bottom:1px solid #808080; }
+  .toolbar { display:flex; gap:3px; align-items:center; height:26px; flex:0 0 26px; background:var(--chrome); padding:0 5px; border-bottom:2px solid #808080; }
+  .tb { padding:2px 8px; background:var(--chrome); border:2px solid; border-color:#fff #808080 #808080 #fff; color:#000; font-size:10px; cursor:pointer; }
+  .tb.primary { font-weight:700; }
+  .tb.active, .tb:active { border-color:#808080 #fff #fff #808080; }
+  .tb:focus-visible { outline:2px solid var(--title); outline-offset:1px; }
+  .sep { width:2px; height:18px; background:#808080; border-right:1px solid #fff; margin:0 4px; }
+  .sunken-lite { padding:2px 6px; background:#fff; border:2px solid; border-color:#808080 #fff #fff #808080; color:#000; font-family:var(--mono); font-size:10px; }
+
+  .workspace { flex:1; min-height:0; display:flex; gap:4px; padding:4px; background:var(--bg); }
+  .col-left { width:236px; flex:0 0 236px; display:flex; flex-direction:column; gap:4px; min-height:0; }
+  .col-mid { flex:1; min-width:0; display:flex; flex-direction:column; gap:4px; }
+  .col-right { width:322px; flex:0 0 322px; display:flex; flex-direction:column; gap:4px; min-height:0; }
+
+  /* Industry panels are drawn flat — a single hairline divider, not a Win95
+     bevel — and marked at each corner with a drafting tick. */
+  .panel { position:relative; background:var(--panel); border:1px solid var(--divider); display:flex; flex-direction:column; min-height:0; }
+  .panel > h2 {
+    display:flex; align-items:center; gap:8px; background:var(--color-accent-800); padding:3px 6px;
+    font-family:var(--font-heading); font-weight:var(--font-heading-weight);
+    font-size:11px; letter-spacing:.1em; margin:0;
+    white-space:nowrap;
+  }
+  /* The condensed face is wider per character than the old chrome font, so the
+     title holds its line and the note gives way first. */
+  .panel > h2 .note {
+    margin-left:auto; font-family:var(--mono); font-size:9px; color:var(--color-accent-300);
+    font-weight:400; letter-spacing:0; min-width:0; overflow:hidden; text-overflow:ellipsis;
+  }
+
+  /* The corner tick: two hairlines crossing just outside the panel edge. Added
+     by script so all six panels stay identical — see addCorners(). */
+  .panel > .corner { position:absolute; width:11px; height:11px; color:color-mix(in srgb, #ffffff 55%, transparent); pointer-events:none; }
+  .panel > .corner::before, .panel > .corner::after { content:""; position:absolute; background:currentColor; }
+  .panel > .corner::before { left:5px; top:0; width:1px; height:100%; }
+  .panel > .corner::after { top:5px; left:0; width:100%; height:1px; }
+  .panel > .corner.tl { top:-6px; left:-6px; }
+  .panel > .corner.tr { top:-6px; right:-6px; }
+  .panel > .corner.bl { bottom:-6px; left:-6px; }
+  .panel > .corner.br { bottom:-6px; right:-6px; }
+
+  .readout { background:#000; border:2px solid; border-color:#0e0e0e #5a5a5a #5a5a5a #0e0e0e; padding:2px 5px; font-family:var(--mono); font-size:12px; color:var(--green); text-align:right; }
+  .lbl { font-size:10px; color:var(--color-neutral-400); }
+  .combo { background:#fff; border:2px solid; border-color:#808080 #fff #fff #808080; color:#000; padding:1px 4px; font-size:10px; font-family:var(--ui); width:100%; box-sizing:border-box; }
+  select.combo { cursor:pointer; }
+  /* The readouts are inputs now, so they have to stop looking like text and
+     start behaving like a field under the caret. */
+  input.readout { width:100%; box-sizing:border-box; outline:none; }
+  input.readout:focus { border-color:var(--green) #0e0e0e #0e0e0e var(--green); background:#041004; }
+  input.readout.bad { color:var(--amber); }
+
+  .meter { height:8px; background:#1e1e1e; border:1px solid #444; }
+  .meter > i { display:block; height:100%; }
+
+  .grid-head { background:var(--chrome); color:#000; font-weight:700; font-size:9px; letter-spacing:.04em; border-bottom:2px solid #808080; }
+  .grid-head > div { padding:3px 4px; border-right:1px solid #808080; }
+  .grid-head > div:last-child { border-right:0; }
+  .rows > div { padding:2px 4px; border-bottom:1px solid var(--bg); overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
+  .rows .txt { font-family:var(--ui); }
+  .row-alt > div { background:#242424; }
+  .row-sel > div { background:var(--title) !important; color:#fff !important; }
+
+  /* Win9x tab strip: the active tab sits proud of the page and merges into it. */
+  .tabs { display:flex; gap:2px; padding:3px 4px 0; background:var(--panel); }
+  .tab {
+    padding:2px 9px 3px; font-size:9px; letter-spacing:.05em; font-weight:700;
+    background:#242424; color:var(--chrome); cursor:pointer;
+    border:2px solid; border-color:#5a5a5a #0e0e0e #0e0e0e #5a5a5a; border-bottom:0;
+  }
+  .tab[aria-selected="true"] { background:var(--chrome); color:#000; padding-bottom:4px; margin-bottom:-1px; }
+  .tab:focus-visible { outline:2px solid var(--yellow); outline-offset:-2px; }
+  .tabpanel { flex:1; min-height:0; overflow-y:auto; overflow-x:hidden; }
+  .tabpanel::-webkit-scrollbar { width:13px; }
+  .tabpanel::-webkit-scrollbar-track { background:#1e1e1e; border-left:1px solid #0e0e0e; }
+  .tabpanel::-webkit-scrollbar-thumb { background:var(--chrome); border:2px solid; border-color:#fff #808080 #808080 #fff; }
+
+  /* Movement against the register a few days ago. Growth is the instrument's
+     own green; contraction is amber, not red — red is a management right here. */
+  .delta { font-family:var(--mono); text-align:right; }
+  .delta.up { color:var(--green); }
+  .delta.down { color:var(--amber); }
+  .delta.flat { color:#6b6b6b; }
+
+  .spark { display:block; width:100%; height:100%; }
+
+  .statusbar { flex:0 0 22px; height:22px; display:flex; align-items:stretch; background:var(--chrome); color:#000; font-size:10px; border-top:2px solid #fff; }
+  .statusbar > div { padding:3px 8px; border-right:1px solid #808080; font-family:var(--mono); display:flex; align-items:center; }
+  .statusbar > div:first-child { border-left:1px solid #fff; gap:6px; font-weight:700; font-family:var(--ui); }
+  .led { width:8px; height:8px; background:#008000; display:block; border:1px solid #004000; animation:blink 1.4s steps(1) infinite; }
+  .scanlines { position:absolute; inset:0; pointer-events:none; background:repeating-linear-gradient(to bottom, rgba(0,0,0,.13) 0px, rgba(0,0,0,.13) 1px, transparent 1px, transparent 3px); }
+
+  /* The design carries these as CRT props on the canvas; on the web they are
+     user controls, since a scanline wash and a blinking lamp are exactly the
+     things a reader may need to switch off. */
+  .app[data-scanlines="off"] .scanlines { display:none; }
+  .app[data-blink="off"] .led { animation:none; }
+  @media (prefers-reduced-motion: reduce) {
+    .led { animation:none; }
+    .boot .bar > i { animation:none; width:100%; }
+  }
+
+  /* Boot screen. The payload is ~100 KB, so this is usually a blink — but on a
+     slow connection an empty console reads as a broken page. */
+  .boot {
+    position:absolute; inset:0; z-index:50; background:#0d0d0d;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px;
+    font-family:var(--mono); font-size:11px; color:var(--green); text-align:center; padding:24px;
+  }
+  .boot[hidden] { display:none; }
+  .boot .bar { width:260px; height:10px; border:1px solid #2f6b3a; background:#000; overflow:hidden; }
+  .boot .bar > i { display:block; width:25%; height:100%; background:var(--green); animation:sweep 1.1s linear infinite; }
+  .boot .detail { color:var(--chrome); font-size:10px; max-width:520px; line-height:1.6; }
+  .boot.error { color:var(--amber); }
+  .boot.error .bar { display:none; }
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+<div class="app" id="app">
+
+  <div class="titlebar">
+    <div class="icon"></div>
+    <div class="caption">Register of Radio Frequencies — Spectrum Assignment Analyser  [RSM-RRF v4.2]</div>
+    <div style="flex:1"></div>
+    <div class="btns"><i>_</i><i>□</i><i>×</i></div>
+  </div>
+
+  <div class="menubar">
+    <span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>Q</u>uery</span><span><u>L</u>icence</span><span><u>B</u>ands</span><span><u>R</u>ights</span><span><u>T</u>ools</span><span><u>W</u>indow</span><span><u>H</u>elp</span>
+    <span style="flex:1"></span>
+    <a href="./" style="color:#000;text-decoration:underline">Data portal ▸</a>
+    <a href="https://github.com/spectrumefficiencylimited/sel-current" style="color:#000;text-decoration:underline">Source ▸</a>
+  </div>
+
+  <div class="toolbar">
+    <div style="display:flex;gap:2px">
+      <button class="tb primary" type="button">NEW QUERY</button>
+      <button class="tb" type="button" id="btn-refresh">REFRESH</button>
+      <button class="tb" type="button" id="btn-export">EXPORT CSV</button>
+      <button class="tb active" type="button">GRID VIEW</button>
+      <button class="tb" type="button">MAP VIEW</button>
+    </div>
+    <div class="sep"></div>
+    <div style="display:flex;gap:2px">
+      <button class="tb active" type="button" id="btn-scanlines" aria-pressed="true">SCANLINES</button>
+      <button class="tb active" type="button" id="btn-blink" aria-pressed="true">BLINK</button>
+    </div>
+    <div class="sep"></div>
+    <div style="color:#000;font-size:10px;font-weight:700">DATASET:</div>
+    <div class="sunken-lite">SEL-CURRENT / <span id="ds-source">silver/combined_licences.json</span>  ▼</div>
+    <div style="flex:1"></div>
+    <div style="color:#000;font-family:var(--mono);font-size:10px">SRC: RSM API (txRx=TRN)</div>
+  </div>
+
+  <div class="workspace">
+
+    <div class="col-left">
+      <div class="panel" style="flex:0 0 auto">
+        <h2>FREQUENCY TUNING / SEARCH</h2>
+        <div style="padding:6px;display:flex;flex-direction:column;gap:6px">
+          <div style="display:grid;grid-template-columns:52px 1fr;gap:4px;align-items:center">
+            <label class="lbl" for="tune-low">LOW MHz</label>
+            <input class="readout" id="tune-low" type="text" inputmode="decimal" autocomplete="off" value="—">
+            <label class="lbl" for="tune-high">HIGH MHz</label>
+            <input class="readout" id="tune-high" type="text" inputmode="decimal" autocomplete="off" value="—">
+            <label class="lbl" for="tune-step">STEP kHz</label>
+            <input class="readout" id="tune-step" type="text" inputmode="decimal" autocomplete="off" value="—">
+          </div>
+          <!-- Drag across the trace to set the window; the histogram is the
+               control, not just a picture of the answer. -->
+          <div id="tune-wrap" style="height:26px;position:relative;background:#000;border:2px solid;border-color:#0e0e0e #5a5a5a #5a5a5a #0e0e0e;overflow:hidden;cursor:crosshair"
+               title="Drag to select a frequency window">
+            <svg id="tune-plot" width="100%" height="100%" style="position:absolute;inset:0;display:block"></svg>
+            <div id="tune-sel" hidden style="position:absolute;top:0;bottom:0;background:rgba(0,255,0,.18);border-left:1px solid var(--green);border-right:1px solid var(--green);pointer-events:none"></div>
+          </div>
+          <div style="display:grid;grid-template-columns:56px 1fr;gap:4px;align-items:center">
+            <label class="lbl" for="f-service">SERVICE</label>
+            <select class="combo" id="f-service"><option>All services</option></select>
+            <label class="lbl" for="f-mode">LINK MODE</label>
+            <select class="combo" id="f-mode"><option>All</option></select>
+            <div class="lbl">STATUS</div><div class="combo" id="f-status" title="The published register snapshot contains current transmit assignments only, so there is nothing here to filter.">Current / TX only</div>
+          </div>
+          <div id="tune-stat" style="font-family:var(--mono);font-size:9px;color:var(--color-neutral-400);min-height:12px">—</div>
+          <div style="display:flex;gap:4px">
+            <button class="tb primary" type="button" id="btn-execute" style="flex:1;text-align:center;padding:3px">EXECUTE</button>
+            <button class="tb" type="button" id="btn-clear" style="flex:1;text-align:center;padding:3px">CLEAR</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" style="flex:1">
+        <h2>BAND ALLOCATION — ITU</h2>
+        <div style="flex:1;min-height:0;overflow:hidden;padding:4px">
+          <div style="display:grid;grid-template-columns:34px 1fr 44px 36px;font-size:9px;color:var(--chrome);border-bottom:1px solid #5a5a5a;padding-bottom:2px;margin-bottom:2px;letter-spacing:.05em">
+            <div>BAND</div><div>OCCUPANCY</div><div style="text-align:right">RECS</div><div style="text-align:right" id="band-delta-head">Δ</div>
+          </div>
+          <div id="band-rows" style="display:grid;grid-template-columns:34px 1fr 44px 36px;gap:0 4px;align-items:center;font-family:var(--mono);font-size:10px;row-gap:3px"></div>
+          <div style="margin-top:8px;border-top:1px solid #5a5a5a;padding-top:5px;display:grid;grid-template-columns:1fr auto;gap:2px 6px;font-size:10px">
+            <div class="lbl">Assignment records</div><div style="font-family:var(--mono);color:var(--green)" id="k-records">—</div>
+            <div class="lbl">Distinct licences</div><div style="font-family:var(--mono);color:var(--green)" id="k-licences">—</div>
+            <div class="lbl">Unique licensees</div><div style="font-family:var(--mono);color:var(--green)" id="k-holders">—</div>
+            <div class="lbl">Paired return legs</div><div style="font-family:var(--mono);color:var(--yellow)" id="k-legs">—</div>
+            <div class="lbl">Unclassified</div><div style="font-family:var(--mono);color:var(--amber)" id="k-unclass">—</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-mid">
+      <div class="panel" style="flex:0 0 auto">
+        <h2>SPECTRUM OCCUPANCY MATRIX — FREQUENCY × SERVICE<span class="note">CELL = ASSIGNMENT DENSITY / RIGHT CLASS</span></h2>
+        <div style="padding:5px 6px 6px">
+          <div id="matrix-head" style="display:grid;grid-template-columns:96px repeat(13,1fr);gap:1px;font-size:9px;font-family:var(--mono);color:var(--chrome);margin-bottom:2px"></div>
+          <div id="matrix-body" style="display:grid;grid-template-columns:96px repeat(13,1fr);gap:1px;background:#3a3a3a;border:1px solid #3a3a3a"></div>
+          <div style="display:flex;gap:14px;margin-top:5px;font-size:9px;color:var(--chrome);align-items:center;flex-wrap:wrap">
+            <span style="display:flex;align-items:center;gap:4px"><i style="width:10px;height:10px;background:var(--red);display:block"></i>SATURATED (≥ 5 000)</span>
+            <span style="display:flex;align-items:center;gap:4px"><i style="width:10px;height:10px;background:var(--amber);display:block"></i>HEAVY (1 000–4 999)</span>
+            <span style="display:flex;align-items:center;gap:4px"><i style="width:10px;height:10px;background:var(--yellow);display:block"></i>MODERATE (250–999)</span>
+            <span style="display:flex;align-items:center;gap:4px"><i style="width:10px;height:10px;background:var(--green);display:block"></i>ACTIVE (50–249)</span>
+            <span style="display:flex;align-items:center;gap:4px"><i style="width:10px;height:10px;background:var(--green-dim);display:block"></i>SPARSE (1–49)</span>
+            <span style="display:flex;align-items:center;gap:4px"><i style="width:10px;height:10px;background:var(--unassigned);display:block"></i>UNASSIGNED</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" style="flex:1">
+        <h2 id="tab-title">LICENCE QUERY RESULT SET<span class="note" id="grid-note">—</span></h2>
+        <div class="tabs" role="tablist" id="tabs">
+          <button class="tab" type="button" role="tab" data-tab="result" aria-selected="true">RESULT SET</button>
+          <button class="tab" type="button" role="tab" data-tab="services" aria-selected="false">SERVICES</button>
+          <button class="tab" type="button" role="tab" data-tab="types" aria-selected="false">LICENCE TYPES</button>
+          <button class="tab" type="button" role="tab" data-tab="locations" aria-selected="false">LOCATIONS</button>
+          <button class="tab" type="button" role="tab" data-tab="bandwidth" aria-selected="false">BANDWIDTH</button>
+          <button class="tab" type="button" role="tab" data-tab="expiry" aria-selected="false">EXPIRY</button>
+        </div>
+        <div class="tabpanel" id="tabpanel" role="tabpanel"></div>
+      </div>
+    </div>
+
+    <div class="col-right">
+      <div class="panel" style="flex:1">
+        <h2>SITE PLOT — NZGD2000<span class="note" id="map-note">1:4 000 000</span></h2>
+        <!-- The register snapshot is transmit-only; the receive side exists
+             solely in the warehouse export, so this toggle is disabled until
+             that has loaded. -->
+        <div id="map-modes" role="group" aria-label="Site plot mode" style="display:flex;gap:2px;padding:3px 4px 0">
+          <button class="tb active" type="button" data-mode="tx" aria-pressed="true">TX</button>
+          <button class="tb" type="button" data-mode="rx" aria-pressed="false">RX</button>
+          <button class="tb" type="button" data-mode="both" aria-pressed="false">BOTH</button>
+        </div>
+        <div style="flex:1;min-height:0;position:relative;background:#0f1a0f;border:2px solid;border-color:#0e0e0e #5a5a5a #5a5a5a #0e0e0e;margin:4px;overflow:hidden">
+          <div id="rsm-nz-plot" style="position:absolute;inset:0"></div>
+          <div id="cursor-readout" style="position:absolute;left:4px;bottom:4px;background:rgba(0,0,0,.72);border:1px solid #2f6b3a;padding:2px 5px;font-family:var(--mono);font-size:9px;color:var(--green)">SITES —</div>
+        </div>
+      </div>
+
+      <div class="panel" style="flex:0 0 auto">
+        <h2>REGISTER SIZE — RECORDED HISTORY<span class="note" id="hist-span">—</span></h2>
+        <div style="padding:4px 5px 5px">
+          <div style="height:52px;position:relative;background:#000;border:2px solid;border-color:#0e0e0e #5a5a5a #5a5a5a #0e0e0e;overflow:hidden">
+            <svg class="spark" id="hist-plot"></svg>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-top:4px;font-size:9px">
+            <div style="border:1px solid #5a5a5a;padding:2px 4px">
+              <div class="lbl" style="font-size:8px;letter-spacing:.05em">24 HOURS</div>
+              <div class="delta" id="hist-d1" style="text-align:left;font-size:11px">—</div>
+            </div>
+            <div style="border:1px solid #5a5a5a;padding:2px 4px">
+              <div class="lbl" style="font-size:8px;letter-spacing:.05em">7 DAYS</div>
+              <div class="delta" id="hist-d7" style="text-align:left;font-size:11px">—</div>
+            </div>
+            <div style="border:1px solid #5a5a5a;padding:2px 4px">
+              <div class="lbl" style="font-size:8px;letter-spacing:.05em">30 DAYS</div>
+              <div class="delta" id="hist-d30" style="text-align:left;font-size:11px">—</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" style="flex:0 0 auto">
+        <h2>MANAGEMENT RIGHTS &amp; HOLDINGS</h2>
+        <div style="padding:5px 6px">
+          <div style="display:grid;grid-template-columns:1fr 44px 40px 48px;font-size:9px;color:var(--chrome);letter-spacing:.04em;border-bottom:1px solid #5a5a5a;padding-bottom:2px;margin-bottom:3px">
+            <div>LICENSEE</div><div style="text-align:right">RECS</div><div style="text-align:right" id="holder-delta-head">Δ</div><div style="text-align:right">SHARE</div>
+          </div>
+          <div id="holders" style="display:grid;grid-template-columns:1fr 44px 40px 48px;row-gap:2px;font-size:10px;align-items:center"></div>
+          <div style="margin-top:5px;border-top:1px solid #5a5a5a;padding-top:4px;display:flex;justify-content:space-between;font-size:9px;color:var(--chrome)">
+            <span id="spl-note">—</span>
+            <span style="color:var(--red);font-weight:700">MGMT RIGHT</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="statusbar">
+    <div><i class="led"></i>QUERY COMPLETE</div>
+    <div>RECORDS: <span id="s-records">—</span></div>
+    <div>LICENCES: <span id="s-licences">—</span></div>
+    <div>HOLDERS: <span id="s-holders">—</span></div>
+    <div>SELECTED: 1</div>
+    <div style="flex:1;border-right:0"></div>
+    <div style="border-left:1px solid #808080;border-right:0">LAST UPDATE <span id="s-updated">—</span></div>
+    <div style="border-left:1px solid #808080;border-right:0">NUM  CAPS  SCRL</div>
+  </div>
+
+  <div class="scanlines"></div>
+
+  <div class="boot" id="boot">
+    <div>LOADING REGISTER…</div>
+    <div class="bar"><i></i></div>
+    <div class="detail" id="boot-detail">silver/analyser.json</div>
+  </div>
+</div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  // The payload is regenerated on every pipeline run and served from the same
+  // origin as the datasets, so a cache buster keeps a refreshed register from
+  // sitting behind a stale copy — the same convention index.html uses.
+  var PAYLOAD_URL = 'silver/analyser.json?t=' + Date.now();
+
+  // The console is a fixed 1280x720 instrument panel. Scale it as one object so
+  // it fits whatever it is opened on, rather than reflowing into something else.
+  function fitStage() {
+    var stage = document.getElementById('stage');
+    if (!stage) return;
+    var scale = Math.min(1, (document.documentElement.clientWidth - 24) / 1284);
+    stage.style.setProperty('--stage-scale', scale);
+    document.body.style.height = (724 * scale + 32) + 'px';
+  }
+  fitStage();
+  window.addEventListener('resize', fitStage);
+
+  // Drafting ticks at each panel corner. Injected rather than written into the
+  // markup six times over, so no panel can drift out of step with the others.
+  function addCorners() {
+    var panels = document.querySelectorAll('.panel');
+    for (var i = 0; i < panels.length; i++) {
+      if (panels[i].querySelector(':scope > .corner')) continue;
+      ['tl', 'tr', 'bl', 'br'].forEach(function (pos) {
+        var c = document.createElement('i');
+        c.className = 'corner ' + pos;
+        c.setAttribute('aria-hidden', 'true');
+        panels[i].appendChild(c);
+      });
+    }
+  }
+  addCorners();
+
+  function fail(message, detail) {
+    var boot = document.getElementById('boot');
+    if (!boot) return;
+    boot.hidden = false;
+    boot.className = 'boot error';
+    boot.innerHTML = '';
+    var h = document.createElement('div');
+    h.textContent = message;
+    var d = document.createElement('div');
+    d.className = 'detail';
+    d.textContent = detail;
+    boot.appendChild(h);
+    boot.appendChild(d);
+  }
+
+  // The warehouse export is a second, optional feed. It is committed rather than
+  // built hourly (the Actions runner cannot reach the DuckDB warehouse), so it
+  // is deliberately not allowed to fail the page: if it is absent or stale the
+  // register still renders and the two tabs that read it say why.
+  var SEFF = null;
+  function loadSeff() {
+    return fetch('gold/seff-aggregates.json', { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) { SEFF = j; })
+      .catch(function () { SEFF = null; });
+  }
+
+  Promise.all([
+    fetch(PAYLOAD_URL, { cache: 'no-store' }).then(function (r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    }),
+    loadSeff(),
+  ])
+    .then(function (both) {
+      var payload = both[0];
+      var boot = document.getElementById('boot');
+      if (boot) boot.hidden = true;
+      render(payload);
+    })
+    .catch(function (err) {
+      // Opened as a file:// path, every fetch fails on CORS before it ever
+      // reaches the filesystem. Saying "generate the payload" here would send a
+      // reader to rebuild a file they already have, so name the real cause.
+      if (location.protocol === 'file:') {
+        fail('OPEN THIS OVER HTTP',
+          'The page is running from a file:// path, and browsers block a local page ' +
+          'from reading local files (CORS, origin "null") — so no payload can load, ' +
+          'whether or not it exists. Serve the repository instead:  ' +
+          'python3 -m http.server 8000  —  then open ' +
+          'http://localhost:8000/analyser.html . The published site needs none of ' +
+          'this: https://spectrumefficiencylimited.github.io/sel-current/analyser.html');
+        return;
+      }
+      fail('REGISTER UNAVAILABLE',
+        'Could not load silver/analyser.json (' + err.message + '). ' +
+        'It is a build output, regenerated by the hourly pipeline and published to the ' +
+        'site — it is not committed to the repository. Running this page from a local ' +
+        'clone? Generate it first: ./scripts/build-analyser-payload.py');
+    });
+
+  function render(D) {
+    var GREEN = '#00ff00', GREEN_DIM = '#32cd32', YELLOW = '#ffff00',
+        AMBER = '#ffa500', RED = '#ff0000', BLUE = '#2c455d', UNASSIGNED = '#0a2a0a';
+
+    function group(n) { return n == null ? '—' : String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); }
+    function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+      return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]; }); }
+    function set(id, v) { var el = document.getElementById(id); if (el) el.textContent = v; }
+
+    // A movement of null means the series could not be compared honestly — the
+    // key was absent on one of the two days — and reads as a dash, not a zero.
+    function deltaCell(n, extraStyle) {
+      if (n == null) return '<div class="delta flat"' + (extraStyle || '') + '>·</div>';
+      var cls = n > 0 ? 'up' : n < 0 ? 'down' : 'flat';
+      var text = n > 0 ? '+' + group(n) : n < 0 ? '−' + group(Math.abs(n)) : '0';
+      return '<div class="delta ' + cls + '"' + (extraStyle || '') + '>' + text + '</div>';
+    }
+    function windowLabel(w) {
+      if (!w || w.days == null) return 'Δ';
+      return 'Δ' + w.days + 'd';
+    }
+    var WIN = D.deltaWindows || {};
+
+    // --- headline ------------------------------------------------------------
+    var H = D.headline;
+    set('k-records', group(H.assignmentRecords));
+    set('k-licences', group(H.distinctLicences));
+    set('k-holders', group(H.uniqueHolders));
+    set('k-legs', group(H.returnLegs));
+    set('k-unclass', group(H.unclassified));
+    set('s-records', group(H.assignmentRecords));
+    set('s-licences', group(H.distinctLicences));
+    set('s-holders', group(H.uniqueHolders));
+    set('s-updated', (D.lastUpdateUTC || D.generatedAt).replace('T', ' ').replace('+00:00', ' UTC'));
+    set('ds-source', D.source);
+
+    // --- band allocation -----------------------------------------------------
+    // Colour reads occupancy, not band identity: the busiest bands run hot.
+    function bandColour(pct) {
+      if (pct >= 60) return GREEN;
+      if (pct >= 20) return GREEN_DIM;
+      if (pct >= 5) return AMBER;
+      return BLUE;
+    }
+    set('band-delta-head', windowLabel(WIN.bands));
+    document.getElementById('band-rows').innerHTML = D.bands.map(function (b) {
+      var c = bandColour(b.pct);
+      return '<div style="color:#fff" title="' + esc(b.label) + ' — ' + group(b.holders) + ' licensees">' + esc(b.code) + '</div>' +
+        '<div class="meter"><i style="width:' + Math.max(b.pct, 1) + '%;background:' + c + '"></i></div>' +
+        '<div style="text-align:right;color:' + c + '">' + group(b.count) + '</div>' +
+        deltaCell(b.d7);
+    }).join('');
+
+    // --- tuning window -------------------------------------------------------
+    var T = D.tuning;
+    function mhz(v) { return v.toFixed(5).padStart(12, ' '); }
+    // --- frequency tuning ----------------------------------------------------
+    // The panel opens showing the window the payload was folded around, drawn
+    // from its pre-computed histogram. The moment anyone changes anything it
+    // switches to querying the per-assignment index, which is fetched on that
+    // first interaction and never before — most readers never run a query, and
+    // they should not pay ~820 KB for the ones who do.
+
+    var TUNE = { low: T.low, high: T.high, step: T.stepKHz, svc: '', lm: '' };
+    var IDX = null;       // the decoded index, once loaded
+    var QR = null;        // the current result set, or null while showing the payload's own
+    var loading = null;   // in-flight fetch, so double-clicking EXECUTE fetches once
+
+    var elLow = document.getElementById('tune-low');
+    var elHigh = document.getElementById('tune-high');
+    var elStep = document.getElementById('tune-step');
+    var elSvc = document.getElementById('f-service');
+    var elMode = document.getElementById('f-mode');
+    var elStat = document.getElementById('tune-stat');
+
+    // The readouts are right-aligned by CSS, so the field carries the number
+    // alone — mhz()'s padding is for fixed-width text, not for a caret.
+    function num(v) { return String(+v.toFixed(5)); }
+    function showTune() {
+      elLow.value = num(TUNE.low);
+      elHigh.value = num(TUNE.high);
+      elStep.value = num(TUNE.step);
+    }
+    showTune();
+    elStat.textContent = group(T.total) + ' in window — payload aggregate';
+
+    function drawTuning(hist, lowMHz, highMHz) {
+      var svg = document.getElementById('tune-plot');
+      var w = 1000, h = 100; // viewBox units, stretched to the sunken well
+      svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+      svg.setAttribute('preserveAspectRatio', 'none');
+      var max = Math.max.apply(null, hist) || 1, bw = w / hist.length;
+      var parts = [];
+      for (var i = 0; i < 24; i++) {
+        var x = (i + 1) * (w / 24);
+        parts.push('<line x1="' + x + '" y1="0" x2="' + x + '" y2="' + h + '" stroke="#1e3a1e" stroke-width="1"/>');
+      }
+      hist.forEach(function (v, i) {
+        if (!v) return;
+        var bh = Math.max(2, (v / max) * h);
+        var c = v / max > .6 ? GREEN : v / max > .25 ? GREEN_DIM : '#1f7a1f';
+        parts.push('<rect x="' + (i * bw) + '" y="' + (h - bh) + '" width="' + (bw - .5) + '" height="' + bh + '" fill="' + c + '"/>');
+      });
+      var peak = hist.indexOf(max);
+      parts.push('<rect x="' + (peak * bw) + '" y="0" width="2" height="' + h + '" fill="' + YELLOW + '"/>');
+      svg.innerHTML = parts.join('');
+      svg.setAttribute('aria-label', 'Assignment density from ' + mhz(lowMHz) + ' to ' +
+        mhz(highMHz) + ' MHz; densest slice near ' +
+        mhz(lowMHz + (peak + 0.5) * (highMHz - lowMHz) / hist.length) + ' MHz');
+    }
+    drawTuning(T.histogram, T.low, T.high);
+
+    // The index arrives columnar and delta-encoded; undo that once, here, into
+    // typed arrays the filter loop can scan without allocating.
+    function loadIndex() {
+      if (IDX) return Promise.resolve(IDX);
+      if (loading) return loading;
+      elStat.textContent = 'loading assignment index…';
+      loading = fetch('silver/analyser-index.json', { cache: 'no-store' })
+        .then(function (r) {
+          if (!r.ok) throw new Error('HTTP ' + r.status);
+          return r.json();
+        })
+        .then(function (j) {
+          var n = j.count, hz = new Float64Array(n), acc = 0;
+          for (var i = 0; i < n; i++) { acc += j.f[i]; hz[i] = acc; }
+          IDX = {
+            n: n, hz: hz, id: j.id, num: j.num,
+            lic: j.lic, loc: j.loc, ch: j.ch, svc: j.svc, lm: j.lm, st: j.st,
+            dict: j.dict,
+          };
+          // Populate the two filters that actually have something to filter.
+          fillSelect(elSvc, 'All services', j.dict.svc);
+          fillSelect(elMode, 'All', j.dict.lm);
+          return IDX;
+        })
+        .catch(function (err) {
+          loading = null;
+          elStat.textContent = 'index unavailable — ' + err.message;
+          throw err;
+        });
+      return loading;
+    }
+
+    function fillSelect(el, allLabel, values) {
+      if (el.dataset.filled) return;
+      var order = values.map(function (v, i) { return { v: v, i: i }; })
+        .sort(function (a, b) { return a.v.localeCompare(b.v); });
+      el.innerHTML = '<option value="">' + esc(allLabel) + '</option>' +
+        order.map(function (o) { return '<option value="' + o.i + '">' + esc(o.v) + '</option>'; }).join('');
+      el.dataset.filled = '1';
+    }
+
+    // Frequencies are sorted, so the window is a slice, not a scan.
+    function lowerBound(hz, target) {
+      var lo = 0, hi = hz.length;
+      while (lo < hi) { var m = (lo + hi) >> 1; if (hz[m] < target) lo = m + 1; else hi = m; }
+      return lo;
+    }
+
+    var MAX_ROWS = 400; // what the grid will render; the count reports the truth
+
+    function runQuery() {
+      return loadIndex().then(function (ix) {
+        var loHz = TUNE.low * 1e6, hiHz = TUNE.high * 1e6;
+        var svc = TUNE.svc === '' ? -1 : +TUNE.svc;
+        var lm = TUNE.lm === '' ? -1 : +TUNE.lm;
+        var start = lowerBound(ix.hz, loHz), end = lowerBound(ix.hz, hiHz + 1);
+
+        // Bin width follows the STEP the operator asked for, capped so a 1 kHz
+        // step across a gigahertz does not try to draw a million bars.
+        var span = Math.max(1e-9, TUNE.high - TUNE.low);
+        var bins = Math.max(1, Math.min(240, Math.round(span * 1000 / TUNE.step)));
+        var hist = new Array(bins).fill(0);
+        var rows = [], total = 0;
+
+        for (var i = start; i < end; i++) {
+          if (svc >= 0 && ix.svc[i] !== svc) continue;
+          if (lm >= 0 && ix.lm[i] !== lm) continue;
+          total++;
+          var b = Math.floor((ix.hz[i] / 1e6 - TUNE.low) / span * bins);
+          if (b >= 0 && b < bins) hist[b]++;
+          if (rows.length < MAX_ROWS) {
+            rows.push({
+              licenceId: ix.id[i],
+              licenceNumber: ix.num[i] || null,
+              licensee: ix.dict.lic[ix.lic[i]],
+              channel: ix.dict.ch[ix.ch[i]] || null,
+              frequency: ix.hz[i] / 1e6,
+              location: ix.dict.loc[ix.loc[i]],
+              status: ix.dict.st[ix.st[i]],
+            });
+          }
+        }
+
+        QR = { rows: rows, total: total, low: TUNE.low, high: TUNE.high };
+        drawTuning(hist, TUNE.low, TUNE.high);
+        elStat.textContent = group(total) + ' assignment' + (total === 1 ? '' : 's') +
+          ' in window' + (total > MAX_ROWS ? ' — showing first ' + MAX_ROWS : '');
+        showTab('result');
+      }).catch(function () { /* message already on the status line */ });
+    }
+
+    // A field is committed on Enter or on leaving it, never on every keystroke —
+    // a half-typed "4" should not run a query across four gigahertz.
+    function bindNum(el, key, min, max) {
+      function commit() {
+        var v = parseFloat(el.value);
+        var ok = isFinite(v) && v >= min && v <= max;
+        el.classList.toggle('bad', !ok);
+        if (!ok) { el.title = 'Expected a number between ' + min + ' and ' + max; return false; }
+        el.title = '';
+        TUNE[key] = v;
+        return true;
+      }
+      el.addEventListener('change', commit);
+      el.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') { if (commit() && normalise()) runQuery(); }
+      });
+      el.addEventListener('blur', commit);
+    }
+
+    // Low above high is a slip, not an error worth refusing — swap and carry on.
+    function normalise() {
+      if (TUNE.low > TUNE.high) { var t = TUNE.low; TUNE.low = TUNE.high; TUNE.high = t; showTune(); }
+      return TUNE.high > TUNE.low;
+    }
+
+    bindNum(elLow, 'low', 0, 1e6);
+    bindNum(elHigh, 'high', 0, 1e6);
+    bindNum(elStep, 'step', 0.001, 1e6);
+    elSvc.addEventListener('change', function () { TUNE.svc = elSvc.value; runQuery(); });
+    elMode.addEventListener('change', function () { TUNE.lm = elMode.value; runQuery(); });
+    document.getElementById('btn-execute').addEventListener('click', function () {
+      if (normalise()) runQuery();
+    });
+    document.getElementById('btn-clear').addEventListener('click', function () {
+      TUNE = { low: T.low, high: T.high, step: T.stepKHz, svc: '', lm: '' };
+      if (elSvc.dataset.filled) { elSvc.value = ''; elMode.value = ''; }
+      QR = null;
+      showTune();
+      drawTuning(T.histogram, T.low, T.high);
+      elStat.textContent = group(T.total) + ' in window — payload aggregate';
+      showTab('result');
+    });
+    // Touching the selects should not require the index to already be there.
+    elSvc.addEventListener('mousedown', function () { loadIndex().catch(function () {}); });
+    elMode.addEventListener('mousedown', function () { loadIndex().catch(function () {}); });
+
+    // Drag across the trace to set the window.
+    (function dragToTune() {
+      var wrap = document.getElementById('tune-wrap'), sel = document.getElementById('tune-sel');
+      var from = null;
+      function at(e) {
+        var r = wrap.getBoundingClientRect();
+        return Math.min(1, Math.max(0, (e.clientX - r.left) / r.width));
+      }
+      wrap.addEventListener('pointerdown', function (e) {
+        from = at(e); wrap.setPointerCapture(e.pointerId);
+        sel.hidden = false; sel.style.left = (from * 100) + '%'; sel.style.width = '0%';
+      });
+      wrap.addEventListener('pointermove', function (e) {
+        if (from == null) return;
+        var to = at(e);
+        sel.style.left = (Math.min(from, to) * 100) + '%';
+        sel.style.width = (Math.abs(to - from) * 100) + '%';
+      });
+      wrap.addEventListener('pointerup', function (e) {
+        if (from == null) return;
+        var to = at(e), a = Math.min(from, to), b = Math.max(from, to);
+        from = null; sel.hidden = true;
+        if (b - a < 0.01) return; // a click, not a drag
+        var base = QR || T, span = base.high - base.low;
+        TUNE.low = +(base.low + a * span).toFixed(6);
+        TUNE.high = +(base.low + b * span).toFixed(6);
+        showTune();
+        runQuery();
+      });
+      wrap.addEventListener('pointercancel', function () { from = null; sel.hidden = true; });
+    })();
+
+    // --- occupancy matrix ----------------------------------------------------
+    var M = D.matrix;
+    document.getElementById('matrix-head').innerHTML = '<div></div>' + M.cols.map(function (c) {
+      return '<div style="text-align:center" title="' + esc(c.key) + '">' + esc(c.abbr) + '</div>';
+    }).join('');
+
+    function cellColour(n) {
+      if (n >= 5000) return RED;
+      if (n >= 1000) return AMBER;
+      if (n >= 250) return YELLOW;
+      if (n >= 50) return GREEN;
+      if (n > 0) return GREEN_DIM;
+      return UNASSIGNED;
+    }
+    document.getElementById('matrix-body').innerHTML = M.rows.map(function (label, r) {
+      var head = '<div style="background:#242424;padding:2px 4px;font-family:var(--mono);font-size:9px;color:#fff">' + esc(label) + '</div>';
+      return head + M.cells[r].map(function (n, c) {
+        return '<i style="background:' + cellColour(n) + ';display:block;min-height:17px" title="' +
+          esc(label) + ' MHz · ' + esc(M.cols[c].key) + ' — ' + group(n) + ' assignments"></i>';
+      }).join('');
+    }).join('');
+
+    // --- the four result tabs ------------------------------------------------
+    // One list-view body, four datasets. Each builds its own header and rows so
+    // the column grids can differ; the shared shell keeps the Win9x grammar.
+
+    function listView(cols, rows) {
+      var grid = 'display:grid;grid-template-columns:' + cols.map(function (c) { return c.w; }).join(' ');
+      var head = '<div class="grid-head" style="' + grid + ';position:sticky;top:0;z-index:2">' +
+        cols.map(function (c) {
+          return '<div' + (c.right ? ' style="text-align:right"' : '') + '>' + esc(c.label) + '</div>';
+        }).join('') + '</div>';
+      var body = '<div class="rows" style="font-size:10px;font-family:var(--mono)">' +
+        rows.map(function (cells, i) {
+          var cls = cells.selected ? 'row-sel' : (i % 2 ? 'row-alt' : '');
+          return '<div class="' + cls + '" style="' + grid + '">' + cells.html + '</div>';
+        }).join('') + '</div>';
+      return head + body;
+    }
+
+    var TABS = {
+      result: {
+        title: 'LICENCE QUERY RESULT SET',
+        note: function () {
+          var g = QR ? QR.rows : D.grid, tot = QR ? QR.total : T.total;
+          var lo = QR ? QR.low : T.low, hi = QR ? QR.high : T.high;
+          return 'ROWS 1–' + g.length + ' OF ' + group(tot) +
+            '  (' + (+lo.toFixed(5)) + '–' + (+hi.toFixed(5)) + ' MHz)';
+        },
+        render: function () {
+          // Once a query has run this shows its rows; until then, the sample the
+          // payload ships, so the panel is never empty on arrival.
+          var grid = QR ? QR.rows : D.grid;
+          if (QR && !grid.length) {
+            return '<div style="padding:14px;font-family:var(--mono);font-size:10px;color:' +
+              AMBER + '">No assignments match.<div style="color:var(--color-neutral-400)">' +
+              'Widen the frequency window, or clear the service and link-mode filters.</div></div>';
+          }
+          return listView([
+            { label: 'LIC ID', w: '56px' }, { label: 'NUMBER', w: '56px' },
+            { label: 'LICENSEE', w: '1.5fr' }, { label: 'CHANNEL', w: '56px' },
+            { label: 'FREQ (MHz)', w: '78px', right: true }, { label: 'LOCATION', w: '1.6fr' },
+            { label: 'STATUS', w: '62px' },
+          ], grid.map(function (g, i) {
+            var isReturn = g.channel && g.channel.slice(-1) === '#';
+            return {
+              selected: i === 0,
+              html:
+                '<div>' + esc(g.licenceId) + '</div>' +
+                '<div style="color:' + (g.licenceNumber == null ? '#808080' : '#fff') + '">' +
+                  (g.licenceNumber == null ? '—' : esc(g.licenceNumber)) + '</div>' +
+                '<div class="txt" title="' + esc(g.licensee) + '">' + esc(g.licensee) + '</div>' +
+                '<div style="color:' + (isReturn ? YELLOW : '#fff') + '" title="' +
+                  (isReturn ? 'return leg — bundled with the primary' : 'primary leg') + '">' +
+                  (g.channel ? esc(g.channel) : '—') + '</div>' +
+                '<div style="text-align:right;color:' + GREEN + '">' +
+                  (g.frequency == null ? '—' : g.frequency.toFixed(5)) + '</div>' +
+                '<div class="txt" title="' + esc(g.location) + '">' + esc(g.location) + '</div>' +
+                '<div style="color:' + GREEN + '">' + esc(g.status) + '</div>',
+            };
+          }));
+        },
+      },
+
+      services: {
+        title: 'SERVICE BREAKDOWN',
+        note: function () { return group(D.services.length) + ' SERVICES · ALL RECORDS'; },
+        render: function () {
+          var max = D.services.length ? D.services[0].count : 1;
+          return listView([
+            { label: 'SERVICE', w: '1.5fr' }, { label: 'RECS', w: '62px', right: true },
+            { label: 'LICENCES', w: '62px', right: true }, { label: 'HOLDERS', w: '58px', right: true },
+            { label: 'PRIMARY', w: '58px', right: true }, { label: 'RETURN', w: '58px', right: true },
+            { label: windowLabel(WIN.services), w: '48px', right: true }, { label: 'SHARE', w: '1fr' },
+          ], D.services.map(function (s) {
+            // Records per holder is what separates the two big services: Land
+            // Mobile spreads ~30,000 assignments over ~2,800 holders, Spectrum
+            // Licence spreads much the same number over 25.
+            var perHolder = s.holders ? (s.count / s.holders) : 0;
+            return {
+              html:
+                '<div class="txt" title="' + esc(s.service) + ' — ' + perHolder.toFixed(1) +
+                  ' records per holder">' + esc(s.service) + '</div>' +
+                '<div style="text-align:right;color:' + GREEN + '">' + group(s.count) + '</div>' +
+                '<div style="text-align:right">' + group(s.licences) + '</div>' +
+                '<div style="text-align:right;color:' + (s.holders < 50 ? AMBER : '#fff') + '" title="' +
+                  (s.holders < 50 ? 'concentrated: fewer than 50 holders' : '') + '">' +
+                  group(s.holders) + '</div>' +
+                '<div style="text-align:right">' + group(s.primaryLegs) + '</div>' +
+                '<div style="text-align:right;color:' + (s.returnLegs ? YELLOW : '#6b6b6b') + '">' +
+                  group(s.returnLegs) + '</div>' +
+                deltaCell(s.d7) +
+                '<div class="meter" style="margin:0 4px"><i style="width:' +
+                  Math.max(1, Math.round(100 * s.count / max)) + '%;background:' +
+                  (s.holders < 50 ? RED : GREEN) + '"></i></div>',
+            };
+          }));
+        },
+      },
+
+      types: {
+        title: 'LICENCE TYPES — RSM DESIGNATIONS',
+        note: function () { return group(D.licenceTypes.length) + ' TYPES · TOP BY RECORDS'; },
+        render: function () {
+          return listView([
+            { label: 'LICENCE TYPE', w: '1.8fr' }, { label: 'SERVICE', w: '1.1fr' },
+            { label: 'LINK MODE', w: '92px' }, { label: 'RECS', w: '62px', right: true },
+            { label: 'HOLDERS', w: '58px', right: true },
+            { label: windowLabel(WIN.licenceTypes), w: '48px', right: true },
+          ], D.licenceTypes.map(function (t) {
+            return {
+              html:
+                '<div class="txt" title="' + esc(t.licenceType) + '">' + esc(t.licenceType) + '</div>' +
+                '<div class="txt" style="color:' +
+                  (t.service === 'Unclassified' ? AMBER : GREEN_DIM) + '">' + esc(t.service) + '</div>' +
+                '<div style="color:var(--color-neutral-400)">' + esc(t.linkMode) + '</div>' +
+                '<div style="text-align:right;color:' + GREEN + '">' + group(t.count) + '</div>' +
+                '<div style="text-align:right">' + group(t.holders) + '</div>' +
+                deltaCell(t.d7),
+            };
+          }));
+        },
+      },
+
+      locations: {
+        title: 'LOCATIONS — BUSIEST SITES AND AREAS',
+        note: function () { return 'TOP ' + group(D.locations.length) + ' BY RECORDS'; },
+        render: function () {
+          var max = D.locations.length ? D.locations[0].count : 1;
+          // RSM publishes a free-text location. Some of these are places; some
+          // are area-wide designations that are not places at all. Flagging the
+          // difference is more honest than mapping them onto a region.
+          var AREA = /^(ALL |MOBILE$|UPPER |LOWER |.*REGION$|.*ISLAND( AREA)?$)/;
+          return listView([
+            { label: 'LOCATION', w: '2fr' }, { label: 'KIND', w: '64px' },
+            { label: 'RECS', w: '62px', right: true }, { label: 'HOLDERS', w: '58px', right: true },
+            { label: windowLabel(WIN.locations), w: '48px', right: true },
+            { label: 'RANK', w: '46px', right: true }, { label: 'SHARE', w: '1fr' },
+          ], D.locations.map(function (l) {
+            var isArea = AREA.test(l.location);
+            var rank = l.rankD7;
+            var rankText = rank == null ? '·' : rank > 0 ? '▲' + rank : rank < 0 ? '▼' + Math.abs(rank) : '—';
+            var rankCls = rank == null ? 'flat' : rank > 0 ? 'up' : rank < 0 ? 'down' : 'flat';
+            return {
+              html:
+                '<div class="txt" title="' + esc(l.location) + '">' + esc(l.location) + '</div>' +
+                '<div style="color:' + (isArea ? YELLOW : GREEN_DIM) + '" title="' +
+                  (isArea ? 'an area-wide designation, not a site' : 'a named site') + '">' +
+                  (isArea ? 'AREA' : 'SITE') + '</div>' +
+                '<div style="text-align:right;color:' + GREEN + '">' + group(l.count) + '</div>' +
+                '<div style="text-align:right">' + group(l.holders) + '</div>' +
+                deltaCell(l.d7) +
+                '<div class="delta ' + rankCls + '">' + rankText + '</div>' +
+                '<div class="meter" style="margin:0 4px"><i style="width:' +
+                  Math.max(1, Math.round(100 * l.count / max)) + '%;background:' + GREEN + '"></i></div>',
+            };
+          }));
+        },
+      },
+      // --- the two warehouse-sourced tabs ------------------------------------
+      // Both read gold/seff-aggregates.json, which is a committed snapshot, not
+      // the hourly feed. Every view built on it states its own age.
+      bandwidth: {
+        title: 'BANDWIDTH & BAND OCCUPANCY — SEFF-DATA WAREHOUSE',
+        note: function () { return SEFF ? 'SNAPSHOT ' + SEFF.source.licenceFactUpdated : 'NOT EXPORTED'; },
+        render: function () {
+          if (!SEFF) return noSeff();
+          var maxAlloc = 0;
+          SEFF.spectrumUsage.forEach(function (u) { maxAlloc = Math.max(maxAlloc, u.allocations); });
+          // Occupancy first — how full each band is — then the band x service
+          // detail underneath, which is where the bandwidth actually comes from.
+          var util = listView([
+            { label: 'BAND', w: '52px' }, { label: 'OCCUPIED', w: '1fr' },
+            { label: 'USED MHz', w: '92px', right: true }, { label: 'BAND MHz', w: '92px', right: true },
+            { label: 'UTIL', w: '54px', right: true }, { label: 'ALLOCS', w: '62px', right: true },
+            { label: 'HOLDERS', w: '62px', right: true }, { label: 'B/WIDE', w: '52px', right: true },
+          ], SEFF.bandUtilization.map(function (b) {
+            // Same ladder the occupancy matrix uses: green is room, red is full.
+            var col = b.utilPct >= 90 ? RED : b.utilPct >= 75 ? AMBER : b.utilPct >= 50 ? YELLOW : GREEN;
+            return {
+              html:
+                '<div>' + esc(b.code) + '</div>' +
+                '<div class="meter" style="margin:0 4px"><i style="width:' +
+                  Math.max(1, Math.round(b.utilPct)) + '%;background:' + col + '"></i></div>' +
+                '<div style="text-align:right;color:' + GREEN + '">' + group(Math.round(b.occupiedMHz)) + '</div>' +
+                '<div style="text-align:right">' + group(Math.round(b.bandMHz)) + '</div>' +
+                '<div style="text-align:right;color:' + col + '">' + b.utilPct.toFixed(1) + '%</div>' +
+                '<div style="text-align:right">' + group(b.allocations) + '</div>' +
+                '<div style="text-align:right">' + group(b.clients) + '</div>' +
+                '<div style="text-align:right;color:' + (b.bandwideExcluded ? YELLOW : '#6b6b6b') +
+                  '" title="band-wide or class allocations set aside from the occupancy figure">' +
+                  (b.bandwideExcluded || '—') + '</div>',
+            };
+          }));
+          var usage = listView([
+            { label: 'BAND', w: '52px' }, { label: 'SERVICE', w: '1.6fr' },
+            { label: 'ALLOCS', w: '62px', right: true }, { label: 'HOLDERS', w: '62px', right: true },
+            { label: 'TOTAL MHz', w: '88px', right: true }, { label: 'AVG MHz', w: '76px', right: true },
+            { label: 'RANGE MHz', w: '1.2fr', right: true },
+          ], SEFF.spectrumUsage.map(function (u) {
+            return {
+              html:
+                '<div>' + esc(u.band) + '</div>' +
+                '<div class="txt" title="' + esc(u.service) + '">' + esc(u.service) + '</div>' +
+                '<div style="text-align:right;color:' + GREEN + '">' + group(u.allocations) + '</div>' +
+                '<div style="text-align:right">' + group(u.clients) + '</div>' +
+                '<div style="text-align:right">' + group(Math.round(u.totalBandwidthMHz)) + '</div>' +
+                '<div style="text-align:right">' + (u.avgBandwidthMHz < 0.1
+                  ? u.avgBandwidthMHz.toFixed(4) : u.avgBandwidthMHz.toFixed(2)) + '</div>' +
+                '<div style="text-align:right;color:#9a9a9a">' + u.lowestMHz.toFixed(1) +
+                  ' – ' + u.highestMHz.toFixed(1) + '</div>',
+            };
+          }));
+          return util + seffFoot(
+            'Occupancy is the union of allocated intervals, not a sum of bandwidths — ' +
+            'overlapping assignments are counted once. Allocations wider than ' +
+            Math.round(SEFF.source.bandwideShareExcluded * 100) + '% of their band are ' +
+            'band-wide or class rights and are set aside (B/WIDE), since one of them ' +
+            'would otherwise peg an entire band at 100%.') +
+            '<div style="padding:6px 4px 2px;font-size:9px;letter-spacing:.05em;color:' +
+            'var(--color-neutral-400)">BAND × SERVICE DETAIL</div>' + usage;
+        },
+      },
+      expiry: {
+        title: 'RENEWAL TIMELINE — SEFF-DATA WAREHOUSE',
+        note: function () { return SEFF ? 'AS AT ' + SEFF.source.expiryComputedOn : 'NOT EXPORTED'; },
+        render: function () {
+          if (!SEFF) return noSeff();
+          var b = SEFF.expiry.buckets, months = SEFF.expiry.months;
+          var maxM = 1;
+          months.forEach(function (m) { maxM = Math.max(maxM, m.count); });
+          var BUCKETS = [
+            ['expired', 'Past expiry date', RED],
+            ['d30', 'Within 30 days', RED],
+            ['d90', 'Within 90 days', AMBER],
+            ['d365', 'Within a year', YELLOW],
+            ['beyond', 'Beyond a year', GREEN],
+          ];
+          var total = BUCKETS.reduce(function (a, r) { return a + (b[r[0]] || 0); }, 0) || 1;
+          var head = listView([
+            { label: 'HORIZON', w: '1.1fr' }, { label: 'LICENCES', w: '80px', right: true },
+            { label: 'SHARE', w: '64px', right: true }, { label: '', w: '1.4fr' },
+          ], BUCKETS.map(function (r) {
+            var n = b[r[0]] || 0;
+            return {
+              html:
+                '<div class="txt">' + esc(r[1]) + '</div>' +
+                '<div style="text-align:right;color:' + r[2] + '">' + group(n) + '</div>' +
+                '<div style="text-align:right">' + (100 * n / total).toFixed(1) + '%</div>' +
+                '<div class="meter" style="margin:0 4px"><i style="width:' +
+                  Math.max(1, Math.round(100 * n / total)) + '%;background:' + r[2] + '"></i></div>',
+            };
+          }));
+          var byMonth = listView([
+            { label: 'MONTH', w: '84px' }, { label: 'EXPIRING', w: '76px', right: true },
+            { label: '', w: '1fr' },
+          ], months.map(function (m) {
+            var col = m.count >= 1000 ? RED : m.count >= 200 ? AMBER : GREEN;
+            return {
+              html:
+                '<div>' + esc(m.month) + '</div>' +
+                '<div style="text-align:right;color:' + col + '">' + group(m.count) + '</div>' +
+                '<div class="meter" style="margin:0 4px"><i style="width:' +
+                  Math.max(1, Math.round(100 * m.count / maxM)) + '%;background:' + col + '"></i></div>',
+            };
+          }));
+          // This is large enough to be a finding rather than a footnote.
+          var stale = b.expired || 0;
+          return head + seffFoot(
+            group(stale) + ' of ' + group(SEFF.source.currentLicences) + ' licences the warehouse ' +
+            'still marks current carry an expiry date in the past. That is a property of the ' +
+            'warehouse, not of this view — treat the past-expiry row as a data-quality signal.') +
+            '<div style="padding:6px 4px 2px;font-size:9px;letter-spacing:.05em;color:' +
+            'var(--color-neutral-400)">NEXT 24 MONTHS</div>' + byMonth;
+        },
+      },
+    };
+
+    // Shown in place of a warehouse-backed tab when the export is not present.
+    function noSeff() {
+      return '<div style="padding:14px;font-family:var(--mono);font-size:10px;line-height:1.7;color:' +
+        AMBER + '">gold/seff-aggregates.json not found.<div style="color:var(--color-neutral-400)">' +
+        'This view comes from the seff-data DuckDB warehouse, which lives on m1mz and is not ' +
+        'reachable from the hourly workflow. Regenerate it locally:<br>' +
+        '<span style="color:' + GREEN + '">./scripts/export-seff-aggregates.py</span></div></div>';
+    }
+
+    function seffFoot(text) {
+      return '<div style="padding:5px 6px;margin:4px 0 0;border-top:1px solid #5a5a5a;' +
+        'font-size:9px;line-height:1.6;color:var(--color-neutral-400)">' + esc(text) + '</div>';
+    }
+
+    function showTab(name) {
+      var tab = TABS[name];
+      if (!tab) return;
+      document.getElementById('tabpanel').innerHTML = tab.render();
+      document.getElementById('tabpanel').scrollTop = 0;
+      var title = document.getElementById('tab-title');
+      title.innerHTML = esc(tab.title) + '<span class="note">' + esc(tab.note()) + '</span>';
+      Array.prototype.forEach.call(document.querySelectorAll('#tabs .tab'), function (b) {
+        b.setAttribute('aria-selected', String(b.dataset.tab === name));
+      });
+    }
+
+    document.getElementById('tabs').addEventListener('click', function (e) {
+      var btn = e.target.closest('.tab');
+      if (btn) showTab(btn.dataset.tab);
+    });
+    showTab('result');
+
+    // --- holdings ------------------------------------------------------------
+    var topN = D.topLicensees, topMax = topN.length ? topN[0].records : 1;
+    set('holder-delta-head', windowLabel(WIN.licensees));
+    document.getElementById('holders').innerHTML = topN.map(function (t, i) {
+      var pct = Math.round(100 * t.records / topMax);
+      var moved = t.rankD7 ? (t.rankD7 > 0 ? ', up ' : ', down ') + Math.abs(t.rankD7) + ' places' : '';
+      return '<div style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis" title="' + esc(t.licensee) +
+        ' — ' + group(t.licences) + ' distinct licences' + moved + '">' + esc(t.licensee) + '</div>' +
+        '<div style="text-align:right;font-family:var(--mono);color:' + GREEN + '">' + group(t.records) + '</div>' +
+        deltaCell(t.d7) +
+        '<div class="meter" style="margin-left:6px"><i style="width:' + pct + '%;background:' + (i < 3 ? RED : GREEN) + '"></i></div>';
+    }).join('');
+    set('spl-note', 'SPECTRUM LICENCE SERVICE — ' + group(D.spectrumLicence.records) +
+      ' RECS / ' + group(D.spectrumLicence.holders) + ' HOLDERS');
+
+    // --- register history ----------------------------------------------------
+    // One point per day since 2025-07-18, back-filled out of the commit history.
+    // The y-axis deliberately does NOT start at zero: the register moves by a
+    // few hundred records against a base of ~86,000, and a zero-based axis would
+    // render thirteen months of real movement as a flat line.
+    (function drawHistory() {
+      var Hst = D.history;
+      if (!Hst || !Hst.days || Hst.days.length < 2) {
+        set('hist-span', 'NO HISTORY');
+        return;
+      }
+      var vals = Hst.records, days = Hst.days;
+      var lo = Math.min.apply(null, vals), hi = Math.max.apply(null, vals);
+      var pad = Math.max(1, (hi - lo) * 0.12);
+      lo -= pad; hi += pad;
+
+      var w = 1000, h = 200;
+      var svg = document.getElementById('hist-plot');
+      svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+      svg.setAttribute('preserveAspectRatio', 'none');
+
+      function x(i) { return (i / (vals.length - 1)) * w; }
+      function y(v) { return h - ((v - lo) / (hi - lo)) * h; }
+
+      var parts = [];
+      for (var g = 1; g < 4; g++) {
+        parts.push('<line x1="0" y1="' + (h * g / 4) + '" x2="' + w + '" y2="' + (h * g / 4) +
+          '" stroke="#1e3a1e" stroke-width="1"/>');
+      }
+      var line = vals.map(function (v, i) { return (i ? 'L' : 'M') + x(i).toFixed(1) + ' ' + y(v).toFixed(1); }).join('');
+      parts.push('<path d="' + line + 'L' + w + ' ' + h + 'L0 ' + h + 'Z" fill="rgba(0,255,0,.14)"/>');
+      parts.push('<path d="' + line + '" fill="none" stroke="#00ff00" stroke-width="1.6"/>');
+      parts.push('<circle cx="' + x(vals.length - 1).toFixed(1) + '" cy="' +
+        y(vals[vals.length - 1]).toFixed(1) + '" r="4" fill="#ffff00"/>');
+      svg.innerHTML = parts.join('');
+
+      set('hist-span', days[0] + ' → ' + days[days.length - 1] + '  (' + group(days.length) + ' DAYS)');
+
+      var S = Hst.summary || {};
+      [['hist-d1', S.d1], ['hist-d7', S.d7], ['hist-d30', S.d30]].forEach(function (pair) {
+        var el = document.getElementById(pair[0]), c = pair[1];
+        if (!el) return;
+        if (!c) { el.textContent = '—'; el.className = 'delta flat'; return; }
+        var n = c.records;
+        el.textContent = n > 0 ? '+' + group(n) : n < 0 ? '−' + group(Math.abs(n)) : '0';
+        el.className = 'delta ' + (n > 0 ? 'up' : n < 0 ? 'down' : 'flat');
+        el.title = 'against ' + c.from + (c.holders ? ', holders ' +
+          (c.holders > 0 ? '+' : '−') + Math.abs(c.holders) : '');
+      });
+    })();
+
+    // --- transmit site plot --------------------------------------------------
+    var SERVICE_FILL = {
+      'Spectrum Licence': RED,
+      'Land Mobile': GREEN,
+      'Fixed Link': GREEN_DIM,
+      'Broadcasting': YELLOW,
+      'Satellite & Space': BLUE,
+      'Maritime': AMBER,
+      'Aeronautical': AMBER
+    };
+    var FRAME = { type: 'Polygon', coordinates: [[[166, -34.2], [179.2, -34.2], [179.2, -47.6], [166, -47.6], [166, -34.2]]] };
+    var geo = null;
+
+    // TX is the register's own green. RX is the system's accent blue — it has to
+    // read as a different kind of thing, not a different amount of the same one.
+    var TX_COL = GREEN, RX_COL = '#94bce3', BOTH_COL = YELLOW;
+    var mapMode = 'tx';
+
+    // The warehouse export carries real surveyed coordinates for 31 719 sites
+    // and, uniquely, the receive side. Without it we fall back to the payload's
+    // own 900 transmit sites and the toggle stays disabled.
+    function mapSites() {
+      if (!SEFF || !SEFF.sites || !SEFF.sites.n) return null;
+      var s = SEFF.sites, out = [];
+      for (var i = 0; i < s.n; i++) {
+        var tx = s.tx[i], rx = s.rx[i];
+        var v = mapMode === 'tx' ? tx : mapMode === 'rx' ? rx : tx + rx;
+        if (!v) continue; // a receive-only site has nothing to say in TX mode
+        out.push({
+          name: s.name[i], lat: s.lat[i], lon: s.lon[i],
+          tx: tx, rx: rx, clients: s.clients[i], licences: s.licences[i], v: v,
+        });
+      }
+      return out;
+    }
+
+    function drawMap(host) {
+      host.innerHTML = '';
+      var w = host.clientWidth, h = host.clientHeight;
+      var proj = d3.geoMercator().fitExtent([[8, 8], [w - 8, h - 8]], geo || FRAME);
+      var path = d3.geoPath(proj);
+      var svg = d3.select(host).append('svg').attr('width', w).attr('height', h)
+        .style('position', 'absolute').style('inset', 0);
+      var pat = svg.append('defs').append('pattern').attr('id', 'nzgrid')
+        .attr('width', 22).attr('height', 22).attr('patternUnits', 'userSpaceOnUse');
+      pat.append('path').attr('d', 'M22 0H0V22').attr('fill', 'none').attr('stroke', '#1c3a1c').attr('stroke-width', .5);
+      svg.append('rect').attr('width', w).attr('height', h).attr('fill', '#0b140b');
+      svg.append('rect').attr('width', w).attr('height', h).attr('fill', 'url(#nzgrid)');
+      svg.append('path').datum(d3.geoGraticule().step([2, 2]).extent([[164, -48], [180, -33]])).attr('d', path)
+        .attr('fill', 'none').attr('stroke', '#173017').attr('stroke-width', .5);
+      if (geo) svg.append('path').datum(geo).attr('d', path)
+        .attr('fill', '#16301c').attr('stroke', '#2f6b3a').attr('stroke-width', 1);
+
+      var warehouse = mapSites();
+      var g = svg.append('g');
+
+      if (warehouse) {
+        var maxV = d3.max(warehouse, function (s) { return s.v; }) || 1;
+        // 1 841 sites in a 320 px panel: at the payload's old radii they merge
+        // into one green mass and the coastline underneath disappears. Smaller
+        // marks at lower opacity let density read as density.
+        var rw = d3.scaleSqrt().domain([1, maxV]).range([0.7, 7]);
+        warehouse.forEach(function (s) {
+          var p = proj([s.lon, s.lat]);
+          if (!p || isNaN(p[0])) return;
+          // In BOTH, a site that does one job only should not read as if it did
+          // both — colour follows what is actually there.
+          var col = mapMode === 'tx' ? TX_COL : mapMode === 'rx' ? RX_COL
+            : (s.tx && s.rx) ? BOTH_COL : s.tx ? TX_COL : RX_COL;
+          g.append('circle').attr('cx', p[0]).attr('cy', p[1]).attr('r', rw(s.v))
+            .attr('fill', col).attr('fill-opacity', .55)
+            .attr('stroke', s.v > maxV * .25 ? '#ffffff' : 'none').attr('stroke-width', .7)
+            .append('title').text(
+              s.name + ' — ' + group(s.tx) + ' TX, ' + group(s.rx) + ' RX licences; ' +
+              group(s.clients) + ' licensee' + (s.clients === 1 ? '' : 's') + '; ' +
+              group(s.licences) + ' licences @ ' + s.lat.toFixed(4) + ' ' + s.lon.toFixed(4));
+        });
+      } else {
+        var sites = D.sites, maxN = d3.max(sites, function (s) { return s.n; }) || 1;
+        var r = d3.scaleSqrt().domain([1, maxN]).range([1, 7]);
+        sites.forEach(function (s) {
+          var p = proj([s.lon, s.lat]);
+          if (!p || isNaN(p[0])) return;
+          g.append('circle').attr('cx', p[0]).attr('cy', p[1]).attr('r', r(s.n))
+            .attr('fill', SERVICE_FILL[s.svc] || GREEN_DIM)
+            .attr('fill-opacity', .75)
+            .attr('stroke', s.n > maxN * .4 ? '#ffffff' : 'none').attr('stroke-width', .8)
+            .append('title').text(s.svc + ' — ' + group(s.n) + ' assignments @ ' + s.lat.toFixed(2) + ' ' + s.lon.toFixed(2));
+        });
+      }
+
+      var n = svg.append('g').attr('transform', 'translate(' + (w - 24) + ',24)');
+      n.append('circle').attr('r', 10).attr('fill', 'none').attr('stroke', GREEN).attr('stroke-width', .7);
+      n.append('path').attr('d', 'M0 -12V12M-11 0H11').attr('stroke', GREEN).attr('stroke-width', .7);
+      n.append('text').attr('x', -3).attr('y', -14).attr('fill', GREEN)
+        .attr('font-family', 'Consolas, monospace').attr('font-size', 8).text('N');
+
+      if (warehouse) {
+        set('cursor-readout', 'SITES ' + group(warehouse.length) + ' / ' +
+          group(SEFF.sites.distinctSitesAvailable) + '  ·  ' + mapMode.toUpperCase() +
+          '  ·  SEFF-DATA ' + SEFF.source.licenceFactUpdated);
+        set('map-note', 'SURVEYED COORDS');
+      } else {
+        set('cursor-readout', 'SITES ' + group(D.sites.length) + '  /  PLOTTED FROM NZGD2000 LAT-LONG');
+      }
+    }
+
+    // Mode buttons only mean something once the warehouse export is in hand.
+    (function bindMapModes() {
+      var host = document.getElementById('rsm-nz-plot');
+      var bar = document.getElementById('map-modes');
+      if (!bar || !host) return;
+      var buttons = Array.prototype.slice.call(bar.querySelectorAll('.tb'));
+      if (!SEFF || !SEFF.sites || !SEFF.sites.n) {
+        buttons.forEach(function (b) {
+          b.disabled = true;
+          b.style.opacity = '.5';
+          b.title = 'Needs gold/seff-aggregates.json — the register snapshot is transmit-only.';
+        });
+        return;
+      }
+      bar.addEventListener('click', function (e) {
+        var btn = e.target.closest('.tb');
+        if (!btn || btn.disabled) return;
+        mapMode = btn.dataset.mode;
+        buttons.forEach(function (b) {
+          var on = b === btn;
+          b.classList.toggle('active', on);
+          b.setAttribute('aria-pressed', String(on));
+        });
+        drawMap(host);
+      });
+    })();
+
+    (function tick() {
+      var host = document.getElementById('rsm-nz-plot');
+      if (!host || !host.clientWidth || !window.d3 || !window.topojson) return setTimeout(tick, 60);
+      if (!geo) {
+        d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json').then(function (t) {
+          var f = topojson.feature(t, t.objects.countries).features;
+          geo = f.filter(function (x) { return x.properties && x.properties.name === 'New Zealand'; })[0] || null;
+          drawMap(host);
+        }).catch(function () { drawMap(host); });
+        return;
+      }
+      drawMap(host);
+    })();
+
+    // --- toolbar -------------------------------------------------------------
+    document.getElementById('btn-refresh').addEventListener('click', function () { location.reload(); });
+
+    // The two CRT switches. Each is a real pressed-state button rather than a
+    // canvas prop, and the preference is remembered per reader.
+    function crtToggle(id, attr, key) {
+      var btn = document.getElementById(id);
+      var app = document.getElementById('app');
+      if (!btn || !app) return;
+      var off = false;
+      try { off = localStorage.getItem(key) === 'off'; } catch (e) { /* private window */ }
+      function apply() {
+        app.setAttribute(attr, off ? 'off' : 'on');
+        btn.classList.toggle('active', !off);
+        btn.setAttribute('aria-pressed', String(!off));
+      }
+      btn.addEventListener('click', function () {
+        off = !off;
+        try { localStorage.setItem(key, off ? 'off' : 'on'); } catch (e) { /* ignore */ }
+        apply();
+      });
+      apply();
+    }
+    crtToggle('btn-scanlines', 'data-scanlines', 'rsm.crt.scanlines');
+    crtToggle('btn-blink', 'data-blink', 'rsm.crt.blink');
+
+    document.getElementById('btn-export').addEventListener('click', function () {
+      // Export what is on screen. A query's rows carry no service/linkMode of
+      // their own — they were filtered by them — so those columns only appear
+      // for the payload's own sample, and the header follows suit.
+      var q = !!QR, grid = q ? QR.rows : D.grid;
+      var head = 'licenceId,licenceNumber,licensee,channel,frequency,location,status' +
+        (q ? '\n' : ',service,linkMode\n');
+      var body = grid.map(function (g) {
+        var cells = [g.licenceId, g.licenceNumber == null ? '' : g.licenceNumber,
+          '"' + g.licensee.replace(/"/g, '""') + '"', g.channel || '', g.frequency,
+          '"' + g.location.replace(/"/g, '""') + '"', g.status];
+        if (!q) cells.push(g.service, g.linkMode);
+        return cells.join(',');
+      }).join('\n');
+      var blob = new Blob([head + body], { type: 'text/csv' });
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'rsm-result-set.csv';
+      a.click();
+      URL.revokeObjectURL(a.href);
+    });
+  }
+})();
+</script>
+</body>
+</html>

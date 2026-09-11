@@ -80,6 +80,20 @@ jobs:
           chmod +x scripts/fetch-process-data.sh
           ./scripts/fetch-process-data.sh
 
+      - name: Build the analyser payload
+        run: |
+          # analyser.html needs occupancy by band and service, the transmit site
+          # plot and the top holders. Computing that in the browser would mean
+          # pulling the 34 MB snapshot down on every visit, so it is folded into
+          # one ~100 KB file here. Like the datasets it aggregates, it is a build
+          # output: published to the site, never committed.
+          #
+          # This step fails the run if any licence type falls through to
+          # 'Unclassified', which is the same guarantee sql/enrich.sql carries —
+          # a new RSM type should surface as a red run, not as a quietly wrong chart.
+          chmod +x scripts/build-analyser-payload.py
+          ./scripts/build-analyser-payload.py
+
       - name: Commit and Push Data Files
         env:
           # Only the small artefacts and the accumulating gold aggregates are
@@ -98,8 +112,10 @@ jobs:
           # links to it, so shipping it doubled every deployment for nothing.
           rm -rf _site
           mkdir -p _site/silver _site/gold
-          cp index.html SpectrumEfficiencyLimited.png _site/
-          cp silver/combined_licences.csv \
+          cp index.html analyser.html SpectrumEfficiencyLimited.png _site/
+          cp silver/analyser.json \
+             silver/analyser-index.json \
+             silver/combined_licences.csv \
              silver/combined_licences.json \
              silver/combined_licences.duckdb \
              silver/licensee_analytics.csv \
@@ -111,6 +127,11 @@ jobs:
           # The gold time series gets stable URLs too, so a dashboard can bind
           # to the history the same way it binds to the current dataset.
           cp gold/*.csv _site/gold/
+          # The warehouse export is committed rather than built here (the runner
+          # cannot reach the seff-data DuckDB), so it is copied if present and
+          # the deployment does not fail when it is not.
+          cp gold/seff-aggregates.json _site/gold/ 2>/dev/null || \
+            echo "note: gold/seff-aggregates.json absent — BANDWIDTH and EXPIRY tabs will say so"
           du -sh _site
 
       - name: Deploy to GitHub Pages
