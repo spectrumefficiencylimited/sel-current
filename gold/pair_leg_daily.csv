@@ -593,3 +593,25 @@ observed_date,service,pair_leg,assignment_count,distinct_licences
 2026-09-11,General User Licence,Return leg (#),23,2
 2026-09-11,Radiodetermination,Return leg (#),16,16
 2026-09-11,Aeronautical,Return leg (#),1,1
+2026-09-12,Spectrum Licence,Primary leg,30426,30357
+2026-09-12,Land Mobile,Primary leg,24072,9624
+2026-09-12,Fixed Link,Primary leg,8919,8547
+2026-09-12,Fixed Link,Return leg (#),7671,7671
+2026-09-12,Land Mobile,Return leg (#),6250,6249
+2026-09-12,Broadcasting,Primary leg,2389,2289
+2026-09-12,Satellite & Space,Primary leg,1546,1515
+2026-09-12,Paging,Primary leg,1121,175
+2026-09-12,Maritime,Primary leg,817,287
+2026-09-12,Aeronautical,Primary leg,788,533
+2026-09-12,General User Licence,Primary leg,553,23
+2026-09-12,Amateur,Primary leg,467,421
+2026-09-12,Radiodetermination,Primary leg,283,270
+2026-09-12,Telemetry & Telecommand,Primary leg,259,243
+2026-09-12,Amateur,Return leg (#),188,171
+2026-09-12,Maritime,Return leg (#),140,129
+2026-09-12,Outside Broadcast,Primary leg,50,9
+2026-09-12,Outside Broadcast,Return leg (#),48,9
+2026-09-12,Meteorological,Primary leg,38,31
+2026-09-12,General User Licence,Return leg (#),23,2
+2026-09-12,Radiodetermination,Return leg (#),16,16
+2026-09-12,Aeronautical,Return leg (#),1,1
