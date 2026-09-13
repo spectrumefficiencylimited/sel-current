@@ -7,6 +7,9 @@
 <meta name="theme-color" content="#0d0d0d">
 <title>Register of Radio Frequencies — Spectrum Assignment Analyser</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230066cc'/><rect x='6' y='8' width='20' height='16' fill='%23000'/><path d='M8 20h4v-6h3v9h3v-4h4' stroke='%2300ff00' stroke-width='2' fill='none'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;700&family=Barlow+Condensed:wght@400;600&display=swap" rel="stylesheet">
 <style>
   /* ------------------------------------------------------------------------
      RSM Spectrum Assignment Analyser — a faithful build of the Claude Design
@@ -22,6 +25,19 @@
      nothing to fetch from — a saved copy opened off disk, or an outage. The
      status bar always says which of the two you are looking at.
      ------------------------------------------------------------------------ */
+  /* Industry design-system tokens, from the Claude Design project this page is
+     built from. The instrument's own colours — the greens, ambers and reds that
+     encode occupancy — are deliberately NOT part of this ramp: they carry
+     meaning, not brand. Only the chrome moves. */
+  :root {
+    --color-surface:#e9e9ea;
+    --color-neutral-400:#b7b7ba; --color-neutral-700:#5d5d60;
+    --color-accent-300:#b5d9fd; --color-accent-700:#416180; --color-accent-800:#2c455d;
+    --font-heading:"Barlow Condensed", Impact, sans-serif;
+    --font-body:"Barlow", 'Segoe UI', Tahoma, sans-serif;
+    --divider:color-mix(in srgb, #ffffff 22%, transparent);
+  }
+
   * { box-sizing: border-box; }
   html, body { margin: 0; height: 100%; background: #0d0d0d; }
   body {
@@ -29,7 +45,7 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    font-family: 'Segoe UI', Tahoma, 'Trebuchet MS', sans-serif;
+    font-family: var(--font-body);
   }
   a { color: #00ff00; text-decoration: none; }
   a:hover { color: #ffff00; text-decoration: underline; }
@@ -52,16 +68,16 @@
   }
 
   /* ---- title bar ---- */
-  .titlebar { display: flex; align-items: center; gap: 6px; height: 22px; flex: 0 0 22px; background: #0066cc; padding: 0 3px 0 5px; }
-  .titlebar .ico { width: 12px; height: 12px; background: #c0c0c0; border: 1px solid; border-color: #ffffff #404040 #404040 #ffffff; }
+  .titlebar { display: flex; align-items: center; gap: 6px; height: 22px; flex: 0 0 22px; background: var(--color-accent-700); padding: 0 3px 0 5px; }
+  .titlebar .ico { width: 12px; height: 12px; background: var(--color-surface); border: 1px solid; border-color: #ffffff #404040 #404040 #ffffff; }
   .titlebar .t { font-weight: 700; font-size: 11px; letter-spacing: .02em; }
   .titlebar .boxes { display: flex; gap: 2px; }
   .titlebar .boxes i { width: 16px; height: 14px; background: #c0c0c0; border: 1px solid; border-color: #ffffff #404040 #404040 #ffffff; color: #000; font: 700 9px/12px 'Segoe UI', sans-serif; text-align: center; font-style: normal; }
 
   /* ---- menu + toolbar ---- */
-  .menubar { display: flex; gap: 14px; height: 19px; flex: 0 0 19px; align-items: center; background: #c0c0c0; color: #000; padding: 0 8px; border-bottom: 1px solid #808080; font-size: 11px; }
-  .toolbar { display: flex; gap: 3px; align-items: center; height: 26px; flex: 0 0 26px; background: #c0c0c0; padding: 0 5px; border-bottom: 2px solid #808080; }
-  .tbtn { padding: 2px 8px; background: #c0c0c0; border: 2px solid; border-color: #ffffff #808080 #808080 #ffffff; color: #000; font-size: 10px; }
+  .menubar { display: flex; gap: 14px; height: 19px; flex: 0 0 19px; align-items: center; background: var(--color-surface); color: #000; padding: 0 8px; border-bottom: 1px solid #808080; font-size: 11px; }
+  .toolbar { display: flex; gap: 3px; align-items: center; height: 26px; flex: 0 0 26px; background: var(--color-surface); padding: 0 5px; border-bottom: 2px solid #808080; }
+  .tbtn { padding: 2px 8px; background: var(--color-surface); border: 2px solid; border-color: #ffffff #808080 #808080 #ffffff; color: #000; font-size: 10px; }
   .tbtn.strong { font-weight: 700; }
   .tbtn.pressed { border-color: #808080 #ffffff #ffffff #808080; }
   .tsep { width: 2px; height: 18px; background: #808080; border-right: 1px solid #ffffff; margin: 0 4px; }
@@ -73,8 +89,20 @@
   /* ---- panels ---- */
   .body { flex: 1; min-height: 0; display: flex; gap: 4px; padding: 4px; background: #1a1a1a; }
   .col { display: flex; flex-direction: column; gap: 4px; min-height: 0; }
-  .panel { background: #2d2d2d; border: 2px solid; border-color: #5a5a5a #0e0e0e #0e0e0e #5a5a5a; display: flex; flex-direction: column; min-height: 0; }
-  .cap { display: flex; align-items: center; background: #0066cc; padding: 3px 6px; }
+  .panel { position: relative; background: #2d2d2d; border: 1px solid var(--divider); display: flex; flex-direction: column; min-height: 0; }
+  .cap { display: flex; align-items: center; background: var(--color-accent-800); padding: 3px 6px; }
+  .cap h2 { font-family: var(--font-heading); font-weight: 600; font-size: 11px; letter-spacing: .1em; white-space: nowrap; }
+  .cap .note { margin-left: auto; color: var(--color-accent-300); min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+
+  /* Drafting ticks at each panel corner — the signature of the Industry system.
+     Added by script so no panel can drift out of step with the others. */
+  .panel > .corner { position: absolute; width: 11px; height: 11px; pointer-events: none;
+    color: color-mix(in srgb, #ffffff 55%, transparent); }
+  .panel > .corner::before, .panel > .corner::after { content: ""; position: absolute; background: currentColor; }
+  .panel > .corner::before { left: 5px; top: 0; width: 1px; height: 100%; }
+  .panel > .corner::after { top: 5px; left: 0; width: 100%; height: 1px; }
+  .panel > .corner.tl { top: -6px; left: -6px; }  .panel > .corner.tr { top: -6px; right: -6px; }
+  .panel > .corner.bl { bottom: -6px; left: -6px; } .panel > .corner.br { bottom: -6px; right: -6px; }
   .cap h2 { margin: 0; font-weight: 700; font-size: 10px; letter-spacing: .08em; }
   .cap .note { font-family: Consolas, monospace; font-size: 9px; color: #c8dcf5; }
 
@@ -351,6 +379,17 @@ const SERVICE_CODE = {
     el('stage').style.transform =
       'scale(' + Math.min(window.innerWidth / 1284, window.innerHeight / 724) + ')';
   }
+  // Corner ticks on every panel, injected rather than written into the markup
+  // a dozen times over.
+  document.querySelectorAll('.panel').forEach(function (p) {
+    ['tl', 'tr', 'bl', 'br'].forEach(function (pos) {
+      var c = document.createElement('i');
+      c.className = 'corner ' + pos;
+      c.setAttribute('aria-hidden', 'true');
+      p.appendChild(c);
+    });
+  });
+
   window.addEventListener('resize', fit);
   fit();
 
