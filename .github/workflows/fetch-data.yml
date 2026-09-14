@@ -80,13 +80,6 @@ jobs:
           chmod +x scripts/fetch-process-data.sh
           ./scripts/fetch-process-data.sh
 
-      - name: Build the analyser page
-        run: |
-          # Bakes the current register snapshot into a single self-contained
-          # file, so a downloaded copy behaves exactly like the hosted one.
-          chmod +x scripts/build-analyser.py
-          ./scripts/build-analyser.py .
-
       - name: Commit and Push Data Files
         env:
           # Only the small artefacts and the accumulating gold aggregates are
@@ -118,6 +111,19 @@ jobs:
              silver/service_summary.csv \
              silver/stats.json \
              _site/silver/
+          # The analyser's query indexes. Unlike everything above they are not
+          # built here — they come from the seff-data gold warehouse on m1mz,
+          # which no runner can reach, so scripts/daily-gold-refresh.sh commits
+          # them to main and this step publishes whatever main currently holds.
+          # Missing them is not fatal to the rest of the site, but the analyser
+          # is inert without them, so say so loudly rather than deploy silence.
+          for f in analyser-index.json analyser-sites.json prism-meta.json; do
+            if [ -f "silver/$f" ]; then
+              cp "silver/$f" _site/silver/
+            else
+              echo "::warning::silver/$f is missing — the analyser will have no data"
+            fi
+          done
           # The gold time series gets stable URLs too, so a dashboard can bind
           # to the history the same way it binds to the current dataset.
           cp gold/*.csv _site/gold/
