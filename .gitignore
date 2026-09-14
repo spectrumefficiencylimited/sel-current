@@ -9,10 +9,9 @@ silver/combined_licences.duckdb
 # Full client x service cross-tab: ~530 KB regenerated every run, published only.
 silver/licensee_service_current.csv
 
-# Built from templates/analyser.html on every run with the current snapshot
-# embedded. Not committed: it is a build output, and a 76 KB file rewritten
-# hourly is exactly the churn the datasets were removed for.
-/analyser.html
+# analyser.html is now source, not a build output: it reads its data live from
+# silver/analyser-index.json rather than having a snapshot baked into it, so
+# there is nothing to generate and nothing to drift.
 
 # Staging directory for the GitHub Pages deployment.
 _site/
