@@ -1,4 +1,6 @@
 licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppressed
+442638,434300,"ANDRITZ HYDRO GMBH","FNX596",483.18125,"ALL NEW ZEALAND","Current","TX",false
+442638,434300,"ANDRITZ HYDRO GMBH","FNX558",482.70625,"ALL NEW ZEALAND","Current","TX",false
 442631,,"TRILITY NEW ZEALAND LIMITED","CN98#",451.49375,"MOBILE","Current","TX",false
 442567,434299,"W.G.GEUZE CONTRACTING LIMITED","EEX131",170.85,"GISBORNE REGION","Current","TX",false
 442565,292427,"TRILITY NEW ZEALAND LIMITED","CN98",456.53125,"TIHIOTONGA","Current","TX",false
@@ -7,5 +9,3 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 442512,434221,"KORDIA LIMITED","23G8B4",22106.0,"Wheatstone Rd Kordia","Current","TX",false
 442509,434248,"ONE NEW ZEALAND GROUP LIMITED","VF900",952.0,"Sunset Road Hub A1SRH","Current","TX",false
 442508,434244,"ONE NEW ZEALAND GROUP LIMITED","VF900",952.0,"Manutuke W1MKE","Current","TX",false
-442507,434236,"ONE NEW ZEALAND GROUP LIMITED","VF900",952.0,"Wanaka Anderson Road S5WAD","Current","TX",false
-442506,434242,"ONE NEW ZEALAND GROUP LIMITED","VF900",952.0,"Lake Hayes Estate S5LHE","Current","TX",false
