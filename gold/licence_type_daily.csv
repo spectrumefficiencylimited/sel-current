@@ -1621,13 +1621,13 @@ observed_date,licence_type,assignment_count,distinct_licensees
 2026-09-14,Radar,2,1
 2026-09-15,Other (Spectrum),29795,6
 2026-09-15,Land Simplex,13565,2353
-2026-09-15,Fixed >=1 GHz (Bi-directional),10769,146
-2026-09-15,Land Repeater,10142,866
-2026-09-15,Land Mobile - Mobile Transmit,6216,873
-2026-09-15,Fixed <1 GHz; BW <=50 kHz (Bi-directional),2744,163
+2026-09-15,Fixed >=1 GHz (Bi-directional),10771,147
+2026-09-15,Land Repeater,10140,865
+2026-09-15,Land Mobile - Mobile Transmit,6214,872
+2026-09-15,Fixed <1 GHz; BW <=50 kHz (Bi-directional),2742,163
 2026-09-15,VHF FM,1793,111
 2026-09-15,Fixed Bi-directional Point-to-Multipoint,1644,70
-2026-09-15,Satellite,1373,21
+2026-09-15,Satellite,1374,21
 2026-09-15,Paging,1121,99
 2026-09-15,Maritime Coast Station,719,51
 2026-09-15,Managed Spectrum Park,631,20
@@ -1643,7 +1643,7 @@ observed_date,licence_type,assignment_count,distinct_licensees
 2026-09-15,Land Simplex Govt. use only,234,21
 2026-09-15,Fixed < 1GHz; BW >50kHz (Bi-directional),213,14
 2026-09-15,UHF TV,187,9
-2026-09-15,Satellite - Satellite Transmit,163,15
+2026-09-15,Satellite - Satellite Transmit,164,15
 2026-09-15,Maritime Mobile - Mobile Transmit,119,46
 2026-09-15,Maritime Repeater,119,46
 2026-09-15,HF AM (Radio),103,2

@@ -840,12 +840,12 @@ observed_date,service,link_mode,assignment_count,distinct_licences,distinct_lice
 2026-09-14,Aeronautical,Mobile Transmit,4,4,2
 2026-09-14,Aeronautical,Repeater,4,4,2
 2026-09-15,Spectrum Licence,Unspecified,30426,30357,25
-2026-09-15,Fixed Link,Bi-directional,15370,15370,278
+2026-09-15,Fixed Link,Bi-directional,15370,15370,279
 2026-09-15,Land Mobile,Simplex,13873,3397,2370
-2026-09-15,Land Mobile,Repeater,10182,6225,899
-2026-09-15,Land Mobile,Mobile Transmit,6252,6250,903
+2026-09-15,Land Mobile,Repeater,10180,6223,898
+2026-09-15,Land Mobile,Mobile Transmit,6250,6248,902
 2026-09-15,Broadcasting,Unspecified,2389,2289,130
-2026-09-15,Satellite & Space,Unspecified,1546,1515,22
+2026-09-15,Satellite & Space,Unspecified,1548,1517,22
 2026-09-15,Fixed Link,Uni-directional,1220,848,127
 2026-09-15,Paging,Unspecified,1121,175,99
 2026-09-15,Aeronautical,Base Station,772,517,84
