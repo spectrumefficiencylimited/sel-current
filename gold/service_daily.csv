@@ -873,7 +873,7 @@ observed_date,service,link_mode,assignment_count,distinct_licences,distinct_lice
 2026-09-16,Land Mobile,Repeater,10181,6224,898
 2026-09-16,Land Mobile,Mobile Transmit,6251,6249,902
 2026-09-16,Broadcasting,Unspecified,2389,2289,130
-2026-09-16,Satellite & Space,Unspecified,1548,1517,22
+2026-09-16,Satellite & Space,Unspecified,1546,1515,22
 2026-09-16,Fixed Link,Uni-directional,1220,848,127
 2026-09-16,Paging,Unspecified,1121,175,99
 2026-09-16,Aeronautical,Base Station,772,517,84
