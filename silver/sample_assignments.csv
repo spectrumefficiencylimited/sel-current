@@ -1,4 +1,6 @@
 licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppressed
+442669,,"KT1 Co Limited, KT2 Co Limited, NZSF Timber Investments (No 4) Limited","EN169#",154.63125,"MOBILE","Current","TX",false
+442668,249374,"KT1 Co Limited, KT2 Co Limited, NZSF Timber Investments (No 4) Limited","EN169",152.85,"WHAKAMARU","Current","TX",false
 442661,434363,"SPARK NEW ZEALAND TRADING LIMITED",,2665.0,"ADELAIDE ROAD","Current","TX",false
 442660,434359,"SPARK NEW ZEALAND TRADING LIMITED",,2335.0,"LAKEWOOD COURT","Current","TX",false
 442659,434364,"SPARK NEW ZEALAND TRADING LIMITED",,2335.0,"TAUPAKI","Current","TX",false
@@ -7,5 +9,3 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 442656,434362,"SPARK NEW ZEALAND TRADING LIMITED",,1845.0,"WAIMAHAKA","Current","TX",false
 442653,434365,"SPARK NEW ZEALAND TRADING LIMITED",,2137.5,"NAPIER CITY","Current","TX",false
 442652,434360,"SPARK NEW ZEALAND TRADING LIMITED",,768.0,"NAPIER CITY","Current","TX",false
-442638,434300,"ANDRITZ HYDRO GMBH","FNX596",483.18125,"ALL NEW ZEALAND","Current","TX",false
-442638,434300,"ANDRITZ HYDRO GMBH","FNX558",482.70625,"ALL NEW ZEALAND","Current","TX",false
