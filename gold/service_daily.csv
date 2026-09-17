@@ -898,8 +898,8 @@ observed_date,service,link_mode,assignment_count,distinct_licences,distinct_lice
 2026-09-17,Spectrum Licence,Unspecified,30401,30332,25
 2026-09-17,Fixed Link,Bi-directional,15372,15372,279
 2026-09-17,Land Mobile,Simplex,13880,3400,2373
-2026-09-17,Land Mobile,Repeater,10181,6224,898
-2026-09-17,Land Mobile,Mobile Transmit,6251,6249,902
+2026-09-17,Land Mobile,Repeater,10182,6225,898
+2026-09-17,Land Mobile,Mobile Transmit,6252,6250,902
 2026-09-17,Broadcasting,Unspecified,2389,2289,130
 2026-09-17,Satellite & Space,Unspecified,1546,1515,22
 2026-09-17,Fixed Link,Uni-directional,1220,848,127
