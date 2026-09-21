@@ -1023,8 +1023,8 @@ observed_date,service,link_mode,assignment_count,distinct_licences,distinct_lice
 2026-09-21,Amateur,Mobile Transmit,291,273,74
 2026-09-21,Telemetry & Telecommand,Uni-directional,235,219,74
 2026-09-21,Radiodetermination,Unspecified,128,115,10
-2026-09-21,Maritime,Mobile Transmit,119,119,46
-2026-09-21,Maritime,Repeater,119,119,46
+2026-09-21,Maritime,Mobile Transmit,120,120,46
+2026-09-21,Maritime,Repeater,120,120,46
 2026-09-21,Outside Broadcast,Unspecified,98,9,5
 2026-09-21,Radiodetermination,Beacon,87,87,4
 2026-09-21,Radiodetermination,Mobile Transmit,84,84,3

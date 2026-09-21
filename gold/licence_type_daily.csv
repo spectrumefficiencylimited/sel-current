@@ -1968,8 +1968,8 @@ observed_date,licence_type,assignment_count,distinct_licensees
 2026-09-21,Fixed < 1GHz; BW >50kHz (Bi-directional),213,14
 2026-09-21,UHF TV,187,9
 2026-09-21,Satellite - Satellite Transmit,163,15
-2026-09-21,Maritime Mobile - Mobile Transmit,119,46
-2026-09-21,Maritime Repeater,119,46
+2026-09-21,Maritime Mobile - Mobile Transmit,120,46
+2026-09-21,Maritime Repeater,120,46
 2026-09-21,HF AM (Radio),103,2
 2026-09-21,"Radiodet - Radio Beacons (VOR, NDB, ILS)",87,4
 2026-09-21,Radiodetermination - Mobile Transmit,84,3
