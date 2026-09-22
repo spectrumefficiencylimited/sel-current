@@ -813,14 +813,14 @@ observed_date,service,pair_leg,assignment_count,distinct_licences
 2026-09-21,General User Licence,Return leg (#),23,2
 2026-09-21,Radiodetermination,Return leg (#),16,16
 2026-09-21,Aeronautical,Return leg (#),1,1
-2026-09-22,Spectrum Licence,Primary leg,30315,30246
-2026-09-22,Land Mobile,Primary leg,24068,9627
+2026-09-22,Spectrum Licence,Primary leg,30315,30243
+2026-09-22,Land Mobile,Primary leg,24069,9627
 2026-09-22,Fixed Link,Primary leg,8898,8526
-2026-09-22,Fixed Link,Return leg (#),7654,7654
+2026-09-22,Fixed Link,Return leg (#),7653,7653
 2026-09-22,Land Mobile,Return leg (#),6250,6249
 2026-09-22,Broadcasting,Primary leg,2389,2289
 2026-09-22,Satellite & Space,Primary leg,1546,1515
-2026-09-22,Paging,Primary leg,1121,175
+2026-09-22,Paging,Primary leg,1122,175
 2026-09-22,Maritime,Primary leg,818,288
 2026-09-22,Aeronautical,Primary leg,788,533
 2026-09-22,General User Licence,Primary leg,553,23
