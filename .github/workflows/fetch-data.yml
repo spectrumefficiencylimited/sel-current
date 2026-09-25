@@ -117,7 +117,10 @@ jobs:
           # them to main and this step publishes whatever main currently holds.
           # Missing them is not fatal to the rest of the site, but the analyser
           # is inert without them, so say so loudly rather than deploy silence.
-          for f in analyser-index.json analyser-sites.json prism-meta.json; do
+          # nz-coastline.geojson is committed source, not a daily export, but it
+          # ships from the same place and the analyser's map is a graticule
+          # without it.
+          for f in analyser-index.json analyser-sites.json prism-meta.json nz-coastline.geojson; do
             if [ -f "silver/$f" ]; then
               cp "silver/$f" _site/silver/
             else

@@ -233,6 +233,23 @@
   .gridrow:hover { background: #3a3a3c; border-color: #5d5d60; }
   .gridrow[aria-pressed="true"] { background: var(--color-accent-700); border-color: var(--hot); }
   .gridrow > div { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .gridhead > div { cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .gridhead > div:hover { color: var(--hot); }
+  .gridhead > div[aria-sort] { color: var(--hot); }
+  .gridhead .dir { opacity: .85; }
+  /* A service band inside the grouped view. It is a heading and a filter at
+     once, so it reads as a row of the table rather than a floating label. */
+  .grouprow {
+    display: grid; grid-column: 1 / -1; align-items: center; gap: 6px;
+    grid-template-columns: minmax(0, 1fr) auto; cursor: pointer;
+    background: var(--color-accent-800); color: #fff; padding: 2px 5px;
+    font-family: var(--font-heading); font-size: 10px; letter-spacing: .1em;
+    text-transform: uppercase; border-top: 1px solid #000; margin-top: 2px;
+  }
+  .grouprow:first-child { margin-top: 0; }
+  .grouprow:hover { background: var(--color-accent-700); color: var(--hot); }
+  .grouprow .gn { font-family: var(--mono); letter-spacing: 0; color: var(--color-accent-300); }
+  .gridrow .rank { font-family: var(--mono); color: var(--dim); text-align: right; }
   .gridrow .num { font-family: var(--mono); text-align: right; font-variant-numeric: tabular-nums; color: var(--on); }
   .gridrow .id { font-family: var(--mono); color: var(--dim); }
 
@@ -336,14 +353,15 @@
     <section class="panel result">
       <div class="cap">
         <h2>Licence query result set</h2>
+        <button type="button" class="tbtn" id="btnModeAll" aria-pressed="true">ALL</button>
+        <button type="button" class="tbtn" id="btnModeTop" aria-pressed="false">TOP 10 / SERVICE</button>
         <span class="spacer"></span>
+        <button type="button" class="tbtn" id="pagePrev" title="Previous page">&#9664;</button>
         <span class="note" id="rowsNote">—</span>
+        <button type="button" class="tbtn" id="pageNext" title="Next page">&#9654;</button>
       </div>
       <div class="body" style="gap:0">
-        <div class="gridhead">
-          <div>LIC ID</div><div>NUMBER</div><div>LICENSEE</div><div>TYPE</div>
-          <div>FREQ MHz</div><div>BAND</div><div>SERVICE</div>
-        </div>
+        <div class="gridhead" id="gridHead"></div>
         <div class="scroll" id="gridBody" style="flex:3 1 0"></div>
         <div class="gridhead" style="border-top:1px solid #000;border-bottom:0;background:#1f1f21">
           <div style="grid-column:1/4">TOP LICENSEES IN SELECTION</div>
@@ -372,6 +390,10 @@
    seff-data gold warehouse by scripts/export-prism-index.py and fetched live,
    so a reload tracks the register rather than a build of this page. */
 const FILES = ['silver/analyser-index.json', 'silver/analyser-sites.json', 'silver/prism-meta.json'];
+// Natural Earth 1:50m, mainland rings only — 14 KB. Its absence degrades the
+// map to a graticule rather than failing the page, so it is fetched apart
+// from the indexes the analyser cannot work without.
+const COAST_FILE = 'silver/nz-coastline.geojson';
 
 (function () {
   'use strict';
@@ -393,6 +415,7 @@ const FILES = ['silver/analyser-index.json', 'silver/analyser-sites.json', 'silv
   let SPEC = null;      // columnar spectrum index
   let SITES = null;     // columnar site index
   let META = null;
+  let COAST = null;      // array of [lon, lat] rings
   let rows = [];        // indices into SPEC passing the current filter
   let siteRows = [];    // indices into SITES passing the current filter
   let licIds = null;    // Set of licence ids in `rows`, for joining to sites
@@ -416,6 +439,16 @@ const FILES = ['silver/analyser-index.json', 'silver/analyser-sites.json', 'silv
     const [spec, sites, meta] = await Promise.all(FILES.map(fetchJson));
     SPEC = spec; SITES = sites; META = meta;
     el('msg').hidden = true;
+  }
+
+  async function loadCoast() {
+    if (COAST) return;
+    try {
+      const gj = await fetchJson(COAST_FILE);
+      COAST = gj.geometry.coordinates.map((poly) => poly[0]);
+    } catch (e) {
+      COAST = null;   // the graticule alone still locates a site well enough
+    }
   }
 
   /* ---------------------------------------------------------- the filter */
@@ -646,49 +679,195 @@ const FILES = ['silver/analyser-index.json', 'silver/analyser-sites.json', 'silv
   }
 
   /* ----------------------------------------------------------- result set */
-  const PAGE = 300;
+  // The result set has two readings. ALL is the register itself, every row the
+  // filter admits, paged — the thing PRISM's search form returned. TOP is a
+  // digest: within each service, the ten largest licences by the bandwidth
+  // they hold in the current selection, which is the question "who has the
+  // most of this band" asked without first knowing whom to look for.
+  const PAGE_SIZE = 200;
+  let mode = 'ALL';
+  let page = 0;
+  // Sorted ascending by frequency is the order the index already arrives in,
+  // so the opening view costs no sort at all.
+  let sort = { key: 'freq', dir: 1 };
 
-  function renderResult() {
+  const COLUMNS = [
+    { key: 'id',   label: 'LIC ID',   cls: 'id',  get: (i) => SPEC.id[i] },
+    { key: 'num',  label: 'NUMBER',   get: (i) => SPEC.dict.num[SPEC.num[i]] || '' },
+    { key: 'lic',  label: 'LICENSEE', get: (i) => SPEC.dict.lic[SPEC.lic[i]] },
+    { key: 'lt',   label: 'TYPE',     get: (i) => SPEC.dict.lt[SPEC.lt[i]] || '' },
+    { key: 'freq', label: 'FREQ MHz', cls: 'num', get: (i) => SPEC.lo[i] },
+    { key: 'bw',   label: 'BW kHz',   cls: 'num', get: (i) => SPEC.hi[i] - SPEC.lo[i] },
+    { key: 'svc',  label: 'SERVICE',  get: (i) => SPEC.dict.svc[SPEC.svc[i]] }
+  ];
+
+  function renderHead() {
+    const host = el('gridHead');
+    host.replaceChildren();
+    COLUMNS.forEach((c) => {
+      const d = document.createElement('div');
+      d.textContent = c.label;
+      if (sort.key === c.key) {
+        d.setAttribute('aria-sort', sort.dir > 0 ? 'ascending' : 'descending');
+        const arrow = document.createElement('span');
+        arrow.className = 'dir';
+        arrow.textContent = sort.dir > 0 ? ' \u25B2' : ' \u25BC';
+        d.appendChild(arrow);
+      }
+      d.title = 'Sort by ' + c.label;
+      d.setAttribute('role', 'button');
+      d.addEventListener('click', () => {
+        // Same column flips direction; a new column starts descending for the
+        // numbers, because "the biggest" is what anyone sorting a quantity is
+        // after, and ascending for text, where A first is the expectation.
+        if (sort.key === c.key) sort.dir = -sort.dir;
+        else sort = { key: c.key, dir: (c.key === 'freq' || c.key === 'bw' || c.key === 'id') ? -1 : 1 };
+        page = 0;
+        render();
+      });
+      host.appendChild(d);
+    });
+  }
+
+  function sorted(indices) {
+    const c = COLUMNS.find((x) => x.key === sort.key);
+    if (!c) return indices;
+    const out = indices.slice();
+    const isNumeric = (sort.key === 'freq' || sort.key === 'bw' || sort.key === 'id');
+    out.sort((a, b) => {
+      const va = c.get(a), vb = c.get(b);
+      const d = isNumeric ? va - vb : String(va).localeCompare(String(vb));
+      // Frequency breaks every tie, so two runs over the same selection put the
+      // same row in the same place and paging is stable.
+      return (d || SPEC.lo[a] - SPEC.lo[b]) * sort.dir;
+    });
+    return out;
+  }
+
+  function cell(value, cls, title) {
+    const d = document.createElement('div');
+    if (cls) d.className = cls;
+    d.textContent = value;
+    d.title = title === undefined ? value : title;
+    return d;
+  }
+
+  function assignmentRow(i, rank) {
+    const id = SPEC.id[i];
+    const tr = document.createElement('div');
+    tr.className = 'gridrow';
+    tr.setAttribute('role', 'button');
+    tr.tabIndex = 0;
+    tr.setAttribute('aria-pressed', String(F.id === id));
+    const lo = SPEC.lo[i], hi = SPEC.hi[i];
+    tr.append(
+      rank === undefined ? cell(String(id), 'id') : cell(String(rank), 'rank'),
+      cell(SPEC.dict.num[SPEC.num[i]] || '\u2014'),
+      cell(SPEC.dict.lic[SPEC.lic[i]]),
+      cell(SPEC.dict.lt[SPEC.lt[i]] || '\u2014'),
+      cell(lo === hi ? fmtMHz(lo) : fmtMHz(lo) + '\u2013' + fmtMHz(hi), 'num'),
+      cell(num(hi - lo), 'num'),
+      cell(SPEC.dict.svc[SPEC.svc[i]])
+    );
+    const pick = () => { F.id = F.id === id ? null : id; refilter(); };
+    tr.addEventListener('click', pick);
+    tr.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); }
+    });
+    return tr;
+  }
+
+  function renderAll() {
+    const order = sorted(rows);
+    const pages = Math.max(1, Math.ceil(order.length / PAGE_SIZE));
+    page = Math.min(page, pages - 1);
+    const from = page * PAGE_SIZE;
+    const slice = order.slice(from, from + PAGE_SIZE);
+
     const body = el('gridBody');
     body.replaceChildren();
-    const shown = rows.slice(0, PAGE);
     const frag = document.createDocumentFragment();
-    shown.forEach((i) => {
+    slice.forEach((i) => frag.appendChild(assignmentRow(i)));
+    body.appendChild(frag);
+    body.scrollTop = 0;
+
+    el('rowsNote').textContent = order.length
+      ? num(from + 1) + '\u2013' + num(from + slice.length) + ' of ' + num(order.length)
+        + '   \u00b7   PAGE ' + (page + 1) + '/' + num(pages)
+      : 'no rows';
+    el('pagePrev').disabled = page === 0;
+    el('pageNext').disabled = page >= pages - 1;
+  }
+
+  function renderTop() {
+    // Group by service, then rank each service's licences by the bandwidth they
+    // hold here. A licence with ten assignments in the band counts as one
+    // licence holding their total, not as ten rows crowding out everyone else.
+    const byService = new Map();
+    for (const i of rows) {
+      const svc = SPEC.dict.svc[SPEC.svc[i]];
+      let licences = byService.get(svc);
+      if (!licences) { licences = new Map(); byService.set(svc, licences); }
       const id = SPEC.id[i];
-      const tr = document.createElement('div');
-      tr.className = 'gridrow';
-      tr.setAttribute('role', 'button');
-      tr.tabIndex = 0;
-      tr.setAttribute('aria-pressed', String(F.id === id));
-      const lo = SPEC.lo[i], hi = SPEC.hi[i];
-      const freq = lo === hi ? fmtMHz(lo) : fmtMHz(lo) + '–' + fmtMHz(hi);
-      const cols = [
-        { v: String(id), cls: 'id' },
-        { v: SPEC.dict.num[SPEC.num[i]] || '—' },
-        { v: SPEC.dict.lic[SPEC.lic[i]] },
-        { v: SPEC.dict.lt[SPEC.lt[i]] || '—' },
-        { v: freq, cls: 'num' },
-        { v: SPEC.dict.band[SPEC.band[i]] },
-        { v: SPEC.dict.svc[SPEC.svc[i]] }
-      ];
-      cols.forEach((c) => {
-        const d = document.createElement('div');
-        if (c.cls) d.className = c.cls;
-        d.textContent = c.v;
-        d.title = c.v;
-        tr.appendChild(d);
-      });
-      const pick = () => { F.id = F.id === id ? null : id; refilter(); };
-      tr.addEventListener('click', pick);
-      tr.addEventListener('keydown', (e) => {
+      const held = licences.get(id);
+      const bw = SPEC.hi[i] - SPEC.lo[i];
+      if (held) { held.bw += bw; held.n += 1; if (SPEC.lo[i] < SPEC.lo[held.row]) held.row = i; }
+      else licences.set(id, { bw, n: 1, row: i });
+    }
+
+    const services = [...byService.entries()]
+      .map(([svc, licences]) => [svc, licences, [...licences.values()].reduce((s, x) => s + x.bw, 0)])
+      .sort((a, b) => b[2] - a[2]);
+
+    const body = el('gridBody');
+    body.replaceChildren();
+    const frag = document.createDocumentFragment();
+    let shown = 0;
+    services.forEach(([svc, licences]) => {
+      const head = document.createElement('div');
+      head.className = 'grouprow';
+      head.setAttribute('role', 'button');
+      head.tabIndex = 0;
+      const name = document.createElement('div');
+      name.textContent = svc;
+      const n = document.createElement('div');
+      n.className = 'gn';
+      n.textContent = num(licences.size) + ' licences';
+      head.append(name, n);
+      head.title = svc + ' \u2014 click to filter to it';
+      const pick = () => { F.svc = F.svc === svc ? null : svc; refilter(); };
+      head.addEventListener('click', pick);
+      head.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); }
       });
-      frag.appendChild(tr);
+      frag.appendChild(head);
+
+      [...licences.values()]
+        .sort((a, b) => b.bw - a.bw || a.row - b.row)
+        .slice(0, 10)
+        .forEach((entry, k) => {
+          const tr = assignmentRow(entry.row, k + 1);
+          // The ranked figure is the licence's total across the selection, not
+          // the one assignment the row happens to be drawn from.
+          tr.children[5].textContent = num(entry.bw);
+          tr.children[5].title = num(entry.bw) + ' kHz across '
+            + num(entry.n) + ' assignment' + (entry.n === 1 ? '' : 's');
+          frag.appendChild(tr);
+          shown++;
+        });
     });
     body.appendChild(frag);
-    el('rowsNote').textContent = rows.length > PAGE
-      ? 'showing first ' + num(PAGE) + ' of ' + num(rows.length)
-      : num(rows.length) + ' rows';
+    body.scrollTop = 0;
+
+    el('rowsNote').textContent = num(shown) + ' of ' + num(licIds.size) + ' licences  \u00b7  '
+      + services.length + ' service' + (services.length === 1 ? '' : 's');
+    el('pagePrev').disabled = true;
+    el('pageNext').disabled = true;
+  }
+
+  function renderResult() {
+    renderHead();
+    if (mode === 'TOP') renderTop(); else renderAll();
   }
 
   function renderHoldings() {
@@ -852,20 +1031,49 @@ const FILES = ['silver/analyser-index.json', 'silver/analyser-sites.json', 'silv
     // and a single-site selection would otherwise zoom to a meaningless scale.
     const rad = (d) => d * Math.PI / 180;
     const merc = (lat) => Math.log(Math.tan(Math.PI / 4 + rad(lat) / 2));
-    const LAT0 = -33.5, LAT1 = -47.6, LON0 = 166.0, LON1 = 179.2;
-    const y0 = merc(LAT0), y1 = merc(LAT1);
-    const x0 = rad(LON0), x1 = rad(LON1);
+    const LAT_N = -33.8, LAT_S = -47.6, LON_W = 166.0, LON_E = 179.2;
+    // Mercator y grows northward and screen y grows downward, so the vertical
+    // span is north minus south and the offset is measured down from the
+    // northern edge. Taking it the other way round makes the span negative,
+    // which flips the country and mis-scales it in one step.
+    const yN = merc(LAT_N), yS = merc(LAT_S);
+    const ySpan = yN - yS;
+    const x0 = rad(LON_W), xSpan = rad(LON_E) - rad(LON_W);
     const m = 6;
-    const s = Math.min((w - m * 2) / (x1 - x0), (h - m * 2) / (y1 - y0));
-    const ox = m + ((w - m * 2) - (x1 - x0) * s) / 2;
-    const oy = m + ((h - m * 2) - (y1 - y0) * s) / 2;
+    const s = Math.min((w - m * 2) / xSpan, (h - m * 2) / ySpan);
+    const ox = m + ((w - m * 2) - xSpan * s) / 2;
+    const oy = m + ((h - m * 2) - ySpan * s) / 2;
     const px = (lon) => ox + (rad(lon) - x0) * s;
-    const py = (lat) => oy + (merc(lat) - y0) * s;
+    const py = (lat) => oy + (yN - merc(lat)) * s;
     proj = { px, py, w, h };
+    // The projection is the one part of this page with no visible readout
+    // and a failure mode that looks like a plausible map, so it is exposed
+    // for the test that checks north lands above south.
+    window.__proj = proj;
+    window.__coastRings = COAST ? COAST.length : 0;
 
-    g.strokeStyle = '#173017'; g.lineWidth = 0.5;
+    g.strokeStyle = '#143014'; g.lineWidth = 0.5;
     for (let lon = 166; lon <= 179; lon += 2) { g.beginPath(); g.moveTo(px(lon), 0); g.lineTo(px(lon), h); g.stroke(); }
     for (let lat = -34; lat >= -47; lat -= 2) { g.beginPath(); g.moveTo(0, py(lat)); g.lineTo(w, py(lat)); g.stroke(); }
+
+    // The coastline, so a site reads as somewhere rather than as a dot in a
+    // grid. Filled below the graticule weight and stroked above it: the land
+    // is context for the sites, not a subject of its own.
+    if (COAST) {
+      g.beginPath();
+      COAST.forEach((ring) => {
+        ring.forEach(([lon, lat], i) => {
+          const X = px(lon), Y = py(lat);
+          if (i) g.lineTo(X, Y); else g.moveTo(X, Y);
+        });
+        g.closePath();
+      });
+      g.fillStyle = '#122412';
+      g.fill();
+      g.strokeStyle = '#2f6b32';
+      g.lineWidth = 0.8;
+      g.stroke();
+    }
 
     // Draw receive under transmit: TX is the primary reading and RX is
     // context, and at national scale the two coincide often enough that
@@ -975,7 +1183,7 @@ const FILES = ['silver/analyser-index.json', 'silver/analyser-sites.json', 'silv
     el('stHolders').textContent = num(tally('lic', rows).size);
   }
 
-  function refilter() { apply(); render(); }
+  function refilter() { page = 0; apply(); render(); }
 
   /* --------------------------------------------------------------- control */
   function renderMeta() {
@@ -999,6 +1207,7 @@ const FILES = ['silver/analyser-index.json', 'silver/analyser-sites.json', 'silv
     btn.classList.add('pressed');
     try {
       await load();
+      await loadCoast();
       allBins = null;
       el('stSource').textContent = 'LIVE INDEX';
       el('led').style.background = '#00ff00';
@@ -1015,12 +1224,26 @@ const FILES = ['silver/analyser-index.json', 'silver/analyser-sites.json', 'silv
     }
   }
 
+  function setMode(next) {
+    mode = next;
+    page = 0;
+    el('btnModeAll').setAttribute('aria-pressed', String(mode === 'ALL'));
+    el('btnModeTop').setAttribute('aria-pressed', String(mode === 'TOP'));
+    render();
+  }
+  el('btnModeAll').addEventListener('click', () => setMode('ALL'));
+  el('btnModeTop').addEventListener('click', () => setMode('TOP'));
+  el('pagePrev').addEventListener('click', () => { if (page > 0) { page--; render(); } });
+  el('pageNext').addEventListener('click', () => { page++; render(); });
+
   el('btnRefresh').addEventListener('click', refresh);
   el('btnClear').addEventListener('click', () => {
     Object.assign(F, { band: null, svc: null, lt: null, lic: null, st: null,
                        id: null, loc: null, lo: null, hi: null, tx: true, rx: true });
     el('btnTx').setAttribute('aria-pressed', 'true');
     el('btnRx').setAttribute('aria-pressed', 'true');
+    sort = { key: 'freq', dir: 1 };
+    setMode('ALL');
     refilter();
   });
   el('btnFull').addEventListener('click', () => {
