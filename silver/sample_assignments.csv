@@ -1,4 +1,6 @@
 licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppressed
+442993,300276,"Fire and Emergency New Zealand","J63C",450.2375,"KAIKOURA FIRE STATION (NEW)","Current","TX",false
+442987,434578,"Fire and Emergency New Zealand","J62C",450.2125,"KAIKOURA FIRE STATION (NEW)","Current","TX",false
 442965,434555,"UNISON NETWORKS LIMITED","J105D#",465.4625,"WHAKAROA","Current","TX",false
 442964,434554,"UNISON NETWORKS LIMITED","J105D",460.25,"Fleet Street","Current","TX",false
 442963,,"UNISON NETWORKS LIMITED","CN186#",452.59375,"MOBILE","Current","TX",false
@@ -7,5 +9,3 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 442949,434570,"TWO DEGREES NETWORKS LIMITED",,2152.5,"(TNK-035-022-A)[MANT]_MANAIA NORTH","Current","TX",false
 442945,434563,"TWO DEGREES NETWORKS LIMITED",,939.9,"(AKL-008-117-B)[PTSW]_PAPATOETOE SOUTH WEST","Current","TX",false
 442944,434572,"TWO DEGREES NETWORKS LIMITED",,798.0,"(TNK-035-022-A)[MANT]_MANAIA NORTH","Current","TX",false
-442942,434566,"TWO DEGREES NETWORKS LIMITED",,939.9,"(TNK-035-022-A)[MANT]_MANAIA NORTH","Current","TX",false
-442941,434569,"TWO DEGREES NETWORKS LIMITED",,798.0,"(AKL-008-117-B)[PTSW]_PAPATOETOE SOUTH WEST","Current","TX",false
