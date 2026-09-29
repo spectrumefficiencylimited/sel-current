@@ -18,8 +18,8 @@ HF (3-30 MHz),4,Broadcasting,103
 HF (3-30 MHz),4,Amateur,27
 HF (3-30 MHz),4,Paging,9
 HF (3-30 MHz),4,Telemetry & Telecommand,1
-VHF (30-300 MHz),5,Land Mobile,11982
-VHF (30-300 MHz),5,Broadcasting,1793
+VHF (30-300 MHz),5,Land Mobile,11987
+VHF (30-300 MHz),5,Broadcasting,1792
 VHF (30-300 MHz),5,Paging,1084
 VHF (30-300 MHz),5,Aeronautical,632
 VHF (30-300 MHz),5,Maritime,543
@@ -28,8 +28,8 @@ VHF (30-300 MHz),5,Amateur,283
 VHF (30-300 MHz),5,General User Licence,105
 VHF (30-300 MHz),5,Telemetry & Telecommand,89
 VHF (30-300 MHz),5,Radiodetermination,45
-UHF (300 MHz-3 GHz),6,Spectrum Licence,26296
-UHF (300 MHz-3 GHz),6,Land Mobile,17731
+UHF (300 MHz-3 GHz),6,Spectrum Licence,26305
+UHF (300 MHz-3 GHz),6,Land Mobile,17735
 UHF (300 MHz-3 GHz),6,Fixed Link,5394
 UHF (300 MHz-3 GHz),6,Satellite & Space,730
 UHF (300 MHz-3 GHz),6,Amateur,330
@@ -42,7 +42,7 @@ UHF (300 MHz-3 GHz),6,Paging,28
 UHF (300 MHz-3 GHz),6,Meteorological,18
 UHF (300 MHz-3 GHz),6,Aeronautical,3
 SHF (3-30 GHz),7,Fixed Link,9922
-SHF (3-30 GHz),7,Spectrum Licence,4027
+SHF (3-30 GHz),7,Spectrum Licence,4030
 SHF (3-30 GHz),7,Satellite & Space,755
 SHF (3-30 GHz),7,Outside Broadcast,48
 SHF (3-30 GHz),7,General User Licence,45

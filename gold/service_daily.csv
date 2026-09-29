@@ -1231,12 +1231,12 @@ observed_date,service,link_mode,assignment_count,distinct_licences,distinct_lice
 2026-09-28,Aeronautical,Unspecified,9,9,8
 2026-09-28,Aeronautical,Mobile Transmit,4,4,2
 2026-09-28,Aeronautical,Repeater,4,4,2
-2026-09-29,Spectrum Licence,Unspecified,30323,30254,25
+2026-09-29,Spectrum Licence,Unspecified,30335,30266,25
 2026-09-29,Fixed Link,Bi-directional,15280,15280,279
-2026-09-29,Land Mobile,Simplex,13900,3405,2372
-2026-09-29,Land Mobile,Repeater,10187,6224,899
-2026-09-29,Land Mobile,Mobile Transmit,6251,6249,903
-2026-09-29,Broadcasting,Unspecified,2390,2290,130
+2026-09-29,Land Mobile,Simplex,13905,3406,2373
+2026-09-29,Land Mobile,Repeater,10190,6225,899
+2026-09-29,Land Mobile,Mobile Transmit,6252,6250,903
+2026-09-29,Broadcasting,Unspecified,2389,2289,130
 2026-09-29,Satellite & Space,Unspecified,1546,1515,22
 2026-09-29,Fixed Link,Uni-directional,1220,848,127
 2026-09-29,Paging,Unspecified,1121,175,99
