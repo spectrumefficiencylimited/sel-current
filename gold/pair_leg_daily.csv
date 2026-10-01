@@ -1012,7 +1012,7 @@ observed_date,service,pair_leg,assignment_count,distinct_licences
 2026-09-30,Radiodetermination,Return leg (#),16,16
 2026-09-30,Aeronautical,Return leg (#),1,1
 2026-10-01,Spectrum Licence,Primary leg,30329,30260
-2026-10-01,Land Mobile,Primary leg,24106,9633
+2026-10-01,Land Mobile,Primary leg,24118,9634
 2026-10-01,Fixed Link,Primary leg,8869,8497
 2026-10-01,Fixed Link,Return leg (#),7628,7628
 2026-10-01,Land Mobile,Return leg (#),6250,6249
