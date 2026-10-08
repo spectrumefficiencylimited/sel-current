@@ -1,11 +1,11 @@
 licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppressed
-443269,,"KIWIRAIL","EN104#",153.81875,"MOBILE","Current","TX",false
-443268,294198,"KIWIRAIL","EN104",152.0375,"Whitecliffs Kiwirail","Current","TX",false
-443268,294198,"KIWIRAIL","EN104",152.0375,"Waitakere Rail Station","Current","TX",false
-443268,294198,"KIWIRAIL","EN104",152.0375,"Wairoa Kiwirail","Current","TX",false
-443268,294198,"KIWIRAIL","EN104",152.0375,"Waimiha Kiwirail","Current","TX",false
-443268,294198,"KIWIRAIL","EN104",152.0375,"Waikanae Rail Station","Current","TX",false
-443268,294198,"KIWIRAIL","EN104",152.0375,"WINGATUI TUNNEL 10 MSL","Current","TX",false
-443268,294198,"KIWIRAIL","EN104",152.0375,"WHARERATA RAIL SITE","Current","TX",false
-443268,294198,"KIWIRAIL","EN104",152.0375,"WESTFIELD RAIL REPEATER","Current","TX",false
-443268,294198,"KIWIRAIL","EN104",152.0375,"WELLINGTON STATION","Current","TX",false
+443291,,"KIWIRAIL","EN97#",153.73125,"MOBILE","Current","TX",false
+443290,294192,"KIWIRAIL","EN97",151.95,"Whitecliffs Kiwirail","Current","TX",false
+443290,294192,"KIWIRAIL","EN97",151.95,"Waitakere Rail Station","Current","TX",false
+443290,294192,"KIWIRAIL","EN97",151.95,"Wairoa Kiwirail","Current","TX",false
+443290,294192,"KIWIRAIL","EN97",151.95,"Waimiha Kiwirail","Current","TX",false
+443290,294192,"KIWIRAIL","EN97",151.95,"WINGATUI TUNNEL 10 MSL","Current","TX",false
+443290,294192,"KIWIRAIL","EN97",151.95,"WHARERATA RAIL SITE","Current","TX",false
+443290,294192,"KIWIRAIL","EN97",151.95,"WESTFIELD RAIL REPEATER","Current","TX",false
+443290,294192,"KIWIRAIL","EN97",151.95,"WELLINGTON STATION","Current","TX",false
+443290,294192,"KIWIRAIL","EN97",151.95,"WELD CONE","Current","TX",false
