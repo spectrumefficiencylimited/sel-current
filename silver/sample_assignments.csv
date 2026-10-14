@@ -1,4 +1,7 @@
 licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppressed
+443341,434925,"SPACE OPERATIONS NEW ZEALAND LIMITED","J16B",454.025,"192 LAGAN STREET BLUFF","Current","TX",false
+443340,434926,"SPACE OPERATIONS NEW ZEALAND LIMITED","J16B",454.025,"OBRIANS OMAUI","Current","TX",false
+443337,433456,"SPACE OPERATIONS NEW ZEALAND LIMITED","J16B#",459.0625,"BLUFF HILL (AMATEUR)","Current","TX",false
 443336,175619,"KIWIRAIL","I596",422.3875,"KAIKOURA TUNNEL 13","Current","TX",false
 443335,175618,"KIWIRAIL","I596#",427.4,"Kaikoura KiwiRail ","Current","TX",false
 443334,175617,"KIWIRAIL","I555#",426.375,"Kaikoura KiwiRail ","Current","TX",false
@@ -6,6 +9,3 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 443319,,"SECURI-COM LTD","EN159#",154.50625,"MOBILE","Current","TX",false
 443318,434923,"SECURI-COM LTD","EN159",152.725,"MT EDGECUMBE","Current","TX",false
 443297,,"DOVE COMMUNICATIONS (2023) LIMITED","FN173#",474.15625,"MOBILE","Current","TX",false
-443296,402188,"DOVE COMMUNICATIONS (2023) LIMITED","FN173",480.14375,"MT VICTORIA (Dove Communucations) ","Current","TX",false
-443295,,"DOVE COMMUNICATIONS (2023) LIMITED","FN170#",474.11875,"MOBILE","Current","TX",false
-443294,402192,"DOVE COMMUNICATIONS (2023) LIMITED","FN170",480.10625,"MT VICTORIA (Dove Communucations) ","Current","TX",false
