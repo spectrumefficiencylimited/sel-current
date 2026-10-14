@@ -1301,7 +1301,7 @@ observed_date,service,pair_leg,assignment_count,distinct_licences
 2026-10-14,Land Mobile,Primary leg,24120,9640
 2026-10-14,Fixed Link,Primary leg,8867,8495
 2026-10-14,Fixed Link,Return leg (#),7625,7625
-2026-10-14,Land Mobile,Return leg (#),6250,6249
+2026-10-14,Land Mobile,Return leg (#),6251,6250
 2026-10-14,Broadcasting,Primary leg,2387,2287
 2026-10-14,Satellite & Space,Primary leg,1562,1531
 2026-10-14,Paging,Primary leg,1121,175
@@ -1310,7 +1310,7 @@ observed_date,service,pair_leg,assignment_count,distinct_licences
 2026-10-14,General User Licence,Primary leg,553,23
 2026-10-14,Amateur,Primary leg,467,421
 2026-10-14,Radiodetermination,Primary leg,284,271
-2026-10-14,Telemetry & Telecommand,Primary leg,259,243
+2026-10-14,Telemetry & Telecommand,Primary leg,256,240
 2026-10-14,Amateur,Return leg (#),188,171
 2026-10-14,Maritime,Return leg (#),142,131
 2026-10-14,Outside Broadcast,Primary leg,50,9
