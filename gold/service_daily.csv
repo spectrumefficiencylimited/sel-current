@@ -1765,11 +1765,11 @@ observed_date,service,link_mode,assignment_count,distinct_licences,distinct_lice
 2026-10-17,Aeronautical,Repeater,4,4,2
 2026-10-18,Spectrum Licence,Unspecified,30369,30300,25
 2026-10-18,Fixed Link,Bi-directional,15283,15283,280
-2026-10-18,Land Mobile,Simplex,13948,3413,2368
+2026-10-18,Land Mobile,Simplex,13953,3413,2368
 2026-10-18,Land Mobile,Repeater,10197,6224,900
 2026-10-18,Land Mobile,Mobile Transmit,6251,6249,903
 2026-10-18,Broadcasting,Unspecified,2385,2285,130
-2026-10-18,Satellite & Space,Unspecified,1562,1531,22
+2026-10-18,Satellite & Space,Unspecified,1564,1533,22
 2026-10-18,Fixed Link,Uni-directional,1217,845,127
 2026-10-18,Paging,Unspecified,1121,175,99
 2026-10-18,Aeronautical,Base Station,772,517,84
