@@ -1805,7 +1805,7 @@ observed_date,service,link_mode,assignment_count,distinct_licences,distinct_lice
 2026-10-19,General User Licence,Unspecified,576,23,1
 2026-10-19,Amateur,Repeater,317,298,80
 2026-10-19,Amateur,Mobile Transmit,291,273,74
-2026-10-19,Telemetry & Telecommand,Uni-directional,226,210,74
+2026-10-19,Telemetry & Telecommand,Uni-directional,225,209,74
 2026-10-19,Radiodetermination,Unspecified,129,116,10
 2026-10-19,Maritime,Mobile Transmit,120,120,45
 2026-10-19,Maritime,Repeater,120,120,45

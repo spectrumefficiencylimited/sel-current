@@ -1420,7 +1420,7 @@ observed_date,service,pair_leg,assignment_count,distinct_licences
 2026-10-19,General User Licence,Primary leg,553,23
 2026-10-19,Amateur,Primary leg,467,421
 2026-10-19,Radiodetermination,Primary leg,284,271
-2026-10-19,Telemetry & Telecommand,Primary leg,250,234
+2026-10-19,Telemetry & Telecommand,Primary leg,249,233
 2026-10-19,Amateur,Return leg (#),188,171
 2026-10-19,Maritime,Return leg (#),142,131
 2026-10-19,Outside Broadcast,Primary leg,50,9
