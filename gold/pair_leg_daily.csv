@@ -1408,10 +1408,10 @@ observed_date,service,pair_leg,assignment_count,distinct_licences
 2026-10-18,Radiodetermination,Return leg (#),16,16
 2026-10-18,Aeronautical,Return leg (#),1,1
 2026-10-19,Spectrum Licence,Primary leg,30369,30300
-2026-10-19,Land Mobile,Primary leg,24152,9638
+2026-10-19,Land Mobile,Primary leg,24153,9639
 2026-10-19,Fixed Link,Primary leg,8872,8500
 2026-10-19,Fixed Link,Return leg (#),7628,7628
-2026-10-19,Land Mobile,Return leg (#),6249,6248
+2026-10-19,Land Mobile,Return leg (#),6250,6249
 2026-10-19,Broadcasting,Primary leg,2385,2285
 2026-10-19,Satellite & Space,Primary leg,1564,1533
 2026-10-19,Paging,Primary leg,1121,175
