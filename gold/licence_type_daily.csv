@@ -3512,8 +3512,8 @@ observed_date,licence_type,assignment_count,distinct_licensees
 2026-10-20,Other (Spectrum),29756,6
 2026-10-20,Land Simplex,13645,2351
 2026-10-20,Fixed >=1 GHz (Bi-directional),10674,148
-2026-10-20,Land Repeater,10156,867
-2026-10-20,Land Mobile - Mobile Transmit,6214,873
+2026-10-20,Land Repeater,10157,868
+2026-10-20,Land Mobile - Mobile Transmit,6215,874
 2026-10-20,Fixed <1 GHz; BW <=50 kHz (Bi-directional),2749,163
 2026-10-20,VHF FM,1789,111
 2026-10-20,Fixed Bi-directional Point-to-Multipoint,1647,70
