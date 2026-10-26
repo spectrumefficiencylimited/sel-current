@@ -1989,12 +1989,12 @@ observed_date,service,link_mode,assignment_count,distinct_licences,distinct_lice
 2026-10-25,Aeronautical,Repeater,4,4,2
 2026-10-26,Spectrum Licence,Unspecified,30382,30313,25
 2026-10-26,Fixed Link,Bi-directional,15281,15281,281
-2026-10-26,Land Mobile,Simplex,13936,3412,2366
+2026-10-26,Land Mobile,Simplex,13952,3412,2366
 2026-10-26,Land Mobile,Repeater,10199,6226,900
 2026-10-26,Land Mobile,Mobile Transmit,6253,6251,903
 2026-10-26,Broadcasting,Unspecified,2385,2285,130
 2026-10-26,Satellite & Space,Unspecified,1567,1536,23
-2026-10-26,Fixed Link,Uni-directional,1216,844,126
+2026-10-26,Fixed Link,Uni-directional,1207,835,126
 2026-10-26,Paging,Unspecified,1121,175,99
 2026-10-26,Aeronautical,Base Station,772,517,84
 2026-10-26,Maritime,Unspecified,720,175,51
