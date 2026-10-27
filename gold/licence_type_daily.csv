@@ -3887,21 +3887,21 @@ observed_date,licence_type,assignment_count,distinct_licensees
 2026-10-26,Amateur TV Repeater,4,1
 2026-10-26,Aero Mobile (Route),2,2
 2026-10-26,Radar,2,1
-2026-10-27,Other (Spectrum),29769,6
-2026-10-27,Land Simplex,13644,2349
-2026-10-27,Fixed >=1 GHz (Bi-directional),10672,149
+2026-10-27,Other (Spectrum),29805,6
+2026-10-27,Land Simplex,13644,2348
+2026-10-27,Fixed >=1 GHz (Bi-directional),10674,149
 2026-10-27,Land Repeater,10161,869
 2026-10-27,Land Mobile - Mobile Transmit,6219,875
 2026-10-27,Fixed <1 GHz; BW <=50 kHz (Bi-directional),2749,163
 2026-10-27,VHF FM,1789,111
 2026-10-27,Fixed Bi-directional Point-to-Multipoint,1647,70
-2026-10-27,Satellite,1391,21
+2026-10-27,Satellite,1390,21
 2026-10-27,Paging,1121,99
 2026-10-27,Maritime Coast Station,720,51
 2026-10-27,Managed Spectrum Park,613,20
 2026-10-27,Fixed < 1GHz; BW >50kHz (Uni-directional),606,86
 2026-10-27,General user licence (Radio),568,1
-2026-10-27,Fixed <1 GHz; BW <=50 kHz (Uni-directional),561,46
+2026-10-27,Fixed <1 GHz; BW <=50 kHz (Uni-directional),561,45
 2026-10-27,Aero Base (Off Route),448,71
 2026-10-27,Aero Base (Route),324,25
 2026-10-27,MF AM,306,31

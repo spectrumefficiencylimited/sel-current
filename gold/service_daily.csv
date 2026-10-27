@@ -2015,14 +2015,14 @@ observed_date,service,link_mode,assignment_count,distinct_licences,distinct_lice
 2026-10-26,Aeronautical,Unspecified,9,9,8
 2026-10-26,Aeronautical,Mobile Transmit,4,4,2
 2026-10-26,Aeronautical,Repeater,4,4,2
-2026-10-27,Spectrum Licence,Unspecified,30382,30313,25
-2026-10-27,Fixed Link,Bi-directional,15281,15281,281
-2026-10-27,Land Mobile,Simplex,13952,3412,2366
+2026-10-27,Spectrum Licence,Unspecified,30418,30346,25
+2026-10-27,Fixed Link,Bi-directional,15283,15281,281
+2026-10-27,Land Mobile,Simplex,13952,3411,2365
 2026-10-27,Land Mobile,Repeater,10201,6228,902
 2026-10-27,Land Mobile,Mobile Transmit,6255,6253,905
 2026-10-27,Broadcasting,Unspecified,2385,2285,130
-2026-10-27,Satellite & Space,Unspecified,1567,1536,23
-2026-10-27,Fixed Link,Uni-directional,1207,835,126
+2026-10-27,Satellite & Space,Unspecified,1566,1535,23
+2026-10-27,Fixed Link,Uni-directional,1207,834,126
 2026-10-27,Paging,Unspecified,1121,175,99
 2026-10-27,Aeronautical,Base Station,772,517,84
 2026-10-27,Maritime,Unspecified,720,175,51
