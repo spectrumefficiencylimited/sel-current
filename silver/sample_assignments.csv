@@ -1,4 +1,6 @@
 licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppressed
+443674,410214,"TAIT SYSTEMS NZ LIMITED","7GM5B#",7348.5,"VIA TAIRUA ROAD WHANGAMATA (VF WHANGAMATA SOUTH C2WTS)","Current","TX",false
+443673,410213,"TAIT SYSTEMS NZ LIMITED","7GM5B",7187.5,"Tanehua 1","Current","TX",false
 443633,434934,"Brittania Row Productions Limited, formerly Browhart","FNX853",489.89375,"ALL NEW ZEALAND","Current","TX",false
 443633,434934,"Brittania Row Productions Limited, formerly Browhart","FNX851",489.86875,"ALL NEW ZEALAND","Current","TX",false
 443633,434934,"Brittania Row Productions Limited, formerly Browhart","FNX850",489.85625,"ALL NEW ZEALAND","Current","TX",false
@@ -7,5 +9,3 @@ licenceId,licenceNumber,licensee,channel,frequency,location,status,txrx,suppress
 443633,434934,"Brittania Row Productions Limited, formerly Browhart","FNX834",489.65625,"ALL NEW ZEALAND","Current","TX",false
 443633,434934,"Brittania Row Productions Limited, formerly Browhart","DNX98",466.98125,"ALL NEW ZEALAND","Current","TX",false
 443633,434934,"Brittania Row Productions Limited, formerly Browhart","DNX97",466.96875,"ALL NEW ZEALAND","Current","TX",false
-443633,434934,"Brittania Row Productions Limited, formerly Browhart","DNX90",466.88125,"ALL NEW ZEALAND","Current","TX",false
-443633,434934,"Brittania Row Productions Limited, formerly Browhart","DNX89",466.86875,"ALL NEW ZEALAND","Current","TX",false
