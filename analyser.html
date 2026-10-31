@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="RSM Spectrum Assignment Analyser — the current New Zealand Register of Radio Frequencies, cross-filtering across band, service, licensee, frequency and transmit and receive sites.">
+<meta name="theme-color" content="#0d0d0d">
+<title>Spectrum Assignment Analyser</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230066cc'/><rect x='6' y='8' width='20' height='16' fill='%23000'/><path d='M8 20h4v-6h3v9h3v-4h4' stroke='%2300ff00' stroke-width='2' fill='none'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;700&family=Barlow+Condensed:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  /* ------------------------------------------------------------------------
+     RSM Spectrum Assignment Analyser.
+
+     This replaces RSM's Spectrum Search Lite, whose PRISM.mdb shipped a search
+     form that answered one question at a time. Here every panel is a view over
+     the same filtered set of assignments, so a click anywhere narrows
+     everywhere: pick a band and the matrix, the map, the result set and the
+     holdings all follow it.
+
+     That is only possible because the browser holds the individual records.
+     Two indexes are fetched — one row per licence x spectrum allocation, one
+     row per licence x location x direction — and joined here on licence_id.
+     Pre-aggregated summaries cannot be filtered back down, which is why the
+     earlier build of this page could show numbers but not answer questions.
+
+     The layout fills the viewport rather than scaling a fixed window, because
+     a cross-filtering tool is operated, not read: the result set wants every
+     row the screen can give it.
+     ------------------------------------------------------------------------ */
+  :root {
+    --color-surface:#e9e9ea;
+    --color-neutral-400:#b7b7ba; --color-neutral-700:#5d5d60;
+    --color-accent-300:#b5d9fd; --color-accent-700:#416180; --color-accent-800:#2c455d;
+    --font-heading:"Barlow Condensed", Impact, sans-serif;
+    --font-body:"Barlow", 'Segoe UI', Tahoma, sans-serif;
+    --mono:"Consolas", "SF Mono", Menlo, monospace;
+    --divider:color-mix(in srgb, #ffffff 22%, transparent);
+    --ink:#c9c9cc; --dim:#8a8a8e; --on:#00ff00; --warn:#ffa500; --hot:#ffff00;
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; height: 100%; background: #0d0d0d; color: var(--ink);
+    font-family: var(--font-body); overflow: hidden;
+  }
+  button { font: inherit; color: inherit; }
+
+  /* ---------------------------------------------------------------- shell */
+  #app {
+    display: grid; height: 100%;
+    grid-template-rows: auto auto minmax(0, 1fr) auto;
+    background: #1a1a1a;
+  }
+
+  .titlebar {
+    display: flex; align-items: center; gap: 10px;
+    background: linear-gradient(#3b5a76, var(--color-accent-800));
+    padding: 5px 10px; border-bottom: 1px solid #000;
+  }
+  .titlebar h1 {
+    font-family: var(--font-heading); font-size: 15px; letter-spacing: .09em;
+    font-weight: 600; margin: 0; color: #fff; white-space: nowrap;
+  }
+  .titlebar .sub {
+    font-size: 10px; letter-spacing: .12em; color: var(--color-accent-300);
+    text-transform: uppercase; white-space: nowrap;
+  }
+  .spacer { flex: 1 1 auto; }
+  .tbtn {
+    background: linear-gradient(#5d5d60, #3a3a3c); border: 1px solid #000;
+    border-top-color: #8b8b8f; border-left-color: #8b8b8f;
+    padding: 3px 11px; font-size: 10px; letter-spacing: .1em; cursor: pointer;
+    font-family: var(--font-heading); text-transform: uppercase;
+  }
+  .tbtn:hover { background: linear-gradient(#6d6d72, #46464a); }
+  .tbtn.pressed, .tbtn[aria-pressed="true"] {
+    background: linear-gradient(#2a2a2c, #3a3a3c); border-top-color: #000;
+    border-left-color: #000; color: var(--hot);
+  }
+  .tbtn:focus-visible { outline: 2px solid var(--hot); outline-offset: 1px; }
+
+  /* --------------------------------------------------------- filter chips */
+  .filters {
+    display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+    padding: 4px 10px; min-height: 26px;
+    background: #232325; border-bottom: 1px solid #000;
+    font-size: 10px;
+  }
+  .filters .lead {
+    font-family: var(--font-heading); letter-spacing: .12em;
+    color: var(--dim); text-transform: uppercase;
+  }
+  .chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--color-accent-700); border: 1px solid #000;
+    padding: 1px 4px 1px 7px; cursor: pointer; color: #fff;
+    font-size: 10px; letter-spacing: .04em;
+  }
+  .chip b { font-weight: 700; color: var(--color-accent-300); }
+  .chip .x { font-family: var(--mono); color: #fff; opacity: .75; }
+  .chip:hover { background: #4f7699; }
+  .chip:hover .x { opacity: 1; color: var(--hot); }
+  .chip.none { background: transparent; border-color: transparent; color: var(--dim); cursor: default; }
+
+  /* -------------------------------------------------------------- panels */
+  #grid {
+    display: grid; gap: 4px; padding: 4px; min-height: 0;
+    grid-template-columns: minmax(180px, 1fr) minmax(260px, 1.5fr) minmax(300px, 1.7fr);
+    grid-template-rows: minmax(0, 1.05fr) minmax(0, 1fr);
+    grid-template-areas:
+      "tune  matrix result"
+      "bands map    result";
+  }
+  @media (max-width: 1100px) {
+    #grid {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-rows: minmax(140px, .8fr) minmax(160px, 1fr) minmax(200px, 1.2fr);
+      grid-template-areas: "tune matrix" "bands map" "result result";
+    }
+  }
+  @media (max-width: 700px) {
+    #grid {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: repeat(5, minmax(150px, auto));
+      grid-template-areas: "tune" "matrix" "bands" "map" "result";
+      overflow-y: auto;
+    }
+  }
+
+  .panel {
+    position: relative; display: flex; flex-direction: column; min-height: 0;
+    background: #2d2d2d; border: 1px solid var(--divider);
+    border-top-color: #6a6a6e; border-left-color: #6a6a6e;
+  }
+  .panel > .corner {
+    position: absolute; width: 11px; height: 11px; pointer-events: none;
+    color: color-mix(in srgb, #ffffff 55%, transparent);
+  }
+  .corner.tl { top: 0; left: 0; border-top: 1px solid; border-left: 1px solid; }
+  .corner.tr { top: 0; right: 0; border-top: 1px solid; border-right: 1px solid; }
+  .corner.bl { bottom: 0; left: 0; border-bottom: 1px solid; border-left: 1px solid; }
+  .corner.br { bottom: 0; right: 0; border-bottom: 1px solid; border-right: 1px solid; }
+
+  .cap {
+    display: flex; align-items: center; gap: 8px; flex: none;
+    background: var(--color-accent-800); padding: 3px 7px;
+  }
+  .cap h2 {
+    font-family: var(--font-heading); font-size: 11px; font-weight: 600;
+    letter-spacing: .11em; margin: 0; color: #fff; text-transform: uppercase;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .cap .note { font-size: 9px; letter-spacing: .08em; color: var(--color-accent-300); white-space: nowrap; }
+  .body { flex: 1 1 auto; min-height: 0; padding: 6px; overflow: hidden; display: flex; flex-direction: column; gap: 5px; }
+  .scroll { overflow-y: auto; min-height: 0; flex: 1 1 auto; scrollbar-width: thin; scrollbar-color: #5d5d60 #1a1a1a; }
+  .scroll::-webkit-scrollbar { width: 9px; }
+  .scroll::-webkit-scrollbar-track { background: #1a1a1a; }
+  .scroll::-webkit-scrollbar-thumb { background: #5d5d60; border: 1px solid #000; }
+
+  .hint { font-size: 9px; color: var(--dim); letter-spacing: .06em; text-transform: uppercase; font-family: var(--font-heading); }
+
+  /* ------------------------------------------------------------ tuning */
+  .panel.tune { grid-area: tune; }
+  .readouts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; flex: none; }
+  .ro { background: #121412; border: 1px solid #000; padding: 3px 5px; }
+  .ro .lbl { display: block; font-size: 8px; letter-spacing: .13em; color: var(--dim); font-family: var(--font-heading); }
+  .ro .val { display: block; font-family: var(--mono); font-size: 13px; color: var(--on); font-variant-numeric: tabular-nums; }
+  #spectrogram {
+    position: relative; flex: 1 1 auto; min-height: 54px;
+    background: #0b140b; border: 1px solid #000; cursor: crosshair; touch-action: none;
+  }
+  #spectrogram canvas { display: block; width: 100%; height: 100%; }
+  #brush {
+    position: absolute; top: 0; bottom: 0; pointer-events: none;
+    background: rgba(0,255,0,.16); border-left: 1px solid var(--on); border-right: 1px solid var(--on);
+  }
+  #brush[hidden] { display: none; }
+
+  /* ------------------------------------------------------- band allocation */
+  .panel.bands { grid-area: bands; }
+  .row {
+    display: grid; align-items: center; gap: 6px; padding: 2px 3px;
+    cursor: pointer; font-size: 11px; border: 1px solid transparent;
+  }
+  .row:hover { background: #3a3a3c; border-color: #5d5d60; }
+  .row[aria-pressed="true"] { background: var(--color-accent-700); border-color: var(--hot); }
+  .row:focus-visible { outline: 2px solid var(--hot); outline-offset: -2px; }
+  .bandrow { grid-template-columns: 34px 1fr 58px; }
+  .bar { height: 9px; background: #121412; border: 1px solid #000; }
+  .bar > i { display: block; height: 100%; }
+  .n { font-family: var(--mono); font-size: 10px; text-align: right; font-variant-numeric: tabular-nums; color: var(--ink); }
+  .code { font-family: var(--font-heading); letter-spacing: .1em; color: #fff; font-size: 11px; }
+
+  /* -------------------------------------------------------------- matrix */
+  .panel.matrix { grid-area: matrix; }
+  .mxwrap { flex: 1 1 auto; min-height: 0; overflow: auto; }
+  .mxhead, .mx { display: grid; gap: 1px; }
+  .mxhead { position: sticky; top: 0; z-index: 1; background: #2d2d2d; padding-bottom: 1px; }
+  .mxhead > div {
+    font-family: var(--font-heading); font-size: 9px; letter-spacing: .06em;
+    color: var(--color-accent-300); text-align: center; cursor: pointer;
+    padding: 1px 0; white-space: nowrap; overflow: hidden;
+  }
+  .mxhead > div:hover { color: var(--hot); background: #3a3a3c; }
+  .mxhead > div[aria-pressed="true"] { color: #000; background: var(--hot); }
+  .mx > .rl {
+    font-family: var(--font-heading); font-size: 10px; letter-spacing: .08em;
+    color: #fff; cursor: pointer; display: flex; align-items: center; padding-left: 2px;
+  }
+  .mx > .rl:hover { color: var(--hot); }
+  .mx > .rl[aria-pressed="true"] { color: #000; background: var(--hot); }
+  .mx > i { display: block; min-height: 13px; cursor: pointer; border: 1px solid transparent; }
+  .mx > i:hover { border-color: #fff; }
+  .mx > i[aria-pressed="true"] { border-color: var(--hot); box-shadow: inset 0 0 0 1px #000; }
+
+  /* ---------------------------------------------------------- result set */
+  .panel.result { grid-area: result; }
+  .gridhead, .gridrow {
+    display: grid; gap: 4px; align-items: center;
+    grid-template-columns: 62px 66px minmax(90px, 1.6fr) 84px 76px 52px minmax(80px, 1.2fr);
+    font-size: 10px; padding: 1px 3px;
+  }
+  .gridhead {
+    font-family: var(--font-heading); letter-spacing: .09em; color: var(--color-accent-300);
+    background: #1f1f21; border-bottom: 1px solid #000; position: sticky; top: 0; z-index: 1;
+    text-transform: uppercase; flex: none;
+  }
+  .gridrow { cursor: pointer; border: 1px solid transparent; }
+  .gridrow:nth-child(even) { background: #262628; }
+  .gridrow:hover { background: #3a3a3c; border-color: #5d5d60; }
+  .gridrow[aria-pressed="true"] { background: var(--color-accent-700); border-color: var(--hot); }
+  .gridrow > div { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .gridhead > div { cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .gridhead > div:hover { color: var(--hot); }
+  .gridhead > div[aria-sort] { color: var(--hot); }
+  .gridhead .dir { opacity: .85; }
+  /* A service band inside the grouped view. It is a heading and a filter at
+     once, so it reads as a row of the table rather than a floating label. */
+  .grouprow {
+    display: grid; grid-column: 1 / -1; align-items: center; gap: 6px;
+    grid-template-columns: minmax(0, 1fr) auto; cursor: pointer;
+    background: var(--color-accent-800); color: #fff; padding: 2px 5px;
+    font-family: var(--font-heading); font-size: 10px; letter-spacing: .1em;
+    text-transform: uppercase; border-top: 1px solid #000; margin-top: 2px;
+  }
+  .grouprow:first-child { margin-top: 0; }
+  .grouprow:hover { background: var(--color-accent-700); color: var(--hot); }
+  .grouprow .gn { font-family: var(--mono); letter-spacing: 0; color: var(--color-accent-300); }
+  .gridrow .rank { font-family: var(--mono); color: var(--dim); text-align: right; }
+  .gridrow .num { font-family: var(--mono); text-align: right; font-variant-numeric: tabular-nums; color: var(--on); }
+  .gridrow .id { font-family: var(--mono); color: var(--dim); }
+
+  /* ----------------------------------------------------------------- map */
+  .panel.map { grid-area: map; }
+  .map .body { padding: 0; }
+  .maparea { position: relative; flex: 1 1 auto; min-height: 0; background: #0b140b; }
+  .maparea canvas { display: block; width: 100%; height: 100%; cursor: crosshair; }
+  .cursor {
+    position: absolute; left: 4px; bottom: 4px; font-family: var(--mono);
+    font-size: 9px; color: var(--on); background: rgba(0,0,0,.66); padding: 1px 5px;
+    pointer-events: none; max-width: calc(100% - 8px); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .legend { position: absolute; right: 4px; top: 4px; font-size: 9px; font-family: var(--mono); background: rgba(0,0,0,.6); padding: 2px 5px; pointer-events: none; }
+  .legend i { display: inline-block; width: 7px; height: 7px; margin-right: 4px; }
+
+  /* ------------------------------------------------------------- holdings */
+  .holdrow { grid-template-columns: minmax(0, 1fr) 54px 60px; }
+  .holdrow .nm { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 10px; }
+
+  /* ----------------------------------------------------------- status bar */
+  .status {
+    display: flex; align-items: stretch; background: #232325;
+    border-top: 1px solid #6a6a6e; font-size: 9px; font-family: var(--font-heading);
+    letter-spacing: .1em; text-transform: uppercase; overflow: hidden;
+  }
+  .status > div { padding: 2px 9px; border-right: 1px solid #000; white-space: nowrap; color: var(--dim); }
+  .status > div b { color: var(--ink); font-weight: 500; }
+  .status .grow { flex: 1 1 auto; border-right: 0; text-align: right; }
+  .led { display: inline-block; width: 7px; height: 7px; border: 1px solid #004000; background: var(--on); margin-right: 5px; }
+
+  .msg {
+    position: absolute; inset: 0; display: grid; place-items: center; z-index: 5;
+    background: rgba(13,13,13,.94); text-align: center; padding: 24px;
+  }
+  .msg[hidden] { display: none; }
+  .msg p { max-width: 46ch; font-size: 12px; line-height: 1.6; color: var(--ink); }
+  .msg strong { color: var(--warn); display: block; font-family: var(--font-heading);
+                letter-spacing: .12em; font-size: 14px; margin-bottom: 8px; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<div id="app">
+  <div class="titlebar">
+    <h1>Spectrum Assignment Analyser</h1>
+    <span class="sub" id="prismNote">PRISM rebuild — live register</span>
+    <span class="spacer"></span>
+    <button type="button" class="tbtn" id="btnClear">CLEAR FILTERS</button>
+    <button type="button" class="tbtn" id="btnRefresh">REFRESH</button>
+    <button type="button" class="tbtn" id="btnFull">FULL SCREEN</button>
+  </div>
+
+  <div class="filters" id="filters"></div>
+
+  <div id="grid">
+    <section class="panel tune">
+      <div class="cap"><h2>Frequency tuning</h2><span class="spacer"></span><span class="note" id="tuneNote">drag to tune</span></div>
+      <div class="body">
+        <div class="readouts">
+          <div class="ro"><span class="lbl">LOW MHz</span><span class="val" id="fLow">—</span></div>
+          <div class="ro"><span class="lbl">HIGH MHz</span><span class="val" id="fHigh">—</span></div>
+          <div class="ro"><span class="lbl">ASSIGNMENTS</span><span class="val" id="fCount">—</span></div>
+        </div>
+        <div id="spectrogram"><canvas id="spec"></canvas><div id="brush" hidden></div></div>
+        <div class="hint">occupancy across 9 kHz – 1 THz, log scale · drag a window · click once to release</div>
+      </div>
+    </section>
+
+    <section class="panel bands">
+      <div class="cap"><h2>Band allocation — ITU</h2><span class="spacer"></span><span class="note" id="bandNote">—</span></div>
+      <div class="body"><div class="scroll" id="bandRows"></div></div>
+    </section>
+
+    <section class="panel matrix">
+      <div class="cap"><h2>Occupancy matrix — band × service</h2><span class="spacer"></span><span class="note" id="mxNote">—</span></div>
+      <div class="body">
+        <div class="mxwrap">
+          <div class="mxhead" id="mxHead"></div>
+          <div class="mx" id="mxGrid"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel map">
+      <div class="cap">
+        <h2>Site plot — NZGD2000</h2>
+        <span class="spacer"></span>
+        <button type="button" class="tbtn" id="btnTx" aria-pressed="true">TX</button>
+        <button type="button" class="tbtn" id="btnRx" aria-pressed="true">RX</button>
+      </div>
+      <div class="body">
+        <div class="maparea">
+          <canvas id="plot"></canvas>
+          <div class="legend"><i style="background:#00ff00"></i>TX<br><i style="background:#ffa500"></i>RX</div>
+          <div class="cursor" id="cursor">—</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel result">
+      <div class="cap">
+        <h2>Licence query result set</h2>
+        <button type="button" class="tbtn" id="btnModeAll" aria-pressed="true">ALL</button>
+        <button type="button" class="tbtn" id="btnModeTop" aria-pressed="false">TOP 10 / SERVICE</button>
+        <span class="spacer"></span>
+        <button type="button" class="tbtn" id="pagePrev" title="Previous page">&#9664;</button>
+        <span class="note" id="rowsNote">—</span>
+        <button type="button" class="tbtn" id="pageNext" title="Next page">&#9654;</button>
+      </div>
+      <div class="body" style="gap:0">
+        <div class="gridhead" id="gridHead"></div>
+        <div class="scroll" id="gridBody" style="flex:3 1 0"></div>
+        <div class="gridhead" style="border-top:1px solid #000;border-bottom:0;background:#1f1f21">
+          <div style="grid-column:1/4">TOP LICENSEES IN SELECTION</div>
+          <div style="grid-column:4/8;text-align:right" id="holdNote">—</div>
+        </div>
+        <div class="scroll" id="holdRows" style="flex:1 1 0"></div>
+      </div>
+    </section>
+  </div>
+
+  <div class="status">
+    <div><span class="led" id="led"></span><span id="stSource">LOADING</span></div>
+    <div>ASSIGNMENTS <b id="stRecords">—</b></div>
+    <div>LICENCES <b id="stLicences">—</b></div>
+    <div>LICENSEES <b id="stHolders">—</b></div>
+    <div>SITES <b id="stSites">—</b></div>
+    <div>PRISM <b id="stPrism">—</b></div>
+    <div class="grow" id="stUpdate">—</div>
+  </div>
+
+  <div class="msg" id="msg" hidden><p><strong id="msgTitle"></strong><span id="msgBody"></span></p></div>
+</div>
+
+<script>
+/* The two indexes this page is a view over. Both are rebuilt daily from the
+   seff-data gold warehouse by scripts/export-prism-index.py and fetched live,
+   so a reload tracks the register rather than a build of this page. */
+const FILES = ['silver/analyser-index.json', 'silver/analyser-sites.json', 'silver/prism-meta.json'];
+// Natural Earth 1:50m, mainland rings only — 14 KB. Its absence degrades the
+// map to a graticule rather than failing the page, so it is fetched apart
+// from the indexes the analyser cannot work without.
+const COAST_FILE = 'silver/nz-coastline.geojson';
+
+(function () {
+  'use strict';
+  const el = (id) => document.getElementById(id);
+  const num = (n) => Number(n || 0).toLocaleString('en-NZ');
+  const mhz = (kHz) => (kHz / 1000);
+  const fmtMHz = (kHz) => {
+    const v = mhz(kHz);
+    return v >= 1000 ? v.toFixed(0) : v >= 1 ? v.toFixed(4) : v.toFixed(6);
+  };
+
+  /* ------------------------------------------------------------ the state */
+  // Every panel reads this and nothing else. A click anywhere writes one field
+  // and calls render(); there is no per-panel update path that could disagree
+  // with another panel's idea of the current selection.
+  const F = { band: null, svc: null, lt: null, lic: null, st: null, id: null,
+              loc: null, lo: null, hi: null, tx: true, rx: true };
+
+  let SPEC = null;      // columnar spectrum index
+  let SITES = null;     // columnar site index
+  let META = null;
+  let COAST = null;      // array of [lon, lat] rings
+  let rows = [];        // indices into SPEC passing the current filter
+  let siteRows = [];    // indices into SITES passing the current filter
+  let licIds = null;    // Set of licence ids in `rows`, for joining to sites
+
+  /* --------------------------------------------------------------- loading */
+  async function fetchJson(path) {
+    const res = await fetch(path + '?t=' + Date.now(), { cache: 'no-store' });
+    if (!res.ok) throw new Error(path + ' HTTP ' + res.status);
+    return res.json();
+  }
+
+  function fail(title, body) {
+    el('msgTitle').textContent = title;
+    el('msgBody').textContent = body;
+    el('msg').hidden = false;
+    el('stSource').textContent = 'NO DATA';
+    el('led').style.background = '#c00000';
+  }
+
+  async function load() {
+    const [spec, sites, meta] = await Promise.all(FILES.map(fetchJson));
+    SPEC = spec; SITES = sites; META = meta;
+    el('msg').hidden = true;
+  }
+
+  async function loadCoast() {
+    if (COAST) return;
+    try {
+      const gj = await fetchJson(COAST_FILE);
+      COAST = gj.geometry.coordinates.map((poly) => poly[0]);
+    } catch (e) {
+      COAST = null;   // the graticule alone still locates a site well enough
+    }
+  }
+
+  /* ---------------------------------------------------------- the filter */
+  // One predicate, applied once per render. 74 000 rows is a few milliseconds
+  // of straight-line scanning, so there is no index to keep in step and no
+  // cached subtotal that can go stale behind a filter change.
+  function code(col, value) {
+    if (value === null) return -1;
+    const i = SPEC.dict[col].indexOf(value);
+    return i;
+  }
+
+  function apply() {
+    const cBand = code('band', F.band), cSvc = code('svc', F.svc);
+    const cLt = code('lt', F.lt), cLic = code('lic', F.lic), cSt = code('st', F.st);
+    const n = SPEC.count;
+    rows = [];
+    for (let i = 0; i < n; i++) {
+      if (F.band !== null && SPEC.band[i] !== cBand) continue;
+      if (F.svc !== null && SPEC.svc[i] !== cSvc) continue;
+      if (F.lt !== null && SPEC.lt[i] !== cLt) continue;
+      if (F.lic !== null && SPEC.lic[i] !== cLic) continue;
+      if (F.st !== null && SPEC.st[i] !== cSt) continue;
+      if (F.id !== null && SPEC.id[i] !== F.id) continue;
+      // A tuned window keeps any assignment that overlaps it, not only those
+      // wholly inside: a 40 MHz spectrum block straddling the edge is still in
+      // the window the operator drew.
+      if (F.lo !== null && SPEC.hi[i] < F.lo) continue;
+      if (F.hi !== null && SPEC.lo[i] > F.hi) continue;
+      rows.push(i);
+    }
+
+    licIds = new Set();
+    for (const i of rows) licIds.add(SPEC.id[i]);
+
+    const cLoc = F.loc === null ? -1 : SITES.dict.loc.indexOf(F.loc);
+    siteRows = [];
+    for (let i = 0; i < SITES.count; i++) {
+      const isRx = SITES.dir[i] === 1;
+      if (isRx ? !F.rx : !F.tx) continue;
+      if (F.loc !== null && SITES.loc[i] !== cLoc) continue;
+      if (!licIds.has(SITES.id[i])) continue;
+      siteRows.push(i);
+    }
+  }
+
+  /* --------------------------------------------------------- filter chips */
+  const CHIPS = [
+    ['band', 'BAND'], ['svc', 'SERVICE'], ['lt', 'TYPE'],
+    ['lic', 'LICENSEE'], ['st', 'STATUS'], ['loc', 'SITE']
+  ];
+
+  function renderChips() {
+    const host = el('filters');
+    host.replaceChildren();
+    const lead = document.createElement('span');
+    lead.className = 'lead';
+    lead.textContent = 'Filters';
+    host.appendChild(lead);
+
+    let any = false;
+    const chip = (label, value, clear) => {
+      any = true;
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'chip';
+      const k = document.createElement('b'); k.textContent = label;
+      const v = document.createElement('span'); v.textContent = value;
+      const x = document.createElement('span'); x.className = 'x'; x.textContent = '×';
+      b.append(k, v, x);
+      b.title = 'Remove this filter';
+      b.addEventListener('click', () => { clear(); refilter(); });
+      host.appendChild(b);
+    };
+
+    CHIPS.forEach(([key, label]) => {
+      if (F[key] !== null) chip(label, F[key] || '(blank)', () => { F[key] = null; });
+    });
+    if (F.id !== null) chip('LICENCE', String(F.id), () => { F.id = null; });
+    if (F.lo !== null || F.hi !== null) {
+      chip('TUNED', fmtMHz(F.lo) + ' – ' + fmtMHz(F.hi) + ' MHz',
+           () => { F.lo = F.hi = null; });
+    }
+    if (!F.tx || !F.rx) chip('SITES', F.tx ? 'TX only' : F.rx ? 'RX only' : 'none', () => { F.tx = F.rx = true; });
+
+    if (!any) {
+      const s = document.createElement('span');
+      s.className = 'chip none';
+      s.textContent = 'none — the whole register. Click any band, cell, row, licensee or site to narrow it.';
+      host.appendChild(s);
+    }
+  }
+
+  /* -------------------------------------------------------- band allocation */
+  const BAND_ORDER = ['VLF', 'LF', 'MF', 'HF', 'VHF', 'UHF', 'SHF', 'EHF'];
+  const BAND_RANGE = {
+    VLF: '< 30 kHz', LF: '30–300 kHz', MF: '300 kHz – 3 MHz', HF: '3–30 MHz',
+    VHF: '30–300 MHz', UHF: '300 MHz – 3 GHz', SHF: '3–30 GHz', EHF: '> 30 GHz'
+  };
+
+  function tally(col, indices) {
+    const out = new Map();
+    for (const i of indices) {
+      const v = SPEC.dict[col][SPEC[col][i]];
+      out.set(v, (out.get(v) || 0) + 1);
+    }
+    return out;
+  }
+
+  function renderBands() {
+    const counts = tally('band', rows);
+    const host = el('bandRows');
+    host.replaceChildren();
+    const peak = Math.max(1, ...counts.values());
+    BAND_ORDER.forEach((b) => {
+      const c = counts.get(b) || 0;
+      const row = document.createElement('div');
+      row.className = 'row bandrow';
+      row.setAttribute('role', 'button');
+      row.tabIndex = 0;
+      row.setAttribute('aria-pressed', String(F.band === b));
+      row.title = b + '  ' + BAND_RANGE[b] + ' — ' + num(c) + ' assignments';
+
+      const code = document.createElement('div');
+      code.className = 'code'; code.textContent = b;
+      const bar = document.createElement('div');
+      bar.className = 'bar';
+      const fill = document.createElement('i');
+      // Logarithmic: UHF outweighs VLF by four orders of magnitude, and a
+      // linear bar renders every low band as an empty box.
+      fill.style.width = c ? Math.max(2, (Math.log10(c + 1) / Math.log10(peak + 1)) * 100) + '%' : '0';
+      fill.style.background = c > peak * 0.5 ? '#00ff00' : c > peak * 0.05 ? '#32cd32'
+        : c > 0 ? 'var(--warn)' : 'transparent';
+      bar.appendChild(fill);
+      const n = document.createElement('div');
+      n.className = 'n'; n.textContent = num(c);
+      if (!c) n.style.color = 'var(--dim)';
+      row.append(code, bar, n);
+
+      const pick = () => { F.band = F.band === b ? null : b; refilter(); };
+      row.addEventListener('click', pick);
+      row.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); }
+      });
+      host.appendChild(row);
+    });
+    el('bandNote').textContent = counts.size + ' of 8 occupied';
+  }
+
+  /* ------------------------------------------------------- occupancy matrix */
+  // Service names come from the register and run long; the matrix heads are
+  // 9px, so each gets an abbreviation derived once from its own words rather
+  // than a hand-kept lookup that a new service type would fall out of.
+  const abbrev = (s) => {
+    const clean = s.replace(/[^A-Za-z ]/g, ' ').trim();
+    const words = clean.split(/\s+/).filter(Boolean);
+    if (!words.length) return '···';
+    if (words.length === 1) return words[0].slice(0, 3).toUpperCase();
+    return words.map((w) => w[0]).join('').slice(0, 4).toUpperCase();
+  };
+
+  function renderMatrix() {
+    // Columns: the services present across the whole register, so the axis
+    // does not jump around as the selection changes. Cells count the current
+    // selection, so an empty column reads as "filtered out", not "gone".
+    const services = SPEC.dict.svc.slice();
+    const cells = new Map();
+    for (const i of rows) {
+      const k = SPEC.band[i] + '|' + SPEC.svc[i];
+      cells.set(k, (cells.get(k) || 0) + 1);
+    }
+    const bandIdx = (b) => SPEC.dict.band.indexOf(b);
+
+    const head = el('mxHead'), grid = el('mxGrid');
+    head.replaceChildren(); grid.replaceChildren();
+    const template = '40px repeat(' + services.length + ', minmax(22px, 1fr))';
+    head.style.gridTemplateColumns = template;
+    grid.style.gridTemplateColumns = template;
+
+    head.appendChild(document.createElement('div'));
+    services.forEach((name) => {
+      const d = document.createElement('div');
+      d.textContent = abbrev(name);
+      d.title = name + ' — click to filter';
+      d.setAttribute('role', 'button');
+      d.setAttribute('aria-pressed', String(F.svc === name));
+      d.addEventListener('click', () => { F.svc = F.svc === name ? null : name; refilter(); });
+      head.appendChild(d);
+    });
+
+    const peak = Math.max(1, ...cells.values());
+    const colour = (v) => {
+      if (!v) return '#0a2a0a';
+      const f = Math.log10(v + 1) / Math.log10(peak + 1);
+      return f > 0.75 ? '#00ff00' : f > 0.5 ? '#32cd32' : f > 0.25 ? '#1d7a2e' : 'var(--warn)';
+    };
+
+    BAND_ORDER.forEach((band) => {
+      const bi = bandIdx(band);
+      const label = document.createElement('div');
+      label.className = 'rl';
+      label.textContent = band;
+      label.title = band + '  ' + BAND_RANGE[band] + ' — click to filter';
+      label.setAttribute('role', 'button');
+      label.setAttribute('aria-pressed', String(F.band === band));
+      label.addEventListener('click', () => { F.band = F.band === band ? null : band; refilter(); });
+      grid.appendChild(label);
+
+      services.forEach((name, si) => {
+        const v = cells.get(bi + '|' + si) || 0;
+        const c = document.createElement('i');
+        c.style.background = colour(v);
+        c.title = band + ' × ' + name + ' — ' + num(v) + ' assignments';
+        c.setAttribute('role', 'button');
+        c.setAttribute('aria-pressed', String(F.band === band && F.svc === name));
+        c.addEventListener('click', () => {
+          // A cell is two filters at once, and clicking the cell you are
+          // already in releases both — otherwise there is no way back out of a
+          // cell except the chips.
+          if (F.band === band && F.svc === name) { F.band = F.svc = null; }
+          else { F.band = band; F.svc = name; }
+          refilter();
+        });
+        grid.appendChild(c);
+      });
+    });
+    el('mxNote').textContent = services.length + ' services × 8 bands';
+  }
+
+  /* ----------------------------------------------------------- result set */
+  // The result set has two readings. ALL is the register itself, every row the
+  // filter admits, paged — the thing PRISM's search form returned. TOP is a
+  // digest: within each service, the ten largest licences by the bandwidth
+  // they hold in the current selection, which is the question "who has the
+  // most of this band" asked without first knowing whom to look for.
+  const PAGE_SIZE = 200;
+  let mode = 'ALL';
+  let page = 0;
+  // Sorted ascending by frequency is the order the index already arrives in,
+  // so the opening view costs no sort at all.
+  let sort = { key: 'freq', dir: 1 };
+
+  const COLUMNS = [
+    { key: 'id',   label: 'LIC ID',   cls: 'id',  get: (i) => SPEC.id[i] },
+    { key: 'num',  label: 'NUMBER',   get: (i) => SPEC.dict.num[SPEC.num[i]] || '' },
+    { key: 'lic',  label: 'LICENSEE', get: (i) => SPEC.dict.lic[SPEC.lic[i]] },
+    { key: 'lt',   label: 'TYPE',     get: (i) => SPEC.dict.lt[SPEC.lt[i]] || '' },
+    { key: 'freq', label: 'FREQ MHz', cls: 'num', get: (i) => SPEC.lo[i] },
+    { key: 'bw',   label: 'BW kHz',   cls: 'num', get: (i) => SPEC.hi[i] - SPEC.lo[i] },
+    { key: 'svc',  label: 'SERVICE',  get: (i) => SPEC.dict.svc[SPEC.svc[i]] }
+  ];
+
+  function renderHead() {
+    const host = el('gridHead');
+    host.replaceChildren();
+    COLUMNS.forEach((c) => {
+      const d = document.createElement('div');
+      d.textContent = c.label;
+      if (sort.key === c.key) {
+        d.setAttribute('aria-sort', sort.dir > 0 ? 'ascending' : 'descending');
+        const arrow = document.createElement('span');
+        arrow.className = 'dir';
+        arrow.textContent = sort.dir > 0 ? ' \u25B2' : ' \u25BC';
+        d.appendChild(arrow);
+      }
+      d.title = 'Sort by ' + c.label;
+      d.setAttribute('role', 'button');
+      d.addEventListener('click', () => {
+        // Same column flips direction; a new column starts descending for the
+        // numbers, because "the biggest" is what anyone sorting a quantity is
+        // after, and ascending for text, where A first is the expectation.
+        if (sort.key === c.key) sort.dir = -sort.dir;
+        else sort = { key: c.key, dir: (c.key === 'freq' || c.key === 'bw' || c.key === 'id') ? -1 : 1 };
+        page = 0;
+        render();
+      });
+      host.appendChild(d);
+    });
+  }
+
+  function sorted(indices) {
+    const c = COLUMNS.find((x) => x.key === sort.key);
+    if (!c) return indices;
+    const out = indices.slice();
+    const isNumeric = (sort.key === 'freq' || sort.key === 'bw' || sort.key === 'id');
+    out.sort((a, b) => {
+      const va = c.get(a), vb = c.get(b);
+      const d = isNumeric ? va - vb : String(va).localeCompare(String(vb));
+      // Frequency breaks every tie, so two runs over the same selection put the
+      // same row in the same place and paging is stable.
+      return (d || SPEC.lo[a] - SPEC.lo[b]) * sort.dir;
+    });
+    return out;
+  }
+
+  function cell(value, cls, title) {
+    const d = document.createElement('div');
+    if (cls) d.className = cls;
+    d.textContent = value;
+    d.title = title === undefined ? value : title;
+    return d;
+  }
+
+  function assignmentRow(i, rank) {
+    const id = SPEC.id[i];
+    const tr = document.createElement('div');
+    tr.className = 'gridrow';
+    tr.setAttribute('role', 'button');
+    tr.tabIndex = 0;
+    tr.setAttribute('aria-pressed', String(F.id === id));
+    const lo = SPEC.lo[i], hi = SPEC.hi[i];
+    tr.append(
+      rank === undefined ? cell(String(id), 'id') : cell(String(rank), 'rank'),
+      cell(SPEC.dict.num[SPEC.num[i]] || '\u2014'),
+      cell(SPEC.dict.lic[SPEC.lic[i]]),
+      cell(SPEC.dict.lt[SPEC.lt[i]] || '\u2014'),
+      cell(lo === hi ? fmtMHz(lo) : fmtMHz(lo) + '\u2013' + fmtMHz(hi), 'num'),
+      cell(num(hi - lo), 'num'),
+      cell(SPEC.dict.svc[SPEC.svc[i]])
+    );
+    const pick = () => { F.id = F.id === id ? null : id; refilter(); };
+    tr.addEventListener('click', pick);
+    tr.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); }
+    });
+    return tr;
+  }
+
+  function renderAll() {
+    const order = sorted(rows);
+    const pages = Math.max(1, Math.ceil(order.length / PAGE_SIZE));
+    page = Math.min(page, pages - 1);
+    const from = page * PAGE_SIZE;
+    const slice = order.slice(from, from + PAGE_SIZE);
+
+    const body = el('gridBody');
+    body.replaceChildren();
+    const frag = document.createDocumentFragment();
+    slice.forEach((i) => frag.appendChild(assignmentRow(i)));
+    body.appendChild(frag);
+    body.scrollTop = 0;
+
+    el('rowsNote').textContent = order.length
+      ? num(from + 1) + '\u2013' + num(from + slice.length) + ' of ' + num(order.length)
+        + '   \u00b7   PAGE ' + (page + 1) + '/' + num(pages)
+      : 'no rows';
+    el('pagePrev').disabled = page === 0;
+    el('pageNext').disabled = page >= pages - 1;
+  }
+
+  function renderTop() {
+    // Group by service, then rank each service's licences by the bandwidth they
+    // hold here. A licence with ten assignments in the band counts as one
+    // licence holding their total, not as ten rows crowding out everyone else.
+    const byService = new Map();
+    for (const i of rows) {
+      const svc = SPEC.dict.svc[SPEC.svc[i]];
+      let licences = byService.get(svc);
+      if (!licences) { licences = new Map(); byService.set(svc, licences); }
+      const id = SPEC.id[i];
+      const held = licences.get(id);
+      const bw = SPEC.hi[i] - SPEC.lo[i];
+      if (held) { held.bw += bw; held.n += 1; if (SPEC.lo[i] < SPEC.lo[held.row]) held.row = i; }
+      else licences.set(id, { bw, n: 1, row: i });
+    }
+
+    const services = [...byService.entries()]
+      .map(([svc, licences]) => [svc, licences, [...licences.values()].reduce((s, x) => s + x.bw, 0)])
+      .sort((a, b) => b[2] - a[2]);
+
+    const body = el('gridBody');
+    body.replaceChildren();
+    const frag = document.createDocumentFragment();
+    let shown = 0;
+    services.forEach(([svc, licences]) => {
+      const head = document.createElement('div');
+      head.className = 'grouprow';
+      head.setAttribute('role', 'button');
+      head.tabIndex = 0;
+      const name = document.createElement('div');
+      name.textContent = svc;
+      const n = document.createElement('div');
+      n.className = 'gn';
+      n.textContent = num(licences.size) + ' licences';
+      head.append(name, n);
+      head.title = svc + ' \u2014 click to filter to it';
+      const pick = () => { F.svc = F.svc === svc ? null : svc; refilter(); };
+      head.addEventListener('click', pick);
+      head.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); }
+      });
+      frag.appendChild(head);
+
+      [...licences.values()]
+        .sort((a, b) => b.bw - a.bw || a.row - b.row)
+        .slice(0, 10)
+        .forEach((entry, k) => {
+          const tr = assignmentRow(entry.row, k + 1);
+          // The ranked figure is the licence's total across the selection, not
+          // the one assignment the row happens to be drawn from.
+          tr.children[5].textContent = num(entry.bw);
+          tr.children[5].title = num(entry.bw) + ' kHz across '
+            + num(entry.n) + ' assignment' + (entry.n === 1 ? '' : 's');
+          frag.appendChild(tr);
+          shown++;
+        });
+    });
+    body.appendChild(frag);
+    body.scrollTop = 0;
+
+    el('rowsNote').textContent = num(shown) + ' of ' + num(licIds.size) + ' licences  \u00b7  '
+      + services.length + ' service' + (services.length === 1 ? '' : 's');
+    el('pagePrev').disabled = true;
+    el('pageNext').disabled = true;
+  }
+
+  function renderResult() {
+    renderHead();
+    if (mode === 'TOP') renderTop(); else renderAll();
+  }
+
+  function renderHoldings() {
+    const counts = tally('lic', rows);
+    const top = [...counts.entries()].sort((a, b) => b[1] - a[1]).slice(0, 40);
+    const peak = top.length ? top[0][1] : 1;
+    const host = el('holdRows');
+    host.replaceChildren();
+    const frag = document.createDocumentFragment();
+    top.forEach(([name, c]) => {
+      const row = document.createElement('div');
+      row.className = 'row holdrow';
+      row.setAttribute('role', 'button');
+      row.tabIndex = 0;
+      row.setAttribute('aria-pressed', String(F.lic === name));
+      row.title = name + ' — ' + num(c) + ' assignments in selection';
+      const nm = document.createElement('div');
+      nm.className = 'nm'; nm.textContent = name;
+      const n = document.createElement('div');
+      n.className = 'n'; n.textContent = num(c);
+      const bar = document.createElement('div');
+      bar.className = 'bar';
+      const fill = document.createElement('i');
+      fill.style.width = Math.round((c / peak) * 100) + '%';
+      fill.style.background = 'var(--color-accent-300)';
+      bar.appendChild(fill);
+      row.append(nm, n, bar);
+      const pick = () => { F.lic = F.lic === name ? null : name; refilter(); };
+      row.addEventListener('click', pick);
+      row.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); }
+      });
+      frag.appendChild(row);
+    });
+    host.appendChild(frag);
+    el('holdNote').textContent = num(counts.size) + ' licensees';
+  }
+
+  /* ---------------------------------------------------- frequency spectrum */
+  // Log-frequency occupancy histogram. The register spans 9 kHz to 1 THz —
+  // eight decades — so a linear axis would put 99% of assignments in the first
+  // pixel. Bars are drawn twice: the whole register in outline, the current
+  // selection filled, so a filter shows as a subset rather than a new chart.
+  const BINS = 220;
+  const LOG_LO = Math.log10(9), LOG_HI = Math.log10(1e9);   // kHz
+  const binOf = (kHz) => Math.max(0, Math.min(BINS - 1,
+    Math.floor((Math.log10(Math.max(kHz, 9)) - LOG_LO) / (LOG_HI - LOG_LO) * BINS)));
+  const kHzAt = (frac) => Math.pow(10, LOG_LO + frac * (LOG_HI - LOG_LO));
+
+  let allBins = null;
+
+  function drawSpectrum() {
+    if (!SPEC) return;
+    const canvas = el('spec'), host = canvas.parentElement;
+    const w = host.clientWidth, h = host.clientHeight;
+    if (!w || !h) return;
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    const g = canvas.getContext('2d');
+    g.setTransform(dpr, 0, 0, dpr, 0, 0);
+    g.fillStyle = '#0b140b';
+    g.fillRect(0, 0, w, h);
+
+    if (!allBins) {
+      allBins = new Array(BINS).fill(0);
+      for (let i = 0; i < SPEC.count; i++) allBins[binOf(SPEC.lo[i])]++;
+    }
+    const sel = new Array(BINS).fill(0);
+    for (const i of rows) sel[binOf(SPEC.lo[i])]++;
+    const peak = Math.max(1, ...allBins);
+    const bw = w / BINS;
+    const scale = (v) => (v ? Math.max(1, (Math.log10(v + 1) / Math.log10(peak + 1)) * (h - 10)) : 0);
+
+    // decade gridlines, labelled where there is room
+    g.strokeStyle = '#1c3a1c'; g.fillStyle = '#2f5f2f';
+    g.font = '8px ' + getComputedStyle(document.body).getPropertyValue('--mono');
+    for (let d = 1; d <= 9; d++) {
+      const x = ((d - LOG_LO) / (LOG_HI - LOG_LO)) * w;
+      if (x < 0 || x > w) continue;
+      g.beginPath(); g.moveTo(x, 0); g.lineTo(x, h); g.stroke();
+      const kHz = Math.pow(10, d);
+      const label = kHz >= 1e6 ? (kHz / 1e6) + ' GHz' : kHz >= 1e3 ? (kHz / 1e3) + ' MHz' : kHz + ' kHz';
+      g.fillText(label, x + 2, h - 2);
+    }
+
+    for (let b = 0; b < BINS; b++) {
+      if (allBins[b]) {
+        g.fillStyle = '#1d4d1d';
+        g.fillRect(b * bw, h - scale(allBins[b]), Math.max(1, bw - 0.5), scale(allBins[b]));
+      }
+      if (sel[b]) {
+        g.fillStyle = '#00ff00';
+        g.fillRect(b * bw, h - scale(sel[b]), Math.max(1, bw - 0.5), scale(sel[b]));
+      }
+    }
+
+    const brush = el('brush');
+    if (F.lo === null && F.hi === null) {
+      brush.hidden = true;
+    } else {
+      const f = (kHz) => (Math.log10(Math.max(kHz, 9)) - LOG_LO) / (LOG_HI - LOG_LO);
+      brush.hidden = false;
+      brush.style.left = (f(F.lo) * 100) + '%';
+      brush.style.width = Math.max(0.4, (f(F.hi) - f(F.lo)) * 100) + '%';
+    }
+  }
+
+  function wireSpectrum() {
+    const host = el('spectrogram');
+    let anchor = null, dragFrame = 0;
+    const fracAt = (ev) => {
+      const r = host.getBoundingClientRect();
+      return Math.max(0, Math.min(1, (ev.clientX - r.left) / r.width));
+    };
+    host.addEventListener('pointerdown', (ev) => {
+      host.setPointerCapture(ev.pointerId);
+      anchor = fracAt(ev);
+    });
+    host.addEventListener('pointermove', (ev) => {
+      const r = host.getBoundingClientRect();
+      const f = Math.max(0, Math.min(1, (ev.clientX - r.left) / r.width));
+      el('tuneNote').textContent = fmtMHz(kHzAt(f)) + ' MHz';
+      if (anchor === null) return;
+      F.lo = Math.round(kHzAt(Math.min(anchor, f)));
+      F.hi = Math.round(kHzAt(Math.max(anchor, f)));
+      // Coalesce to one re-filter per frame. A sweep fires pointermove faster
+      // than five panels can be rebuilt, and without this the brush lags the
+      // pointer by a growing backlog of renders.
+      if (!dragFrame) dragFrame = requestAnimationFrame(() => { dragFrame = 0; refilter(); });
+    });
+    const end = (ev) => {
+      if (anchor === null) return;
+      const f = fracAt(ev);
+      // A click without a drag releases the window rather than selecting a
+      // zero-width slice nothing can fall into.
+      if (Math.abs(f - anchor) < 0.004) { F.lo = F.hi = null; refilter(); }
+      anchor = null;
+    };
+    host.addEventListener('pointerup', end);
+    host.addEventListener('pointercancel', end);
+    host.addEventListener('pointerleave', () => { el('tuneNote').textContent = 'drag to tune'; });
+  }
+
+  /* ------------------------------------------------------------- site plot */
+  let proj = null;
+
+  function drawPlot() {
+    if (!SITES) return;
+    const canvas = el('plot'), host = canvas.parentElement;
+    const w = host.clientWidth, h = host.clientHeight;
+    if (!w || !h) return;
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    const g = canvas.getContext('2d');
+    g.setTransform(dpr, 0, 0, dpr, 0, 0);
+    g.fillStyle = '#0b140b';
+    g.fillRect(0, 0, w, h);
+
+    // Fixed extent: New Zealand, not the bounding box of the selection. A map
+    // that reframes on every filter makes two selections impossible to compare,
+    // and a single-site selection would otherwise zoom to a meaningless scale.
+    const rad = (d) => d * Math.PI / 180;
+    const merc = (lat) => Math.log(Math.tan(Math.PI / 4 + rad(lat) / 2));
+    const LAT_N = -33.8, LAT_S = -47.6, LON_W = 166.0, LON_E = 179.2;
+    // Mercator y grows northward and screen y grows downward, so the vertical
+    // span is north minus south and the offset is measured down from the
+    // northern edge. Taking it the other way round makes the span negative,
+    // which flips the country and mis-scales it in one step.
+    const yN = merc(LAT_N), yS = merc(LAT_S);
+    const ySpan = yN - yS;
+    const x0 = rad(LON_W), xSpan = rad(LON_E) - rad(LON_W);
+    const m = 6;
+    const s = Math.min((w - m * 2) / xSpan, (h - m * 2) / ySpan);
+    const ox = m + ((w - m * 2) - xSpan * s) / 2;
+    const oy = m + ((h - m * 2) - ySpan * s) / 2;
+    const px = (lon) => ox + (rad(lon) - x0) * s;
+    const py = (lat) => oy + (yN - merc(lat)) * s;
+    proj = { px, py, w, h };
+    // The projection is the one part of this page with no visible readout
+    // and a failure mode that looks like a plausible map, so it is exposed
+    // for the test that checks north lands above south.
+    window.__proj = proj;
+    window.__coastRings = COAST ? COAST.length : 0;
+
+    g.strokeStyle = '#143014'; g.lineWidth = 0.5;
+    for (let lon = 166; lon <= 179; lon += 2) { g.beginPath(); g.moveTo(px(lon), 0); g.lineTo(px(lon), h); g.stroke(); }
+    for (let lat = -34; lat >= -47; lat -= 2) { g.beginPath(); g.moveTo(0, py(lat)); g.lineTo(w, py(lat)); g.stroke(); }
+
+    // The coastline, so a site reads as somewhere rather than as a dot in a
+    // grid. Filled below the graticule weight and stroked above it: the land
+    // is context for the sites, not a subject of its own.
+    if (COAST) {
+      g.beginPath();
+      COAST.forEach((ring) => {
+        ring.forEach(([lon, lat], i) => {
+          const X = px(lon), Y = py(lat);
+          if (i) g.lineTo(X, Y); else g.moveTo(X, Y);
+        });
+        g.closePath();
+      });
+      g.fillStyle = '#122412';
+      g.fill();
+      g.strokeStyle = '#2f6b32';
+      g.lineWidth = 0.8;
+      g.stroke();
+    }
+
+    // Draw receive under transmit: TX is the primary reading and RX is
+    // context, and at national scale the two coincide often enough that
+    // whichever is drawn last would otherwise be the only one visible.
+    const order = [1, 0];
+    let drawn = 0;
+    order.forEach((dir) => {
+      g.fillStyle = dir === 1 ? 'rgba(255,165,0,.72)' : 'rgba(0,255,0,.78)';
+      for (const i of siteRows) {
+        if (SITES.dir[i] !== dir) continue;
+        g.beginPath();
+        g.arc(px(SITES.lon[i] / 1e5), py(SITES.lat[i] / 1e5), 1.5, 0, Math.PI * 2);
+        g.fill();
+        drawn++;
+      }
+    });
+
+    const cx = w - 18, cy = 16;
+    g.strokeStyle = '#00ff00'; g.lineWidth = 0.7;
+    g.beginPath(); g.arc(cx, cy, 7, 0, Math.PI * 2); g.stroke();
+    g.beginPath(); g.moveTo(cx, cy - 9); g.lineTo(cx, cy + 9); g.stroke();
+    g.fillStyle = '#00ff00'; g.font = '7px monospace'; g.fillText('N', cx - 2, cy - 10);
+
+    const tx = siteRows.reduce((t, i) => t + (SITES.dir[i] === 0 ? 1 : 0), 0);
+    // An empty map and a broken map look identical, and a quarter of the
+    // register genuinely has no plottable position — area-wide designations
+    // like MOBILE and ALL NEW ZEALAND, and sites the register geocodes to
+    // nothing. Say which of the two this is.
+    if (drawn) {
+      el('cursor').textContent = num(drawn) + ' SITES  ·  ' + num(tx) + ' TX  '
+        + num(drawn - tx) + ' RX' + (F.loc ? '  ·  ' + F.loc : '');
+    } else if (!F.tx && !F.rx) {
+      el('cursor').textContent = 'TX AND RX BOTH OFF';
+    } else if (!rows.length) {
+      el('cursor').textContent = 'NOTHING SELECTED';
+    } else {
+      const pct = META && META.spectrumLicences
+        ? Math.round(100 * (1 - META.mappableLicences / META.spectrumLicences)) : null;
+      el('cursor').textContent = 'NO PLOTTABLE SITE FOR THIS SELECTION'
+        + (pct ? '  ·  ' + pct + '% OF LICENCES CARRY NO POSITION' : '');
+    }
+    el('stSites').textContent = num(drawn);
+  }
+
+  function wirePlot() {
+    const canvas = el('plot');
+    canvas.addEventListener('click', (ev) => {
+      if (!proj || !siteRows.length) return;
+      const r = canvas.getBoundingClientRect();
+      const mx = ev.clientX - r.left, my = ev.clientY - r.top;
+      let best = -1, bestD = 64;   // 8 px, squared
+      for (const i of siteRows) {
+        const dx = proj.px(SITES.lon[i] / 1e5) - mx;
+        const dy = proj.py(SITES.lat[i] / 1e5) - my;
+        const d = dx * dx + dy * dy;
+        if (d < bestD) { bestD = d; best = i; }
+      }
+      if (best < 0) { if (F.loc !== null) { F.loc = null; refilter(); } return; }
+      const name = SITES.dict.loc[SITES.loc[best]];
+      F.loc = F.loc === name ? null : name;
+      refilter();
+    });
+    canvas.addEventListener('mousemove', (ev) => {
+      if (!proj || !siteRows.length) return;
+      const r = canvas.getBoundingClientRect();
+      const mx = ev.clientX - r.left, my = ev.clientY - r.top;
+      let best = -1, bestD = 64;
+      for (const i of siteRows) {
+        const dx = proj.px(SITES.lon[i] / 1e5) - mx;
+        const dy = proj.py(SITES.lat[i] / 1e5) - my;
+        const d = dx * dx + dy * dy;
+        if (d < bestD) { bestD = d; best = i; }
+      }
+      if (best < 0) return;
+      const ht = SITES.ht[best], az = SITES.az[best];
+      canvas.title = SITES.dict.loc[SITES.loc[best]]
+        + '  ' + (SITES.dir[best] ? 'RX' : 'TX')
+        + (ht >= 0 ? '  ·  ' + ht + ' m' : '')
+        + (az >= 0 ? '  ·  ' + az + '°' : '')
+        + (SITES.dict.amake[SITES.amake[best]] ? '  ·  ' + SITES.dict.amake[SITES.amake[best]] : '');
+    });
+  }
+
+  /* ---------------------------------------------------------------- render */
+  function render() {
+    renderChips();
+    renderBands();
+    renderMatrix();
+    renderResult();
+    renderHoldings();
+    drawSpectrum();
+    drawPlot();
+
+    const withFreq = rows.length;
+    el('fCount').textContent = num(withFreq);
+    if (withFreq) {
+      let lo = Infinity, hi = -Infinity;
+      for (const i of rows) { if (SPEC.lo[i] < lo) lo = SPEC.lo[i]; if (SPEC.hi[i] > hi) hi = SPEC.hi[i]; }
+      el('fLow').textContent = fmtMHz(lo);
+      el('fHigh').textContent = fmtMHz(hi);
+    } else {
+      el('fLow').textContent = el('fHigh').textContent = '—';
+    }
+
+    el('stRecords').textContent = num(rows.length);
+    el('stLicences').textContent = num(licIds.size);
+    el('stHolders').textContent = num(tally('lic', rows).size);
+  }
+
+  function refilter() { page = 0; apply(); render(); }
+
+  /* --------------------------------------------------------------- control */
+  function renderMeta() {
+    if (!META) return;
+    const cov = META.prismCoverage || {};
+    const have = Object.keys(cov).filter((k) => cov[k] > 0).length;
+    const total = Object.keys(cov).length;
+    el('stPrism').textContent = have + '/' + total + ' TABLES';
+    el('prismNote').textContent = 'PRISM rebuild · ' + have + ' of ' + total + ' tables from the live register';
+    el('prismNote').title = Object.entries(cov)
+      .map(([k, v]) => k + ': ' + (v ? v.toLocaleString('en-NZ') + ' rows' : 'not carried by the API'))
+      .join('\n');
+    el('stUpdate').textContent = 'GOLD EXPORT ' + (META.generatedAt || '—').replace('T', ' ').replace('Z', ' UTC');
+  }
+
+  let busy = false;
+  async function refresh() {
+    if (busy) return;
+    busy = true;
+    const btn = el('btnRefresh');
+    btn.classList.add('pressed');
+    try {
+      await load();
+      await loadCoast();
+      allBins = null;
+      el('stSource').textContent = 'LIVE INDEX';
+      el('led').style.background = '#00ff00';
+      renderMeta();
+      refilter();
+    } catch (e) {
+      fail('Index unavailable', 'The analyser reads two index files from this site and joins '
+        + 'them in your browser. They could not be fetched (' + e.message + '). Opening this page '
+        + 'straight off disk will always fail this way — browsers refuse to let a file:// page read '
+        + 'neighbouring files. Serve the folder over HTTP, or open the published site.');
+    } finally {
+      busy = false;
+      setTimeout(() => btn.classList.remove('pressed'), 180);
+    }
+  }
+
+  function setMode(next) {
+    mode = next;
+    page = 0;
+    el('btnModeAll').setAttribute('aria-pressed', String(mode === 'ALL'));
+    el('btnModeTop').setAttribute('aria-pressed', String(mode === 'TOP'));
+    render();
+  }
+  el('btnModeAll').addEventListener('click', () => setMode('ALL'));
+  el('btnModeTop').addEventListener('click', () => setMode('TOP'));
+  el('pagePrev').addEventListener('click', () => { if (page > 0) { page--; render(); } });
+  el('pageNext').addEventListener('click', () => { page++; render(); });
+
+  el('btnRefresh').addEventListener('click', refresh);
+  el('btnClear').addEventListener('click', () => {
+    Object.assign(F, { band: null, svc: null, lt: null, lic: null, st: null,
+                       id: null, loc: null, lo: null, hi: null, tx: true, rx: true });
+    el('btnTx').setAttribute('aria-pressed', 'true');
+    el('btnRx').setAttribute('aria-pressed', 'true');
+    sort = { key: 'freq', dir: 1 };
+    setMode('ALL');
+    refilter();
+  });
+  el('btnFull').addEventListener('click', () => {
+    if (document.fullscreenElement) document.exitFullscreen();
+    else document.documentElement.requestFullscreen?.();
+  });
+  document.addEventListener('fullscreenchange', () => {
+    el('btnFull').textContent = document.fullscreenElement ? 'EXIT FULL SCREEN' : 'FULL SCREEN';
+  });
+  el('btnTx').addEventListener('click', () => {
+    F.tx = !F.tx;
+    el('btnTx').setAttribute('aria-pressed', String(F.tx));
+    refilter();
+  });
+  el('btnRx').addEventListener('click', () => {
+    F.rx = !F.rx;
+    el('btnRx').setAttribute('aria-pressed', String(F.rx));
+    refilter();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !document.fullscreenElement) el('btnClear').click();
+  });
+
+  document.querySelectorAll('.panel').forEach((p) => {
+    ['tl', 'tr', 'bl', 'br'].forEach((pos) => {
+      const c = document.createElement('i');
+      c.className = 'corner ' + pos;
+      c.setAttribute('aria-hidden', 'true');
+      p.appendChild(c);
+    });
+  });
+
+  let raf = 0;
+  window.addEventListener('resize', () => {
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(() => { drawSpectrum(); drawPlot(); });
+  });
+
+  wireSpectrum();
+  wirePlot();
+  // The register moves once a day, not once a minute; this keeps a screen left
+  // open overnight from showing yesterday's export without saying so.
+  setInterval(() => { if (!document.hidden) refresh(); }, 30 * 60 * 1000);
+  refresh();
+})();
+</script>
+</body>
+</html>
