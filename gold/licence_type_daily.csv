@@ -4266,15 +4266,15 @@ observed_date,licence_type,assignment_count,distinct_licensees
 2026-11-02,Aero Mobile (Route),2,2
 2026-11-02,Radar,2,1
 2026-11-03,Other (Spectrum),29898,6
-2026-11-03,Land Simplex,13645,2347
+2026-11-03,Land Simplex,13645,2346
 2026-11-03,Fixed >=1 GHz (Bi-directional),10659,148
-2026-11-03,Land Repeater,10158,869
-2026-11-03,Land Mobile - Mobile Transmit,6216,876
+2026-11-03,Land Repeater,10158,868
+2026-11-03,Land Mobile - Mobile Transmit,6216,875
 2026-11-03,Fixed <1 GHz; BW <=50 kHz (Bi-directional),2753,163
 2026-11-03,VHF FM,1789,111
 2026-11-03,Fixed Bi-directional Point-to-Multipoint,1643,69
-2026-11-03,Satellite,1418,21
-2026-11-03,Paging,1121,99
+2026-11-03,Satellite,1419,21
+2026-11-03,Paging,1121,98
 2026-11-03,Maritime Coast Station,720,51
 2026-11-03,Managed Spectrum Park,613,21
 2026-11-03,Fixed < 1GHz; BW >50kHz (Uni-directional),603,85
