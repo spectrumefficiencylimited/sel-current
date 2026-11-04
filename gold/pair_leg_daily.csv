@@ -1759,7 +1759,7 @@ observed_date,service,pair_leg,assignment_count,distinct_licences
 2026-11-03,General User Licence,Return leg (#),23,2
 2026-11-03,Radiodetermination,Return leg (#),16,16
 2026-11-03,Aeronautical,Return leg (#),1,1
-2026-11-04,Spectrum Licence,Primary leg,30515,30446
+2026-11-04,Spectrum Licence,Primary leg,30514,30445
 2026-11-04,Land Mobile,Primary leg,24153,9634
 2026-11-04,Fixed Link,Primary leg,8857,8485
 2026-11-04,Fixed Link,Return leg (#),7616,7616

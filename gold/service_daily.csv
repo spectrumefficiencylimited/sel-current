@@ -2239,7 +2239,7 @@ observed_date,service,link_mode,assignment_count,distinct_licences,distinct_lice
 2026-11-03,Aeronautical,Unspecified,9,9,8
 2026-11-03,Aeronautical,Mobile Transmit,4,4,2
 2026-11-03,Aeronautical,Repeater,4,4,2
-2026-11-04,Spectrum Licence,Unspecified,30515,30446,26
+2026-11-04,Spectrum Licence,Unspecified,30514,30445,26
 2026-11-04,Fixed Link,Bi-directional,15270,15270,280
 2026-11-04,Land Mobile,Simplex,13953,3408,2363
 2026-11-04,Land Mobile,Repeater,10198,6225,901
