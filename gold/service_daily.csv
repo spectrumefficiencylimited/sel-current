@@ -2353,7 +2353,7 @@ observed_date,service,link_mode,assignment_count,distinct_licences,distinct_lice
 2026-11-07,Aeronautical,Repeater,4,4,2
 2026-11-08,Spectrum Licence,Unspecified,30531,30462,26
 2026-11-08,Fixed Link,Bi-directional,15240,15240,280
-2026-11-08,Land Mobile,Simplex,13930,3396,2360
+2026-11-08,Land Mobile,Simplex,13932,3397,2360
 2026-11-08,Land Mobile,Repeater,10192,6219,897
 2026-11-08,Land Mobile,Mobile Transmit,6246,6244,901
 2026-11-08,Broadcasting,Unspecified,2385,2285,130
