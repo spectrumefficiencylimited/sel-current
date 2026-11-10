@@ -2410,8 +2410,8 @@ observed_date,service,link_mode,assignment_count,distinct_licences,distinct_lice
 2026-11-10,Spectrum Licence,Unspecified,30531,30462,26
 2026-11-10,Fixed Link,Bi-directional,15238,15238,280
 2026-11-10,Land Mobile,Simplex,13935,3400,2362
-2026-11-10,Land Mobile,Repeater,10189,6216,896
-2026-11-10,Land Mobile,Mobile Transmit,6243,6241,900
+2026-11-10,Land Mobile,Repeater,10188,6215,896
+2026-11-10,Land Mobile,Mobile Transmit,6242,6240,900
 2026-11-10,Broadcasting,Unspecified,2385,2285,130
 2026-11-10,Satellite & Space,Unspecified,1595,1564,23
 2026-11-10,Fixed Link,Uni-directional,1203,831,125
@@ -2422,12 +2422,12 @@ observed_date,service,link_mode,assignment_count,distinct_licences,distinct_lice
 2026-11-10,Amateur,Repeater,317,298,80
 2026-11-10,Amateur,Mobile Transmit,291,273,74
 2026-11-10,Telemetry & Telecommand,Uni-directional,225,209,74
-2026-11-10,Radiodetermination,Unspecified,129,116,10
+2026-11-10,Radiodetermination,Unspecified,128,115,10
 2026-11-10,Maritime,Mobile Transmit,120,120,45
 2026-11-10,Maritime,Repeater,120,120,45
 2026-11-10,Outside Broadcast,Unspecified,98,9,5
-2026-11-10,Radiodetermination,Beacon,86,86,4
-2026-11-10,Radiodetermination,Mobile Transmit,84,84,3
+2026-11-10,Radiodetermination,Beacon,85,85,4
+2026-11-10,Radiodetermination,Mobile Transmit,83,83,2
 2026-11-10,Meteorological,Unspecified,38,31,7
 2026-11-10,Amateur,Unspecified,25,3,3
 2026-11-10,Telemetry & Telecommand,Bi-directional,24,24,6
