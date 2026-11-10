@@ -4651,10 +4651,10 @@ observed_date,licence_type,assignment_count,distinct_licensees
 2026-11-10,Fixed <1 GHz; BW <=50 kHz (Bi-directional),2753,163
 2026-11-10,VHF FM,1789,111
 2026-11-10,Fixed Bi-directional Point-to-Multipoint,1643,69
-2026-11-10,Satellite,1419,21
+2026-11-10,Satellite,1451,21
 2026-11-10,Paging,1121,97
 2026-11-10,Maritime Coast Station,720,51
-2026-11-10,Managed Spectrum Park,611,21
+2026-11-10,Managed Spectrum Park,609,21
 2026-11-10,Fixed < 1GHz; BW >50kHz (Uni-directional),603,85
 2026-11-10,General user licence (Radio),568,1
 2026-11-10,Fixed <1 GHz; BW <=50 kHz (Uni-directional),560,45
