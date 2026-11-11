@@ -1919,7 +1919,7 @@ observed_date,service,pair_leg,assignment_count,distinct_licences
 2026-11-11,Fixed Link,Return leg (#),7601,7601
 2026-11-11,Land Mobile,Return leg (#),6238,6237
 2026-11-11,Broadcasting,Primary leg,2385,2285
-2026-11-11,Satellite & Space,Primary leg,1627,1596
+2026-11-11,Satellite & Space,Primary leg,1639,1608
 2026-11-11,Paging,Primary leg,1121,175
 2026-11-11,Maritime,Primary leg,818,288
 2026-11-11,Aeronautical,Primary leg,788,533
