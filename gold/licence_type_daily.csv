@@ -4806,7 +4806,7 @@ observed_date,licence_type,assignment_count,distinct_licensees
 2026-11-12,Aero Mobile (Route),2,2
 2026-11-12,Radar,2,1
 2026-11-13,Other (Spectrum),29933,6
-2026-11-13,Land Simplex,13632,2344
+2026-11-13,Land Simplex,13644,2345
 2026-11-13,Fixed >=1 GHz (Bi-directional),10629,148
 2026-11-13,Land Repeater,10139,863
 2026-11-13,Land Mobile - Mobile Transmit,6201,870
