@@ -2606,10 +2606,10 @@ observed_date,service,link_mode,assignment_count,distinct_licences,distinct_lice
 2026-11-17,Spectrum Licence,Unspecified,30553,30484,26
 2026-11-17,Fixed Link,Bi-directional,15242,15242,280
 2026-11-17,Land Mobile,Simplex,13949,3408,2361
-2026-11-17,Land Mobile,Repeater,10179,6210,896
-2026-11-17,Land Mobile,Mobile Transmit,6237,6235,900
+2026-11-17,Land Mobile,Repeater,10184,6215,896
+2026-11-17,Land Mobile,Mobile Transmit,6242,6240,900
 2026-11-17,Broadcasting,Unspecified,2385,2285,130
-2026-11-17,Satellite & Space,Unspecified,1652,1621,24
+2026-11-17,Satellite & Space,Unspecified,1653,1622,24
 2026-11-17,Fixed Link,Uni-directional,1202,830,125
 2026-11-17,Paging,Unspecified,1121,175,97
 2026-11-17,Aeronautical,Base Station,772,517,84
