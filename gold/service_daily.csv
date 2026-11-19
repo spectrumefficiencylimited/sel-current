@@ -2666,7 +2666,7 @@ observed_date,service,link_mode,assignment_count,distinct_licences,distinct_lice
 2026-11-19,Land Mobile,Mobile Transmit,6244,6242,899
 2026-11-19,Broadcasting,Unspecified,2385,2285,130
 2026-11-19,Satellite & Space,Unspecified,1654,1623,24
-2026-11-19,Fixed Link,Uni-directional,1202,830,125
+2026-11-19,Fixed Link,Uni-directional,1201,829,125
 2026-11-19,Paging,Unspecified,1121,175,97
 2026-11-19,Aeronautical,Base Station,772,517,84
 2026-11-19,Maritime,Unspecified,720,175,51
