@@ -2829,7 +2829,7 @@ observed_date,service,link_mode,assignment_count,distinct_licences,distinct_lice
 2026-11-24,Aeronautical,Repeater,4,4,2
 2026-11-25,Spectrum Licence,Unspecified,30679,30610,26
 2026-11-25,Fixed Link,Bi-directional,15226,15226,280
-2026-11-25,Land Mobile,Simplex,13918,3371,2362
+2026-11-25,Land Mobile,Simplex,13914,3370,2361
 2026-11-25,Land Mobile,Repeater,10178,6208,894
 2026-11-25,Land Mobile,Mobile Transmit,6235,6233,898
 2026-11-25,Broadcasting,Unspecified,2385,2285,130
